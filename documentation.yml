@@ -1,0 +1,232 @@
+Biom types:
+  Concrete:
+    resources:
+    bonus:
+  Desert:
+    resources:
+    - sand
+    bonus:
+    - solar panel
+  Forest:
+    resources:
+    - wood
+    - meat
+  Lake:
+    resources:
+    - water
+    - fish
+  Mountain:
+    resources:
+    - stone
+    - ore
+    bonus:
+    - planetary defense
+  Oil field:
+    resources:
+    - oil
+  Vulkan:
+    resources:
+    - ore
+    bonus:
+    - geotermic power plant
+    - excavator
+
+Building types:
+  Platform:
+  Industry:
+  Defence:
+
+Resources:
+  Energy:
+    source:
+    - conversion
+      from:
+      with: solar panel
+    - conversion
+      from:
+      with: geotermic power plant
+  Fish:
+    source:
+    - mining
+      from:
+      - lake
+        with: fishing ship
+  Food:
+    source:
+    - conversion
+      from:
+      - meat
+      - fish
+      - wheat
+      - energy
+      - plastic
+      with: food packaging factory
+  Fuel:
+    source:
+    - conversion
+      from:
+      - energy
+      - oil
+      with: oil refinery
+  Meat:
+    source:
+    - mining
+      from:
+      - forest
+        with: #todo
+    - conversion
+      from: wheat
+      with: farm
+  Oil:
+    source:
+    - mining
+      from:
+      - oil field
+        with: oil rig
+  Ore:
+    source:
+    - mining
+      from:
+      - mountain
+        with: excavator
+      - lava
+        with: excavator
+  Plastic:
+    source:
+    - conversion
+      from:
+      - energy
+      - oil
+      with: oil refinery
+  Sand:
+    source:
+    - mining
+      from:
+      - desert
+        with: excavator
+  Silicon:
+    source:
+      conversion:
+        from: sand
+        with: #todo
+  Stone:
+    source:
+    - mining
+      from: mountain
+      with: excavator
+  Water:
+    source:
+    - mining
+      from: lake
+      with: water pump
+  Wheat:
+    source:
+    - mining
+      from: water
+      with: farm
+  Wood:
+    source:
+    - mining
+      from: forest
+      uses: sawmill
+
+Building:
+  Production:
+    Excavator:
+      gives:
+      - stone
+        uses:
+        - energy
+      - ore
+        uses:
+        - energy
+      - sand
+        uses:
+        - energy
+      placed:
+      - mountain
+      - lava
+      - desert
+      workers: true
+    Farm:
+      gives:
+      - wheat
+        uses:
+        - water
+      - meat
+        uses:
+        - wheat
+    Food packaging factory:
+      gives:
+      - food
+        uses:
+        - meat
+        - fish
+        - wheat
+        - energy
+        - plastic
+      placed:
+      - concrete
+      workers: true
+    Geotermic power plant:
+      gives:
+      - energy
+        uses:
+      placed:
+      - vulkan
+      workers: false
+    Oil refinery:
+      gives:
+      - plastic
+        uses:
+        - energy
+        - oil
+      - fuel
+        uses:
+        - energy
+        - oil
+      placed:
+      - concrete
+      workers: true
+    Oil rig:
+      gives:
+      - oil
+        uses:
+        - energy
+      placed:
+      - oil field
+      workers: false
+    Sawmill:
+      gives:
+      - wood
+        uses:
+        - energy
+      placed:
+      - forest
+      workers: true
+    Solar panel:
+      gives:
+      - energy
+        uses:
+      placed:
+      - desert
+      - concrete
+      workers: false
+    Water pump:
+      gives:
+      - water
+        uses:
+        - energy
+      placed:
+      - lake
+      workers: false
+  Planetary defense:
+
+Items:
+  Marine equipment:
+  Spaceships:
+  Spaceship equipment:
+
+Citizens:
+  Skills:
+  Stats:
