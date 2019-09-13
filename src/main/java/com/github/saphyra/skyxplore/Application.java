@@ -1,7 +1,6 @@
-package com.github.saphyra;
+package com.github.saphyra.skyxplore;
 
 import com.github.saphyra.authservice.auth.EnableAuthService;
-import com.github.saphyra.authservice.redirection.EnableRedirection;
 import com.github.saphyra.encryption.EnableEncryption;
 import com.github.saphyra.exceptionhandling.EnableExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableEncryption
 @EnableExceptionHandler
 @EnableAuthService
-@EnableRedirection
 @EnableJpaRepositories
 @EntityScan
 public class Application {

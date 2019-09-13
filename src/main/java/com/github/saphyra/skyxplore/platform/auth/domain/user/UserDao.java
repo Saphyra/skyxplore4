@@ -1,0 +1,19 @@
+package com.github.saphyra.skyxplore.platform.auth.domain.user;
+
+import com.github.saphyra.authservice.auth.domain.User;
+import com.github.saphyra.dao.AbstractDao;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+import java.util.UUID;
+
+@Component
+public class UserDao extends AbstractDao<SkyXpUser, User, UUID, UserRepository> {
+    public UserDao(UserConverter converter, UserRepository repository) {
+        super(converter, repository);
+    }
+
+    public Optional<User> findByUserName(String userName) {
+        return converter.convertEntity(repository.findByUserName(userName));
+    }
+}

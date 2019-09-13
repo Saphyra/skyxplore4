@@ -1,0 +1,6 @@
+{
+  "BAD_CREDENTIALS": "Hibás felhasználónév vagy jelszó",
+  "GENERAL_ERROR": "Hiba - ${generalErrorKey}",
+  "INVALID_LOCALE": "Érvénytelen nyelv.",
+  "SESSION_EXPIRED": "A bejelentkezés lejárt."
+}
