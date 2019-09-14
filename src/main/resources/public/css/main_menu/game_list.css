@@ -1,0 +1,19 @@
+#table-game-list{
+    margin: auto;
+    margin-top: 1rem;
+}
+
+#no-game{
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.game-name-cell{
+    cursor: pointer;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.game-operations{
+    text-align: center;
+}

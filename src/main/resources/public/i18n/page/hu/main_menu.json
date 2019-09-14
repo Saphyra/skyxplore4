@@ -1,0 +1,69 @@
+{
+  "title": "Főmenü - SkyXplore 2.1",
+  "staticText": {
+    "main-title": [
+      {
+        "key": "innerHTML",
+        "message": "Főmenü"
+      }
+    ],
+    "new-game-span": [
+      {
+        "key": "innerHTML",
+        "message": "Új játék"
+      }
+    ],
+    "new-game-name": [
+      {
+        "key": "placeholder",
+        "message": "Név"
+      }
+    ],
+    "new-game-button": [
+      {
+        "key": "innerHTML",
+        "message": "Létrehozás"
+      }
+    ],
+    "game-list-header-game-name": [
+      {
+        "key": "innerHTML",
+        "message": "Név"
+      }
+    ],
+    "game-list-header-operations": [
+      {
+        "key": "innerHTML",
+        "message": "Műveletek"
+      }
+    ],
+    "no-game": [
+      {
+        "key": "innerHTML",
+        "message": "Nincs játék."
+      }
+    ],
+    "logout-button": [
+      {
+        "key": "innerHTML",
+        "message": "Kijelentkezés"
+      }
+    ],
+    "account-button": [
+      {
+        "key": "innerHTML",
+        "message": "Beállítások"
+      }
+    ]
+  },
+  "additionalContent": {
+    "game-created": "Karakter létrehozva.",
+    "game-deleted": "Karakter törölve.",
+    "game-name-too-long": "Játéknév túl hosszú (maximum 30 karakter).",
+    "game-name-too-short": "Játéknév túl rövid (minimum 3 karakter).",
+    "confirm-game-deletion": "Biztosan törlöd a játékot?\nAz adatokat már nem lehet vissazállítani.",
+    "delete-game-button": "Törlés",
+    "registration-successful": "Sikeres regisztráció!",
+    "select-character": "Játék kiválasztása"
+  }
+}

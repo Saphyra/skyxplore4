@@ -1,0 +1,12 @@
+#new-game-section{
+    text-align: center;
+}
+
+#new-game-label{
+    display: inline;
+    font-size: 1.5rem;
+}
+
+#new-game-button{
+    font-size: 1.25rem;
+}

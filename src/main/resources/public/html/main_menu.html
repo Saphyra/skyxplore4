@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+    <META charset="UTF-8">
+
+    <LINK rel="stylesheet" href="/css/reset.css">
+    <LINK rel="stylesheet" href="/css/common.css">
+    <LINK rel="stylesheet" href="/css/main_menu/main_menu.css">
+    <LINK rel="stylesheet" href="/css/main_menu/game_list.css">
+    <LINK rel="stylesheet" href="/css/main_menu/new_game.css">
+
+    <SCRIPT src="/js/common/jquery.js"></SCRIPT>
+    <SCRIPT src="/js/common/common_base.js"></SCRIPT>
+    <SCRIPT src="/js/main_menu/page_controller.js"></SCRIPT>
+</HEAD>
+<BODY>
+
+<DIV id="main-container" class="main-page">
+    <HEADER>
+        <H1 id="main-title"></H1>
+    </HEADER>
+
+    <MAIN>
+        <SECTION id="new-game-section">
+            <LABEL id="new-game-label">
+                <SPAN id="new-game-span"></SPAN>:
+                <INPUT type='text' id='new-game-name'>
+                <DIV id="invalid-new-game-name" class="invalid-input">X</DIV>
+            </LABEL>
+
+            <BUTTON id="new-game-button" onclick="eventProcessor.processEvent(new Event(events.CREATE_GAME_ATTEMPT))" disabled></BUTTON>
+        </SECTION>
+
+        <SECTION>
+            <TABLE id="table-game-list" class='formattedtable'>
+                <THEAD>
+                <TR>
+                    <TH id="game-list-header-game-name"></TH>
+                    <TH id="game-list-header-operations"></TH>
+                </TR>
+                <TR>
+                    <TD id="no-game" colspan="2"></TD>
+                </TR>
+                </THEAD>
+
+                <TBODY id='games'></TBODY>
+            </TABLE>
+        </SECTION>
+    </MAIN>
+
+    <FOOTER>
+        <BUTTON id="logout-button" onclick='eventProcessor.processEvent(new Event(events.LOGOUT))'></BUTTON>
+        <BUTTON id="account-button" onclick='window.location.href = Mapping.ACCOUNT_PAGE'></BUTTON>
+    </FOOTER>
+</DIV>
+
+</BODY>
+</HTML>
