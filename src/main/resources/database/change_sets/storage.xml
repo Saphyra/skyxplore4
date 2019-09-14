@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-storage" author="Bernat Bonda">
+        <preConditions>
+            <not>
+                <tableExists tableName="storage"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="storage">
+            <column name="user_id" type="uuid"/>
+            <column name="storage_key" type="text"/>
+            <column name="value" type="text"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Builder
-class SkyXpUser {
+public class SkyXpUser {
     @Id
     @NonNull
     private UUID userId;
@@ -28,6 +28,4 @@ class SkyXpUser {
 
     @NonNull
     private String password;
-
-
 }

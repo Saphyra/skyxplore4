@@ -20,5 +20,5 @@ public class StorageKeyId implements Serializable {
     private UUID userId;
 
     @Enumerated(EnumType.STRING)
-    private StorageKey settingKey;
+    private StorageKey storageKey;
 }

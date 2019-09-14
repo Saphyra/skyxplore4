@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.github.saphyra.skyxplore.platform.auth.UserController.REGISTRATION_MAPPING;
-import static com.github.saphyra.skyxplore.platform.auth.UserController.USERNAME_EXISTS_MAPPING;
 
 @SuppressWarnings("unused")
 @Component
@@ -20,8 +19,7 @@ public class UriConfigurationImpl implements UriConfiguration {
     private static final List<AllowedUri> ALLOWED_URIS = Stream.concat(
         Stream.of(
             new AllowedUri("/", HttpMethod.GET),
-            new AllowedUri(REGISTRATION_MAPPING, HttpMethod.POST),
-            new AllowedUri(USERNAME_EXISTS_MAPPING, HttpMethod.POST),
+            new AllowedUri(REGISTRATION_MAPPING, HttpMethod.PUT),
             new AllowedUri(PageController.INDEX_MAPPING, HttpMethod.GET)
         ),
         RequestConstants.PROPERTY_PATHS.stream()

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -34,16 +35,19 @@ public class AuthDaoImpl implements AuthDao {
     }
 
     @Override
+    @Transactional
     public void deleteAccessToken(AccessToken accessToken) {
         accessTokenDao.delete(accessToken);
     }
 
     @Override
+    @Transactional
     public void deleteAccessTokenByUserId(String userId) {
         accessTokenDao.deleteByUserId(uuidConverter.convertEntity(userId));
     }
 
     @Override
+    @Transactional
     public void deleteExpiredAccessTokens(OffsetDateTime expiration) {
         accessTokenDao.deleteExpiredAccessTokens(expiration);
     }

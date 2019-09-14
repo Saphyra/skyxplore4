@@ -17,7 +17,7 @@ public class StorageFactory {
         return Storage.builder()
             .storageKey(StorageKeyId.builder()
                 .userId(userId)
-                .settingKey(key)
+                .storageKey(key)
                 .build())
             .value(value)
             .build();

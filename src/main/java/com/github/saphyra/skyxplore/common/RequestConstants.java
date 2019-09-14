@@ -20,6 +20,6 @@ public class RequestConstants {
         "/css/**",
         "/images/**",
         "/js/**",
-        "/public/i18n/**"
+        "/i18n/**"
     );
 }
