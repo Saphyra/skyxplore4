@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-game" author="Bernat Bonda">
+        <preConditions>
+            <not>
+                <tableExists tableName="game"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="game">
+            <column name="game_id" type="uuid"/>
+            <column name="user_id" type="uuid"/>
+            <column name="game_name" type="text"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

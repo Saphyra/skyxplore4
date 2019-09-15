@@ -32,11 +32,7 @@
             if(validationTimeout){
                 clearTimeout(validationTimeout);
             }
-            validationTimeout = setTimeout(startValidation, getValidationTimeout());
-
-            function startValidation(){
-                validateInputs();
-            }
+            validationTimeout = setTimeout(validateInputs, getValidationTimeout());
         }
     ));
 

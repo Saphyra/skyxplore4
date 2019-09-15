@@ -1,4 +1,5 @@
 (function PageController(){
+    scriptLoader.loadScript("/js/main_menu/create_game_controller.js");
 
     $(document).ready(function(){
         init();
