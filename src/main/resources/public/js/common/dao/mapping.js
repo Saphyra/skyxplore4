@@ -1,5 +1,6 @@
 window.Mapping = {
     CREATE_GAME: "/api/game",
+    GET_GAMES: "/api/game",
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",

@@ -58,7 +58,8 @@
 
             const request = new Request(HttpMethod.PUT, Mapping.CREATE_GAME, {value: getGameName()});
                 request.processValidResponse = function(response){
-
+                    sessionStorage.successMessage = "game-created";
+                    selectGame(response.body);
                 }
             dao.sendRequestAsync(request);
         }

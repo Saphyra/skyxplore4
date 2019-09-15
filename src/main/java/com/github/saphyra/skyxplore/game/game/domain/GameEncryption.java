@@ -11,16 +11,16 @@ public class GameEncryption implements EncryptionTemplate<Game> {
     private final StringEncryptor stringEncryptor;
 
     @Override
-    public Game encrypt(Game entity, String key) {
+    public Game encrypt(Game entity) {
         return entity.toBuilder()
-            .gameName(stringEncryptor.encryptEntity(entity.getGameName(), key))
+            .gameName(stringEncryptor.encryptEntity(entity.getGameName(), entity.getKey()))
             .build();
     }
 
     @Override
-    public Game decrypt(Game entity, String key) {
+    public Game decrypt(Game entity) {
         return entity.toBuilder()
-            .gameName(stringEncryptor.decryptEntity(entity.getGameName(), key))
+            .gameName(stringEncryptor.decryptEntity(entity.getGameName(), entity.getKey()))
             .build();
     }
 }

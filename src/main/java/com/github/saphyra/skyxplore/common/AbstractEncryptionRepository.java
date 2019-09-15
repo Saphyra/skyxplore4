@@ -9,8 +9,8 @@ public abstract class AbstractEncryptionRepository<T extends Encryptable, ID> ex
     protected final EncryptionTemplate<T> encryptionTemplate;
 
     @Override
-    public <S extends T > S save(S entity) {
+    public <S extends T> S save(S entity) {
         //noinspection unchecked
-        return (S) repository.save(encryptionTemplate.encrypt(entity, entity.getKey()));
+        return (S) repository.save(encryptionTemplate.encrypt(entity));
     }
 }

@@ -27,5 +27,6 @@
             }else logService.log("Element not found with id " + id, "warn");
         }
         additionalContent = content.additionalContent;
+        eventProcessor.processEvent(new Event(events.LOCALIZATION_LOADED));
     }
 })();

@@ -57,13 +57,12 @@
     ]
   },
   "additionalContent": {
-    "game-created": "Karakter létrehozva.",
-    "game-deleted": "Karakter törölve.",
+    "game-deleted": "Játék törölve.",
     "game-name-too-long": "Játéknév túl hosszú (maximum 30 karakter).",
     "game-name-too-short": "Játéknév túl rövid (minimum 3 karakter).",
     "confirm-game-deletion": "Biztosan törlöd a játékot?\nAz adatokat már nem lehet vissazállítani.",
     "delete-game-button": "Törlés",
     "registration-successful": "Sikeres regisztráció!",
-    "select-character": "Játék kiválasztása"
+    "select-game": "Játék kiválasztása"
   }
 }
