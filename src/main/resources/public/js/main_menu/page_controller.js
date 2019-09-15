@@ -12,5 +12,5 @@
 })();
 
 function selectGame(gameId){
-    window.location.href = "/web/game/" + gameId;
+    window.location.href = Mapping.GAME_PAGE + gameId;
 }

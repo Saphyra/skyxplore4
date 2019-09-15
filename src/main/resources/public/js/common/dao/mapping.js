@@ -1,11 +1,13 @@
 window.Mapping = {
     CREATE_GAME: "/api/game",
+    DELETE_GAME: "/api/game/*",
     GET_GAMES: "/api/game",
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",
 
-    ACCOUNT: "/web/account",
+    ACCOUNT_PAGE: "/web/account",
+    GAME_PAGE: "/web/game/",
     INDEX_PAGE: "/web",
     MAIN_MENU_PAGE: "/web/main-menu",
 
