@@ -1,10 +1,10 @@
 {
-  "title": "SkyXplore 2.1",
+  "title": "SkyXplore 4",
   "staticText": {
     "main-title": [
       {
         "key": "innerHTML",
-        "message": "SkyXplore 2.1"
+        "message": "SkyXplore 4"
       }
     ],
     "login-username": [

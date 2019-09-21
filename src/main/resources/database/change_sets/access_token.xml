@@ -12,8 +12,8 @@
         </preConditions>
 
         <createTable tableName="access_token">
-            <column name="access_token_id" type="uuid"/>
-            <column name="user_id" type="uuid"/>
+            <column name="access_token_id" type="text"/>
+            <column name="user_id" type="text"/>
             <column name="last_access" type="datetime"/>
         </createTable>
     </changeSet>

@@ -4,9 +4,15 @@
     window.logService = new function(){
         
         this.log = log;
+        this.debug = function(message, prefix){log(message, "debug", prefix)};
+        this.info = function(message, prefix){log(message, "info", prefix)};
+        this.warn = function(message, prefix){log(message, "warn", prefix)};
+        this.error = function(message, prefix){log(message, "error", prefix)};
         this.logToConsole = logToConsole;
     }
-    
+
+    window.log = window.logService;
+
     function logToConsole(message){
         if(isConsoleEnabled){
             console.log(message);

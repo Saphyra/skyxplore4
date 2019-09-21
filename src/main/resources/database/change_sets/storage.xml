@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="storage">
-            <column name="user_id" type="uuid"/>
+            <column name="user_id" type="text"/>
             <column name="storage_key" type="text"/>
             <column name="value" type="text"/>
         </createTable>

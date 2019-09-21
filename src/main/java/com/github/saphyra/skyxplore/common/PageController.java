@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.common;
 
-import com.github.saphyra.skyxplore.game.game.domain.EncryptionGameRepository;
+import com.github.saphyra.skyxplore.game.game.domain.GameDao;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class PageController {
     private static final String SELECT_GAME_MAPPING = GAME_MAPPING + "/{gameId}";
 
     private final CookieUtil cookieUtil;
-    private final EncryptionGameRepository gameRepository;
+    private final GameDao gameDao;
 
     @GetMapping(GAME_MAPPING)
     String game(){
@@ -51,7 +51,7 @@ public class PageController {
         HttpServletResponse response
     ){
         log.info("{} wants to select game {}", userId, gameId);
-        String redirection = gameRepository.findByGameIdAndUserId(gameId, userId)
+        String redirection = gameDao.findByGameIdAndUserId(gameId, userId)
             .map(game -> PageController.GAME_MAPPING)
             .map(s -> {
                 cookieUtil.setCookie(response, RequestConstants.COOKIE_GAME_ID, gameId.toString());

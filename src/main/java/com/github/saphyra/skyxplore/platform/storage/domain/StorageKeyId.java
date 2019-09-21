@@ -9,7 +9,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Embeddable
 @NoArgsConstructor
@@ -17,7 +16,7 @@ import java.util.UUID;
 @Builder
 @Data
 public class StorageKeyId implements Serializable {
-    private UUID userId;
+    private String userId;
 
     @Enumerated(EnumType.STRING)
     private StorageKey storageKey;

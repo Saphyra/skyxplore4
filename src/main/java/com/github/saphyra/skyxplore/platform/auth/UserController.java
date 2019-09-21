@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.platform.auth;
 
 import com.github.saphyra.encryption.impl.PasswordService;
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
+import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.platform.auth.domain.RegistrationRequest;
 import com.github.saphyra.skyxplore.platform.auth.domain.user.SkyXpUser;
 import com.github.saphyra.skyxplore.platform.auth.domain.user.UserRepository;
@@ -26,6 +27,7 @@ public class UserController {
     private final IdGenerator idGenerator;
     private final PasswordService passwordService;
     private final UserRepository userRepository;
+    private final UuidConverter uuidConverter;
 
     @PutMapping(REGISTRATION_MAPPING)
     void registerUser(@RequestBody RegistrationRequest registrationRequest) {
@@ -34,7 +36,7 @@ public class UserController {
         }
 
         SkyXpUser user = SkyXpUser.builder()
-            .userId(idGenerator.randomUUID())
+            .userId(uuidConverter.convertDomain(idGenerator.randomUUID()))
             .userName(registrationRequest.getUserName())
             .password(passwordService.hashPassword(registrationRequest.getPassword()))
             .build();

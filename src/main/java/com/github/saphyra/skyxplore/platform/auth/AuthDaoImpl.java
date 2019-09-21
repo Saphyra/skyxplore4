@@ -3,7 +3,6 @@ package com.github.saphyra.skyxplore.platform.auth;
 import com.github.saphyra.authservice.auth.AuthDao;
 import com.github.saphyra.authservice.auth.domain.AccessToken;
 import com.github.saphyra.authservice.auth.domain.User;
-import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.encryption.impl.PasswordService;
 import com.github.saphyra.skyxplore.platform.auth.domain.accesstoken.AccessTokenDao;
 import com.github.saphyra.skyxplore.platform.auth.domain.user.UserDao;
@@ -22,11 +21,10 @@ public class AuthDaoImpl implements AuthDao {
     private final AccessTokenDao accessTokenDao;
     private final PasswordService passwordService;
     private final UserDao userDao;
-    private final UuidConverter uuidConverter;
 
     @Override
     public Optional<User> findUserById(String userId) {
-        return userDao.findById(uuidConverter.convertEntity(userId));
+        return userDao.findById(userId);
     }
 
     @Override
@@ -43,7 +41,7 @@ public class AuthDaoImpl implements AuthDao {
     @Override
     @Transactional
     public void deleteAccessTokenByUserId(String userId) {
-        accessTokenDao.deleteByUserId(uuidConverter.convertEntity(userId));
+        accessTokenDao.deleteByUserId(userId);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class AuthDaoImpl implements AuthDao {
 
     @Override
     public Optional<AccessToken> findAccessTokenByTokenId(String accessTokenId) {
-        return accessTokenDao.findById(uuidConverter.convertEntity(accessTokenId));
+        return accessTokenDao.findById(accessTokenId);
     }
 
     @Override

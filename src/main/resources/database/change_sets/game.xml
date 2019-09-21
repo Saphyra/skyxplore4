@@ -12,8 +12,8 @@
         </preConditions>
 
         <createTable tableName="game">
-            <column name="game_id" type="uuid"/>
-            <column name="user_id" type="uuid"/>
+            <column name="game_id" type="text"/>
+            <column name="user_id" type="text"/>
             <column name="game_name" type="text"/>
         </createTable>
     </changeSet>

@@ -11,6 +11,23 @@ function Stream(a){
         return true;
     }
 
+    this.flatMap = function(mappingFunction){
+        const newArray = [];
+
+        this.forEach(function(item){
+            const res = mappingFunction(item);
+            res.forEach(function(r){newArray.push(r)});
+        });
+
+        return new Stream(newArray);
+    }
+
+    this.forEach = function(consumer){
+        for(let i in array){
+            consumer(array[i]);
+        }
+    }
+
     this.noneMatch = function(predicate){
         for(let i in array){
             if(predicate(array[i])){
@@ -22,9 +39,7 @@ function Stream(a){
     }
 
     this.peek = function(consumer){
-        for(let i in array){
-            consumer(array[i]);
-        }
+        this.forEach(consumer);
         return this;
     }
 }

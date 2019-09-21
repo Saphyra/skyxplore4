@@ -8,11 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Repository
-public interface AccessTokenRepository extends JpaRepository<SkyXpAccessToken, UUID> {
-    void deleteByUserId(UUID userId);
+public interface AccessTokenRepository extends JpaRepository<SkyXpAccessToken, String> {
+    void deleteByUserId(String userId);
 
     @Transactional
     @Modifying

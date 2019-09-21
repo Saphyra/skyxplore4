@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="user">
-            <column name="user_id" type="uuid"/>
+            <column name="user_id" type="text"/>
             <column name="user_name" type="text"/>
             <column name="password" type="text"/>
         </createTable>

@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "access_token")
@@ -22,10 +21,10 @@ import java.util.UUID;
 class SkyXpAccessToken {
     @Id
     @NonNull
-    private UUID accessTokenId;
+    private String accessTokenId;
 
     @NonNull
-    private UUID userId;
+    private String userId;
 
     @NonNull
     private OffsetDateTime lastAccess;

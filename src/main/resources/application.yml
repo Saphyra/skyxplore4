@@ -12,6 +12,16 @@ liquibase:
 com:
   github:
     saphyra:
+      skyxplore:
+        game:
+          map:
+            dimensions:
+              x: 2000
+              y: 2000
+          star:
+            creation:
+              attempts: 300
+              minStarDistance: 148
       authservice:
         auth:
           filter:

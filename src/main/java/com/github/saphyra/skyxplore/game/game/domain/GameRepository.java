@@ -5,11 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface GameRepository extends JpaRepository<Game, UUID> {
-    List<Game> getByUserId(UUID userId);
+interface GameRepository extends JpaRepository<GameEntity, String> {
+    List<GameEntity> getByUserId(String userId);
 
-    Optional<Game> findByGameIdAndUserId(UUID gameId, UUID userId);
+    Optional<GameEntity> findByGameIdAndUserId(String gameId, String userId);
 }

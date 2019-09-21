@@ -1,32 +1,24 @@
 package com.github.saphyra.skyxplore.game.game.domain;
 
-import com.github.saphyra.skyxplore.common.Encryptable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.UUID;
 
-@Entity
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
-@Builder(toBuilder = true)
 @Data
-@Table(name = "game")
-public class Game implements Encryptable {
+public class Game{
     @Id
-    private UUID gameId;
+    @NonNull
+    private final UUID gameId;
 
-    private UUID userId;
+    @NonNull
+    private final UUID userId;
 
-    private String gameName;
-
-    @Override
-    public String getKey() {
-        return userId.toString();
-    }
+    @NonNull
+    private final String gameName;
 }

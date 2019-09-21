@@ -18,14 +18,14 @@
     }
 
     function displayGames(games){
+        const container = document.getElementById("games");
+            container.innerHTML = "";
+
         if(!games.length){
             $("#no-game").show();
             return;
         }
         $("#no-game").hide();
-
-        const container = document.getElementById("games");
-            container.innerHTML = "";
 
         for(let gIndex in games){
             container.appendChild(createGame(games[gIndex]));

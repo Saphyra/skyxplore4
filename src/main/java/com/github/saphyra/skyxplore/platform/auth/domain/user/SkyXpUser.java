@@ -10,7 +10,6 @@ import lombok.NonNull;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class SkyXpUser {
     @Id
     @NonNull
-    private UUID userId;
+    private String userId;
 
     @NonNull
     private String userName;

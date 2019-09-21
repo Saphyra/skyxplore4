@@ -5,10 +5,9 @@ import com.github.saphyra.dao.AbstractDao;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
-public class UserDao extends AbstractDao<SkyXpUser, User, UUID, UserRepository> {
+public class UserDao extends AbstractDao<SkyXpUser, User, String, UserRepository> {
     public UserDao(UserConverter converter, UserRepository repository) {
         super(converter, repository);
     }
