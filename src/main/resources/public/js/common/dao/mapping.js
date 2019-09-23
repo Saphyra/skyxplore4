@@ -2,7 +2,7 @@ window.Mapping = {
     CREATE_GAME: "/api/game",
     DELETE_GAME: "/api/game/*",
     GET_GAMES: "/api/game",
-    GET_STARS: "/api/game/star",
+    GET_MAP: "/api/game/map",
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.star.domain;
+package com.github.saphyra.skyxplore.game.map.star.domain;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;

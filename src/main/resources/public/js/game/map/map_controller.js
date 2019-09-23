@@ -17,12 +17,12 @@
                 const mapElementsContainer = createSvgElement("svg");
                     mapElementsContainer.id = "map-elements-container";
 
-                    const request = new Request(HttpMethod.GET, Mapping.GET_STARS)
+                    const request = new Request(HttpMethod.GET, Mapping.GET_MAP)
                         request.convertResponse = function(response){
                             return JSON.parse(response.body);
                         }
-                        request.processValidResponse = function(stars){
-                            new Stream(stars)
+                        request.processValidResponse = function(map){
+                            new Stream(map.stars)
                                 .flatMap(createStarElements)
                                 .forEach(function(starElement){mapElementsContainer.appendChild(starElement)});
                         }

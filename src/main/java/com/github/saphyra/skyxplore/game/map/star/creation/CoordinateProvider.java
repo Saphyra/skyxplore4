@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.star.creation;
+package com.github.saphyra.skyxplore.game.map.star.creation;
 
 import com.github.saphyra.skyxplore.game.common.coordinates.Coordinate;
 import com.github.saphyra.util.Random;

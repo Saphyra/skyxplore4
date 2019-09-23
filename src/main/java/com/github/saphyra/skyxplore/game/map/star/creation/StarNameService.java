@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.star.creation;
+package com.github.saphyra.skyxplore.game.map.star.creation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

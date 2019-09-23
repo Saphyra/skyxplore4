@@ -1,9 +1,9 @@
-package com.github.saphyra.skyxplore.game.star;
+package com.github.saphyra.skyxplore.game.map.star;
 
 import com.github.saphyra.skyxplore.common.event.GameCreatedEvent;
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
-import com.github.saphyra.skyxplore.game.star.creation.StarCreationService;
-import com.github.saphyra.skyxplore.game.star.domain.StarDao;
+import com.github.saphyra.skyxplore.game.map.star.creation.StarCreationService;
+import com.github.saphyra.skyxplore.game.map.star.domain.StarDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

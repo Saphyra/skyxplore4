@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore.game.star.view;
+package com.github.saphyra.skyxplore.game.map.star.view;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.star.domain.Star;
+import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import org.springframework.stereotype.Component;
 
 @Component
