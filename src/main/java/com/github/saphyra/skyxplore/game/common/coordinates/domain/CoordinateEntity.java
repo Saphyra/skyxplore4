@@ -1,13 +1,13 @@
-package com.github.saphyra.skyxplore.game.common.coordinates;
+package com.github.saphyra.skyxplore.game.common.coordinates.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor

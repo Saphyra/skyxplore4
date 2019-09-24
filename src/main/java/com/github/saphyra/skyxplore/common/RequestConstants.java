@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.common;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.Arrays;
 import java.util.List;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class RequestConstants {
     public static final String DEFAULT_LOCALE = "hu";
     public static final String COOKIE_LOCALE = "locale";
-    public static final String COOKIE_USER_ID = "userid";
+    public static final String COOKIE_USER_ID = "userId";
     public static final String COOKIE_GAME_ID = "game_id";
     public static final String HEADER_BROWSER_LANGUAGE = "BrowserLanguage";
 

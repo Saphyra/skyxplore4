@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.skyxplore.common.event.StarsCreatedEvent;
-import com.github.saphyra.skyxplore.game.common.coordinates.Coordinate;
+import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.map.star.domain.StarDao;
 import com.github.saphyra.util.IdGenerator;

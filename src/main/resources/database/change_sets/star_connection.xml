@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-star_connection" author="Bernat Bonda">
+        <preConditions>
+            <not>
+                <tableExists tableName="star_connection"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="star_connection">
+            <column name="connection_id" type="text"/>
+            <column name="game_id" type="text"/>
+            <column name="user_id" type="text"/>
+            <column name="star1" type="text"/>
+            <column name="star2" type="text"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

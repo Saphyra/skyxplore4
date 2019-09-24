@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 interface StarConnectionRepository extends JpaRepository<StarConnectionEntity, String> {
     List<StarConnectionEntity> getByGameIdAndUserId(String convertDomain, String convertDomain1);
+
+    void deleteByGameIdAndUserId(String gameId, String userId);
 }

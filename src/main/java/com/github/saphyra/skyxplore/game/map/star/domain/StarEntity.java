@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.map.star.domain;
 
-import com.github.saphyra.skyxplore.game.common.coordinates.CoordinateEntity;
+import com.github.saphyra.skyxplore.game.common.coordinates.domain.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

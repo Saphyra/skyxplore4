@@ -19,7 +19,7 @@ class StarConnectionEntity {
     @Id
     private String connectionId;
     private String gameId;
-    private String uid;
+    private String userId;
     private String star1;
     private String star2;
 }

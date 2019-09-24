@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.game.map.star.domain;
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.coordinates.CoordinateConverter;
+import com.github.saphyra.skyxplore.game.common.coordinates.domain.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

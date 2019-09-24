@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.common.coordinates;
+package com.github.saphyra.skyxplore.game.common.coordinates.domain;
 
 import com.github.saphyra.encryption.impl.IntegerEncryptor;
 import lombok.RequiredArgsConstructor;

@@ -25,4 +25,11 @@ public class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarCon
             )
         );
     }
+
+    public void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
+        repository.deleteByGameIdAndUserId(
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(userId)
+        );
+    }
 }

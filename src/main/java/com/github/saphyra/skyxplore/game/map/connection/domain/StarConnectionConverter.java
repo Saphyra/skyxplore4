@@ -21,9 +21,9 @@ public class StarConnectionConverter extends ConverterBase<StarConnectionEntity,
         return StarConnection.builder()
             .connectionId(uuidConverter.convertEntity(starConnectionEntity.getConnectionId()))
             .gameId(uuidConverter.convertEntity(starConnectionEntity.getGameId()))
-            .userId(uuidConverter.convertEntity(starConnectionEntity.getUid()))
-            .star1(decrypt(starConnectionEntity::getStar1, starConnectionEntity.getUid()))
-            .star2(decrypt(starConnectionEntity::getStar2, starConnectionEntity.getUid()))
+            .userId(uuidConverter.convertEntity(starConnectionEntity.getUserId()))
+            .star1(decrypt(starConnectionEntity::getStar1, starConnectionEntity.getUserId()))
+            .star2(decrypt(starConnectionEntity::getStar2, starConnectionEntity.getUserId()))
             .build();
     }
 
@@ -37,7 +37,7 @@ public class StarConnectionConverter extends ConverterBase<StarConnectionEntity,
         return StarConnectionEntity.builder()
             .connectionId(uuidConverter.convertDomain(starConnection.getConnectionId()))
             .gameId(uuidConverter.convertDomain(starConnection.getGameId()))
-            .uid(uuidConverter.convertDomain(starConnection.getUserId()))
+            .userId(uuidConverter.convertDomain(starConnection.getUserId()))
             .star1(encrypt(starConnection::getStar1, starConnection.getUserId()))
             .star2(encrypt(starConnection::getStar2, starConnection.getUserId()))
             .build();

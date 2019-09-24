@@ -1,8 +1,9 @@
 package com.github.saphyra.skyxplore.game.map.star.creation;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import lombok.Getter;
 
 @Component
 @Getter
@@ -13,10 +14,10 @@ public class StarCreatorConfiguration {
     @Value("${com.github.saphyra.skyxplore.game.map.dimensions.y}")
     private int y;
 
-    @Value("${com.github.saphyra.skyxplore.game.map.star.creation.attempts}")
+    @Value("${com.github.saphyra.skyxplore.game.star.creation.attempts}")
     private int creationAttempts;
 
-    @Value("${com.github.saphyra.skyxplore.game.map.star.creation.minStarDistance}")
+    @Value("${com.github.saphyra.skyxplore.game.star.creation.minStarDistance}")
     private int minStarDistance;
 
     public int getX() {

@@ -22,6 +22,8 @@
                             return JSON.parse(response.body);
                         }
                         request.processValidResponse = function(map){
+                            new Stream(map.connections)
+                                .forEach(function(connection){mapElementsContainer.appendChild(createConnectionElement(connection))})
                             new Stream(map.stars)
                                 .flatMap(createStarElements)
                                 .forEach(function(starElement){mapElementsContainer.appendChild(starElement)});
@@ -31,6 +33,17 @@
             container.appendChild(mapElementsContainer);
 
             document.getElementById("pages").appendChild(container);
+        }
+
+        function createConnectionElement(connection){
+            const element = createSvgElement("line");
+                element.setAttribute("x1", connection.coordinate1.x + 70);
+                element.setAttribute("y1", connection.coordinate1.y + 70);
+                element.setAttribute("x2", connection.coordinate2.x + 70);
+                element.setAttribute("y2", connection.coordinate2.y + 70);
+                element.setAttribute("stroke", "white");
+                element.setAttribute("stroke-width", 1);
+            return element;
         }
 
         function createStarElements(star){

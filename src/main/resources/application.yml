@@ -22,6 +22,9 @@ com:
             creation:
               attempts: 300
               minStarDistance: 148
+          connection:
+            maxDistance: 300
+            maxNumberOfConnections: 4
       authservice:
         auth:
           filter:
@@ -36,7 +39,7 @@ com:
             path: /api/logout
           cookie:
             access-token-id: accesstokenid
-            user-id: userid
+            user-id: userId
           rest:
             request-type-header: Request-Type
             rest-type-value: rest
