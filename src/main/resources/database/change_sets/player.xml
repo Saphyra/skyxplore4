@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-player" author="Bernat Bonda">
+        <preConditions>
+            <not>
+                <tableExists tableName="player"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="player">
+            <column name="player_id" type="text"/>
+            <column name="game_id" type="text"/>
+            <column name="user_id" type="text"/>
+            <column name="player_name" type="text"/>
+            <column name="ai" type="boolean"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

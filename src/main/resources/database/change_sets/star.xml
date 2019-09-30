@@ -20,4 +20,16 @@
             <column name="y_coord" type="text"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="add-column-owner_id" author="Bernat Bonda">
+        <preConditions>
+            <not>
+                <columnExists tableName="star" columnName="owner_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="star">
+            <column name="owner_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

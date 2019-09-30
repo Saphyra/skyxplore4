@@ -1,16 +1,16 @@
 package com.github.saphyra.skyxplore.game.map.star.domain;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.github.saphyra.skyxplore.game.common.coordinates.domain.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @AllArgsConstructor
 @Data
@@ -35,4 +35,6 @@ class StarEntity {
     @Embedded
     @NonNull
     private CoordinateEntity coordinates;
+
+    private String ownerId;
 }

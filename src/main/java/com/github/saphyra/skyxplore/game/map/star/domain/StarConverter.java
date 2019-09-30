@@ -1,11 +1,12 @@
 package com.github.saphyra.skyxplore.game.map.star.domain;
 
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.coordinates.domain.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
@@ -22,6 +23,7 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .userId(uuidConverter.convertEntity(starEntity.getUserId()))
             .starName(stringEncryptor.decryptEntity(starEntity.getStarName(), starEntity.getUserId()))
             .coordinate(coordinateConverter.convertEntity(starEntity.getCoordinates(), starEntity.getUserId()))
+            .ownerId(uuidConverter.convertEntity(starEntity.getOwnerId()))
             .build();
     }
 
@@ -33,6 +35,7 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .userId(uuidConverter.convertDomain(star.getUserId()))
             .starName(stringEncryptor.encryptEntity(star.getStarName(), uuidConverter.convertDomain(star.getUserId())))
             .coordinates(coordinateConverter.convertDomain(star.getCoordinate(), uuidConverter.convertDomain(star.getUserId())))
+            .ownerId(uuidConverter.convertDomain(star.getOwnerId()))
             .build();
     }
 }
