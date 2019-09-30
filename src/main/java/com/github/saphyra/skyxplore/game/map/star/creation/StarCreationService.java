@@ -34,6 +34,7 @@ public class StarCreationService {
         List<String> usedPlayerNames = new ArrayList<>();
         List<Star> createdStars = new ArrayList<>();
         boolean isAi = false;
+
         for (Coordinate coordinate : coordinates) {
             String starName = starNameService.getRandomStarName(usedStarNames);
             usedStarNames.add(starName);
@@ -46,6 +47,7 @@ public class StarCreationService {
                 .coordinate(coordinate)
                 .ownerId(player.getPlayerId())
                 .build();
+            log.debug("Star created: {}", star);
             createdStars.add(star);
             usedPlayerNames.add(player.getPlayerName());
             starDao.save(star);

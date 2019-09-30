@@ -24,9 +24,11 @@ class CoordinateProvider {
         for (int i = 0; i < configuration.getCreationAttempts(); i++) {
             Coordinate coordinate = getRandomCoordinate();
             if (isPlaceable(result, coordinate)) {
+                log.debug("Placeable coordinate found: {} for attempt: {}", coordinate, i);
                 result.add(coordinate);
             }
         }
+        log.info("Number of placeable star coordinates: {}", result.size());
         return result;
     }
 

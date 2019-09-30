@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
+@Slf4j
 public class AiNameConfiguration {
     @Bean
     public FirstNames firstNames(
@@ -17,7 +19,9 @@ public class AiNameConfiguration {
         ObjectMapper objectMapperWrapper
     ) throws IOException {
         Resource resource = applicationContext.getResource("classpath:public/data/first_name.json");
-        return objectMapperWrapper.readValue(resource.getInputStream(), FirstNames.class);
+        FirstNames firstNames = objectMapperWrapper.readValue(resource.getInputStream(), FirstNames.class);
+        log.info("FirstNames loaded: {}", firstNames);
+        return firstNames;
     }
 
     @Bean
@@ -26,6 +30,8 @@ public class AiNameConfiguration {
         ObjectMapper objectMapperWrapper
     ) throws IOException {
         Resource resource = applicationContext.getResource("classpath:public/data/last_name.json");
-        return objectMapperWrapper.readValue(resource.getInputStream(), LastNames.class);
+        LastNames lastNames = objectMapperWrapper.readValue(resource.getInputStream(), LastNames.class);
+        log.info("LastNames loaded: {}", lastNames);
+        return lastNames;
     }
 }

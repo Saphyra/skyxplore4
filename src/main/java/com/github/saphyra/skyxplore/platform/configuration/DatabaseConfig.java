@@ -1,14 +1,15 @@
 package com.github.saphyra.skyxplore.platform.configuration;
 
-import com.github.saphyra.skyxplore.Application;
-import liquibase.integration.spring.SpringLiquibase;
-import lombok.extern.slf4j.Slf4j;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
+import com.github.saphyra.skyxplore.Application;
+import liquibase.integration.spring.SpringLiquibase;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @EntityScan(basePackageClasses = Application.class)
@@ -19,7 +20,7 @@ public class DatabaseConfig {
         DataSource dataSource,
         @Value("${liquibase.changelog.location}") String changeLogLocation
     ) {
-        log.info("ChangeLogLocation: {}", changeLogLocation);
+        log.debug("ChangeLogLocation: {}", changeLogLocation);
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog(changeLogLocation);
         liquibase.setDataSource(dataSource);

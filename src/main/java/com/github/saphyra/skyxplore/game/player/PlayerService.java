@@ -15,9 +15,11 @@ import com.github.saphyra.skyxplore.platform.auth.UserQueryService;
 import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class PlayerService {
     private final FirstNames firstNames;
     private final IdGenerator idGenerator;
@@ -41,6 +43,7 @@ public class PlayerService {
             .build();
 
         playerDao.save(player);
+        log.debug("Player created: {}", player);
         return player;
     }
 
@@ -49,6 +52,7 @@ public class PlayerService {
          do{
              result = lastNames.get(random.randInt(0, lastNames.size()-1)) + " " + firstNames.get(random.randInt(0, firstNames.size()-1));
          }while (usedPlayerNames.contains(result));
+        log.debug("playerName generated: {}", result);
          return result;
     }
 }

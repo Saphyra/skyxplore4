@@ -7,11 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 abstract class AbstractLoader<V> implements ContentLoader {
-
     protected final Class<V> clazz;
     protected final FileUtil fileUtil;
-
-    String getClassName() {
-        return clazz.getSimpleName().toLowerCase();
-    }
 }

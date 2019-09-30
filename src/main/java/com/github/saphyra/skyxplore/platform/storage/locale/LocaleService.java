@@ -1,5 +1,9 @@
 package com.github.saphyra.skyxplore.platform.storage.locale;
 
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.platform.storage.StorageFactory;
 import com.github.saphyra.skyxplore.platform.storage.domain.Storage;
@@ -7,14 +11,11 @@ import com.github.saphyra.skyxplore.platform.storage.domain.StorageKey;
 import com.github.saphyra.skyxplore.platform.storage.domain.StorageKeyId;
 import com.github.saphyra.skyxplore.platform.storage.domain.StorageRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@Component
+@Slf4j
 class LocaleService {
     private final LocaleCache localeCache;
     private final StorageRepository storageRepository;
@@ -26,6 +27,7 @@ class LocaleService {
         userSettings.setValue(locale);
         storageRepository.save(userSettings);
         localeCache.invalidate(userId);
+        log.info("Locale for user {} is set to {}", userId, locale);
     }
 
     private Storage getOrCreate(UUID userId) {

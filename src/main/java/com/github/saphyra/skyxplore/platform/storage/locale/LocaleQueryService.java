@@ -1,21 +1,22 @@
 package com.github.saphyra.skyxplore.platform.storage.locale;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.platform.storage.domain.Storage;
 import com.github.saphyra.skyxplore.platform.storage.domain.StorageKey;
 import com.github.saphyra.skyxplore.platform.storage.domain.StorageKeyId;
 import com.github.saphyra.skyxplore.platform.storage.domain.StorageRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 @Component
-public class LocaleQueryService {
+class LocaleQueryService {
     private final StorageRepository storageRepository;
     private final UuidConverter uuidConverter;
 

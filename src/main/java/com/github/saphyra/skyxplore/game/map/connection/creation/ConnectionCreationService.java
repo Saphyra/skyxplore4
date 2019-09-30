@@ -16,9 +16,11 @@ import com.github.saphyra.skyxplore.game.map.connection.domain.StarConnectionDao
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 class ConnectionCreationService {
     private final ConnectionCreationConfiguration configuration;
     private final StarConnectionDao starConnectionDao;
@@ -73,21 +75,27 @@ class ConnectionCreationService {
     }
 
     private StarConnection createConnection(Star star, Star targetStar) {
-        return StarConnection.builder()
+        log.debug("Creating connection between stars {}, {}", star, targetStar);
+        StarConnection starConnection = StarConnection.builder()
             .connectionId(idGenerator.randomUUID())
             .gameId(star.getGameId())
             .userId(star.getUserId())
             .star1(star.getStarId())
             .star2(targetStar.getStarId())
             .build();
+        log.debug("StarConnection created: {}", starConnection);
+        return starConnection;
     }
 
     private void removeConnections(List<StarConnection> connections, List<Star> stars) {
         for (Star star : stars) {
             while (getConnectionsOfStar(star, connections).size() > configuration.getMaxNumberOfConnections()) {
-                StarConnection connectionToRemove = getConnectionsOfStar(star, connections).stream()
+                List<StarConnection> connectionsOfStar = getConnectionsOfStar(star, connections);
+                log.debug("{} has too many connections: {}", star.getStarId(), connectionsOfStar.size());
+                StarConnection connectionToRemove = connectionsOfStar.stream()
                     .max(Comparator.comparingInt(c -> getNumberOfConnections(star, c, connections)))
                     .orElseThrow(() -> new RuntimeException("Star has too many connections, but none to remove"));
+                log.debug("Connection to remove: {}", connectionToRemove);
                 connections.remove(connectionToRemove);
             }
         }
