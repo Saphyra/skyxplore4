@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.map.star;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,20 @@ public class StarQueryService {
     private final StarViewConverter starViewConverter;
     private final UuidConverter uuidConverter;
 
-    public List<StarView> getByGameIdAndUserId(UUID gameId, UUID userId) {
-        return starViewConverter.convertDomain(starDao.getByGameIdAndUserId(gameId, userId));
+    public List<StarView> getVisibleByGameIdAndUserId(UUID gameId, UUID userId) {
+        List<Star> visibleStars = starDao.getByGameIdAndUserId(gameId, userId).stream()
+            .filter(star -> isVisible(star, userId))
+            .collect(Collectors.toList());
+        return starViewConverter.convertDomain(visibleStars);
+    }
+
+    private boolean isVisible(Star star, UUID userId) {
+        return star.getOwnerId().equals(userId);
     }
 
     public Star findByIdValidated(UUID starId, UUID userId) {
         return starDao.findById(uuidConverter.convertDomain(starId))
+            .filter(star -> star.getUserId().equals(userId))
             .orElseThrow(() -> ExceptionFactory.starNotFound(starId));
     }
 }

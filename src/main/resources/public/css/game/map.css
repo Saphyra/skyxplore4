@@ -11,3 +11,11 @@
     width: 2140px;
     height: 2140px;
 }
+
+    .star-name-element{
+        fill: cyan;
+        font-size: 1.5rem;
+        font-weight: 700;
+        stroke: #0073e6;
+        stroke-width: 1px;
+    }
