@@ -1,4 +1,7 @@
 Biom types:
+  Coal mine:
+    resources:
+    - coal
   Concrete:
     resources:
     bonus:
@@ -18,25 +21,25 @@ Biom types:
   Mountain:
     resources:
     - stone
-    - ore
     bonus:
     - planetary defense
   Oil field:
     resources:
     - oil
-  Vulkan:
+  Ore mine:
     resources:
     - ore
+  Vulkan:
+    resources:
     bonus:
-    - geotermic power plant
-    - excavator
-
-Building types:
-  Platform:
-  Industry:
-  Defence:
 
 Resources:
+  Coal:
+    source:
+    - mining
+      from:
+      - coal mine
+      with: excavator
   Energy:
     source:
     - conversion
@@ -45,6 +48,14 @@ Resources:
     - conversion
       from:
       with: geotermic power plant
+    - conversion
+      from:
+      - fuel
+      with: gas turbines
+    - conversion
+      from:
+      - coal
+      with: heat power plant
   Fish:
     source:
     - mining
@@ -87,10 +98,8 @@ Resources:
     source:
     - mining
       from:
-      - mountain
-        with: excavator
-      - lava
-        with: excavator
+      - ore mine
+      with: excavator
   Plastic:
     source:
     - conversion
@@ -144,9 +153,10 @@ Building:
         uses:
         - energy
       placed:
-      - mountain
-      - lava
+      - coal mine
       - desert
+      - mountain
+      - ore mine
       workers: true
     Farm:
       gives:
@@ -168,12 +178,24 @@ Building:
       placed:
       - concrete
       workers: true
+    Gas turbine:
+      gives:
+      - energy
+      uses:
+      - fuel
+      workers: false
     Geotermic power plant:
       gives:
       - energy
-        uses:
+      uses:
       placed:
       - vulkan
+      workers: false
+    Heat power plant:
+      gives:
+      - energy
+      uses:
+      - coal
       workers: false
     Oil refinery:
       gives:
