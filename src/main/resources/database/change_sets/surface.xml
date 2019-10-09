@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-surface" author="Bernat Bonda">
+        <preConditions>
+            <not>
+                <tableExists tableName="surface"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="surface">
+            <column name="surface_id" type="text"/>
+            <column name="star_id" type="text"/>
+            <column name="game_id" type="text"/>
+            <column name="user_id" type="text"/>
+            <column name="x_coord" type="text"/>
+            <column name="y_coord" type="text"/>
+            <column name="surface_type" type="text"/>
+            <column name="building_id" type="text"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

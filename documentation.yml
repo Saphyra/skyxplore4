@@ -14,6 +14,8 @@ Biom types:
     resources:
     - wood
     - meat
+    bonus:
+    - farm
   Lake:
     resources:
     - water
@@ -166,6 +168,10 @@ Building:
       - meat
         uses:
         - wheat
+      placed:
+      - desert
+      - forest
+      workers: true
     Food packaging factory:
       gives:
       - food

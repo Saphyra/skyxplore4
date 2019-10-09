@@ -30,6 +30,7 @@ public class PlayerService {
 
     @EventListener
     void gameDeletedEventListener(GameDeletedEvent event){
+        log.debug("Deleting players related to game {}", event);
         playerDao.gameDeletedEventListener(event.getGameId(), event.getUserId());
     }
 

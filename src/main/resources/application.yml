@@ -25,6 +25,27 @@ com:
           connection:
             maxDistance: 300
             maxNumberOfConnections: 4
+          surface:
+            minSize: 10
+            maxSize: 20
+            surfaceTypeSpawnDetails:
+            - surfaceName: COAL_MINE
+              spawnRate: 1
+            - surfaceName: DESERT
+              spawnRate: 3
+            - surfaceName: FOREST
+              spawnRate: 2
+            - surfaceName: LAKE
+              spawnRate: 1
+            - surfaceName: MOUNTAIN
+              spawnRate: 2
+            - surfaceName: OIL_FIELD
+              spawnRate: 1
+            - surfaceName: ORE_MINE
+              spawnRate: 2
+            - surfaceName: VULCAN
+              spawnRate: 2
+              optional: true
       authservice:
         auth:
           filter:
