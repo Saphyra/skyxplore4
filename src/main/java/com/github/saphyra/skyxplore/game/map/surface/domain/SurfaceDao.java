@@ -1,6 +1,9 @@
 package com.github.saphyra.skyxplore.game.map.surface.domain;
 
+import java.util.List;
 import java.util.UUID;
+
+import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Component;
 
@@ -10,10 +13,12 @@ import com.github.saphyra.skyxplore.common.UuidConverter;
 
 @Component
 public class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> {
+    private final EntityManager entityManager;
     private final UuidConverter uuidConverter;
 
-    public SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, UuidConverter uuidConverter) {
+    public SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, EntityManager entityManager, UuidConverter uuidConverter) {
         super(converter, repository);
+        this.entityManager = entityManager;
         this.uuidConverter = uuidConverter;
     }
 
@@ -22,5 +27,11 @@ public class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, Surf
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
+    }
+
+    public void saveAll(List<Surface> surfaces) {
+        List<SurfaceEntity> entities = converter.convertDomain(surfaces);
+        entities.forEach(entityManager::persist);
+        entityManager.flush();
     }
 }

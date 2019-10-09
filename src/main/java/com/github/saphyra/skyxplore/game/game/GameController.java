@@ -44,7 +44,8 @@ public class GameController {
     private final UuidConverter uuidConverter;
 
     @PutMapping(CREATE_GAME_MAPPING)
-    String createGame(
+    @Transactional
+    public String createGame(
         @CookieValue(RequestConstants.COOKIE_USER_ID) UUID userId,
         @RequestBody OneStringParamRequest gameName
     ) {
