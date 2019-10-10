@@ -15,6 +15,7 @@ public class ExceptionFactory {
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s";
     private static final String INVALID_GAME_ACCESS_PREFIX = "%s has no access to game %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
+    private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
@@ -29,6 +30,10 @@ public class ExceptionFactory {
 
     public static RestException invalidLocale(String locale) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_LOCALE), String.format(INVALID_LOCALE_PREFIX, locale));
+    }
+
+    public static RestException playerNotFound(UUID userId, UUID gameId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.PLAYER_NOT_FOUND), String.format(PLAYER_NOT_FOUND_PREFIX, gameId, userId));
     }
 
     public static RestException starNotFound(UUID starId) {

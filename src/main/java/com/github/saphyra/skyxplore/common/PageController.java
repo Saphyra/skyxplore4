@@ -1,18 +1,21 @@
 package com.github.saphyra.skyxplore.common;
 
-import com.github.saphyra.skyxplore.game.game.domain.GameDao;
-import com.github.saphyra.util.CookieUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static com.github.saphyra.skyxplore.common.RequestConstants.WEB_PREFIX;
+
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
-
-import static com.github.saphyra.skyxplore.common.RequestConstants.WEB_PREFIX;
+import com.github.saphyra.skyxplore.game.game.domain.GameDao;
+import com.github.saphyra.skyxplore.game.player.PlayerQueryService;
+import com.github.saphyra.util.CookieUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,6 +28,7 @@ public class PageController {
 
     private final CookieUtil cookieUtil;
     private final GameDao gameDao;
+    private final PlayerQueryService playerQueryService;
 
     @GetMapping(GAME_MAPPING)
     String game(){
@@ -55,6 +59,7 @@ public class PageController {
             .map(game -> PageController.GAME_MAPPING)
             .map(s -> {
                 cookieUtil.setCookie(response, RequestConstants.COOKIE_GAME_ID, gameId.toString());
+                cookieUtil.setCookie(response, RequestConstants.COOKIE_PLAYER_ID, playerQueryService.findPlayerIdByUserIdAndGameId(userId, gameId).toString());
                 return s;
             })
             .orElse(PageController.MAIN_MENU_MAPPING);

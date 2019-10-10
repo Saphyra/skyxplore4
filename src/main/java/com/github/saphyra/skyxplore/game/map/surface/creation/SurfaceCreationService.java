@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StopWatch;
 
 import com.github.saphyra.skyxplore.common.event.StarsCreatedEvent;
 import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
@@ -37,21 +36,18 @@ public class SurfaceCreationService {
 
     @EventListener
     void starCreatedEventListener(StarsCreatedEvent starsCreatedEvent) {
-        StopWatch stopWatch = new StopWatch("SurfaceCreation");
-        stopWatch.start();
+        log.info("Creating surfaces...");
         List<Surface> surfaces = starsCreatedEvent.getStars().stream()
             .parallel()
             .flatMap(this::createSurfaces)
             .collect(Collectors.toList());
         surfaceDao.saveAll(surfaces);
-        stopWatch.stop();
-        log.info("{}", stopWatch.prettyPrint());
     }
 
     private Stream<Surface> createSurfaces(Star star) {
-        log.info("Creating surfaces for star {}", star.getStarId());
+        log.debug("Creating surfaces for star {}", star.getStarId());
         SurfaceType[][] surfaceMap = createSurfaceMap();
-        log.info("Surfaces created for star {}", star.getStarId());
+        log.debug("Surfaces created for star {}", star.getStarId());
         return mapSurfaces(surfaceMap, star).stream();
     }
 

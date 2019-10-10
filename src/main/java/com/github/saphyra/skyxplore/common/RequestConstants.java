@@ -11,6 +11,7 @@ public class RequestConstants {
     public static final String COOKIE_LOCALE = "locale";
     public static final String COOKIE_USER_ID = "userId";
     public static final String COOKIE_GAME_ID = "game_id";
+    public static final String COOKIE_PLAYER_ID = "player_id";
     public static final String HEADER_BROWSER_LANGUAGE = "BrowserLanguage";
 
     public static final String WEB_PREFIX = "/web";

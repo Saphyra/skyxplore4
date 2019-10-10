@@ -1,11 +1,12 @@
 package com.github.saphyra.skyxplore.game.map.star.domain;
 
-import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore.common.UuidConverter;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.dao.AbstractDao;
+import com.github.saphyra.skyxplore.common.UuidConverter;
 
 @Component
 public class StarDao extends AbstractDao<StarEntity, Star, String, StarRepository> {
@@ -28,5 +29,9 @@ public class StarDao extends AbstractDao<StarEntity, Star, String, StarRepositor
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         ));
+    }
+
+    public void saveAll(List<Star> createdStars) {
+        repository.saveAll(converter.convertDomain(createdStars));
     }
 }

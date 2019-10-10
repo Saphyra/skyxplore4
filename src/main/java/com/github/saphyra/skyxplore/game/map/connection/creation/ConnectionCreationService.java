@@ -29,12 +29,13 @@ class ConnectionCreationService {
 
     @EventListener
     void starsCreatedEventListener(StarsCreatedEvent event) {
+        log.info("Creating StarConenctions...");
         List<Star> stars = event.getStars();
         List<StarConnection> connections = new ArrayList<>();
         stars.forEach(star -> connections.addAll(connectCloseStars(star, stars)));
         connections.addAll(connectDistantStars(stars, connections));
         removeConnections(connections, stars);
-        connections.forEach(starConnectionDao::save);
+        starConnectionDao.saveAll(connections);
     }
 
     private List<StarConnection> connectCloseStars(Star star, List<Star> stars) {

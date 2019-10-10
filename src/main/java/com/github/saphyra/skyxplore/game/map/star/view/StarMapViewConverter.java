@@ -1,17 +1,19 @@
 package com.github.saphyra.skyxplore.game.map.star.view;
 
-import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import org.springframework.stereotype.Component;
 
+import com.github.saphyra.skyxplore.common.ViewConverter;
+import com.github.saphyra.skyxplore.game.map.star.domain.Star;
+
 @Component
-public class StarViewConverter implements ViewConverter<Star, StarView> {
+public class StarMapViewConverter implements ViewConverter<Star, StarMapView> {
     @Override
-    public StarView convertDomain(Star domain) {
-        return StarView.builder()
+    public StarMapView convertDomain(Star domain) {
+        return StarMapView.builder()
             .starId(domain.getStarId())
             .starName(domain.getStarName())
             .coordinate(domain.getCoordinate())
+            .ownerId(domain.getOwnerId())
             .build();
     }
 }

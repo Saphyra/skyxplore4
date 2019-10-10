@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,12 +51,15 @@ public class GameController {
         @RequestBody OneStringParamRequest gameName
     ) {
         log.info("{} wants to create a game.", userId);
+        StopWatch stopWatch = new StopWatch("GameCreation");
+        stopWatch.start();
         log.debug("GameName: {}", gameName.getValue());
         Game game = gameFactroy.create(userId, gameName.getValue());
         gameDao.save(game);
         eventPublisher.publishEvent(new GameCreatedEvent(userId, game.getGameId()));
         String gameId = game.getGameId().toString();
-        log.info("Game created with gameId {}", gameId);
+        stopWatch.stop();
+        log.info("Game created with gameId {} in {} seconds", gameId, stopWatch.getTotalTimeSeconds());
         return gameId;
     }
 

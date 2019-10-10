@@ -32,4 +32,8 @@ public class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarCon
             uuidConverter.convertDomain(userId)
         );
     }
+
+    public void saveAll(List<StarConnection> connections) {
+        repository.saveAll(converter.convertDomain(connections));
+    }
 }

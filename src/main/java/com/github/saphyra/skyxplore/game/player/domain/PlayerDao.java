@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.player.domain;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -21,5 +22,12 @@ public class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerR
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
+    }
+
+    public List<Player> getByUserIdAndGameId(UUID userId, UUID gameId) {
+        return converter.convertEntity(repository.getByUserIdAndGameId(
+            uuidConverter.convertDomain(userId),
+            uuidConverter.convertDomain(gameId)
+        ));
     }
 }

@@ -36,7 +36,7 @@ public class PlayerService {
 
     public Player create(UUID gameId, UUID userId, boolean isAi, List<String> usedPlayerNames) {
         Player player = Player.builder()
-            .playerId(isAi ? idGenerator.randomUUID() : userId)
+            .playerId(idGenerator.randomUUID())
             .gameId(gameId)
             .userId(userId)
             .ai(isAi)
@@ -49,7 +49,7 @@ public class PlayerService {
     }
 
     private String generateName(List<String> usedPlayerNames) {
-        String  result;
+        String result;
          do{
              result = lastNames.get(random.randInt(0, lastNames.size()-1)) + " " + firstNames.get(random.randInt(0, firstNames.size()-1));
          }while (usedPlayerNames.contains(result));

@@ -29,6 +29,7 @@ public class StarCreationService {
     private final StarNameService starNameService;
 
     public void createStars(UUID userId, UUID gameId) {
+        log.info("Creating stars...");
         List<Coordinate> coordinates = coordinateProvider.getRandomCoordinates();
         List<String> usedStarNames = new ArrayList<>();
         List<String> usedPlayerNames = new ArrayList<>();
@@ -50,9 +51,9 @@ public class StarCreationService {
             log.debug("Star created: {}", star);
             createdStars.add(star);
             usedPlayerNames.add(player.getPlayerName());
-            starDao.save(star);
             isAi= true;
         }
+        starDao.saveAll(createdStars);
         applicationEventPublisher.publishEvent(new StarsCreatedEvent(createdStars));
     }
 }

@@ -18,3 +18,8 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
     });
 })();
+
+const PLAYER_ID = function(){
+    const response = dao.sendRequest(HttpMethod.GET, Mapping.GET_PLAYER_ID);
+    return response.body;
+}();

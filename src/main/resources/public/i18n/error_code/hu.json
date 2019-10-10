@@ -4,6 +4,7 @@
   "GENERAL_ERROR": "Hiba - ${generalErrorKey}",
   "INVALID_GAME_ACCESS": "Hozzáférés megtagadva.",
   "INVALID_LOCALE": "Érvénytelen nyelv.",
+  "PLAYER_NOT_FOUND": "Játékos nem található",
   "SESSION_EXPIRED": "A bejelentkezés lejárt.",
   "STAR_NOT_FOUND": "A csillag nem található.",
   "USER_NAME_ALREADY_EXISTS": "Felhasználónév foglalt.",

@@ -14,7 +14,7 @@ import com.github.saphyra.skyxplore.common.RequestConstants;
 import com.github.saphyra.skyxplore.game.common.view.MapView;
 import com.github.saphyra.skyxplore.game.map.connection.StarConnectionQueryService;
 import com.github.saphyra.skyxplore.game.map.star.StarQueryService;
-import com.github.saphyra.skyxplore.game.map.star.view.StarView;
+import com.github.saphyra.skyxplore.game.map.star.view.StarMapView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,13 +30,14 @@ public class MapController {
     @GetMapping(GET_STARS_MAPPING)
     MapView getMap(
         @CookieValue(RequestConstants.COOKIE_USER_ID) UUID userId,
-        @CookieValue(RequestConstants.COOKIE_GAME_ID) UUID gameId
+        @CookieValue(RequestConstants.COOKIE_GAME_ID) UUID gameId,
+        @CookieValue(RequestConstants.COOKIE_PLAYER_ID) UUID playerId
     ) {
         log.info("{} wants to know the stars belong to game {}", userId, gameId);
-        List<StarView> visibleStars = starQueryService.getVisibleByGameIdAndUserId(gameId, userId);
+        List<StarMapView> visibleStars = starQueryService.getVisibleStars(gameId, userId, playerId);
         return MapView.builder()
             .stars(visibleStars)
-            .connections(starConnectionQueryService.getVisibleByGameIdAndUserId(gameId, userId, visibleStars.stream().map(StarView::getStarId).collect(Collectors.toList())))
+            .connections(starConnectionQueryService.getVisibleByGameIdAndUserId(gameId, userId, visibleStars.stream().map(StarMapView::getStarId).collect(Collectors.toList())))
             .build();
     }
 }

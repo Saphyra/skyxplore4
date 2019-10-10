@@ -64,6 +64,9 @@
                     starElement.setAttribute("cy", star.coordinate.y + 70);
                     starElement.setAttribute("stroke", "blue");
                     starElement.setAttribute("stroke-width", 0);
+                    if(star.ownerId == PLAYER_ID){
+                        starElement.setAttribute("fill", "green");
+                    }
                     $(starElement).hover(
                         function(){starElement.setAttribute("stroke-width", 3)},
                         function(){starElement.setAttribute("stroke-width", 0)}

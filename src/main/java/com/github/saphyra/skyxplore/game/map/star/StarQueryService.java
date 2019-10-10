@@ -10,8 +10,8 @@ import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.map.star.domain.StarDao;
-import com.github.saphyra.skyxplore.game.map.star.view.StarView;
-import com.github.saphyra.skyxplore.game.map.star.view.StarViewConverter;
+import com.github.saphyra.skyxplore.game.map.star.view.StarMapView;
+import com.github.saphyra.skyxplore.game.map.star.view.StarMapViewConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,18 +20,18 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class StarQueryService {
     private final StarDao starDao;
-    private final StarViewConverter starViewConverter;
+    private final StarMapViewConverter starMapViewConverter;
     private final UuidConverter uuidConverter;
 
-    public List<StarView> getVisibleByGameIdAndUserId(UUID gameId, UUID userId) {
+    public List<StarMapView> getVisibleStars(UUID gameId, UUID userId, UUID playerId) {
         List<Star> visibleStars = starDao.getByGameIdAndUserId(gameId, userId).stream()
-            .filter(star -> isVisible(star, userId))
+            .filter(star -> isVisible(star, playerId))
             .collect(Collectors.toList());
-        return starViewConverter.convertDomain(visibleStars);
+        return starMapViewConverter.convertDomain(visibleStars);
     }
 
-    private boolean isVisible(Star star, UUID userId) {
-        return star.getOwnerId().equals(userId);
+    private boolean isVisible(Star star, UUID playerId) {
+        return star.getOwnerId().equals(playerId);
     }
 
     public Star findByIdValidated(UUID starId, UUID userId) {
