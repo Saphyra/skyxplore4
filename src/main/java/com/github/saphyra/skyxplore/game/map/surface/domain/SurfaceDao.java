@@ -34,4 +34,8 @@ public class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, Surf
         entities.forEach(entityManager::persist);
         entityManager.flush();
     }
+
+    public List<Surface> getByStarId(UUID starId) {
+        return converter.convertEntity(repository.getByStarId(uuidConverter.convertDomain(starId)));
+    }
 }

@@ -1,4 +1,10 @@
 (function MapMoveController(){
+    const MIN_SCALE = 0.5;
+    const MAX_SCALE = 1;
+
+    let scale = 1;
+    const scaleStep = 0.2
+
     window.mapMoveController = new function(){
         this.addListeners = function(){
             let lastX = 0;
@@ -27,7 +33,19 @@
                 };
 
                 //Görgővel való görgetés tiltása
-                map.onwheel = function(event){event.preventDefault();};
+                map.onwheel = function(event){
+                    event.preventDefault();
+                    return
+                    //TODO fix scaling
+                    const delta = event.deltaY;
+                    const newScale =  scale - delta * scaleStep / 100;
+                    if(newScale < MIN_SCALE || newScale > MAX_SCALE){
+                        return;
+                    }
+
+                    scale = newScale;
+                    map.style.transform = "scale(" + scale + ")";
+                };
         }
     };
 })();

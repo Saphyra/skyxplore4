@@ -1,5 +1,7 @@
 package com.github.saphyra.skyxplore.game.map.surface.domain;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +16,6 @@ public interface SurfaceRepository  extends JpaRepository<SurfaceEntity, String>
     @Modifying
     @Transactional
     void deleteByGameIdAndUserId(@Param("gameId") String gameId, @Param("userId") String userId);
+
+    List<SurfaceEntity> getByStarId(String starId);
 }
