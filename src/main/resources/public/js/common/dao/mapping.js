@@ -4,6 +4,7 @@ window.Mapping = {
     GET_GAMES: "/api/game",
     GET_MAP: "/api/game/map",
     GET_PLAYER_ID: "/api/game/player/id",
+    GET_SURFACES_OF_STAR: "/api/game/star/*/surface",
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",

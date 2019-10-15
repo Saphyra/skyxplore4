@@ -20,6 +20,5 @@ public class SurfaceView {
     private Coordinate coordinate;
     @NonNull
     private SurfaceType surfaceType;
-    @NonNull
     private UUID buildingId;
 }

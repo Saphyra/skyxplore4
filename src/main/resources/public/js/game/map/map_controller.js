@@ -16,6 +16,7 @@
         return function(){
             const container = document.createElement("DIV");
                 container.id = "map-container";
+                container.classList.add("page");
 
                 const mapElementsContainer = createSvgElement("svg");
                     mapElementsContainer.id = "map-elements-container";
