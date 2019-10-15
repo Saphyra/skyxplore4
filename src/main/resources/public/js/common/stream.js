@@ -42,4 +42,14 @@ function Stream(a){
         this.forEach(consumer);
         return this;
     }
+
+    this.toMap = function(keyMapper, valueMapper){
+        const result = {};
+
+        this.forEach(function(item){
+            result[keyMapper(item)] = valueMapper(item);
+        })
+
+        return result;
+    }
 }

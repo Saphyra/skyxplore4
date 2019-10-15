@@ -42,7 +42,7 @@ com:
             - surfaceName: OIL_FIELD
               spawnRate: 1
             - surfaceName: ORE_MINE
-              spawnRate: 2
+              spawnRate: 1
             - surfaceName: VULCAN
               spawnRate: 2
               optional: true

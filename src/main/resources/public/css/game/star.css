@@ -1,0 +1,13 @@
+.surface-table{
+    margin: auto;
+}
+
+    .surface-table td{
+        border: 1px solid white;
+
+    }
+
+    .surface-content{
+        width: 100px;
+        height: 100px;
+    }
