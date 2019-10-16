@@ -31,7 +31,7 @@ Biom types:
   Ore mine:
     resources:
     - ore
-  Vulcan:
+  Volcano:
     resources:
     bonus:
 
@@ -195,7 +195,7 @@ Building:
       - energy
       uses:
       placed:
-      - vulkan
+      - volcano
       workers: false
     Heat power plant:
       gives:

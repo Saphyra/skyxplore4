@@ -57,9 +57,8 @@
                     const surface = surfaces[surfaceId];
                     const cell = document.createElement("TD");
                         const content = document.createElement("DIV");
-                            content.innerHTML = surface.surfaceType;
                             content.classList.add("surface-content");
-                            content.style.backgroundColor = getBackgroundColor(surface.surfaceType);
+                            content.classList.add(getSurfaceTypeClass(surface.surfaceType));
                     cell.appendChild(content);
                     row.appendChild(cell);
                 }
@@ -82,24 +81,26 @@
                 return result;
             }
 
-            function getBackgroundColor(surfaceType){
+            function getSurfaceTypeClass(surfaceType){
                 switch (surfaceType){
                     case "COAL_MINE":
-                        return "black";
+                        return "surface-type-coal";
+                    case "CONCRETE":
+                        return "surface-type-concrete";
                     case "DESERT":
-                        return "yellow";
+                        return "surface-type-desert";
                     case "FOREST":
-                        return "green";
+                        return "surface-type-forest";
                     case "LAKE":
-                        return "blue";
+                        return "surface-type-lake";
                     case "MOUNTAIN":
-                        return "lightgrey";
+                        return "surface-type-mountain";
                     case "OIL_FIELD":
-                        return "purple";
+                        return "surface-type-oil-field";
                     case "ORE_MINE":
-                        return "darkgrey";
+                        return "surface-type-ore-mine";
                     case "VULCAN":
-                        return "red";
+                        return "surface-type-vulcan";
                     default:
                         logService.log("no backgroundColor found for surfaceType " + surfaceType);
                         return "white";

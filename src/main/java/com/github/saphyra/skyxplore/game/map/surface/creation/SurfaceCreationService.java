@@ -73,7 +73,7 @@ public class SurfaceCreationService {
     private void fillSurfaceMap(SurfaceType[][] surfaceMap, boolean shouldPlaceVulcan) {
         boolean initialPlacement = true;
         do {
-            List<SurfaceType> surfaceTypeList = createSurfaceTypeList(shouldPlaceVulcan);
+            List<SurfaceType> surfaceTypeList = createSurfaceTypeList(initialPlacement);
             boolean ip = initialPlacement;
             surfaceTypeList.forEach(surfaceType -> fillBlockWithSurfaceType(surfaceMap, surfaceType, ip));
             initialPlacement = false;
@@ -93,13 +93,25 @@ public class SurfaceCreationService {
         return false;
     }
 
-    private List<SurfaceType> createSurfaceTypeList(boolean shouldPlaceVulcan) {
+    private List<SurfaceType> createSurfaceTypeList(boolean initialPlacement) {
         List<SurfaceType> result = properties.getSurfaceTypeSpawnDetails().stream()
             .flatMap(surfaceTypeSpawnDetails -> Stream.generate(surfaceTypeSpawnDetails::getSurfaceName).limit(surfaceTypeSpawnDetails.getSpawnRate()))
             .map(SurfaceType::valueOf)
-            .filter(surfaceType -> surfaceType != SurfaceType.VULCAN || shouldPlaceVulcan)
             .collect(Collectors.toList());
         Collections.shuffle(result);
+
+        if (initialPlacement) {
+            log.debug("Initial placement. Filtering out optional surfaceTypes");
+            List<SurfaceCreationProperties.SurfaceTypeSpawnDetails> optionalSpawnDetails = properties.getSurfaceTypeSpawnDetails().stream()
+                .filter(SurfaceCreationProperties.SurfaceTypeSpawnDetails::isOptional)
+                .collect(Collectors.toList());
+
+            optionalSpawnDetails.stream()
+                .filter((s) -> random.randBoolean())
+                .peek(surfaceTypeSpawnDetails -> log.debug("SurfaceType {} will not spawn", surfaceTypeSpawnDetails.getSurfaceName()))
+                .forEach(surfaceTypeSpawnDetails -> result.removeIf(surfaceType -> surfaceType.equals(SurfaceType.valueOf(surfaceTypeSpawnDetails.getSurfaceName()))));
+
+        }
         log.debug("surfaceTypeList: {}", result);
         return result;
     }
