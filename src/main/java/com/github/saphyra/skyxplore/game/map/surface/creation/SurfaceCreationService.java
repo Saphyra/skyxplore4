@@ -41,6 +41,7 @@ public class SurfaceCreationService {
             .parallel()
             .flatMap(this::createSurfaces)
             .collect(Collectors.toList());
+        log.info("Number of surfaces created: {}", surfaces.size());
         surfaceDao.saveAll(surfaces);
     }
 

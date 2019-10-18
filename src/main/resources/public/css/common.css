@@ -1,3 +1,8 @@
+:root{
+    --footer-height: 3.1rem;
+    --header-height: 3.5rem;
+}
+
 body{
     background-image: url("/images/background.jpg");
     background-position: center;
@@ -26,7 +31,7 @@ header{
     top: 0;
     left: 0;
     right: 0;
-    height: 3.5rem;
+    height: var(--header-height);
     border-bottom: 5px ridge white;
     background: black;
 }
@@ -41,10 +46,10 @@ header > h1{
 
 main{
     position: absolute;
-    top: 3.5rem;
+    top: var(--header-height);
     left: 0;
     right: 0;
-    bottom: 3.1rem;
+    bottom: var(--footer-height);
     overflow: auto;
     padding: 0.5rem 0;
 }
@@ -57,7 +62,7 @@ footer{
     right: 0;
     border-top: 5px ridge white;
     white-space: nowrap;
-    height: 3.1rem;
+    height: var(--footer-height);
 }
 
 footer button, footer label{

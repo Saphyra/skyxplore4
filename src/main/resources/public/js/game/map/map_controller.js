@@ -1,5 +1,5 @@
 (function MapController(){
-    scriptLoader.loadScript("/js/game/map/map_move_controller.js");
+    scriptLoader.loadScript("/js/common/animation/move_controller.js");
 
     window.mapController = new function(){
         this.createMapController = createMapController;
@@ -23,7 +23,7 @@
             container.appendChild(mapElementsContainer);
 
             document.getElementById("pages").appendChild(container);
-            mapMoveController.addListeners();
+            addRightClickMove("map-elements-container", "map-container", true)
             this.refresh();
         }
     }

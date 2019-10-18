@@ -24,6 +24,7 @@
             container.appendChild(surfaceTable);
 
             document.getElementById("pages").appendChild(container);
+            addRightClickMove(container.id, container.id, false);
             this.refresh();
         };
     }
