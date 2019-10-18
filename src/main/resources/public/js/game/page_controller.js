@@ -7,6 +7,8 @@
 
     window.pageController = new function(){
         this.openWindow = openWindow;
+        this.removeFromList = function(page){
+        }
     }
 
     function openWindow(windowController){

@@ -5,113 +5,154 @@
         function(eventType){return eventType == events.SHOW_STAR},
         function(event){
             const controller = new WindowController();
-                controller.create = createFunction(event.getPayload());
+                controller.create = createFunction(event.getPayload(), controller);
                 controller.refresh = refreshFunction(event.getPayload());
+                controller.close = closeFunction(event.getPayload());
             pageController.openWindow(controller);
         }
     ));
 
-    function createFunction(starId){
+    function createFunction(starId, controller){
         return function(){
             const container = document.createElement("DIV");
                 container.classList.add("page");
                 container.classList.add("star-view-container");
                 container.id = createContainerId(starId);
 
-                const surfaceTable = document.createElement("TABLE");
-                    surfaceTable.id = createSurfaceTableId(starId);
-                    surfaceTable.classList.add("surface-table");
-            container.appendChild(surfaceTable);
+                const header = document.createElement("DIV");
+                    header.classList.add("star-view-header");
+
+                    const starName = document.createElement("h2");
+                        starName.id = createStarNameId(starId);
+                header.appendChild(starName);
+
+                    const closeButton = document.createElement("BUTTON");
+                        closeButton.classList.add("close-button");
+                        closeButton.innerHTML = "X";
+                        closeButton.onclick = function(){
+                            controller.close();
+                        }
+                header.appendChild(closeButton);
+
+            container.appendChild(header);
+
+                const surfaceTableContainer = document.createElement("DIV");
+                    surfaceTableContainer.classList.add("surface-table-container");
+                    surfaceTableContainer.id = "surface-table-container-" + starId;
+                    const surfaceTable = document.createElement("TABLE");
+                        surfaceTable.id = createSurfaceTableId(starId);
+                        surfaceTable.classList.add("surface-table");
+                surfaceTableContainer.appendChild(surfaceTable);
+            container.appendChild(surfaceTableContainer);
 
             document.getElementById("pages").appendChild(container);
-            addRightClickMove(container.id, container.id, false);
+            addRightClickMove(surfaceTable.id, surfaceTableContainer.id, false);
             this.refresh();
         };
     }
 
     function refreshFunction(starId){
         return function(){
-            const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_SURFACES_OF_STAR, starId));
-                request.convertResponse = function(response){
+            const surfaceRequest = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_SURFACES_OF_STAR, starId));
+                surfaceRequest.convertResponse = function(response){
                     return new Stream(JSON.parse(response.body))
                         .toMap(
                             function(surface){return surface.surfaceId},
                             function(surface){return surface}
                         );
                 }
-                request.processValidResponse = function(surfaces){
+                surfaceRequest.processValidResponse = function(surfaces){
                     displaySurfaces(starId, surfaces);
                 }
-            dao.sendRequestAsync(request);
-        }
+            dao.sendRequestAsync(surfaceRequest);
 
-        function displaySurfaces(starId, surfaces){
-            const coordinateMapping = createCoordinateMapping(surfaces);
-
-            const surfaceTable = document.getElementById(createSurfaceTableId(starId));
-
-            for(let xIndex in coordinateMapping){
-                const row = document.createElement("TR");
-                const x = coordinateMapping[xIndex];
-                for(let yIndex in x){
-                    const surfaceId = x[yIndex];
-                    const surface = surfaces[surfaceId];
-                    const cell = document.createElement("TD");
-                        const content = document.createElement("DIV");
-                            content.classList.add("surface-content");
-                            content.classList.add(getSurfaceTypeClass(surface.surfaceType));
-                    cell.appendChild(content);
-                    row.appendChild(cell);
+            const starDetailsRequest = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_STAR, starId));
+                starDetailsRequest.convertResponse = function(response){
+                    return JSON.parse(response.body);
                 }
+                starDetailsRequest.processValidResponse = function(star){
+                    document.getElementById(createStarNameId(star.starId)).innerHTML = star.starName;
+                }
+            dao.sendRequestAsync(starDetailsRequest);
 
-                surfaceTable.appendChild(row);
-            }
+            function displaySurfaces(starId, surfaces){
+                const coordinateMapping = createCoordinateMapping(surfaces);
 
-            function createCoordinateMapping(surfaces){
-                const result = {};
+                const surfaceTable = document.getElementById(createSurfaceTableId(starId));
 
-                for(let surfaceId in surfaces){
-                    const coordinate = surfaces[surfaceId].coordinate;
-                    if(result[coordinate.x] == undefined){
-                        result[coordinate.x] = {};
+                for(let xIndex in coordinateMapping){
+                    const row = document.createElement("TR");
+                    const x = coordinateMapping[xIndex];
+                    for(let yIndex in x){
+                        const surfaceId = x[yIndex];
+                        const surface = surfaces[surfaceId];
+                        const cell = document.createElement("TD");
+                            const content = document.createElement("DIV");
+                                content.classList.add("surface-content");
+                                content.classList.add(getSurfaceTypeClass(surface.surfaceType));
+                        cell.appendChild(content);
+                        row.appendChild(cell);
                     }
 
-                    result[coordinate.x][coordinate.y] = surfaceId;
+                    surfaceTable.appendChild(row);
                 }
 
-                return result;
-            }
+                function createCoordinateMapping(surfaces){
+                    const result = {};
 
-            function getSurfaceTypeClass(surfaceType){
-                switch (surfaceType){
-                    case "COAL_MINE":
-                        return "surface-type-coal";
-                    case "CONCRETE":
-                        return "surface-type-concrete";
-                    case "DESERT":
-                        return "surface-type-desert";
-                    case "FOREST":
-                        return "surface-type-forest";
-                    case "LAKE":
-                        return "surface-type-lake";
-                    case "MOUNTAIN":
-                        return "surface-type-mountain";
-                    case "OIL_FIELD":
-                        return "surface-type-oil-field";
-                    case "ORE_MINE":
-                        return "surface-type-ore-mine";
-                    case "VULCAN":
-                        return "surface-type-vulcan";
-                    default:
-                        logService.log("no backgroundColor found for surfaceType " + surfaceType);
-                        return "white";
-                };
+                    for(let surfaceId in surfaces){
+                        const coordinate = surfaces[surfaceId].coordinate;
+                        if(result[coordinate.x] == undefined){
+                            result[coordinate.x] = {};
+                        }
+
+                        result[coordinate.x][coordinate.y] = surfaceId;
+                    }
+
+                    return result;
+                }
+
+                function getSurfaceTypeClass(surfaceType){
+                    switch (surfaceType){
+                        case "COAL_MINE":
+                            return "surface-type-coal";
+                        case "CONCRETE":
+                            return "surface-type-concrete";
+                        case "DESERT":
+                            return "surface-type-desert";
+                        case "FOREST":
+                            return "surface-type-forest";
+                        case "LAKE":
+                            return "surface-type-lake";
+                        case "MOUNTAIN":
+                            return "surface-type-mountain";
+                        case "OIL_FIELD":
+                            return "surface-type-oil-field";
+                        case "ORE_MINE":
+                            return "surface-type-ore-mine";
+                        case "VULCAN":
+                            return "surface-type-vulcan";
+                        default:
+                            logService.log("no backgroundColor found for surfaceType " + surfaceType);
+                            return "white";
+                    };
+                }
             }
+        }
+    }
+
+    function closeFunction(starId){
+        return function(){
+            document.getElementById("pages").removeChild(document.getElementById(createContainerId(starId)));
         }
     }
 
     function createContainerId(starId){
         return "star-view-container-" + starId;
+    }
+
+    function createStarNameId(starId){
+        return "star-name-" + starId;
     }
 
     function createSurfaceTableId(starId){

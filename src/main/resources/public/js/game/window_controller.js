@@ -1,4 +1,10 @@
 function WindowController(){
+    const id = generateRandomId();
+
+    this.getId = function(){
+        return id;
+    }
+
     this.create = function(){
         logService.warn("WindowController.create is not overridden.");
         return this;
@@ -9,8 +15,8 @@ function WindowController(){
         return this;
     }
 
-    this.hide = function(){
-        logService.warn("WindowController.hide is not overridden.");
+    this.close = function(){
+        logService.warn("WindowController.close is not overridden.");
         return this;
     }
 }

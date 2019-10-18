@@ -15,8 +15,8 @@ public class StarConnectionViewConverter implements ViewConverter<StarConnection
     @Override
     public StarConnectionView convertDomain(StarConnection domain) {
         return StarConnectionView.builder()
-            .coordinate1(starQueryService.findByIdValidated(domain.getStar1(), domain.getUserId()).getCoordinate())
-            .coordinate2(starQueryService.findByIdValidated(domain.getStar2(), domain.getUserId()).getCoordinate())
+            .coordinate1(starQueryService.findByStarIdAndUserIdValidated(domain.getStar1(), domain.getUserId()).getCoordinate())
+            .coordinate2(starQueryService.findByStarIdAndUserIdValidated(domain.getStar2(), domain.getUserId()).getCoordinate())
             .build();
     }
 }

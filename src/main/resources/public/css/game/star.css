@@ -1,55 +1,83 @@
-.surface-table{
-    margin: auto;
-    border-collapse: separate;
+:root{
+    --star-view-container-header-height: 2.5rem;
+    --star-view-side-bar-width: 20rem;
 }
 
-    .surface-table td{
-        border: 1px solid transparent;
+.star-view-header{
+    position: absolute;
+    height: var(--star-view-container-header-height);
+    right: 0;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    border-bottom: 3px ridge white;
+}
+
+    .star-view-header h2{
+        text-align: center;
     }
 
-    .surface-table td:hover{
-        border-color: red;
+.surface-table-container{
+    position: absolute;
+    top: var(--star-view-container-header-height);
+    right: var(--star-view-side-bar-width);
+    left: var(--star-view-side-bar-width);
+    bottom: 0;
+    overflow: auto;
+}
+
+    .surface-table{
+        margin: auto;
+        border-collapse: separate;
     }
 
-    .surface-content{
-        width: 75px;
-        height: 75px;
-        background-position: center;
-        background-size: cover;
-    }
-
-        .surface-type-coal{
-            background-image: url("/images/coal.jpg");
+        .surface-table td{
+            border: 1px solid transparent;
         }
 
-        .surface-type-concrete{
-            background-image: url("/images/concrete.jpg");
+        .surface-table td:hover{
+            border-color: red;
         }
 
-        .surface-type-desert{
-            background-image: url("/images/desert.jpg");
+        .surface-content{
+            width: 75px;
+            height: 75px;
+            background-position: center;
+            background-size: cover;
         }
 
-        .surface-type-forest{
-            background-image: url("/images/forest.jpg");
-        }
+            .surface-type-coal{
+                background-image: url("/images/coal.jpg");
+            }
 
-        .surface-type-lake{
-            background-image: url("/images/lake.jpg");
-        }
+            .surface-type-concrete{
+                background-image: url("/images/concrete.jpg");
+            }
 
-        .surface-type-mountain{
-            background-image: url("/images/mountain.jpg");
-        }
+            .surface-type-desert{
+                background-image: url("/images/desert.jpg");
+            }
 
-        .surface-type-oil-field{
-            background-image: url("/images/oil-field.jpg");
-        }
+            .surface-type-forest{
+                background-image: url("/images/forest.jpg");
+            }
 
-        .surface-type-ore-mine{
-            background-image: url("/images/ore-mine.jpg");
-        }
+            .surface-type-lake{
+                background-image: url("/images/lake.jpg");
+            }
 
-        .surface-type-vulcan{
-            background-image: url("/images/vulcan.jpg");
-        }
+            .surface-type-mountain{
+                background-image: url("/images/mountain.jpg");
+            }
+
+            .surface-type-oil-field{
+                background-image: url("/images/oil-field.jpg");
+            }
+
+            .surface-type-ore-mine{
+                background-image: url("/images/ore-mine.jpg");
+            }
+
+            .surface-type-vulcan{
+                background-image: url("/images/vulcan.jpg");
+            }

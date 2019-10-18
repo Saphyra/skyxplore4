@@ -34,9 +34,23 @@ public class StarQueryService {
         return star.getOwnerId().equals(playerId);
     }
 
-    public Star findByIdValidated(UUID starId, UUID userId) {
+    public Star findByStarIdAndUserIdValidated(UUID starId, UUID userId) {
         return starDao.findById(uuidConverter.convertDomain(starId))
             .filter(star -> star.getUserId().equals(userId))
+            .orElseThrow(() -> ExceptionFactory.starNotFound(starId));
+    }
+
+    StarMapView findDetailsOfStar(UUID playerId, UUID starId) {
+        Star star = findByStarIdAndPlayerIdValidated(playerId, starId);
+        if(!isVisible(star, playerId)){
+            throw ExceptionFactory.invalidStarAccess(playerId, starId);
+        }
+
+        return starMapViewConverter.convertDomain(star);
+    }
+
+    private Star findByStarIdAndPlayerIdValidated(UUID playerId, UUID starId){
+        return starDao.findById(uuidConverter.convertDomain(starId))
             .orElseThrow(() -> ExceptionFactory.starNotFound(starId));
     }
 }

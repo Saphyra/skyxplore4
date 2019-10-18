@@ -56,7 +56,9 @@
                 return;
             }
 
-            const request = new Request(HttpMethod.PUT, Mapping.CREATE_GAME, {value: getGameName()});
+            const gameName = getGameName();
+                document.getElementById("new-game-name").value = "";
+            const request = new Request(HttpMethod.PUT, Mapping.CREATE_GAME, {value: gameName});
                 request.processValidResponse = function(response){
                     sessionStorage.successMessage = "game-created";
                     selectGame(response.body);
