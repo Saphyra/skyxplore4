@@ -19,7 +19,7 @@ class StarNameService extends ArrayList<String> {
 
     StarNameService(ObjectMapper objectMapper, Random random) throws IOException {
         this.random = random;
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("public/data/star_names.json");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("public/data/name/star_names.json");
         TypeReference<List<String>> ref = new TypeReference<List<String>>() {
         };
         addAll(objectMapper.readValue(inputStream, ref));

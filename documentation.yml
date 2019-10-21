@@ -1,3 +1,14 @@
+Start buildings:
+- SolarPanel
+- Battery
+- WaterTower
+- Depot
+- WaterPump
+- Sawmill
+- FoodPackagingFactory
+- Camp
+- House
+
 Biom types:
   Coal mine:
     resources:
@@ -16,6 +27,7 @@ Biom types:
     - meat
     bonus:
     - farm
+    - camp
   Lake:
     resources:
     - water
@@ -42,6 +54,7 @@ Resources:
       from:
       - coal mine
       with: excavator
+    storageType: bulk
   Energy:
     source:
     - conversion
@@ -58,12 +71,14 @@ Resources:
       from:
       - coal
       with: heat power plant
+    storageType: energy
   Fish:
     source:
     - mining
       from:
       - lake
         with: fishing ship
+    storageType: bulk
   Food:
     source:
     - conversion
@@ -74,6 +89,7 @@ Resources:
       - energy
       - plastic
       with: food packaging factory
+    storageType: bulk
   Fuel:
     source:
     - conversion
@@ -81,27 +97,31 @@ Resources:
       - energy
       - oil
       with: oil refinery
+    storageType: liquid
   Meat:
     source:
     - mining
       from:
       - forest
-        with: #todo
+        with: Camp
     - conversion
       from: wheat
       with: farm
+    storageType: bulk
   Oil:
     source:
     - mining
       from:
       - oil field
         with: oil rig
+    storageType: liquid
   Ore:
     source:
     - mining
       from:
       - ore mine
       with: excavator
+    storageType: nulk
   Plastic:
     source:
     - conversion
@@ -109,40 +129,55 @@ Resources:
       - energy
       - oil
       with: oil refinery
+    storageType: bulk
   Sand:
     source:
     - mining
       from:
       - desert
         with: excavator
+    storageType: bulk
   Silicon:
     source:
       conversion:
         from: sand
         with: #todo
+    storageType: bulk
   Stone:
     source:
     - mining
       from: mountain
       with: excavator
+    storageType: bulk
   Water:
     source:
     - mining
       from: lake
       with: water pump
+    storageType: liquid
   Wheat:
     source:
     - mining
       from: water
       with: farm
+    storageType: bulk
   Wood:
     source:
     - mining
       from: forest
       uses: sawmill
+    storageType: bulk
 
 Building:
   Production:
+    Camp:
+      gives:
+      - meat
+        uses:
+      placed:
+      - forest
+      - mountain
+      workers: true
     Excavator:
       gives:
       - stone
@@ -180,7 +215,6 @@ Building:
         - fish
         - wheat
         - energy
-        - plastic
       placed:
       - concrete
       workers: true
@@ -248,6 +282,19 @@ Building:
       placed:
       - lake
       workers: false
+  Storage:
+    Battery:
+      stores:
+      - energy
+    WaterTower:
+      stores:
+      - liquid
+    Depot:
+      stores:
+      - bulk
+    House:
+      stores:
+      - citizen
   Planetary defense:
 
 Items:

@@ -18,7 +18,7 @@ public class AiNameConfiguration {
         ApplicationContext applicationContext,
         ObjectMapper objectMapperWrapper
     ) throws IOException {
-        Resource resource = applicationContext.getResource("classpath:public/data/first_name.json");
+        Resource resource = applicationContext.getResource("classpath:public/data/name/first_name.json");
         FirstNames firstNames = objectMapperWrapper.readValue(resource.getInputStream(), FirstNames.class);
         log.info("FirstNames loaded: {}", firstNames);
         return firstNames;
@@ -29,7 +29,7 @@ public class AiNameConfiguration {
         ApplicationContext applicationContext,
         ObjectMapper objectMapperWrapper
     ) throws IOException {
-        Resource resource = applicationContext.getResource("classpath:public/data/last_name.json");
+        Resource resource = applicationContext.getResource("classpath:public/data/name/last_name.json");
         LastNames lastNames = objectMapperWrapper.readValue(resource.getInputStream(), LastNames.class);
         log.info("LastNames loaded: {}", lastNames);
         return lastNames;
