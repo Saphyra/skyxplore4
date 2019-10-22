@@ -1,0 +1,27 @@
+{
+  "id": "farm",
+  "gives": {
+    "meat": {
+      "placed": [
+        "desert",
+        "forest"
+      ],
+      "uses": {
+        "water": 1,
+        "wheat": 1
+      },
+      "amount": 1
+    },
+    "wheat": {
+      "placed": [
+        "desert",
+        "forest"
+      ],
+      "uses": {
+        "water": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1
+}

@@ -1,0 +1,14 @@
+{
+  "id": "geothermic_power_plant",
+  "gives": {
+    "energy": {
+      "placed": [
+        "volcano"
+      ],
+      "uses": {
+      },
+      "amount": 1
+    }
+  },
+  "workers": 0
+}

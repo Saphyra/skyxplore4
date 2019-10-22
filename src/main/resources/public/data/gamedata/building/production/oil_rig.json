@@ -1,0 +1,15 @@
+{
+  "id": "oil_rig",
+  "gives": {
+    "oil": {
+      "placed": [
+        "oil_field"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 0
+}

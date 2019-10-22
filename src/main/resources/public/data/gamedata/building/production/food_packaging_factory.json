@@ -1,0 +1,19 @@
+{
+  "id": "food_packaging_factory",
+  "gives": {
+    "food": {
+      "placed": [
+        "concrete"
+      ],
+      "uses": {
+        "energy": 1,
+        "fish": 1,
+        "meat": 1,
+        "wheat": 1,
+        "plastic": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1
+}

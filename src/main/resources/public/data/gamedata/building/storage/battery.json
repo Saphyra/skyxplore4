@@ -1,0 +1,5 @@
+{
+  "id": "battery",
+  "stores": "energy",
+  "capacity": 1
+}

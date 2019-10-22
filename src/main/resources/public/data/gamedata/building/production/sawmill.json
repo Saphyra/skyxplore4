@@ -1,0 +1,15 @@
+{
+  "id": "sawmill",
+  "gives": {
+    "wood": {
+      "placed": [
+        "forest"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1
+}

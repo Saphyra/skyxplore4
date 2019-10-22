@@ -1,0 +1,15 @@
+{
+  "id": "water_pump",
+  "gives": {
+    "water": {
+      "placed": [
+        "lake"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 0
+}

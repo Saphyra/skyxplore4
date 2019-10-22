@@ -1,0 +1,15 @@
+{
+  "id": "camp",
+  "gives": {
+    "meat": {
+      "placed": [
+        "forest",
+        "mountain"
+      ],
+      "uses": {
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1
+}

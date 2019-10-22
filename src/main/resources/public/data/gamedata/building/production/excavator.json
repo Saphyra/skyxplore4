@@ -1,0 +1,42 @@
+{
+  "id": "excavator",
+  "gives": {
+    "coal": {
+      "placed": [
+        "coal_mine"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    },
+    "sand": {
+      "placed": [
+        "desert"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    },
+    "ore": {
+      "placed": [
+        "ore_mine"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    },
+    "stone": {
+      "placed": [
+        "mountain"
+      ],
+      "uses": {
+        "energy": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1
+}

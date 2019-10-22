@@ -1,0 +1,26 @@
+{
+  "id": "oil_refinery",
+  "gives": {
+    "fuel": {
+      "placed": [
+        "concrete"
+      ],
+      "uses": {
+        "energy": 1,
+        "oil": 1
+      },
+      "amount": 1
+    },
+    "plastic": {
+      "placed": [
+        "concrete"
+      ],
+      "uses": {
+        "energy": 1,
+        "oil": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1
+}

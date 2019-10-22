@@ -1,0 +1,15 @@
+{
+  "id": "solar_panel",
+  "gives": {
+    "energy": {
+      "placed": [
+        "desert",
+        "concrete"
+      ],
+      "uses": {
+      },
+      "amount": 1
+    }
+  },
+  "workers": 0
+}

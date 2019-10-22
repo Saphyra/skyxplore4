@@ -1,0 +1,15 @@
+{
+  "id": "heat_power_plant",
+  "gives": {
+    "energy": {
+      "placed": [
+        "concrete"
+      ],
+      "uses": {
+        "coal": 1
+      },
+      "amount": 1
+    }
+  },
+  "workers": 0
+}
