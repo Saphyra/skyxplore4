@@ -1,5 +1,6 @@
 {
   "id": "oil_refinery",
+  "buildingType": "production",
   "gives": {
     "fuel": {
       "placed": [

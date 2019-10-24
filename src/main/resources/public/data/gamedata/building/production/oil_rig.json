@@ -1,5 +1,6 @@
 {
   "id": "oil_rig",
+  "buildingType": "production",
   "gives": {
     "oil": {
       "placed": [

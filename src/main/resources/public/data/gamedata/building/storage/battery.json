@@ -1,5 +1,6 @@
 {
   "id": "battery",
+  "buildingType": "storage",
   "stores": "energy",
   "capacity": 1
 }

@@ -1,5 +1,6 @@
 {
   "id": "heat_power_plant",
+  "buildingType": "production",
   "gives": {
     "energy": {
       "placed": [

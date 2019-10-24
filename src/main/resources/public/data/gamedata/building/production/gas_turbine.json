@@ -1,5 +1,6 @@
 {
   "id": "gas_turbine",
+  "buildingType": "production",
   "gives": {
     "energy": {
       "placed": [

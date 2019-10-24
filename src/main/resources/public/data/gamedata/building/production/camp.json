@@ -1,5 +1,6 @@
 {
   "id": "camp",
+  "buildingType": "production",
   "gives": {
     "meat": {
       "placed": [

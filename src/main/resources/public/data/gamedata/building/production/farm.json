@@ -1,5 +1,6 @@
 {
   "id": "farm",
+  "buildingType": "production",
   "gives": {
     "meat": {
       "placed": [

@@ -1,5 +1,6 @@
 {
   "id": "geothermic_power_plant",
+  "buildingType": "production",
   "gives": {
     "energy": {
       "placed": [

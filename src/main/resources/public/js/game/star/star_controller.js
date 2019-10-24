@@ -130,7 +130,7 @@
                             return "surface-type-oil-field";
                         case "ORE_MINE":
                             return "surface-type-ore-mine";
-                        case "VULCAN":
+                        case "VOLCANO":
                             return "surface-type-vulcan";
                         default:
                             logService.log("no backgroundColor found for surfaceType " + surfaceType);

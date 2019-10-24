@@ -1,5 +1,6 @@
 {
   "id": "water_pump",
+  "buildingType": "production",
   "gives": {
     "water": {
       "placed": [

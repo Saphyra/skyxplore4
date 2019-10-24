@@ -1,5 +1,6 @@
 {
   "id": "sawmill",
+  "buildingType": "production",
   "gives": {
     "wood": {
       "placed": [
