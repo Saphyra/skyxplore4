@@ -12,5 +12,6 @@
       "amount": 1
     }
   },
-  "workers": 1
+  "workers": 1,
+  "defaultBuilding": true
 }

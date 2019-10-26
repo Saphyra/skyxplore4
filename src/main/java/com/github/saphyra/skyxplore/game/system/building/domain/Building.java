@@ -1,19 +1,25 @@
-package com.github.saphyra.skyxplore.game.system.building;
-
-import java.util.UUID;
+package com.github.saphyra.skyxplore.game.system.building.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @Builder
 public class Building {
+    @NonNull
     private final UUID buildingId;
-    private final String buildingType;
+    @NonNull
+    private final String buildingDataId;
+    @NonNull
     private final UUID gameId;
+    @NonNull
     private final UUID userId;
-    private int level;
+    @NonNull
+    private Integer level;
     private UUID constructionId;
 }

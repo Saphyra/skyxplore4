@@ -1,34 +1,30 @@
 package com.github.saphyra.skyxplore.game.map.surface.creation;
 
-import static java.util.Objects.isNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.event.StarsCreatedEvent;
 import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.map.surface.domain.Surface;
 import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceDao;
 import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.system.building.creation.DefaultBuildingCreationService;
 import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Objects.isNull;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class SurfaceCreationService {
+    private final DefaultBuildingCreationService defaultBuildingCreationService;
     private final IdGenerator idGenerator;
     private final Random random;
     private final SurfaceCreationProperties properties;
@@ -49,18 +45,19 @@ public class SurfaceCreationService {
         log.debug("Creating surfaces for star {}", star.getStarId());
         SurfaceType[][] surfaceMap = createSurfaceMap();
         log.debug("Surfaces created for star {}", star.getStarId());
-        return mapSurfaces(surfaceMap, star).stream();
+        List<Surface> surfaces = mapSurfaces(surfaceMap, star);
+        defaultBuildingCreationService.addDefaultBuildingsForSystem(surfaces);
+        return surfaces.stream();
     }
 
     private SurfaceType[][] createSurfaceMap() {
         SurfaceType[][] surfaceMap = createEmptySurfaceMap();
 
-        boolean shouldPlaceVulcan = random.randBoolean();
-        log.debug("shouldPlaceVulcan: {}", shouldPlaceVulcan);
-        fillSurfaceMap(surfaceMap, shouldPlaceVulcan);
+        fillSurfaceMap(surfaceMap);
         return surfaceMap;
     }
 
+    @SuppressWarnings("ExplicitArrayFilling")
     private SurfaceType[][] createEmptySurfaceMap() {
         int surfaceSize = random.randInt(properties.getMinSize(), properties.getMaxSize());
         log.debug("surfaceSize: {}", surfaceSize);
@@ -71,7 +68,7 @@ public class SurfaceCreationService {
         return surfaceMap;
     }
 
-    private void fillSurfaceMap(SurfaceType[][] surfaceMap, boolean shouldPlaceVulcan) {
+    private void fillSurfaceMap(SurfaceType[][] surfaceMap) {
         boolean initialPlacement = true;
         do {
             List<SurfaceType> surfaceTypeList = createSurfaceTypeList(initialPlacement);

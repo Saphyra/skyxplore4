@@ -12,4 +12,5 @@
     <include file="database/change_sets/star_connection.xml"/>
     <include file="database/change_sets/player.xml"/>
     <include file="database/change_sets/surface.xml"/>
+    <include file="database/change_sets/building.xml"/>
 </databaseChangeLog>

@@ -1,13 +1,11 @@
 package com.github.saphyra.skyxplore.game.map.surface.domain;
 
+import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
+import lombok.*;
+
 import java.util.UUID;
 
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import static java.util.Objects.isNull;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
@@ -29,7 +27,11 @@ public class Surface {
     private final Coordinate coordinate;
 
     @NonNull
-    private final SurfaceType surfaceType;
+    private SurfaceType surfaceType;
 
     private UUID buildingId;
+
+    public boolean isEmpty() {
+        return isNull(buildingId);
+    }
 }

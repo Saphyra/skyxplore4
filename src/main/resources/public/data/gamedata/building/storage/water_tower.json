@@ -2,5 +2,6 @@
   "id": "water_tower",
   "buildingType": "storage",
   "stores": "liquid",
-  "capacity": 1
+  "capacity": 1,
+  "defaultBuilding": true
 }

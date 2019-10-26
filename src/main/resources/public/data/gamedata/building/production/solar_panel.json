@@ -12,5 +12,7 @@
       "amount": 1
     }
   },
-  "workers": 0
+  "workers": 0,
+  "defaultBuilding": true,
+  "primarySurfaceType": "desert"
 }

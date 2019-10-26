@@ -1,31 +1,32 @@
 package com.github.saphyra.skyxplore.game.map.star;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.game.common.GameProperties;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.map.star.domain.StarDao;
 import com.github.saphyra.skyxplore.game.map.star.view.StarMapView;
 import com.github.saphyra.skyxplore.game.map.star.view.StarMapViewConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class StarQueryService {
+    private final GameProperties gameProperties;
     private final StarDao starDao;
     private final StarMapViewConverter starMapViewConverter;
     private final UuidConverter uuidConverter;
 
     public List<StarMapView> getVisibleStars(UUID gameId, UUID userId, UUID playerId) {
         List<Star> visibleStars = starDao.getByGameIdAndUserId(gameId, userId).stream()
-            .filter(star -> isVisible(star, playerId))
+            .filter(star -> gameProperties.isDevMode() || isVisible(star, playerId))
             .collect(Collectors.toList());
         return starMapViewConverter.convertDomain(visibleStars);
     }

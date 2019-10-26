@@ -7,6 +7,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+game:
+  devMode: true
+
 logging:
   level:
     com:
@@ -17,3 +20,6 @@ logging:
               map:
                 surface:
                   creation: INFO
+              system:
+                building:
+                  creation: DEBUG

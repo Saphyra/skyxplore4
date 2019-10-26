@@ -40,7 +40,7 @@ com:
               spawnRate: 1
             - surfaceName: MOUNTAIN
               spawnRate: 2
-              optional: true
+              optional: false
             - surfaceName: OIL_FIELD
               spawnRate: 1
             - surfaceName: ORE_MINE
