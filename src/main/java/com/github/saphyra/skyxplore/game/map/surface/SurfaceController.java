@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.saphyra.skyxplore.common.RequestConstants;
 import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceDao;
-import com.github.saphyra.skyxplore.game.map.surface.view.SurfaceView;
-import com.github.saphyra.skyxplore.game.map.surface.view.SurfaceViewConverter;
+import com.github.saphyra.skyxplore.game.common.view.surface.SurfaceView;
+import com.github.saphyra.skyxplore.game.common.view.surface.SurfaceViewConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

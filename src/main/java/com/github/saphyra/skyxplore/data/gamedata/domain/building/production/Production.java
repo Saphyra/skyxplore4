@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.data.gamedata.building.production;
+package com.github.saphyra.skyxplore.data.gamedata.domain.building.production;
 
 import java.util.List;
 import java.util.Map;

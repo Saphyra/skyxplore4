@@ -39,7 +39,7 @@
                 const surfaceTableContainer = document.createElement("DIV");
                     surfaceTableContainer.classList.add("surface-table-container");
                     surfaceTableContainer.id = "surface-table-container-" + starId;
-                    const surfaceTable = document.createElement("TABLE");
+                    const surfaceTable = document.createElement("DIV");
                         surfaceTable.id = createSurfaceTableId(starId);
                         surfaceTable.classList.add("surface-table");
                 surfaceTableContainer.appendChild(surfaceTable);
@@ -81,16 +81,21 @@
                 const surfaceTable = document.getElementById(createSurfaceTableId(starId));
 
                 for(let xIndex in coordinateMapping){
-                    const row = document.createElement("TR");
+                    const row = document.createElement("DIV");
+                        row.classList.add("surface-table-row");
                     const x = coordinateMapping[xIndex];
                     for(let yIndex in x){
                         const surfaceId = x[yIndex];
                         const surface = surfaces[surfaceId];
-                        const cell = document.createElement("TD");
-                            const content = document.createElement("DIV");
-                                content.classList.add("surface-content");
-                                content.classList.add(getSurfaceTypeClass(surface.surfaceType));
-                        cell.appendChild(content);
+                        const cell = document.createElement("span");
+                            cell.classList.add(getSurfaceTypeClass(surface.surfaceType));
+                            cell.classList.add("surface-table-cell")
+                            if(surface.building){
+                                const content = document.createElement("DIV");
+                                    content.classList.add("surface-content");
+                                    content.innerHTML = surface.building.dataId;
+                                cell.appendChild(content);
+                            }
                         row.appendChild(cell);
                     }
 

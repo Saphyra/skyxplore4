@@ -1,17 +1,15 @@
 package com.github.saphyra.skyxplore.common;
 
-import java.util.UUID;
-
 import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
-import com.github.saphyra.exceptionhandling.exception.BadRequestException;
-import com.github.saphyra.exceptionhandling.exception.ConflictException;
-import com.github.saphyra.exceptionhandling.exception.ForbiddenException;
-import com.github.saphyra.exceptionhandling.exception.NotFoundException;
-import com.github.saphyra.exceptionhandling.exception.RestException;
+import com.github.saphyra.exceptionhandling.exception.*;
 import lombok.experimental.UtilityClass;
+
+import java.util.UUID;
 
 @UtilityClass
 public class ExceptionFactory {
+    private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with id %s";
+    private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s";
     private static final String INVALID_GAME_ACCESS_PREFIX = "%s has no access to game %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
@@ -20,6 +18,14 @@ public class ExceptionFactory {
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
+
+    public static RestException buildingNotFound(UUID buildingId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId));
+    }
+
+    public static RestException dataNotFount(String dataId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.DATA_NOT_FOUND), String.format(DATA_NOT_FOUND_PREFIX, dataId));
+    }
 
     public static RestException gameNotFound(UUID gameId) {
         return new NotFoundException(createErrorMessage(ErrorCode.GAME_NOT_FOUND), String.format(GAME_NOT_FOUND_PREFIX, gameId));

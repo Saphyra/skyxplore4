@@ -2,6 +2,8 @@ package com.github.saphyra.skyxplore.common;
 
 public enum ErrorCode {
     BAD_CREDENTIALS,
+    BUILDING_NOT_FOUND,
+    DATA_NOT_FOUND,
     GAME_NOT_FOUND,
     GENERAL_ERROR,
     INVALID_GAME_ACCESS,

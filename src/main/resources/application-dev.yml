@@ -22,4 +22,4 @@ logging:
                   creation: INFO
               system:
                 building:
-                  creation: DEBUG
+                  creation: INFO

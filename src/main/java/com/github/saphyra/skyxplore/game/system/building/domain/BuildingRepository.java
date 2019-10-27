@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 interface BuildingRepository extends JpaRepository<BuildingEntity, String> {
+    void deleteByGameIdAndUserId(String gameId, String userId);
 }

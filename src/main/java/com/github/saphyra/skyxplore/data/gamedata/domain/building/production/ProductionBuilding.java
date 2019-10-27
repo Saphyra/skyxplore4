@@ -1,6 +1,6 @@
-package com.github.saphyra.skyxplore.data.gamedata.building.production;
+package com.github.saphyra.skyxplore.data.gamedata.domain.building.production;
 
-import com.github.saphyra.skyxplore.data.gamedata.building.BuildingData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

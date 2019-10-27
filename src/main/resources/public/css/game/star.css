@@ -28,22 +28,31 @@
 
     .surface-table{
         margin: auto;
-        border-collapse: separate;
+        white-space: nowrap;
     }
 
-        .surface-table td{
+        .surface-table-cell{
             border: 1px solid transparent;
+            width: 75px;
+            height: 75px;
+            position: relative;
+            display: inline-block;
+            background-position: center;
+            background-size: cover;
         }
 
-        .surface-table td:hover{
+        .surface-table-cell:hover{
             border-color: red;
         }
 
         .surface-content{
-            width: 75px;
-            height: 75px;
-            background-position: center;
-            background-size: cover;
+            background: rgba(0,0,0,0.65);
+            opacity: 0.75;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
 
             .surface-type-coal{

@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.system.building.creation;
 
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.gamedata.building.BuildingData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.common.coordinates.DistanceCalculator;
 import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
 import com.github.saphyra.skyxplore.game.map.surface.domain.Surface;
@@ -55,9 +55,9 @@ public class DefaultBuildingCreationService {
     }
 
     private Building place(BuildingData buildingData, List<Surface> surfaces) {
-        log.debug("Placing building {}", buildingData);
+        log.debug("Placing building {}", buildingData.getId());
         Surface surface = getSurfaceForType(buildingData.getPrimarySurfaceType(), surfaces);
-        log.debug("Selected surface: {}", surface);
+        log.debug("Selected surface: {}", surface.getCoordinate());
         Building building = buildingFactory.create(buildingData.getId(), surface.getGameId(), surface.getUserId());
         surface.setBuildingId(building.getBuildingId());
         return building;

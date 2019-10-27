@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.data.gamedata.building.storage;
+package com.github.saphyra.skyxplore.data.gamedata.domain.building.storage;
 
 import javax.annotation.PostConstruct;
 

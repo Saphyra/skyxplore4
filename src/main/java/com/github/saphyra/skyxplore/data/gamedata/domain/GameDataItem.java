@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.data.gamedata;
+package com.github.saphyra.skyxplore.data.gamedata.domain;
 
 import lombok.Data;
 
