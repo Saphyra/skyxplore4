@@ -1,6 +1,8 @@
 :root{
     --star-view-container-header-height: 2.5rem;
     --star-view-side-bar-width: 20rem;
+    --surface-table-cell-size: 7.5vw;
+    --min-surface-table-cell-size: 75px;
 }
 
 .star-view-header{
@@ -33,26 +35,14 @@
 
         .surface-table-cell{
             border: 1px solid transparent;
-            width: 75px;
-            height: 75px;
+            width: var(--surface-table-cell-size);
+            height: var(--surface-table-cell-size);
+            min-width: var(--min-surface-table-cell-size);
+            min-height: var(--min-surface-table-cell-size);
             position: relative;
             display: inline-block;
             background-position: center;
             background-size: cover;
-        }
-
-        .surface-table-cell:hover{
-            border-color: red;
-        }
-
-        .surface-content{
-            background: rgba(0,0,0,0.65);
-            opacity: 0.75;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
         }
 
             .surface-type-coal{
@@ -89,4 +79,24 @@
 
             .surface-type-vulcan{
                 background-image: url("/images/vulcan.jpg");
+            }
+
+        .surface-table-cell:hover{
+            border-color: red;
+        }
+
+            .surface-content{
+                background-color: rgba(0,0,0,0.65);
+                opacity: 0.75;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-position: center;
+                background-size: cover;
+            }
+
+            .surface-content.building-solar_panel{
+                background-image: url("/images/solar_panel.png");
             }

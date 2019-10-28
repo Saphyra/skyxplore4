@@ -89,9 +89,10 @@
                         const surface = surfaces[surfaceId];
                         const cell = document.createElement("span");
                             cell.classList.add(getSurfaceTypeClass(surface.surfaceType));
-                            cell.classList.add("surface-table-cell")
+                            cell.classList.add("surface-table-cell");
                             if(surface.building){
                                 const content = document.createElement("DIV");
+                                    content.classList.add(createBuildingIdClass(surface.building.dataId));
                                     content.classList.add("surface-content");
                                     content.innerHTML = surface.building.dataId;
                                 cell.appendChild(content);
@@ -141,6 +142,10 @@
                             logService.log("no backgroundColor found for surfaceType " + surfaceType);
                             return "white";
                     };
+                }
+
+                function createBuildingIdClass(dataId){
+                    return "building-" + dataId;
                 }
             }
         }
