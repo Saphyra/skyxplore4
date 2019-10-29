@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.github.saphyra.skyxplore.game.common.coordinates.DistanceCalculator;
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
+import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

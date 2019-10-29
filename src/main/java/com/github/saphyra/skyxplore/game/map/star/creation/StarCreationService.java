@@ -1,32 +1,32 @@
 package com.github.saphyra.skyxplore.game.map.star.creation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Component;
-
-import com.github.saphyra.skyxplore.common.event.StarsCreatedEvent;
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.map.star.domain.StarDao;
+import com.github.saphyra.skyxplore.game.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.player.PlayerService;
 import com.github.saphyra.skyxplore.game.player.domain.Player;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class StarCreationService {
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private final ConnectionCreationService connectionCreationService;
     private final CoordinateProvider coordinateProvider;
     private final IdGenerator idGenerator;
     private final PlayerService playerService;
     private final StarDao starDao;
     private final StarNameService starNameService;
+    private final SurfaceCreationService surfaceCreationService;
 
     public void createStars(UUID userId, UUID gameId) {
         log.info("Creating stars...");
@@ -54,6 +54,7 @@ public class StarCreationService {
             isAi= true;
         }
         starDao.saveAll(createdStars);
-        applicationEventPublisher.publishEvent(new StarsCreatedEvent(createdStars));
+        connectionCreationService.createConnections(createdStars);
+        surfaceCreationService.createSurfaces(createdStars);
     }
 }

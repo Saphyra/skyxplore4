@@ -4,6 +4,11 @@
 
   },
   "additionalContent": {
-    "game-created": "Játék létrehozva"
+    "build": "Építés",
+    "game-created": "Játék létrehozva",
+    "level": "Szint",
+    "queue-title": "Gyártósor",
+    "star-details-title": "Részletek",
+    "upgrade": "Fejlesztés"
   }
 }

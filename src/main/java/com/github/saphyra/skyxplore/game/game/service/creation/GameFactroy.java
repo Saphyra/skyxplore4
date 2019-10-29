@@ -1,13 +1,12 @@
-package com.github.saphyra.skyxplore.game.game;
-
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
+package com.github.saphyra.skyxplore.game.game.service.creation;
 
 import com.github.saphyra.skyxplore.game.game.domain.Game;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor

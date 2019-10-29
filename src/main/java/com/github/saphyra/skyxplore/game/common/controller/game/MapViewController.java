@@ -1,14 +1,4 @@
-package com.github.saphyra.skyxplore.game;
-
-import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
-
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+package com.github.saphyra.skyxplore.game.common.controller.game;
 
 import com.github.saphyra.skyxplore.common.RequestConstants;
 import com.github.saphyra.skyxplore.game.common.view.MapView;
@@ -17,11 +7,20 @@ import com.github.saphyra.skyxplore.game.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.map.star.view.StarMapView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class MapController {
+public class MapViewController {
     private static final String GET_STARS_MAPPING = API_PREFIX + "/game/map";
 
     private final StarConnectionQueryService starConnectionQueryService;

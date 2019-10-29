@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.CoordinateConverter;
+import com.github.saphyra.skyxplore.game.common.domain.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

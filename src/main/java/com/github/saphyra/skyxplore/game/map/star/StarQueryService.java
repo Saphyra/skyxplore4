@@ -41,8 +41,8 @@ public class StarQueryService {
             .orElseThrow(() -> ExceptionFactory.starNotFound(starId));
     }
 
-    StarMapView findDetailsOfStar(UUID playerId, UUID starId) {
-        Star star = findByStarIdAndPlayerIdValidated(playerId, starId);
+    public StarMapView findDetailsOfStar(UUID playerId, UUID starId) {
+        Star star = findByStarIdAndPlayerIdValidated(starId);
         if(!isVisible(star, playerId)){
             throw ExceptionFactory.invalidStarAccess(playerId, starId);
         }
@@ -50,7 +50,7 @@ public class StarQueryService {
         return starMapViewConverter.convertDomain(star);
     }
 
-    private Star findByStarIdAndPlayerIdValidated(UUID playerId, UUID starId){
+    private Star findByStarIdAndPlayerIdValidated(UUID starId){
         return starDao.findById(uuidConverter.convertDomain(starId))
             .orElseThrow(() -> ExceptionFactory.starNotFound(starId));
     }

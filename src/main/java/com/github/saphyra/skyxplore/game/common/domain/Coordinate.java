@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.common.coordinates.domain;
+package com.github.saphyra.skyxplore.game.common.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,7 @@
 (function StarController(){
+    scriptLoader.loadScript("/js/game/star/surface_controller.js");
+    scriptLoader.loadScript("/js/game/star/star_details_controller.js");
+
     events.SHOW_STAR = "show_star";
 
     eventProcessor.registerProcessor(new EventProcessor(
@@ -14,58 +17,95 @@
 
     function createFunction(starId, controller){
         return function(){
+            const container = createContainer(starId);
+                container.appendChild(createHeader(starId, controller));
+                const contentContainer = document.createElement("DIV");
+                    contentContainer.classList.add("content-container");
+                    contentContainer.classList.add("star-view-content-container");
+
+                    contentContainer.appendChild(createLeftBar(starId));
+                    contentContainer.appendChild(createRightBar(starId));
+                    contentContainer.appendChild(createSurfaceTableContainer(starId));
+            container.appendChild(contentContainer);
+            document.getElementById("pages").appendChild(container);
+            addRightClickMove(createSurfaceTableId(starId), createSurfaceTableContainerId(starId), false);
+            loadStarName(starId);
+            this.refresh();
+        };
+
+        function createContainer(starId){
             const container = document.createElement("DIV");
                 container.classList.add("page");
                 container.classList.add("star-view-container");
                 container.id = createContainerId(starId);
+            return container;
+        }
 
-                const header = document.createElement("DIV");
-                    header.classList.add("star-view-header");
+        function createHeader(starId, controller){
+            const header = document.createElement("DIV");
+                header.classList.add("star-view-header");
 
-                    const starName = document.createElement("h2");
-                        starName.id = createStarNameId(starId);
-                header.appendChild(starName);
+                const starName = document.createElement("h2");
+                    starName.id = createStarNameId(starId);
+            header.appendChild(starName);
 
-                    const closeButton = document.createElement("BUTTON");
-                        closeButton.classList.add("close-button");
-                        closeButton.innerHTML = "X";
-                        closeButton.onclick = function(){
-                            controller.close();
-                        }
-                header.appendChild(closeButton);
+                const closeButton = document.createElement("BUTTON");
+                    closeButton.classList.add("close-button");
+                    closeButton.innerHTML = "X";
+                    closeButton.onclick = function(){
+                        controller.close();
+                    }
+            header.appendChild(closeButton);
+            return header;
+        }
 
-            container.appendChild(header);
+        function createLeftBar(starId){
+            const leftBar = document.createElement("DIV");
+                leftBar.classList.add("bar");
+                leftBar.classList.add("left-bar");
 
-                const surfaceTableContainer = document.createElement("DIV");
-                    surfaceTableContainer.classList.add("surface-table-container");
-                    surfaceTableContainer.id = "surface-table-container-" + starId;
-                    const surfaceTable = document.createElement("DIV");
-                        surfaceTable.id = createSurfaceTableId(starId);
-                        surfaceTable.classList.add("surface-table");
-                surfaceTableContainer.appendChild(surfaceTable);
-            container.appendChild(surfaceTableContainer);
+                const title = document.createElement("DIV");
+                    title.classList.add("bar-title");
+                    title.innerHTML = Localization.getAdditionalContent("star-details-title");
+            leftBar.appendChild(title);
 
-            document.getElementById("pages").appendChild(container);
-            addRightClickMove(surfaceTable.id, surfaceTableContainer.id, false);
-            this.refresh();
-        };
-    }
+                const contentContainer = document.createElement("DIV");
+                    contentContainer.classList.add("bar-content");
+                    contentContainer.id = createLeftBarId(starId);
+            leftBar.appendChild(contentContainer);
+            return leftBar;
+        }
 
-    function refreshFunction(starId){
-        return function(){
-            const surfaceRequest = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_SURFACES_OF_STAR, starId));
-                surfaceRequest.convertResponse = function(response){
-                    return new Stream(JSON.parse(response.body))
-                        .toMap(
-                            function(surface){return surface.surfaceId},
-                            function(surface){return surface}
-                        );
-                }
-                surfaceRequest.processValidResponse = function(surfaces){
-                    displaySurfaces(starId, surfaces);
-                }
-            dao.sendRequestAsync(surfaceRequest);
+        function createRightBar(starId){
+                const rightBar = document.createElement("DIV");
+                    rightBar.classList.add("bar");
+                    rightBar.classList.add("right-bar");
 
+                    const title = document.createElement("DIV");
+                        title.classList.add("bar-title");
+                        title.innerHTML = Localization.getAdditionalContent("queue-title");
+                rightBar.appendChild(title);
+
+                    const contentContainer = document.createElement("DIV");
+                        contentContainer.classList.add("bar-content");
+                        contentContainer.id = createRightBarId(starId);
+                rightBar.appendChild(contentContainer);
+                return rightBar;
+            }
+
+        function createSurfaceTableContainer(starId){
+            const surfaceTableContainer = document.createElement("DIV");
+                surfaceTableContainer.classList.add("surface-table-container");
+                surfaceTableContainer.id = createSurfaceTableContainerId(starId);
+
+                const surfaceTable = document.createElement("DIV");
+                    surfaceTable.id = createSurfaceTableId(starId);
+                    surfaceTable.classList.add("surface-table");
+            surfaceTableContainer.appendChild(surfaceTable);
+            return surfaceTableContainer;
+        }
+
+        function loadStarName(starId){
             const starDetailsRequest = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_STAR, starId));
                 starDetailsRequest.convertResponse = function(response){
                     return JSON.parse(response.body);
@@ -74,79 +114,13 @@
                     document.getElementById(createStarNameId(star.starId)).innerHTML = star.starName;
                 }
             dao.sendRequestAsync(starDetailsRequest);
+        }
+    }
 
-            function displaySurfaces(starId, surfaces){
-                const coordinateMapping = createCoordinateMapping(surfaces);
-
-                const surfaceTable = document.getElementById(createSurfaceTableId(starId));
-
-                for(let xIndex in coordinateMapping){
-                    const row = document.createElement("DIV");
-                        row.classList.add("surface-table-row");
-                    const x = coordinateMapping[xIndex];
-                    for(let yIndex in x){
-                        const surfaceId = x[yIndex];
-                        const surface = surfaces[surfaceId];
-                        const cell = document.createElement("span");
-                            cell.classList.add(getSurfaceTypeClass(surface.surfaceType));
-                            cell.classList.add("surface-table-cell");
-                            if(surface.building){
-                                const content = document.createElement("DIV");
-                                    content.classList.add(createBuildingIdClass(surface.building.dataId));
-                                    content.classList.add("surface-content");
-                                cell.appendChild(content);
-                            }
-                        row.appendChild(cell);
-                    }
-
-                    surfaceTable.appendChild(row);
-                }
-
-                function createCoordinateMapping(surfaces){
-                    const result = {};
-
-                    for(let surfaceId in surfaces){
-                        const coordinate = surfaces[surfaceId].coordinate;
-                        if(result[coordinate.x] == undefined){
-                            result[coordinate.x] = {};
-                        }
-
-                        result[coordinate.x][coordinate.y] = surfaceId;
-                    }
-
-                    return result;
-                }
-
-                function getSurfaceTypeClass(surfaceType){
-                    switch (surfaceType){
-                        case "COAL_MINE":
-                            return "surface-type-coal";
-                        case "CONCRETE":
-                            return "surface-type-concrete";
-                        case "DESERT":
-                            return "surface-type-desert";
-                        case "FOREST":
-                            return "surface-type-forest";
-                        case "LAKE":
-                            return "surface-type-lake";
-                        case "MOUNTAIN":
-                            return "surface-type-mountain";
-                        case "OIL_FIELD":
-                            return "surface-type-oil-field";
-                        case "ORE_MINE":
-                            return "surface-type-ore-mine";
-                        case "VOLCANO":
-                            return "surface-type-vulcan";
-                        default:
-                            logService.log("no backgroundColor found for surfaceType " + surfaceType);
-                            return "white";
-                    };
-                }
-
-                function createBuildingIdClass(dataId){
-                    return "building-" + dataId;
-                }
-            }
+    function refreshFunction(starId){
+        return function(){
+            starDetailsController.showStarDetails(starId, createLeftBarId(starId))
+            surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
         }
     }
 
@@ -160,8 +134,20 @@
         return "star-view-container-" + starId;
     }
 
+    function createLeftBarId(starId){
+        return "star-view-left-bar-" + starId;
+    }
+
+    function createRightBarId(starId){
+            return "star-view-right-bar-" + starId;
+        }
+
     function createStarNameId(starId){
         return "star-name-" + starId;
+    }
+
+    function createSurfaceTableContainerId(starId){
+        return "surface-table-container-" + starId;
     }
 
     function createSurfaceTableId(starId){

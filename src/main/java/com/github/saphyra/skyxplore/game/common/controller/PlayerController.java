@@ -1,17 +1,16 @@
-package com.github.saphyra.skyxplore.game.player;
-
-import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
-import static com.github.saphyra.skyxplore.common.RequestConstants.COOKIE_PLAYER_ID;
-
-import java.util.UUID;
-
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+package com.github.saphyra.skyxplore.game.common.controller;
 
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
+
+import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
+import static com.github.saphyra.skyxplore.common.RequestConstants.COOKIE_PLAYER_ID;
 
 @RestController
 @Slf4j

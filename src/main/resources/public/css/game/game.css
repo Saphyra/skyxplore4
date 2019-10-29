@@ -1,3 +1,7 @@
+:root{
+    --bar-title-height: 1.85rem;
+}
+
 #pages{
     position: absolute;
     top: 0;
@@ -25,3 +29,47 @@
     right: 0;
     top: 0;
 }
+
+.content-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.bar{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+    .left-bar{
+        left: 0;
+        border-right: 3px ridge white;
+    }
+
+    .right-bar{
+        right: 0;
+        border-left: 3px ridge white;
+    }
+
+    .bar-title{
+        text-align: center;
+        font-size: 1.5rem;
+        border-bottom: 3px ridge white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--bar-title-height);
+    }
+
+    .bar-content{
+        position: absolute;
+        top: var(--bar-title-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+    }

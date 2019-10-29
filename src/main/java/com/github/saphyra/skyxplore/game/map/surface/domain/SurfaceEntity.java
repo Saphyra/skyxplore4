@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.CoordinateEntity;
+import com.github.saphyra.skyxplore.game.common.domain.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

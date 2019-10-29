@@ -17,4 +17,6 @@ public class BuildingViewForSurface {
 
     @NonNull
     private final Integer level;
+
+    private Object construction;//TODO proper response
 }

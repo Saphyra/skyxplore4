@@ -1,7 +1,6 @@
 package com.github.saphyra.skyxplore.game.map.surface.creation;
 
-import com.github.saphyra.skyxplore.common.event.StarsCreatedEvent;
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.map.surface.domain.Surface;
 import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceDao;
@@ -11,7 +10,6 @@ import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -30,10 +28,9 @@ public class SurfaceCreationService {
     private final SurfaceCreationProperties properties;
     private final SurfaceDao surfaceDao;
 
-    @EventListener
-    void starCreatedEventListener(StarsCreatedEvent starsCreatedEvent) {
+    public void createSurfaces(List<Star> stars) {
         log.info("Creating surfaces...");
-        List<Surface> surfaces = starsCreatedEvent.getStars().stream()
+        List<Surface> surfaces = stars.stream()
             .parallel()
             .flatMap(this::createSurfaces)
             .collect(Collectors.toList());

@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.map.surface.domain;
 
-import com.github.saphyra.skyxplore.game.common.coordinates.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import lombok.*;
 
 import java.util.UUID;

@@ -1,36 +1,31 @@
 package com.github.saphyra.skyxplore.game.map.connection.creation;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
-
-import com.github.saphyra.skyxplore.common.event.StarsCreatedEvent;
-import com.github.saphyra.skyxplore.game.common.coordinates.DistanceCalculator;
+import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
 import com.github.saphyra.skyxplore.game.map.connection.domain.StarConnection;
 import com.github.saphyra.skyxplore.game.map.connection.domain.StarConnectionDao;
 import com.github.saphyra.skyxplore.game.map.star.domain.Star;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class ConnectionCreationService {
+public class ConnectionCreationService {
     private final ConnectionCreationConfiguration configuration;
     private final StarConnectionDao starConnectionDao;
     private final DistanceCalculator distanceCalculator;
     private final IdGenerator idGenerator;
 
-    @EventListener
-    void starsCreatedEventListener(StarsCreatedEvent event) {
+   public void createConnections(List<Star> stars) {
         log.info("Creating StarConenctions...");
-        List<Star> stars = event.getStars();
         List<StarConnection> connections = new ArrayList<>();
         stars.forEach(star -> connections.addAll(connectCloseStars(star, stars)));
         connections.addAll(connectDistantStars(stars, connections));
