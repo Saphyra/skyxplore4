@@ -42,11 +42,24 @@ public class StorageStatusQueryService {
         List<Building> buildings = buildingDao.getByStarIdAndDataId(starId, storage.getId());
 
         List<Resource> resources = resourceQueryService.getActualsByStarIdAndStorageType(starId, storageType);
+        resources.add(
+                Resource.builder()
+                        .resourceId(UUID.randomUUID())
+                        .gameId(UUID.randomUUID())
+                        .userId(UUID.randomUUID())
+                        .starId(UUID.randomUUID())
+                        .storageType(StorageType.BULK)
+                        .amount(32)
+                        .round(32)
+                        .dataId("test")
+                .build()
+        );
         return StorageTypeView.builder()
                 .capacity(countCapacity(storage, buildings))
                 .actual(countResources(resources))
                 .storageType(storageType)
                 .reserved(0) //TODO fill when reservation is implemented
+                .allocated(0) //TODO fill when allocation is implemented
                 .resources(mapResources(resources))
                 .build();
     }
@@ -73,6 +86,7 @@ public class StorageStatusQueryService {
         return ResourceDetailsView.builder()
                 .dataId(resource.getDataId())
                 .amount(resource.getAmount())
+                .reserved(0) //TODO calculate when reservation is implemented
                 .difference(resourceDifferenceCalculator.getDifference(resource))
                 .average(resourceAverageCalculator.getAverage(resource))
                 .build();

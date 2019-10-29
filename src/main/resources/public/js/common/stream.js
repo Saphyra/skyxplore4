@@ -28,6 +28,15 @@ function Stream(a){
         }
     }
 
+    this.map = function(mapper){
+        const buff = [];
+
+        for(let i in array){
+            buff.push(mapper(array[i]));
+        }
+        return new Stream(buff);
+    }
+
     this.noneMatch = function(predicate){
         for(let i in array){
             if(predicate(array[i])){
@@ -40,6 +49,11 @@ function Stream(a){
 
     this.peek = function(consumer){
         this.forEach(consumer);
+        return this;
+    }
+
+    this.sorted = function(comparator){
+        array.sort(comparator);
         return this;
     }
 

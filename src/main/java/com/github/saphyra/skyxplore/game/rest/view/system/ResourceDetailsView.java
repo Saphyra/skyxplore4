@@ -14,6 +14,9 @@ public class ResourceDetailsView {
     private final Integer amount;
 
     @NonNull
+    private final Integer reserved;
+
+    @NonNull
     private final Integer difference;
 
     @NonNull

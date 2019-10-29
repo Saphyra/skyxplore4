@@ -17,6 +17,8 @@ public class StorageTypeView {
     @NonNull
     private final Integer actual;
     @NonNull
+    private final Integer allocated;
+    @NonNull
     private final Integer reserved;
     @NonNull
     private final List<ResourceDetailsView> resources;

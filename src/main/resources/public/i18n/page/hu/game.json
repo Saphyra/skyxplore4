@@ -4,8 +4,10 @@
 
   },
   "additionalContent": {
+    "allocated": "Lefoglalva",
     "build": "Építés",
     "game-created": "Játék létrehozva",
+    "header-storage": "Raktár",
     "level": "Szint",
     "queue-title": "Gyártósor",
     "star-details-title": "Részletek",

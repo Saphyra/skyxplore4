@@ -10,5 +10,5 @@ import java.util.List;
 @Builder
 public class StarSystemDetailsView {
     @NonNull
-    private final List<StorageTypeView> storages;
+    private final List<StorageTypeView> storage;
 }

@@ -1,6 +1,6 @@
 (function StarController(){
     scriptLoader.loadScript("/js/game/star/surface_controller.js");
-    scriptLoader.loadScript("/js/game/star/star_details_controller.js");
+    scriptLoader.loadScript("/js/game/star/system_details_controller.js");
 
     events.SHOW_STAR = "show_star";
 
@@ -119,7 +119,7 @@
 
     function refreshFunction(starId){
         return function(){
-            starDetailsController.showStarDetails(starId, createLeftBarId(starId))
+            systemDetailsController.showSystemDetails(starId, createLeftBarId(starId))
             surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
         }
     }

@@ -1,7 +1,7 @@
 function loadLocalization(fileName, successCallback){
     const DEFAULT_LOCALE = "hu";
 
-    createQuery(
+    return createQuery(
         fileName,
         getLocale(),
         successCallback,
@@ -21,9 +21,9 @@ function loadLocalization(fileName, successCallback){
         return function(){
             const response = dao.sendRequest(HttpMethod.GET, getPath(locale, fileName));
             if(response.status === ResponseStatus.OK){
-                successCallback(JSON.parse(response.body));
+                return successCallback(JSON.parse(response.body));
             }else if(errorCallback){
-                errorCallback();
+                return errorCallback();
             }else{
                 logService.log(response.toString(), "error", "Error loading localization: ");
             }

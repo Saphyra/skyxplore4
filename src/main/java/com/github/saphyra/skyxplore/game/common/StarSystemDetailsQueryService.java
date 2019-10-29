@@ -16,7 +16,7 @@ public class StarSystemDetailsQueryService {
 
     public StarSystemDetailsView getDetailsOfStarSystem(UUID starId){
         return StarSystemDetailsView.builder()
-                .storages(storageStatusQueryService.getStorageStatusOfStar(starId))
+                .storage(storageStatusQueryService.getStorageStatusOfStar(starId))
                 .build();
     }
 }
