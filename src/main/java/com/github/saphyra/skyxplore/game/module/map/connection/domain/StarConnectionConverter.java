@@ -1,52 +1,34 @@
 package com.github.saphyra.skyxplore.game.module.map.connection.domain;
 
-import java.util.UUID;
-import java.util.function.Supplier;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.converter.ConverterBase;
-import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class StarConnectionConverter extends ConverterBase<StarConnectionEntity, StarConnection> {
-    private final StringEncryptor stringEncryptor;
     private final UuidConverter uuidConverter;
 
     @Override
-    protected StarConnection processEntityConversion(StarConnectionEntity starConnectionEntity) {
+    protected StarConnection processEntityConversion(StarConnectionEntity entity) {
         return StarConnection.builder()
-            .connectionId(uuidConverter.convertEntity(starConnectionEntity.getConnectionId()))
-            .gameId(uuidConverter.convertEntity(starConnectionEntity.getGameId()))
-            .userId(uuidConverter.convertEntity(starConnectionEntity.getUserId()))
-            .star1(decrypt(starConnectionEntity::getStar1, starConnectionEntity.getUserId()))
-            .star2(decrypt(starConnectionEntity::getStar2, starConnectionEntity.getUserId()))
+            .connectionId(uuidConverter.convertEntity(entity.getConnectionId()))
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .userId(uuidConverter.convertEntity(entity.getUserId()))
+            .star1(uuidConverter.convertEntity(entity.getStar1()))
+            .star2(uuidConverter.convertEntity(entity.getStar2()))
             .build();
-    }
-
-    private UUID decrypt(Supplier<String> stringSupplier, String uid) {
-        String decrypted = stringEncryptor.decryptEntity(stringSupplier.get(), uid);
-        return uuidConverter.convertEntity(decrypted);
     }
 
     @Override
-    protected StarConnectionEntity processDomainConversion(StarConnection starConnection) {
+    protected StarConnectionEntity processDomainConversion(StarConnection domain) {
         return StarConnectionEntity.builder()
-            .connectionId(uuidConverter.convertDomain(starConnection.getConnectionId()))
-            .gameId(uuidConverter.convertDomain(starConnection.getGameId()))
-            .userId(uuidConverter.convertDomain(starConnection.getUserId()))
-            .star1(encrypt(starConnection::getStar1, starConnection.getUserId()))
-            .star2(encrypt(starConnection::getStar2, starConnection.getUserId()))
+            .connectionId(uuidConverter.convertDomain(domain.getConnectionId()))
+            .gameId(uuidConverter.convertDomain(domain.getGameId()))
+            .userId(uuidConverter.convertDomain(domain.getUserId()))
+            .star1(uuidConverter.convertDomain(domain.getStar1()))
+            .star2(uuidConverter.convertDomain(domain.getStar2()))
             .build();
-    }
-
-    private String encrypt(Supplier<UUID> stringSupplier, UUID uid) {
-        return stringEncryptor.encryptEntity(
-            uuidConverter.convertDomain(stringSupplier.get()),
-            uuidConverter.convertDomain(uid)
-        );
     }
 }

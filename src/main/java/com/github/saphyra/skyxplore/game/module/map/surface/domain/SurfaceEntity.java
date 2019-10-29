@@ -1,15 +1,12 @@
 package com.github.saphyra.skyxplore.game.module.map.surface.domain;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.github.saphyra.skyxplore.game.common.domain.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,7 +27,8 @@ class SurfaceEntity {
     @Embedded
     private CoordinateEntity coordinate;
 
-    private String surfaceType;
+    @Enumerated(EnumType.STRING)
+    private SurfaceType surfaceType;
 
     private String buildingId;
 }

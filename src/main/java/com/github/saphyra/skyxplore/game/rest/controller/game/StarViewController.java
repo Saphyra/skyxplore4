@@ -5,7 +5,7 @@ import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
 import com.github.saphyra.skyxplore.game.module.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.common.StarSystemDetailsQueryService;
-import com.github.saphyra.skyxplore.game.rest.view.star.StarDetailsView;
+import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
 import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceDao;
 import lombok.RequiredArgsConstructor;
@@ -42,11 +42,11 @@ public class StarViewController {
     }
 
     @GetMapping(GET_STAR_SYSTEM_DETAILS_MAPPING)
-    StarDetailsView getStarSystemDetails(
+    StarSystemDetailsView getStarSystemDetails(
             @CookieValue(RequestConstants.COOKIE_PLAYER_ID) UUID playerId,
             @PathVariable("starId") UUID starId) {
         log.info("{} wants to know the details of star {}", playerId, starId);
-        return starSystemDetailsQueryService.getDetailsOfStarSystem(starId, playerId);
+        return starSystemDetailsQueryService.getDetailsOfStarSystem(starId);
     }
 
     @GetMapping(GET_SURFACES_OF_STAR_MAPPING)

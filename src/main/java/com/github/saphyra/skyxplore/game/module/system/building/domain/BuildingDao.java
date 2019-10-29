@@ -27,4 +27,8 @@ public class BuildingDao extends AbstractDao<BuildingEntity, Building, String, B
                 uuidConverter.convertDomain(userId)
         );
     }
+
+    public List<Building> getByStarIdAndDataId(UUID starId, String dataId) {
+        return converter.convertEntity(repository.getByStarIdAndBuildingDataId(uuidConverter.convertDomain(starId), dataId));
+    }
 }

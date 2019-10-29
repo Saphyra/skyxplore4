@@ -26,4 +26,7 @@ class GameEntity {
 
     @NonNull
     private String gameName;
+
+    @NonNull
+    private Integer round;
 }

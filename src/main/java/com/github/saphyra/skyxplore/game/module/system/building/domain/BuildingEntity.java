@@ -21,6 +21,7 @@ class BuildingEntity {
     private String buildingDataId;
     private String gameId;
     private String userId;
-    private String level;
+    private String starId;
+    private Integer level;
     private String constructionId;
 }

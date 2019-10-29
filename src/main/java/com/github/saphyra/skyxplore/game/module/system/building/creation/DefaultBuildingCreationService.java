@@ -33,7 +33,6 @@ public class DefaultBuildingCreationService {
     private final BuildingFactory buildingFactory;
 
     public void addDefaultBuildingsForSystem(List<Surface> surfaces) {
-        log.info("Creating default buildings...");
         List<BuildingData> defaultBuildings = getDefaultBuildings();
         log.debug("Default buildings to place: {}", defaultBuildings);
 
@@ -58,7 +57,7 @@ public class DefaultBuildingCreationService {
         log.debug("Placing building {}", buildingData.getId());
         Surface surface = getSurfaceForType(buildingData.getPrimarySurfaceType(), surfaces);
         log.debug("Selected surface: {}", surface.getCoordinate());
-        Building building = buildingFactory.create(buildingData.getId(), surface.getGameId(), surface.getUserId());
+        Building building = buildingFactory.create(buildingData.getId(), surface.getGameId(), surface.getUserId(), surface.getStarId());
         surface.setBuildingId(building.getBuildingId());
         return building;
     }

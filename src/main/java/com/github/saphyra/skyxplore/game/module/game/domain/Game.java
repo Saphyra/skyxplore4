@@ -21,4 +21,7 @@ public class Game{
 
     @NonNull
     private final String gameName;
+
+    @NonNull
+    private Integer round;
 }

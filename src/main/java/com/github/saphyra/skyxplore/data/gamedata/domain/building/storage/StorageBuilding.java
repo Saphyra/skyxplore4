@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.data.gamedata.domain.building.storage;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.module.system.resource.domain.StorageType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -13,7 +14,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class StorageBuilding extends BuildingData {
-    private String stores;
+    private StorageType stores;
     private Integer capacity;
 
     @Override

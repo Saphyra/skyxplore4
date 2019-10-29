@@ -1,8 +1,6 @@
 package com.github.saphyra.skyxplore.game.module.system.building.domain;
 
 import com.github.saphyra.converter.ConverterBase;
-import com.github.saphyra.encryption.impl.IntegerEncryptor;
-import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,18 +8,17 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
-    private final IntegerEncryptor integerEncryptor;
-    private final StringEncryptor stringEncryptor;
     private final UuidConverter uuidConverter;
 
     @Override
     protected Building processEntityConversion(BuildingEntity entity) {
         return Building.builder()
                 .buildingId(uuidConverter.convertEntity(entity.getBuildingId()))
-                .buildingDataId(stringEncryptor.decryptEntity(entity.getBuildingDataId(), entity.getUserId()))
+                .buildingDataId(entity.getBuildingDataId())
                 .gameId(uuidConverter.convertEntity(entity.getGameId()))
                 .userId(uuidConverter.convertEntity(entity.getUserId()))
-                .level(integerEncryptor.decryptEntity(entity.getLevel(), entity.getUserId()))
+                .starId(uuidConverter.convertEntity(entity.getStarId()))
+                .level(entity.getLevel())
                 .constructionId(uuidConverter.convertEntity(entity.getConstructionId()))
                 .build();
     }
@@ -30,10 +27,11 @@ public class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
     protected BuildingEntity processDomainConversion(Building domain) {
         return BuildingEntity.builder()
                 .buildingId(uuidConverter.convertDomain(domain.getBuildingId()))
-                .buildingDataId(stringEncryptor.encryptEntity(domain.getBuildingDataId(), uuidConverter.convertDomain(domain.getUserId())))
+                .buildingDataId(domain.getBuildingDataId())
                 .gameId(uuidConverter.convertDomain(domain.getGameId()))
                 .userId(uuidConverter.convertDomain(domain.getUserId()))
-                .level(integerEncryptor.encryptEntity(domain.getLevel(), uuidConverter.convertDomain(domain.getUserId())))
+                .starId(uuidConverter.convertDomain(domain.getStarId()))
+                .level(domain.getLevel())
                 .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
                 .build();
     }

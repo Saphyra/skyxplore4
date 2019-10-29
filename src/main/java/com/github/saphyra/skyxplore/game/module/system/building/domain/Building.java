@@ -20,6 +20,8 @@ public class Building {
     @NonNull
     private final UUID userId;
     @NonNull
+    private final UUID starId;
+    @NonNull
     private Integer level;
     private UUID constructionId;
 }

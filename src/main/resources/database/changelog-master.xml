@@ -13,4 +13,5 @@
     <include file="database/change_sets/player.xml"/>
     <include file="database/change_sets/surface.xml"/>
     <include file="database/change_sets/building.xml"/>
+    <include file="database/change_sets/resource.xml"/>
 </databaseChangeLog>

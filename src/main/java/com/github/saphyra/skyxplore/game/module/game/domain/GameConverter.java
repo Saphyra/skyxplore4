@@ -15,18 +15,20 @@ public class GameConverter extends ConverterBase<GameEntity, Game> {
     @Override
     protected Game processEntityConversion(GameEntity gameEntity) {
         return Game.builder()
-            .gameId(uuidConverter.convertEntity(gameEntity.getGameId()))
-            .userId(uuidConverter.convertEntity(gameEntity.getUserId()))
-            .gameName(stringEncryptor.decryptEntity(gameEntity.getGameName(), gameEntity.getUserId()))
-            .build();
+                .gameId(uuidConverter.convertEntity(gameEntity.getGameId()))
+                .userId(uuidConverter.convertEntity(gameEntity.getUserId()))
+                .gameName(stringEncryptor.decryptEntity(gameEntity.getGameName(), gameEntity.getUserId()))
+                .round(gameEntity.getRound())
+                .build();
     }
 
     @Override
     protected GameEntity processDomainConversion(Game game) {
         return GameEntity.builder()
-            .gameId(uuidConverter.convertDomain(game.getGameId()))
-            .userId(uuidConverter.convertDomain(game.getUserId()))
-            .gameName(stringEncryptor.encryptEntity(game.getGameName(), game.getUserId().toString()))
-            .build();
+                .gameId(uuidConverter.convertDomain(game.getGameId()))
+                .userId(uuidConverter.convertDomain(game.getUserId()))
+                .gameName(stringEncryptor.encryptEntity(game.getGameName(), game.getUserId().toString()))
+                .round(game.getRound())
+                .build();
     }
 }

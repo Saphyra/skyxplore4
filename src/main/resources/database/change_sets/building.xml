@@ -5,7 +5,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="create-table-building" author="Bernat Bonda">
-        <preConditions>
+        <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="building"/>
             </not>
@@ -16,8 +16,20 @@
             <column name="building_data_id" type="text"/>
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
-            <column name="level" type="text"/>
+            <column name="level" type="number"/>
             <column name="construction_id" type="text"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="add-column-star-id_to-building" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="building" columnName="star_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="building">
+            <column name="star_id" type="text"/>
+        </addColumn>
     </changeSet>
 </databaseChangeLog>

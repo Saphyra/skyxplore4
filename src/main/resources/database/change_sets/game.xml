@@ -17,4 +17,16 @@
             <column name="game_name" type="text"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="add-column-round_to-game" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="game" columnName="round"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="game">
+            <column name="round" type="number"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.game.common;
 
-import com.github.saphyra.skyxplore.game.rest.view.star.StarDetailsView;
+import com.github.saphyra.skyxplore.game.module.system.StorageStatusQueryService;
+import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class StarSystemDetailsQueryService {
-    public StarDetailsView getDetailsOfStarSystem(UUID starId, UUID playerId){
-        throw new UnsupportedOperationException(); //TODO implement
+    private final StorageStatusQueryService storageStatusQueryService;
+
+    public StarSystemDetailsView getDetailsOfStarSystem(UUID starId){
+        return StarSystemDetailsView.builder()
+                .storages(storageStatusQueryService.getStorageStatusOfStar(starId))
+                .build();
     }
 }

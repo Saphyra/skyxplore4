@@ -1,18 +1,15 @@
 package com.github.saphyra.skyxplore.game.module.map.star.domain;
 
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.converter.ConverterBase;
-import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.domain.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class StarConverter extends ConverterBase<StarEntity, Star> {
     private final CoordinateConverter coordinateConverter;
-    private final StringEncryptor stringEncryptor;
     private final UuidConverter uuidConverter;
 
     @Override
@@ -21,7 +18,7 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .starId(uuidConverter.convertEntity(starEntity.getStarId()))
             .gameId(uuidConverter.convertEntity(starEntity.getGameId()))
             .userId(uuidConverter.convertEntity(starEntity.getUserId()))
-            .starName(stringEncryptor.decryptEntity(starEntity.getStarName(), starEntity.getUserId()))
+            .starName(starEntity.getStarName())
             .coordinate(coordinateConverter.convertEntity(starEntity.getCoordinates(), starEntity.getUserId()))
             .ownerId(uuidConverter.convertEntity(starEntity.getOwnerId()))
             .build();
@@ -33,7 +30,7 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .starId(uuidConverter.convertDomain(star.getStarId()))
             .gameId(uuidConverter.convertDomain(star.getGameId()))
             .userId(uuidConverter.convertDomain(star.getUserId()))
-            .starName(stringEncryptor.encryptEntity(star.getStarName(), uuidConverter.convertDomain(star.getUserId())))
+            .starName(star.getStarName())
             .coordinates(coordinateConverter.convertDomain(star.getCoordinate(), uuidConverter.convertDomain(star.getUserId())))
             .ownerId(uuidConverter.convertDomain(star.getOwnerId()))
             .build();

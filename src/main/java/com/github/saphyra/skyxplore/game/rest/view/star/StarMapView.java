@@ -1,12 +1,12 @@
 package com.github.saphyra.skyxplore.game.rest.view.star;
 
-import java.util.UUID;
-
 import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @Data
