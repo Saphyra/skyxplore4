@@ -1,21 +1,19 @@
 package com.github.saphyra.skyxplore.common;
 
-import static com.github.saphyra.skyxplore.common.RequestConstants.WEB_PREFIX;
-
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.github.saphyra.skyxplore.game.module.game.domain.GameDao;
+import com.github.saphyra.skyxplore.game.module.player.PlayerQueryService;
+import com.github.saphyra.util.CookieUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.github.saphyra.skyxplore.game.game.domain.GameDao;
-import com.github.saphyra.skyxplore.game.player.PlayerQueryService;
-import com.github.saphyra.util.CookieUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
+
+import static com.github.saphyra.skyxplore.common.RequestConstants.WEB_PREFIX;
 
 @Controller
 @RequiredArgsConstructor

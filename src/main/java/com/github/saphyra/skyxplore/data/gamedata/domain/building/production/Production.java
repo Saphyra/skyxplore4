@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.data.gamedata.domain.building.production;
 import java.util.List;
 import java.util.Map;
 
-import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
 import lombok.Data;
 
 @Data

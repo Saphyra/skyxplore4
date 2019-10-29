@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.game.common.view.surface;
 
 import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import com.github.saphyra.skyxplore.game.common.view.building.BuildingViewForSurface;
-import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
 import lombok.*;
 
 import java.util.UUID;

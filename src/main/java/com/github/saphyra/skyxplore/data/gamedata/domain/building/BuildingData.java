@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.GameDataItem;
-import com.github.saphyra.skyxplore.game.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
