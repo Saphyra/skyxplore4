@@ -94,7 +94,6 @@
                                 const content = document.createElement("DIV");
                                     content.classList.add(createBuildingIdClass(surface.building.dataId));
                                     content.classList.add("surface-content");
-                                    content.innerHTML = surface.building.dataId;
                                 cell.appendChild(content);
                             }
                         row.appendChild(cell);

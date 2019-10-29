@@ -46,39 +46,39 @@
         }
 
             .surface-type-coal{
-                background-image: url("/images/coal.jpg");
+                background-image: url("/images/surface/coal.jpg");
             }
 
             .surface-type-concrete{
-                background-image: url("/images/concrete.jpg");
+                background-image: url("/images/surface/concrete.jpg");
             }
 
             .surface-type-desert{
-                background-image: url("/images/desert.jpg");
+                background-image: url("/images/surface/desert.jpg");
             }
 
             .surface-type-forest{
-                background-image: url("/images/forest.jpg");
+                background-image: url("/images/surface/forest.jpg");
             }
 
             .surface-type-lake{
-                background-image: url("/images/lake.jpg");
+                background-image: url("/images/surface/lake.jpg");
             }
 
             .surface-type-mountain{
-                background-image: url("/images/mountain.jpg");
+                background-image: url("/images/surface/mountain.jpg");
             }
 
             .surface-type-oil-field{
-                background-image: url("/images/oil-field.jpg");
+                background-image: url("/images/surface/oil-field.jpg");
             }
 
             .surface-type-ore-mine{
-                background-image: url("/images/ore-mine.jpg");
+                background-image: url("/images/surface/ore-mine.jpg");
             }
 
             .surface-type-vulcan{
-                background-image: url("/images/vulcan.jpg");
+                background-image: url("/images/surface/vulcan.jpg");
             }
 
         .surface-table-cell:hover{
@@ -97,6 +97,38 @@
                 background-size: cover;
             }
 
+            .surface-content.building-battery{
+                background-image: url("/images/building/battery.png");
+            }
+
+            .surface-content.building-camp{
+                background-image: url("/images/building/camp.png");
+            }
+
+            .surface-content.building-depot{
+                background-image: url("/images/building/depot.png");
+            }
+
+            .surface-content.building-excavator{
+                background-image: url("/images/building/excavator.png");
+            }
+
+            .surface-content.building-house{
+                background-image: url("/images/building/house.png");
+            }
+
+            .surface-content.building-sawmill{
+                background-image: url("/images/building/sawmill.png");
+            }
+
             .surface-content.building-solar_panel{
-                background-image: url("/images/solar_panel.png");
+                background-image: url("/images/building/solar_panel.png");
+            }
+
+            .surface-content.building-water_pump{
+                background-image: url("/images/building/water_pump.png");
+            }
+
+            .surface-content.building-water_tower{
+                background-image: url("/images/building/water_tower.png");
             }
