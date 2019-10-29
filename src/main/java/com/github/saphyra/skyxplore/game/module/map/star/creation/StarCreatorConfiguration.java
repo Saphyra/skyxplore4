@@ -8,10 +8,10 @@ import lombok.Getter;
 @Component
 @Getter
 public class StarCreatorConfiguration {
-    @Value("${com.github.saphyra.skyxplore.game.module.map.dimensions.x}")
+    @Value("${com.github.saphyra.skyxplore.game.map.dimensions.x}")
     private int x;
 
-    @Value("${com.github.saphyra.skyxplore.game.module.map.dimensions.y}")
+    @Value("${com.github.saphyra.skyxplore.game.map.dimensions.y}")
     private int y;
 
     @Value("${com.github.saphyra.skyxplore.game.star.creation.attempts}")

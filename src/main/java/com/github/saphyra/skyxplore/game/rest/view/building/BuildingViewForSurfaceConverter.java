@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.common.view.building;
+package com.github.saphyra.skyxplore.game.rest.view.building;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
 import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;

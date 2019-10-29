@@ -1,10 +1,10 @@
-package com.github.saphyra.skyxplore.game.controller.game;
+package com.github.saphyra.skyxplore.game.rest.controller.game;
 
 import com.github.saphyra.skyxplore.common.RequestConstants;
-import com.github.saphyra.skyxplore.game.common.view.MapView;
+import com.github.saphyra.skyxplore.game.rest.view.MapView;
 import com.github.saphyra.skyxplore.game.module.map.connection.StarConnectionQueryService;
 import com.github.saphyra.skyxplore.game.module.map.star.StarQueryService;
-import com.github.saphyra.skyxplore.game.module.map.star.view.StarMapView;
+import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CookieValue;

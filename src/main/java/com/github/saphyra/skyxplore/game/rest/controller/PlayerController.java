@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.controller;
+package com.github.saphyra.skyxplore.game.rest.controller;
 
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import lombok.RequiredArgsConstructor;

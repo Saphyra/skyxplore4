@@ -1,9 +1,9 @@
-package com.github.saphyra.skyxplore.game.common.view;
+package com.github.saphyra.skyxplore.game.rest.view;
 
 import java.util.List;
 
-import com.github.saphyra.skyxplore.game.module.map.connection.view.StarConnectionView;
-import com.github.saphyra.skyxplore.game.module.map.star.view.StarMapView;
+import com.github.saphyra.skyxplore.game.rest.view.connection.StarConnectionView;
+import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

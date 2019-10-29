@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.common.view.building;
+package com.github.saphyra.skyxplore.game.rest.view.building;
 
 import lombok.Builder;
 import lombok.Data;

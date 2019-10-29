@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.module.map.connection.view;
+package com.github.saphyra.skyxplore.game.rest.view.connection;
 
 import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import lombok.AllArgsConstructor;

@@ -1,12 +1,12 @@
-package com.github.saphyra.skyxplore.game.controller.game;
+package com.github.saphyra.skyxplore.game.rest.controller.game;
 
 import com.github.saphyra.skyxplore.common.RequestConstants;
-import com.github.saphyra.skyxplore.game.common.view.surface.SurfaceView;
-import com.github.saphyra.skyxplore.game.common.view.surface.SurfaceViewConverter;
+import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
+import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
 import com.github.saphyra.skyxplore.game.module.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.common.StarSystemDetailsQueryService;
-import com.github.saphyra.skyxplore.game.module.map.star.view.StarDetailsView;
-import com.github.saphyra.skyxplore.game.module.map.star.view.StarMapView;
+import com.github.saphyra.skyxplore.game.rest.view.star.StarDetailsView;
+import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
 import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

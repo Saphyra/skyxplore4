@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.common;
 
-import com.github.saphyra.skyxplore.game.module.map.star.view.StarDetailsView;
+import com.github.saphyra.skyxplore.game.rest.view.star.StarDetailsView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

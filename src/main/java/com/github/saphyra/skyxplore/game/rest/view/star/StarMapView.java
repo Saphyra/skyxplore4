@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.module.map.star.view;
+package com.github.saphyra.skyxplore.game.rest.view.star;
 
 import java.util.UUID;
 

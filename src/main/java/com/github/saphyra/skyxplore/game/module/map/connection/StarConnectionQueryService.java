@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.game.module.map.connection.domain.StarConnection;
 import com.github.saphyra.skyxplore.game.module.map.connection.domain.StarConnectionDao;
-import com.github.saphyra.skyxplore.game.module.map.connection.view.StarConnectionView;
-import com.github.saphyra.skyxplore.game.module.map.connection.view.StarConnectionViewConverter;
+import com.github.saphyra.skyxplore.game.rest.view.connection.StarConnectionView;
+import com.github.saphyra.skyxplore.game.rest.view.connection.StarConnectionViewConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

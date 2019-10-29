@@ -41,8 +41,8 @@
 }
 
     .surface-table{
-        margin: auto;
         white-space: nowrap;
+        margin: 1rem;
     }
 
         .surface-table-cell{

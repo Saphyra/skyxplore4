@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.controller.menu;
+package com.github.saphyra.skyxplore.game.rest.controller.menu;
 
 import com.github.saphyra.skyxplore.common.OneStringParamRequest;
 import com.github.saphyra.skyxplore.common.RequestConstants;
@@ -6,7 +6,7 @@ import com.github.saphyra.skyxplore.game.module.game.GameViewConverter;
 import com.github.saphyra.skyxplore.game.module.game.domain.GameDao;
 import com.github.saphyra.skyxplore.game.module.game.service.creation.GameCreationService;
 import com.github.saphyra.skyxplore.game.module.game.service.deletion.GameDeletionService;
-import com.github.saphyra.skyxplore.game.module.game.view.GameView;
+import com.github.saphyra.skyxplore.game.rest.view.GameView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

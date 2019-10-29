@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore.game.common.view.surface;
+package com.github.saphyra.skyxplore.game.rest.view.surface;
 
-import com.github.saphyra.skyxplore.game.common.view.building.BuildingViewForSurface;
-import com.github.saphyra.skyxplore.game.common.view.building.BuildingViewForSurfaceConverter;
+import com.github.saphyra.skyxplore.game.rest.view.building.BuildingViewForSurface;
+import com.github.saphyra.skyxplore.game.rest.view.building.BuildingViewForSurfaceConverter;
 import com.github.saphyra.skyxplore.game.module.system.building.BuildingQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
