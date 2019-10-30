@@ -5,11 +5,14 @@
   },
   "additionalContent": {
     "allocated": "Lefoglalva",
+    "amount": "Mennyiség",
+    "average": "Átlag",
     "build": "Építés",
     "game-created": "Játék létrehozva",
     "header-storage": "Raktár",
     "level": "Szint",
     "queue-title": "Gyártósor",
+    "reserved": "Lefoglalt",
     "star-details-title": "Részletek",
     "upgrade": "Fejlesztés"
   }

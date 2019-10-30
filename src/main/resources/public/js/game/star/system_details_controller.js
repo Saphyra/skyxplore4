@@ -61,8 +61,32 @@
                     function createResourceDetails(resource){
                         const resourceDetailContainer = document.createElement("DIV");
                             resourceDetailContainer.classList.add("resource-details-container");
-                            resourceDetailContainer.innerHTML = resourceLocalization.get(resource.dataId);
+                            resourceDetailContainer.appendChild(createResourceDetailList(resource));
                         return resourceDetailContainer;
+
+                        function createResourceDetailList(resource){
+                            const c = document.createElement("div");
+                                c.classList.add("resource-detail")
+                                c.appendChild(document.createTextNode(resourceLocalization.get(resource.dataId)));
+
+                                const ul = document.createElement("ul");
+                                    const amount = document.createElement("li");
+                                        amount.innerHTML = Localization.getAdditionalContent("amount") + ": " + resource.amount + " (" + getDifference(resource.difference) + ")";
+                                ul.appendChild(amount);
+                                    const reserved = document.createElement("li");
+                                        reserved.innerHTML = Localization.getAdditionalContent("reserved") + ": " + resource.reserved;
+                                ul.appendChild(reserved);
+                                    const average = document.createElement("li");
+                                        average.innerHTML = Localization.getAdditionalContent("average") + ": " + resource.average;
+                                ul.appendChild(average)
+                            c.appendChild(ul);
+
+                            return c;
+
+                            function getDifference(diff){
+                                return diff > 0 ? "+" + diff : diff;
+                            }
+                        }
                     }
                 }
 
