@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.common;
 
+import com.github.saphyra.skyxplore.game.module.system.PopulationQueryService;
 import com.github.saphyra.skyxplore.game.module.system.StorageStatusQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +13,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class StarSystemDetailsQueryService {
+    private final PopulationQueryService populationQueryService;
     private final StorageStatusQueryService storageStatusQueryService;
 
     public StarSystemDetailsView getDetailsOfStarSystem(UUID starId){
         return StarSystemDetailsView.builder()
                 .storage(storageStatusQueryService.getStorageStatusOfStar(starId))
+                .population(populationQueryService.getPopulationOfStar(starId))
                 .build();
     }
 }

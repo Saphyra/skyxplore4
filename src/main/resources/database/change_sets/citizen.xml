@@ -4,32 +4,33 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="create-table-star" author="Bernat Bonda">
+    <changeSet id="create-table-citizen" author="Bernat Bonda">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="star"/>
+                <tableExists tableName="citizen"/>
             </not>
         </preConditions>
 
-        <createTable tableName="star">
-            <column name="star_id" type="text"/>
+        <createTable tableName="citizen">
+            <column name="citizen_id" type="text"/>
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
-            <column name="star_name" type="text"/>
-            <column name="x_coord" type="text"/>
-            <column name="y_coord" type="text"/>
+            <column name="location_type" type="text"/>
+            <column name="location_id" type="text"/>
+            <column name="morale" type="number"/>
+            <column name="satiety" type="number"/>
         </createTable>
     </changeSet>
 
-    <changeSet id="add-column-owner_id-to-star" author="Bernat Bonda">
+    <changeSet id="add-column-citizen_name-to-citizen" author="Bernat Bonda">
         <preConditions onFail="MARK_RAN">
             <not>
-                <columnExists tableName="star" columnName="owner_id"/>
+                <columnExists tableName="citizen" columnName="citizen_name"/>
             </not>
         </preConditions>
 
-        <addColumn tableName="star">
-            <column name="owner_id" type="text"/>
+        <addColumn tableName="citizen">
+            <column name="citizen_name" type="text"/>
         </addColumn>
     </changeSet>
 </databaseChangeLog>

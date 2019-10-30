@@ -22,6 +22,8 @@ com:
             creation:
               attempts: 300
               minStarDistance: 148
+          citizen:
+            initialAmount: 10
           connection:
             maxDistance: 300
             maxNumberOfConnections: 4
@@ -48,6 +50,9 @@ com:
             - surfaceName: VOLCANO
               spawnRate: 2
               optional: true
+          skill:
+            initialNextLevel: 1000
+            experienceRequirementMultiplier: 2
       authservice:
         auth:
           filter:

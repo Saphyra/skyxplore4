@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.module.map.star.creation;
 
+import com.github.saphyra.skyxplore.data.gamedata.StarNames;
 import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
 import com.github.saphyra.skyxplore.game.module.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
@@ -7,6 +8,7 @@ import com.github.saphyra.skyxplore.game.module.map.star.domain.StarDao;
 import com.github.saphyra.skyxplore.game.module.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.module.player.PlayerService;
 import com.github.saphyra.skyxplore.game.module.player.domain.Player;
+import com.github.saphyra.skyxplore.game.module.system.citizen.service.creation.CitizenCreationService;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,12 +22,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class StarCreationService {
+    private final CitizenCreationService citizenCreationService;
     private final ConnectionCreationService connectionCreationService;
     private final CoordinateProvider coordinateProvider;
     private final IdGenerator idGenerator;
     private final PlayerService playerService;
     private final StarDao starDao;
-    private final StarNameService starNameService;
+    private final StarNames starNames;
     private final SurfaceCreationService surfaceCreationService;
 
     public void createStars(UUID userId, UUID gameId) {
@@ -37,7 +40,7 @@ public class StarCreationService {
         boolean isAi = false;
 
         for (Coordinate coordinate : coordinates) {
-            String starName = starNameService.getRandomStarName(usedStarNames);
+            String starName = starNames.getRandomStarName(usedStarNames);
             usedStarNames.add(starName);
             Player player = playerService.create(gameId, userId, isAi, usedPlayerNames);
             Star star = Star.builder()
@@ -56,5 +59,6 @@ public class StarCreationService {
         starDao.saveAll(createdStars);
         connectionCreationService.createConnections(createdStars);
         surfaceCreationService.createSurfaces(createdStars);
+        citizenCreationService.createCitizens(createdStars);
     }
 }

@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-skill" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="skill"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="skill">
+            <column name="skill_id" type="text"/>
+            <column name="citizen_id" type="text"/>
+            <column name="skill_type" type="text"/>
+            <column name="level" type="number"/>
+            <column name="experience" type="number"/>
+            <column name="next_level" type="number"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

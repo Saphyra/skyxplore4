@@ -8,10 +8,13 @@ import java.util.List;
 
 @Data
 @Builder
-public class StarSystemDetailsView {
+public class PopulationView {
     @NonNull
-    private final List<StorageTypeView> storage;
+    private final Integer dwellingSpaceAmount;
 
     @NonNull
-    private final PopulationView population;
+    private final Integer citizenNum;
+
+    @NonNull
+    private final List<CitizenView> citizens;
 }

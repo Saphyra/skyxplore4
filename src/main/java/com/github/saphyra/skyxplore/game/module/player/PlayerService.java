@@ -1,14 +1,8 @@
 package com.github.saphyra.skyxplore.game.module.player;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
-import com.github.saphyra.skyxplore.game.module.player.data.FirstNames;
-import com.github.saphyra.skyxplore.game.module.player.data.LastNames;
+import com.github.saphyra.skyxplore.data.gamedata.FirstNames;
+import com.github.saphyra.skyxplore.data.gamedata.LastNames;
 import com.github.saphyra.skyxplore.game.module.player.domain.Player;
 import com.github.saphyra.skyxplore.game.module.player.domain.PlayerDao;
 import com.github.saphyra.skyxplore.platform.auth.UserQueryService;
@@ -16,6 +10,11 @@ import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service

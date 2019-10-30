@@ -9,4 +9,7 @@ import org.springframework.stereotype.Component;
 public class GameProperties {
     @Value("${game.devMode:false}")
     private boolean devMode;
+
+    @Value("${com.github.saphyra.skyxplore.game.skill.initialNextLevel}")
+    private Integer initialNextLevel;
 }
