@@ -45,6 +45,6 @@ public class CitizenFactory {
     }
 
     private String generateName() {
-        return String.join(" ", firstNames.getRandom(), lastNames.getRandom());
+        return String.join(" ", lastNames.getRandom(), firstNames.getRandom());
     }
 }

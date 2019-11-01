@@ -1,0 +1,16 @@
+{
+  "id": "hospital",
+  "buildingType": "production",
+  "gives": {
+    "citizen": {
+      "placed": [
+        "concrete"
+      ],
+      "uses": {
+      },
+      "amount": 1
+    }
+  },
+  "workers": 1,
+  "defaultBuilding": true
+}

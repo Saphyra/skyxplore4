@@ -164,6 +164,10 @@
                 background-image: url("/images/building/excavator.png");
             }
 
+            .surface-content.building-hospital{
+                background-image: url("/images/building/hospital.png");
+            }
+
             .surface-content.building-house{
                 background-image: url("/images/building/house.png");
             }
