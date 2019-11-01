@@ -2,6 +2,6 @@
   "id": "battery",
   "buildingType": "storage",
   "stores": "energy",
-  "capacity": 1,
+  "capacity": 1000,
   "defaultBuilding": true
 }

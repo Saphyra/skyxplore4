@@ -2,6 +2,6 @@
   "id": "depot",
   "buildingType": "storage",
   "stores": "bulk",
-  "capacity": 1,
+  "capacity": 1000,
   "defaultBuilding": true
 }

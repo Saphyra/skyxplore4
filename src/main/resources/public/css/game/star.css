@@ -206,21 +206,27 @@
         height: 1.25rem;
     }
 
-.detailed-resource-list-container{
-    display: none;
-}
-
-    .resource-details-container{
-        font-size: 1rem;
-        margin-top: 0.5rem;
-        border-top: 1px solid white;
+    .detailed-resource-list-container{
+        display: none;
     }
 
-        .resource-details-container ul {
-            margin-block-start: 0;
+        .resource-details-container{
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            border-top: 1px solid white;
         }
 
-        .resource-detail{
-            margin-top: 0.5rem;
-            margin-left: 0.5rem;
-        }
+            .resource-details-container ul {
+                margin-block-start: 0;
+            }
+
+            .resource-detail{
+                margin-top: 0.5rem;
+                margin-left: 0.5rem;
+            }
+
+.population-details-content{
+    text-align: center;
+    margin: 0.125rem;
+    font-size: 1.25rem;
+}

@@ -7,7 +7,9 @@ import java.util.List;
 
 @Repository
 public interface CitizenRepository extends JpaRepository<CitizenEntity, String> {
-    List<CitizenEntity> getByLocationTypeAndLocationId(LocationType locationType, String convertDomain);
+    Integer countByLocationTypeAndLocationId(LocationType locationType, String locationId);
 
     void deleteByGameIdAndUserId(String gameId, String userId);
+
+    List<CitizenEntity> getByLocationTypeAndLocationId(LocationType locationType, String convertDomain);
 }

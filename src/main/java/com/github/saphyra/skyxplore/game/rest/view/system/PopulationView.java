@@ -4,8 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.List;
-
 @Data
 @Builder
 public class PopulationView {
@@ -14,7 +12,4 @@ public class PopulationView {
 
     @NonNull
     private final Integer citizenNum;
-
-    @NonNull
-    private final List<CitizenView> citizens;
 }

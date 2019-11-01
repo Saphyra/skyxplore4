@@ -17,4 +17,8 @@ public class CitizenQueryService {
     public List<Citizen> getByLocation(UUID locationId, LocationType locationType) {
         return citizenDao.getByLocation(locationId, locationType);
     }
+
+    public Integer countByLocation(LocationType locationType, UUID locationId) {
+        return citizenDao.countByLocation(locationType, locationId);
+    }
 }

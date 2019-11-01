@@ -2,6 +2,6 @@
   "id": "house",
   "buildingType": "storage",
   "stores": "citizen",
-  "capacity": 1,
+  "capacity": 10,
   "defaultBuilding": true
 }

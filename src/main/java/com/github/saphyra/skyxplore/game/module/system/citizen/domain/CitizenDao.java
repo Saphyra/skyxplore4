@@ -17,6 +17,10 @@ public class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, Citi
         this.uuidConverter = uuidConverter;
     }
 
+    public Integer countByLocation(LocationType locationType, UUID locationId) {
+        return repository.countByLocationTypeAndLocationId(locationType, uuidConverter.convertDomain(locationId));
+    }
+
     public List<Citizen> getByLocation(UUID locationID, LocationType locationType) {
         return converter.convertEntity(repository.getByLocationTypeAndLocationId(locationType, uuidConverter.convertDomain(locationID)));
     }

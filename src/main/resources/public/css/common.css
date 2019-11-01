@@ -97,6 +97,7 @@ button, .button, a, select, footer label{
     cursor: pointer;
     color: white;
     white-space: nowrap;
+    text-align: center;
 }
 
 footer label *{
