@@ -1,4 +1,5 @@
 (function PageController(){
+    scriptLoader.loadScript("/js/game/localizations.js");
     scriptLoader.loadScript("/js/game/window_controller.js");
     scriptLoader.loadScript("/js/game/map/map_controller.js");
     scriptLoader.loadScript("/js/game/star/star_controller.js");

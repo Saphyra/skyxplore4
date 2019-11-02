@@ -14,4 +14,9 @@ public class StarSystemDetailsView {
 
     @NonNull
     private final PopulationView population;
+
+    @NonNull
+    private final List<SurfaceBuildingView> surfaceBuildings;
+
+    //TODO System defence details
 }

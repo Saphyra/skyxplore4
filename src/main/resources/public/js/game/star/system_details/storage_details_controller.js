@@ -1,7 +1,6 @@
 (function StorageDetails(){
-    scriptLoader.loadScript("/js/common/localization/custom_localization.js");
-
-    const storageTypeLocalization = new CustomLocalization("storage_type");
+    const resourceLocalization = localizations.resourceLocalization;
+    const storageTypeLocalization = localizations.storageTypeLocalization;
 
     window.storageDetailsController = new function(){
         this.createStorageDetails = createStorageDetails;
@@ -28,7 +27,7 @@
 
         function createStorageItem(storage){
             const storageContainer = document.createElement("div");
-                storageContainer.classList.add("storage-container");
+                storageContainer.classList.add("bar-list-item");
                 const detailedListContainer = createDetailedResourceList(storage.resources);
                 storageContainer.appendChild(createStorageSummary(storage, detailedListContainer));
                 storageContainer.appendChild(detailedListContainer);
@@ -80,7 +79,6 @@
             function createStorageSummary(storage, detailedListContainer){
                 //TODO add indicators
                 const summaryContainer = document.createElement("div");
-                    summaryContainer.classList.add("storage-summary-container");
                     summaryContainer.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.reserved + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("allocated") + ": " + storage.allocated;
 
                     const extendButton = document.createElement("button");

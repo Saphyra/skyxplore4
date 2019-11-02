@@ -8,14 +8,18 @@
     "amount": "Mennyiség",
     "average": "Átlag",
     "build": "Építés",
+    "building": "Épület",
+    "building-summary": "Épületek",
     "citizen-overview": "Lakosság áttekintés",
     "game-created": "Játék létrehozva",
     "header-storage": "Raktár",
     "level": "Szint",
+    "level-summary": "Összesített szint",
     "population": "Lakosság",
     "queue-title": "Gyártósor",
     "reserved": "Lefoglalt",
     "star-details-title": "Részletek",
-    "upgrade": "Fejlesztés"
+    "upgrade": "Fejlesztés",
+    "used-slots": "Felhasznált helyek"
   }
 }

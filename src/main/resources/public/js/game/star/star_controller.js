@@ -1,5 +1,6 @@
 (function StarController(){
     scriptLoader.loadScript("/js/game/star/surface_controller.js");
+    scriptLoader.loadScript("/js/game/star/surface_controller.js");
     scriptLoader.loadScript("/js/game/star/system_details_controller.js");
 
     events.SHOW_STAR = "show_star";

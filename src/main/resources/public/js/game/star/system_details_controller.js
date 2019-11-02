@@ -1,8 +1,7 @@
 (function SystemDetailsController(){
     scriptLoader.loadScript("/js/game/star/system_details/storage_details_controller.js");
     scriptLoader.loadScript("/js/game/star/system_details/population_details_controller.js");
-
-    const resourceLocalization = new CustomLocalization("resource");
+    scriptLoader.loadScript("/js/game/star/system_details/surface_building_details_controller.js");
 
     window.systemDetailsController = new function(){
         this.showSystemDetails = function(starId, containerId){
@@ -21,5 +20,6 @@
         const container = document.getElementById(containerId);
             container.appendChild(storageDetailsController.createStorageDetails(systemDetails.storage));
             container.appendChild(populationDetailsController.createPopulationDetails(systemDetails.population));
+            container.appendChild(surfaceBuildingDetailsController.createSurfaceBuildingDetails(systemDetails.surfaceBuildings));
     }
 })();
