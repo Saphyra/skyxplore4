@@ -120,9 +120,10 @@
                 footer.classList.add("surface-footer");
 
                 const buildButton = document.createElement("button");
-                    buildButton.innerHTML = Localization.getAdditionalContent("build");
+                    buildButton.classList.add("build-button");
                     buildButton.onclick = function(){
                         //TODO build building
+                        //TODO edit surface
                     }
             footer.appendChild(buildButton);
             return footer;

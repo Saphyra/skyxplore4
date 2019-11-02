@@ -144,6 +144,10 @@ input:disabled, button:disabled, textarea:disabled, .disabled{
     margin-bottom: 1rem;
 }
 
+.right-button{
+    float: right;
+}
+
 /*================TABLE ELEMENTS==================*/
 .formatted-table th{
     font-size: 1.5rem;

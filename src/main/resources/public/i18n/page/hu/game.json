@@ -1,7 +1,18 @@
 {
   "title": "Játék - SkyXplore 4",
   "staticText": {
-
+    "next-round": [
+      {
+        "key": "innerHTML",
+        "message": "Új kör"
+      }
+    ],
+    "exit": [
+      {
+        "key": "innerHTML",
+        "message": "Kilépés"
+      }
+    ]
   },
   "additionalContent": {
     "allocated": "Lefoglalva",

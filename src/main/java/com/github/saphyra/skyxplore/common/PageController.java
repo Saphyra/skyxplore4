@@ -41,8 +41,10 @@ public class PageController {
     }
 
     @GetMapping(MAIN_MENU_MAPPING)
-    String mainMenu() {
+    String mainMenu(HttpServletResponse response) {
         log.info("Request arrived to {}", MAIN_MENU_MAPPING);
+        cookieUtil.setCookie(response, RequestConstants.COOKIE_PLAYER_ID, "", 0);
+        cookieUtil.setCookie(response, RequestConstants.COOKIE_GAME_ID, "", 0);
         return "main_menu";
     }
 

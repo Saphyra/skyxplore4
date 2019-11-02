@@ -130,8 +130,12 @@
                     min-height: 1 rem;
                 }
 
-                    .surface-footer button{
-
+                    .surface-footer .build-button{
+                        width: 2rem;
+                        height: 2rem;
+                        background-position: center;
+                        background-size: cover;
+                        background-image: url("/images/edit.png");
                     }
 
                 .surface-content .surface-footer{
