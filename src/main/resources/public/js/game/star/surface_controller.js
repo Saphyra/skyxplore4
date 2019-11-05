@@ -122,8 +122,7 @@
                 const buildButton = document.createElement("button");
                     buildButton.classList.add("build-button");
                     buildButton.onclick = function(){
-                        //TODO build building
-                        //TODO edit surface
+                        eventProcessor.processEvent(new Event(events.SHOW_EDIT_SURFACE_WINDOW, surfaceId));
                     }
             footer.appendChild(buildButton);
             return footer;

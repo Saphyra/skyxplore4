@@ -3,6 +3,7 @@
     scriptLoader.loadScript("/js/game/window_controller.js");
     scriptLoader.loadScript("/js/game/map/map_controller.js");
     scriptLoader.loadScript("/js/game/star/star_controller.js");
+    scriptLoader.loadScript("/js/game/edit_surface/edit_surface_controller.js");
 
     const windows = [];
 
