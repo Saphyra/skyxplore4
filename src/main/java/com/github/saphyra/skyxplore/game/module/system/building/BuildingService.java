@@ -5,7 +5,7 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.Storag
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
 import com.github.saphyra.skyxplore.game.module.system.building.domain.BuildingDao;
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.StorageType;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;

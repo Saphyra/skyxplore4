@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.system;
 
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.StorageType;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;

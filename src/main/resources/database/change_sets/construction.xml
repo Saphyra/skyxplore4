@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-construction" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="construction"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="construction">
+            <column name="construction_id" type="text"/>
+            <column name="game_id" type="text"/>
+            <column name="user_id" type="text"/>
+            <column name="priority" type="integer"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-construction_resource_requirements" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="construction_resource_requirements"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="construction_resource_requirements">
+            <column name="construction_id" type="text"/>
+            <column name="resource_id" type="text"/>
+            <column name="required_amount" type="integer"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

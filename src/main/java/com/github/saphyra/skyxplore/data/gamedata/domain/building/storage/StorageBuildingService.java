@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.data.gamedata.domain.building.storage;
 
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.StorageType;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

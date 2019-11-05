@@ -1,14 +1,20 @@
-package com.github.saphyra.skyxplore.game.module.system.resource;
-
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.Resource;
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.ResourceDao;
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.StorageType;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
+package com.github.saphyra.skyxplore.game.module.system.storage.resource;
 
 import static java.util.Objects.isNull;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.Resource;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.ResourceDao;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

@@ -4,11 +4,11 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.Storag
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
 import com.github.saphyra.skyxplore.game.module.system.building.domain.BuildingDao;
-import com.github.saphyra.skyxplore.game.module.system.resource.ResourceQueryService;
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.Resource;
-import com.github.saphyra.skyxplore.game.module.system.resource.domain.StorageType;
-import com.github.saphyra.skyxplore.game.module.system.resource.service.ResourceAverageCalculator;
-import com.github.saphyra.skyxplore.game.module.system.resource.service.ResourceDifferenceCalculator;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.ResourceQueryService;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.Resource;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.service.ResourceAverageCalculator;
+import com.github.saphyra.skyxplore.game.module.system.storage.resource.service.ResourceDifferenceCalculator;
 import com.github.saphyra.skyxplore.game.rest.view.system.ResourceDetailsView;
 import com.github.saphyra.skyxplore.game.rest.view.system.StorageTypeView;
 import lombok.RequiredArgsConstructor;

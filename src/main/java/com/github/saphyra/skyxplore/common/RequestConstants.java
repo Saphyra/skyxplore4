@@ -22,6 +22,7 @@ public class RequestConstants {
         "/css/**",
         "/images/**",
         "/js/**",
-        "/i18n/**"
+        "/i18n/**",
+        API_PREFIX + "/data/**"
     );
 }

@@ -22,6 +22,23 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="create-table-skill" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="skill"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="skill">
+            <column name="skill_id" type="text"/>
+            <column name="citizen_id" type="text"/>
+            <column name="skill_type" type="text"/>
+            <column name="level" type="number"/>
+            <column name="experience" type="number"/>
+            <column name="next_level" type="number"/>
+        </createTable>
+    </changeSet>
+
     <changeSet id="add-column-citizen_name-to-citizen" author="Bernat Bonda">
         <preConditions onFail="MARK_RAN">
             <not>

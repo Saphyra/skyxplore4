@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.module.system.resource.domain;
+package com.github.saphyra.skyxplore.game.module.system.storage.resource.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

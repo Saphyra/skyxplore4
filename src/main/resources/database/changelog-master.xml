@@ -15,5 +15,5 @@
     <include file="database/change_sets/building.xml"/>
     <include file="database/change_sets/resource.xml"/>
     <include file="database/change_sets/citizen.xml"/>
-    <include file="database/change_sets/skill.xml"/>
+    <include file="database/change_sets/construction.xml"/>
 </databaseChangeLog>

@@ -300,6 +300,67 @@ Building:
       stores:
       - citizen
   Planetary defense:
+  Etc:
+    Academy:
+      technologies:
+        terraform:
+
+  Terraforming:
+    coal mine:
+    concrete:
+      desert:
+        technology: required
+        uses:
+        - energy
+        - sand
+      forest:
+        technology: required
+        uses:
+        - energy
+        - water
+        - wood
+      lake:
+        technology: required
+        uses:
+        - energy
+        - water
+    desert:
+      concrete:
+        technology: allowed by default
+        uses:
+        - stone
+        - water
+      forest:
+        technology: required
+        uses:
+        - wood
+        - water
+      lake:
+        technology: required
+        uses:
+        - energy
+        - water
+    lake:
+      concrete:
+        technology: required
+        uses:
+        - stone
+        - water
+      desert:
+        technology: required
+        uses:
+        - energy
+        - sand
+      forest:
+        technology: required
+        uses:
+        - energy
+        - water
+        - wood
+    mountain:
+    oil field:
+    ore mine:
+    volcano:
 
 Items:
   Marine equipment:
