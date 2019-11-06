@@ -20,6 +20,7 @@
         return function(){
             const container = createContainer(starId);
                 container.appendChild(createHeader(starId, controller));
+
                 const contentContainer = document.createElement("DIV");
                     contentContainer.classList.add("content-container");
                     contentContainer.classList.add("star-view-content-container");

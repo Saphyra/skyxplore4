@@ -10,6 +10,7 @@
   "PLAYER_NOT_FOUND": "Játékos nem található",
   "SESSION_EXPIRED": "A bejelentkezés lejárt.",
   "STAR_NOT_FOUND": "A csillag nem található.",
+  "SURFACE_NOT_FOUND": "Felszín nem található.",
   "USER_NAME_ALREADY_EXISTS": "Felhasználónév foglalt.",
   "USER_NOT_FOUND": "Felhasználó nem található."
 }
