@@ -19,6 +19,7 @@
     "amount": "Mennyiség",
     "average": "Átlag",
     "build": "Építés",
+    "build-new-building": "Épület építse",
     "building": "Épület",
     "building-summary": "Épületek",
     "citizen-overview": "Lakosság áttekintés",
@@ -31,6 +32,7 @@
     "queue-title": "Gyártósor",
     "reserved": "Lefoglalt",
     "star-details-title": "Részletek",
+    "terraform-surface-title": "Felszín átalakítása",
     "upgrade": "Fejlesztés",
     "used-slots": "Felhasznált helyek"
   }

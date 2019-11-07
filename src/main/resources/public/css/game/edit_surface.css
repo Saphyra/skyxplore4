@@ -1,0 +1,11 @@
+:root{
+    --edit-surface-bar-width: 40%;
+}
+
+.edit-surface-content-controller .left-bar{
+    width: var(--edit-surface-bar-width);
+}
+
+.edit-surface-content-controller .right-bar{
+    width: calc(100% - var(--edit-surface-bar-width));
+}

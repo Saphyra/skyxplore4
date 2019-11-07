@@ -1,6 +1,5 @@
 (function StarController(){
     scriptLoader.loadScript("/js/game/star/surface_controller.js");
-    scriptLoader.loadScript("/js/game/star/surface_controller.js");
     scriptLoader.loadScript("/js/game/star/system_details_controller.js");
 
     events.SHOW_STAR = "show_star";
@@ -26,8 +25,8 @@
                     contentContainer.classList.add("star-view-content-container");
 
                     contentContainer.appendChild(createLeftBar(starId));
-                    contentContainer.appendChild(createRightBar(starId));
                     contentContainer.appendChild(createSurfaceTableContainer(starId));
+                    contentContainer.appendChild(createRightBar(starId));
             container.appendChild(contentContainer);
             document.getElementById("pages").appendChild(container);
             addRightClickMove(createSurfaceTableId(starId), createSurfaceTableContainerId(starId), false);
@@ -45,7 +44,7 @@
 
         function createHeader(starId, controller){
             const header = document.createElement("DIV");
-                header.classList.add("star-view-header");
+                header.classList.add("page-header");
 
                 const starName = document.createElement("h2");
                     starName.id = createStarNameId(starId);

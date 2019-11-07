@@ -1,4 +1,7 @@
 (function EditSurfaceController(){
+    scriptLoader.loadScript("/js/game/edit_surface/new_building_controller.js");
+    scriptLoader.loadScript("/js/game/edit_surface/terraform_surface_controller.js");
+
     events.SHOW_EDIT_SURFACE_WINDOW = "show_edit_surface_window";
 
     eventProcessor.registerProcessor(new EventProcessor(
@@ -15,7 +18,6 @@
     function createFunction(surfaceId, controller){
         return function(){
             const container = createContainer(surfaceId);
-                container.appendChild(createHeader(surfaceId, controller));
 
             document.getElementById("pages").appendChild(container);
             this.refresh();
@@ -26,25 +28,70 @@
                 container.id = createEditSurfaceContainerId(surfaceId);
                 container.classList.add("page");
                 container.classList.add("edit-surface-container");
+
+                container.appendChild(createHeader(surfaceId, controller));
+
+                const contentContainer = document.createElement("div");
+                    contentContainer.id = createEditSurfaceContentContainerId(surfaceId);
+                    contentContainer.classList.add("edit-surface-content-controller");
+                    contentContainer.classList.add("content-container");
+
+                    contentContainer.appendChild(createTerraformBar(surfaceId));
+                    contentContainer.appendChild(createBuildBar(surfaceId));
+            container.appendChild(contentContainer);
             return container;
-        }
 
-        function createHeader(surfaceId, controller){
-            const header = document.createElement("DIV");
-                header.classList.add("star-view-header");
+            function createHeader(surfaceId, controller){
+                const header = document.createElement("DIV");
+                    header.classList.add("page-header");
 
-                const title = document.createElement("h2");
-                    title.id = createEditSurfaceTitleId(surfaceId);
-            header.appendChild(title);
+                    const title = document.createElement("h2");
+                        title.id = createEditSurfaceTitleId(surfaceId);
+                header.appendChild(title);
 
-                const closeButton = document.createElement("BUTTON");
-                    closeButton.classList.add("close-button");
-                    closeButton.innerHTML = "X";
-                    closeButton.onclick = function(){
-                        controller.close();
-                    }
-            header.appendChild(closeButton);
-            return header;
+                    const closeButton = document.createElement("BUTTON");
+                        closeButton.classList.add("close-button");
+                        closeButton.innerHTML = "X";
+                        closeButton.onclick = function(){
+                            controller.close();
+                        }
+                header.appendChild(closeButton);
+                return header;
+            }
+
+            function createTerraformBar(surfaceId){
+                const bar = document.createElement("div");
+                    bar.classList.add("bar");
+                    bar.classList.add("left-bar");
+
+                    const title = document.createElement("DIV");
+                        title.classList.add("bar-title");
+                        title.innerHTML = Localization.getAdditionalContent("terraform-surface-title");
+                bar.appendChild(title);
+
+                    const contentContainer = document.createElement("div");
+                        contentContainer.classList.add("bar-content");
+                        contentContainer.id = createTerraformContainerId(surfaceId);
+                bar.appendChild(contentContainer);
+                return bar;
+            }
+
+            function createBuildBar(surfaceId){
+                const bar = document.createElement("div");
+                    bar.classList.add("bar");
+                    bar.classList.add("right-bar");
+
+                    const title = document.createElement("DIV");
+                        title.classList.add("bar-title");
+                        title.innerHTML = Localization.getAdditionalContent("build-new-building");
+                bar.appendChild(title);
+
+                    const contentContainer = document.createElement("div");
+                        contentContainer.classList.add("bar-content");
+                        contentContainer.id = createBuildContainerId(surfaceId);
+                bar.appendChild(contentContainer);
+                return bar;
+            }
         }
     }
 
@@ -56,6 +103,8 @@
                 }
                 request.processValidResponse = function(surfaceDetails){
                     document.getElementById(createEditSurfaceTitleId(surfaceId)).innerHTML = Localization.getAdditionalContent("edit-surface-title") + " - " + localizations.surfaceTypeLocalization.get(surfaceDetails.surfaceType);
+                    terraformSurfaceController.loadTerraformingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createTerraformContainerId(surfaceId)));
+                    newBuildingController.loadNewBuildingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createBuildContainerId(surfaceId)));
                 }
             dao.sendRequestAsync(request);
         }
@@ -71,7 +120,19 @@
         return "edit-surface-container-" + surfaceId;
     }
 
+    function createEditSurfaceContentContainerId(surfaceId){
+        return "edit-surface-content-container-" + surfaceId;
+    }
+
     function createEditSurfaceTitleId(surfaceId){
         return "edit-surface-title-" + surfaceId;
+    }
+
+    function createTerraformContainerId(surfaceId){
+        return "terraform-container-" + surfaceId;
+    }
+
+    function createBuildContainerId(surfaceId){
+        return "build-container-" + surfaceId;
     }
 })();

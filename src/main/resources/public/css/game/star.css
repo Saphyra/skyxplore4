@@ -1,12 +1,7 @@
 :root{
-    --star-view-container-header-height: 2.5rem;
     --star-view-side-bar-width: 25rem;
     --surface-table-cell-size: 6vw;
     --min-surface-table-cell-size: 5rem;
-}
-
-.star-view-content-container{
-    top: var(--star-view-container-header-height);
 }
 
 .star-view-container .left-bar{
@@ -16,20 +11,6 @@
 .star-view-container .right-bar{
     width: var(--star-view-side-bar-width);
 }
-
-.star-view-header{
-    position: absolute;
-    height: var(--star-view-container-header-height);
-    right: 0;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    border-bottom: 3px ridge white;
-}
-
-    .star-view-header h2{
-        text-align: center;
-    }
 
 .surface-table-container{
     position: absolute;
