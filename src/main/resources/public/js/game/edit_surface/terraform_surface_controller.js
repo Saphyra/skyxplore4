@@ -29,7 +29,7 @@
                 container.classList.add("bar-list-item");
 
                 container.appendChild(createHeader(possibility.surfaceType));
-                container.appendChild(createResourceContainer(possibility.resources));
+                container.appendChild(createResourceContainer(possibility.constructionRequirements));
                 container.appendChild(createTerraformButton());
             return container;
 
@@ -40,11 +40,12 @@
                 return header;
             }
 
-            function createResourceContainer(resources){
+            function createResourceContainer(constructionRequirements){
                 const resourceContainer = document.createElement("table");
                     resourceContainer.appendChild(createHeaderRow());
+                    resourceContainer.appendChild(createWorkPointsRow(constructionRequirements.workPoints));
 
-                    new Stream(entryList(resources))
+                    new Stream(entryList(constructionRequirements.resources))
                         .sorted(function(a, b){return resourceLocalization.get(a.getKey()).localeCompare(resourceLocalization.get(b.getKey()))})
                         .map(createResourceItem)
                         .forEach(function(r){resourceContainer.appendChild(r)});
@@ -59,6 +60,17 @@
                                 amountHeaderCell.innerHTML = Localization.getAdditionalContent("amount");
                         headerRow.appendChild(amountHeaderCell);
                     return headerRow;
+                }
+
+                function createWorkPointsRow(workPoints){
+                    const row = document.createElement("tr");
+                        const nameCell = document.createElement("td");
+                            nameCell.innerHTML = Localization.getAdditionalContent("work-points");
+                    row.appendChild(nameCell);
+                        const valueCell = document.createElement("td");
+                            valueCell.innerHTML = workPoints;
+                    row.appendChild(valueCell);
+                    return row;
                 }
 
                 function createResourceItem(resourceEntry){

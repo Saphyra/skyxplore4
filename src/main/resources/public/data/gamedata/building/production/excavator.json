@@ -39,5 +39,12 @@
       "amount": 1
     }
   },
-  "workers": 1
+  "workers": 1,
+  "constructionRequirements": {
+    "1": {
+      "workPoints": 1,
+      "resources": {
+      }
+    }
+  }
 }

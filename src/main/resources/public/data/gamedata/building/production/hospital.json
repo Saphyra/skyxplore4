@@ -12,5 +12,12 @@
     }
   },
   "workers": 1,
-  "defaultBuilding": true
+  "defaultBuilding": true,
+  "constructionRequirements": {
+    "1": {
+      "workPoints": 1,
+      "resources": {
+      }
+    }
+  }
 }

@@ -14,5 +14,12 @@
   },
   "workers": 0,
   "defaultBuilding": true,
-  "primarySurfaceType": "desert"
+  "primarySurfaceType": "desert",
+  "constructionRequirements": {
+    "1": {
+      "workPoints": 1,
+      "resources": {
+      }
+    }
+  }
 }

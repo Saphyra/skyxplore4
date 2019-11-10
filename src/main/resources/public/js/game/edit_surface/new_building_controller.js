@@ -4,6 +4,8 @@
     }
 
     function loadNewBuildingPossibilities(surfaceId, surfaceType, container){
-        //TODO implement
+        const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_BUILDABLE_BUILDINGS, surfaceId));
+
+        dao.sendRequestAsync(request);
     }
 })();

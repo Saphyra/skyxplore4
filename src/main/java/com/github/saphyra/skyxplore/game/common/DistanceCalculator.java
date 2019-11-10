@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.game.common;
 
 import org.springframework.stereotype.Component;
 
-import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
 import lombok.extern.slf4j.Slf4j;
 
 @Component

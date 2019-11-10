@@ -3,5 +3,12 @@
   "buildingType": "storage",
   "stores": "citizen",
   "capacity": 10,
-  "defaultBuilding": true
+  "defaultBuilding": true,
+  "constructionRequirements": {
+    "1": {
+      "workPoints": 1,
+      "resources": {
+      }
+    }
+  }
 }

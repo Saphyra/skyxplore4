@@ -1,6 +1,7 @@
 window.Mapping = {
     CREATE_GAME: "/api/game",
     DELETE_GAME: "/api/game/*",
+    GET_BUILDABLE_BUILDINGS: "/api/data/building/*",
     GET_GAMES: "/api/game",
     GET_MAP: "/api/game/map",
     GET_PLAYER_ID: "/api/game/player/id",

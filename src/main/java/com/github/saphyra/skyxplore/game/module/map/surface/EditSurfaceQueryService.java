@@ -1,9 +1,12 @@
 package com.github.saphyra.skyxplore.game.module.map.surface;
 
+import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
 import com.github.saphyra.skyxplore.data.gamedata.TerraformingPossibilitiesService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibilities;
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibility;
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
+import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +17,8 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class TerraformingPossibilitiesQueryService {
+public class EditSurfaceQueryService {
+    private final GameDataQueryService gameDataQueryService;
     private final SurfaceQueryService surfaceQueryService;
     private final TerraformingPossibilitiesService terraformingPossibilitiesService;
 
@@ -29,7 +33,22 @@ public class TerraformingPossibilitiesQueryService {
         return TerraformingPossibilityView.builder()
                 .surfaceType(terraformingPossibility.getSurfaceType())
                 .researchRequirement(null) //TODO implement
-                .resources(terraformingPossibility.getResources())
+                .constructionRequirements(terraformingPossibility.getConstructionRequirements())
+                .build();
+    }
+
+    public List<BuildableBuildingView> getBuildableBuildings(UUID surfaceId) {
+        Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
+        return gameDataQueryService.getBuildingsBuildableAtSurfaceType(surface.getSurfaceType()).stream()
+                .map(buildingData -> convert(surfaceId, buildingData))
+                .collect(Collectors.toList());
+    }
+
+    private BuildableBuildingView convert(UUID surfaceId, BuildingData buildingData) {
+        return BuildableBuildingView.builder()
+                .dataId(buildingData.getId())
+                .researchRequirement(null) //TODO implement
+                .constructionRequirements(buildingData.getConstructionRequirements().get(1))
                 .build();
     }
 }

@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.game.module.map.star.domain;
 
 import java.util.UUID;
 
-import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.common.domain;
+package com.github.saphyra.skyxplore.game.common.domain.coordinate;
 
 import lombok.*;
 

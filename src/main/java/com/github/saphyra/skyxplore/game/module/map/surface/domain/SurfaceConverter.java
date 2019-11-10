@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.game.module.map.surface.domain;
 
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.domain.CoordinateConverter;
+import com.github.saphyra.skyxplore.game.common.domain.coordinate.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

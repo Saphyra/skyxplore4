@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.game.module.system.building.creation;
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
-import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
 import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
 import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;

@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.module.map.star.creation;
 
 import com.github.saphyra.skyxplore.data.gamedata.StarNames;
-import com.github.saphyra.skyxplore.game.common.domain.Coordinate;
+import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.module.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
 import com.github.saphyra.skyxplore.game.module.map.star.domain.StarDao;
