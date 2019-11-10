@@ -1,2 +1,7 @@
 {
+  "energy": "Energia",
+  "sand": "Homok",
+  "stone": "Kő",
+  "water": "Víz",
+  "wood": "Fa"
 }

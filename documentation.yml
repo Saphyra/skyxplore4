@@ -340,6 +340,22 @@ Building:
         uses:
         - energy
         - water
+    forest:
+      concrete:
+        technology: required
+        uses:
+          - stone
+          - water
+      desert:
+        technology: required
+        uses:
+          - energy
+          - sand
+      lake:
+        technology: required
+        uses:
+          - energy
+          - water
     lake:
       concrete:
         technology: required

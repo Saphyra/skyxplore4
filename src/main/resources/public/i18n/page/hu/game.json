@@ -28,10 +28,13 @@
     "header-storage": "Raktár",
     "level": "Szint",
     "level-summary": "Összesített szint",
+    "no-terraform-possibilities": "Ez a felszín nem átalakítható.",
     "population": "Lakosság",
     "queue-title": "Gyártósor",
     "reserved": "Lefoglalt",
+    "resource": "Nyersanyag",
     "star-details-title": "Részletek",
+    "start-terraforming": "Átalakítás",
     "terraform-surface-title": "Felszín átalakítása",
     "upgrade": "Fejlesztés",
     "used-slots": "Felhasznált helyek"

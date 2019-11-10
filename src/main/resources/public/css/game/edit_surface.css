@@ -1,10 +1,16 @@
 :root{
-    --edit-surface-bar-width: 40%;
+    --edit-surface-bar-width: 25rem;
 }
 
 .edit-surface-content-controller .left-bar{
     width: var(--edit-surface-bar-width);
 }
+
+    .start-terraforming-button{
+        width: 50%;
+        margin: auto;
+        font-size: 1rem;
+    }
 
 .edit-surface-content-controller .right-bar{
     width: calc(100% - var(--edit-surface-bar-width));

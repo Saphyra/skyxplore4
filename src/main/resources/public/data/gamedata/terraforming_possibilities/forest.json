@@ -1,0 +1,27 @@
+[
+  {
+    "surfaceType": "concrete",
+    "researchRequirement": "todo",
+    "resources": {
+      "stone": 1,
+      "water": 1,
+      "energy": 1
+    }
+  },
+  {
+    "surfaceType": "lake",
+    "researchRequirement": "todo",
+    "resources": {
+      "energy": 1,
+      "water": 1
+    }
+  },
+  {
+    "surfaceType": "desert",
+    "researchRequirement": "todo",
+    "resources": {
+      "energy": 1,
+      "sand": 1
+    }
+  }
+]

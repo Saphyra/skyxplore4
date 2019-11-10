@@ -176,6 +176,10 @@ input:disabled, button:disabled, textarea:disabled, .disabled{
     color: red;
 }
 
+.centered{
+    text-align: center;
+}
+
 /*======SCROLLBAR======*/
 ::-webkit-scrollbar {
     width: 10px;

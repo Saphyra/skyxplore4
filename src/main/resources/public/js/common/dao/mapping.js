@@ -8,6 +8,7 @@ window.Mapping = {
     GET_SYSTEM_DETAILS: "/api/game/star/*/system/details",
     GET_SURFACE_DETAILS: "/api/game/surface/*",
     GET_SURFACES_OF_STAR: "/api/game/star/*/surface",
+    GET_TERRAFORMING_POSSIBILITIES: "/api/game/surface/{surfaceId}/terraform",
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",
@@ -19,5 +20,18 @@ window.Mapping = {
 
     concat: function(path, id){
         return path.replace("*", id);
+    },
+
+    replace: function(path, pathVariables){
+        let result = path;
+        for(let index in pathVariables){
+            const key = createKey(index);
+            result = path.replace(key, pathVariables[index]);
+        }
+
+        return result;
+        function createKey(index){
+            return "{"+index+"}";
+        }
     }
 }

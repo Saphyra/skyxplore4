@@ -67,3 +67,30 @@ function Stream(a){
         return result;
     }
 }
+
+function entryList(map){
+    const result = [];
+    for(let key in map){
+        result.push(new Entry(key, map[key]));
+    }
+    return result;
+}
+
+function orderMapByProperty(map, orderFunction){
+    return new Stream(entryList(map))
+        .sorted(orderFunction)
+        .toMap(function(item){return item.getKey()}, function(item){return item.getValue()});
+}
+
+function Entry(k, v){
+    const key = k;
+    const value = v;
+
+    this.getKey = function(){
+        return key;
+    }
+
+    this.getValue = function(){
+        return value;
+    }
+}

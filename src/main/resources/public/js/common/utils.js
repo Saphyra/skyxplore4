@@ -34,34 +34,6 @@ function switchTab(clazz, id, duration){
     $("#" + id).show(duration);
 }
 
-function orderMapByProperty(map, orderFunction){
-    const result = {};
-        const entryList = [];
-        for(let id in map){
-            entryList.push(new Entry(id, map[id]));
-        }
-        entryList.sort(orderFunction);
-        
-        for(let eindex in entryList){
-            result[entryList[eindex].getKey()] = entryList[eindex].getValue();
-        }
-
-    return result;
-    
-    function Entry(k, v){
-        const key = k;
-        const value = v;
-        
-        this.getKey = function(){
-            return key;
-        }
-        
-        this.getValue = function(){
-            return value;
-        }
-    }
-}
-
 function displayNotificationNum(containerId, notificationNum){
     const container = document.getElementById(containerId);
         container.innerHTML = notificationNum;

@@ -21,6 +21,9 @@
             const citizenOverviewButton = document.createElement("div");
                 citizenOverviewButton.classList.add("button");
                 citizenOverviewButton.innerHTML = Localization.getAdditionalContent("citizen-overview");
+                citizenOverviewButton.onclick = function(){
+                    //todo implement
+                }
         container.appendChild(citizenOverviewButton);
         return container;
     }
