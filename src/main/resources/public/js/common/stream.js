@@ -57,6 +57,10 @@ function Stream(a){
         return this;
     }
 
+    this.toList = function(){
+        return array;
+    }
+
     this.toMap = function(keyMapper, valueMapper){
         const result = {};
 

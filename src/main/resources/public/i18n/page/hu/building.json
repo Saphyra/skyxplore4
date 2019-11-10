@@ -1,8 +1,9 @@
 {
   "battery": "Akkumulátor",
-  "depot": "Raktár",
   "camp": "Tábor",
+  "depot": "Raktár",
   "excavator": "Markoló",
+  "farm": "Farm",
   "hospital": "Kórház",
   "house": "Lakóház",
   "sawmill": "Fűrészmalom",
