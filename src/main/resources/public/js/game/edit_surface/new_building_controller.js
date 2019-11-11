@@ -21,7 +21,9 @@
 
         function createBuildingItem(building){
             const container = document.createElement("div");
-                container.innerHTML = buildingLocalization.get(building.dataId);
+                const name = document.createElement("h3");
+                    name.innerHTML = buildingLocalization.get(building.dataId);
+            container.appendChild(name);
             return container;
         }
     }

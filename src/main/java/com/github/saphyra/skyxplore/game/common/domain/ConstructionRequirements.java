@@ -1,15 +1,12 @@
 package com.github.saphyra.skyxplore.game.common.domain;
 
-import lombok.Data;
-import lombok.NonNull;
-
 import java.util.Map;
+
+import lombok.Data;
 
 @Data
 public class ConstructionRequirements {
-    @NonNull
-    private final Integer workPoints;
+    private Integer workPoints;
 
-    @NonNull
-    private final Map<String, Integer> resources;
+    private Map<String, Integer> resources;
 }

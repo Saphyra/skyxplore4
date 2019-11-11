@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.data.base.loader;
 
-import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import lombok.extern.slf4j.Slf4j;
+import static java.util.Objects.isNull;
 
 import java.io.File;
 
-import static java.util.Objects.isNull;
+import com.github.saphyra.skyxplore.data.base.AbstractDataService;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class FileLoader<K, V> extends AbstractLoader<V> {

@@ -1,12 +1,13 @@
 package com.github.saphyra.skyxplore.data.base.loader;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class FileUtil {
         try {
             return objectMapper.readValue(source, clazz);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("File loading failed: " + source.getPath(), e);
         }
     }
 
