@@ -6,6 +6,10 @@
     width: var(--edit-surface-bar-width);
 }
 
+    .edit-surface-content-controller .left-bar td{
+        text-align: right;
+    }
+
     .start-terraforming-button{
         width: 50%;
         margin: auto;
@@ -15,3 +19,38 @@
 .edit-surface-content-controller .right-bar{
     width: calc(100% - var(--edit-surface-bar-width));
 }
+
+.new-building-item{
+    margin: 0.5rem;
+    border: 2px ridge green;
+}
+
+    .new-building-item h3{
+        text-align: center;
+        border-bottom: 1px solid green;
+        padding: 0.25rem;
+    }
+
+    .new-building-description{
+        font-size: 1.25rem;
+        margin: 0.5rem;
+    }
+
+    .new-building-item table{
+        margin: 0.5rem auto;
+    }
+
+        .new-building-item td, .new-building-item th{
+            border: 1px solid white;
+            vertical-align: middle;
+            padding: 0.25rem;
+        }
+
+        .new-building-item td{
+            text-align: right;
+        }
+
+        .build-new-building-button{
+            width: 15rem;
+            margin: 0.5rem auto;
+        }
