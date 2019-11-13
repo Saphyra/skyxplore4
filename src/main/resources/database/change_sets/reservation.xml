@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-reservation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="reservation"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="reservation">
+            <column name="reservation_id" type="text"/>
+            <column name="game_id" type="text"/>
+            <column name="user_id" type="text"/>
+            <column name="star_id" type="text"/>
+            <column name="data_id" type="text"/>
+            <column name="amount" type="number"/>
+            <column name="reservation_type" type="text"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

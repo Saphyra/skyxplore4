@@ -16,4 +16,6 @@
     <include file="database/change_sets/resource.xml"/>
     <include file="database/change_sets/citizen.xml"/>
     <include file="database/change_sets/construction.xml"/>
+    <include file="database/change_sets/allocation.xml"/>
+    <include file="database/change_sets/reservation.xml"/>
 </databaseChangeLog>

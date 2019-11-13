@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.module.system.costruction.domain;
+package com.github.saphyra.skyxplore.game.module.system.storage.allocation.domain;
 
 import java.util.UUID;
 
@@ -8,10 +8,10 @@ import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 
 @Component
-public class ConstructionDao extends AbstractDao<ConstructionEntity, Construction, String, ConstructionRepository> {
+public class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, AllocationRepository> {
     private final UuidConverter uuidConverter;
 
-    public ConstructionDao(ConstructionConverter converter, ConstructionRepository repository, UuidConverter uuidConverter) {
+    public AllocationDao(AllocationConverter converter, AllocationRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }

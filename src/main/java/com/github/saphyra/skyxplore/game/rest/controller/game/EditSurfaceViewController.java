@@ -1,5 +1,14 @@
 package com.github.saphyra.skyxplore.game.rest.controller.game;
 
+import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.github.saphyra.skyxplore.game.module.map.surface.EditSurfaceQueryService;
 import com.github.saphyra.skyxplore.game.module.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
@@ -8,14 +17,6 @@ import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.UUID;
-
-import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class EditSurfaceViewController {
 
     @GetMapping(GET_BUILDABLE_BUILDINGS_MAPPING)
     private List<BuildableBuildingView> getBuildableBuildings(
-            @PathVariable("surfaceId") UUID surfaceId //TODO handle MethodArgumentTypeMismatchException (pathVar String cannot be parsed to SurfaceType)
+            @PathVariable("surfaceId") UUID surfaceId
     ) {
         log.info("Querying buildable buildings for surfaceId {}", surfaceId);
         return editSurfaceQueryService.getBuildableBuildings(surfaceId);

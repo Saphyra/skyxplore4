@@ -1,11 +1,13 @@
 package com.github.saphyra.skyxplore.game.module.system.costruction.domain;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.game.common.domain.ConstructionRequirements;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -19,8 +21,19 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .constructionId(uuidConverter.convertEntity(constructionEntity.getConstructionId()))
             .gameId(uuidConverter.convertEntity(constructionEntity.getGameId()))
             .userId(uuidConverter.convertEntity(constructionEntity.getUserId()))
-            .resourceRequirements(new HashMap<>(constructionEntity.getResourceRequirements()))
+            .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
+            .constructionRequirements(convertRequirements(constructionEntity.getResourceRequirements(), constructionEntity.getWorkPoints()))
+            .constructionType(constructionEntity.getConstructionType())
+            .constructionStatus(constructionEntity.getConstructionStatus())
+            .currentWorkPoints(constructionEntity.getCurrentWorkPoints())
             .priority(constructionEntity.getPriority())
+            .build();
+    }
+
+    private ConstructionRequirements convertRequirements(Map<String, Integer> resourceRequirements, Integer workPoints) {
+        return ConstructionRequirements.builder()
+            .workPoints(workPoints)
+            .resources(new HashMap<>(resourceRequirements))
             .build();
     }
 
@@ -30,7 +43,12 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
             .userId(uuidConverter.convertDomain(domain.getUserId()))
-            .resourceRequirements(new HashMap<>(domain.getResourceRequirements()))
+            .starId(uuidConverter.convertDomain(domain.getStarId()))
+            .resourceRequirements(domain.getConstructionRequirements().getResources())
+            .workPoints(domain.getConstructionRequirements().getWorkPoints())
+            .constructionStatus(domain.getConstructionStatus())
+            .constructionType(domain.getConstructionType())
+            .currentWorkPoints(domain.getCurrentWorkPoints())
             .priority(domain.getPriority())
             .build();
     }
