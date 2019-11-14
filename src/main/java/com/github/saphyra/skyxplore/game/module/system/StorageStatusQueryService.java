@@ -2,11 +2,11 @@ package com.github.saphyra.skyxplore.game.module.system;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
-import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
-import com.github.saphyra.skyxplore.game.module.system.building.domain.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.Building;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import com.github.saphyra.skyxplore.game.module.system.storage.resource.ResourceQueryService;
-import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.Resource;
-import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import com.github.saphyra.skyxplore.game.module.system.storage.resource.service.ResourceAverageCalculator;
 import com.github.saphyra.skyxplore.game.module.system.storage.resource.service.ResourceDifferenceCalculator;
 import com.github.saphyra.skyxplore.game.rest.view.system.ResourceDetailsView;

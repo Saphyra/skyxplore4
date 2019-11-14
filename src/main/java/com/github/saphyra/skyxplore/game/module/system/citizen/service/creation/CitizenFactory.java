@@ -2,11 +2,11 @@ package com.github.saphyra.skyxplore.game.module.system.citizen.service.creation
 
 import com.github.saphyra.skyxplore.data.gamedata.FirstNames;
 import com.github.saphyra.skyxplore.data.gamedata.LastNames;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.Citizen;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.LocationType;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.Skill;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.SkillType;
+import com.github.saphyra.skyxplore.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.Citizen;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.LocationType;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.Skill;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.SkillType;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

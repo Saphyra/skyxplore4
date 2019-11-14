@@ -4,7 +4,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
-import com.github.saphyra.skyxplore.game.module.system.costruction.domain.ConstructionDao;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionDao;
 import lombok.RequiredArgsConstructor;
 
 @Service

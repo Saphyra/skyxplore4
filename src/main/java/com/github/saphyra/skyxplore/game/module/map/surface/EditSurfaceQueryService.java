@@ -5,7 +5,7 @@ import com.github.saphyra.skyxplore.data.gamedata.TerraformingPossibilitiesServi
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibilities;
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibility;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
 import lombok.RequiredArgsConstructor;

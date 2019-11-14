@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.game.rest.view.star;
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
+import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 
 @Component
 public class StarMapViewConverter implements ViewConverter<Star, StarMapView> {

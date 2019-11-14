@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.game.module.system.citizen.service.creation;
 
-import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.Citizen;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.CitizenDao;
+import com.github.saphyra.skyxplore.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.Citizen;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.CitizenDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

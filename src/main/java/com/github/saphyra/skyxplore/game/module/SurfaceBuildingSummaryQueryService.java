@@ -1,19 +1,24 @@
 package com.github.saphyra.skyxplore.game.module;
 
+import static java.util.Objects.isNull;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.module.map.surface.SurfaceQueryService;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
 import com.github.saphyra.skyxplore.game.module.system.building.BuildingQueryService;
-import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
 import com.github.saphyra.skyxplore.game.rest.view.system.BuildingSummaryView;
 import com.github.saphyra.skyxplore.game.rest.view.system.SurfaceBuildingView;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.isNull;
 
 @Service
 @RequiredArgsConstructor

@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.game.module.map.surface.creation;
 
-import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceDao;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
+import com.github.saphyra.skyxplore.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceDao;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.module.system.building.creation.DefaultBuildingCreationService;
 import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;

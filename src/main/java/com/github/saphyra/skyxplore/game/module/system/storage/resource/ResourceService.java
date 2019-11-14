@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.module.system.storage.resource;
 
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
-import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.ResourceDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

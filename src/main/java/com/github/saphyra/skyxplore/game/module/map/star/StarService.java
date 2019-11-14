@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.module.map.star;
 
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.StarDao;
+import com.github.saphyra.skyxplore.game.dao.map.star.StarDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

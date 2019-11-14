@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.rest.view.building;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
+import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import org.springframework.stereotype.Component;
 
 @Component

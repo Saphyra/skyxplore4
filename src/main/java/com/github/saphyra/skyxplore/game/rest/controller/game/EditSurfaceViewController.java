@@ -1,14 +1,20 @@
 package com.github.saphyra.skyxplore.game.rest.controller.game;
 
 import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
+import static com.github.saphyra.skyxplore.common.RequestConstants.COOKIE_GAME_ID;
+import static com.github.saphyra.skyxplore.common.RequestConstants.COOKIE_PLAYER_ID;
 
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.saphyra.skyxplore.common.OneStringParamRequest;
 import com.github.saphyra.skyxplore.game.module.map.surface.EditSurfaceQueryService;
 import com.github.saphyra.skyxplore.game.module.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
@@ -22,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class EditSurfaceViewController {
+    private static final String BUILD_NEW_BUILDING_MAPPING = API_PREFIX + "/game/building/{surfaceId}";
     private static final String GET_BUILDABLE_BUILDINGS_MAPPING = API_PREFIX + "/data/building/{surfaceId}";
     private static final String GET_SURFACE_DETAILS_MAPPING = API_PREFIX + "/game/surface/{surfaceId}";
     private static final String GET_TERRAFORMING_POSSIBILITIES = API_PREFIX + "/game/surface/{surfaceId}/terraform";
@@ -30,8 +37,19 @@ public class EditSurfaceViewController {
     private final SurfaceViewConverter surfaceViewConverter;
     private final EditSurfaceQueryService editSurfaceQueryService;
 
+    @PostMapping(BUILD_NEW_BUILDING_MAPPING)
+    void buildNewBuilding(
+        @PathVariable("surfaceId") UUID surfaceId,
+        @CookieValue(COOKIE_GAME_ID) UUID gameId,
+        @CookieValue(COOKIE_PLAYER_ID) UUID playerId,
+        @RequestBody OneStringParamRequest dataId
+    ) {
+        log.info("{} wants to build a {} on surface {}", playerId, dataId.getValue(), surfaceId);
+        //TODO implement
+    }
+
     @GetMapping(GET_BUILDABLE_BUILDINGS_MAPPING)
-    private List<BuildableBuildingView> getBuildableBuildings(
+    List<BuildableBuildingView> getBuildableBuildings(
             @PathVariable("surfaceId") UUID surfaceId
     ) {
         log.info("Querying buildable buildings for surfaceId {}", surfaceId);

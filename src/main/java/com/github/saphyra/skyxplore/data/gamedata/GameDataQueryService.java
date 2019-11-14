@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.data.gamedata;
 
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.module.game.service.creation;
 
-import com.github.saphyra.skyxplore.game.module.game.domain.Game;
-import com.github.saphyra.skyxplore.game.module.game.domain.GameDao;
+import com.github.saphyra.skyxplore.game.dao.game.Game;
+import com.github.saphyra.skyxplore.game.dao.game.GameDao;
 import com.github.saphyra.skyxplore.game.module.map.star.creation.StarCreationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

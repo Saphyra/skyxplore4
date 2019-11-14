@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.connection;
 
-import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
+import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

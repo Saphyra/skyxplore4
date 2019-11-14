@@ -1,13 +1,13 @@
 package com.github.saphyra.skyxplore.game.module.map.star.creation;
 
 import com.github.saphyra.skyxplore.data.gamedata.StarNames;
-import com.github.saphyra.skyxplore.game.common.domain.coordinate.Coordinate;
+import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.module.map.connection.creation.ConnectionCreationService;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.StarDao;
+import com.github.saphyra.skyxplore.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.game.dao.map.star.StarDao;
 import com.github.saphyra.skyxplore.game.module.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.module.player.PlayerService;
-import com.github.saphyra.skyxplore.game.module.player.domain.Player;
+import com.github.saphyra.skyxplore.game.dao.player.Player;
 import com.github.saphyra.skyxplore.game.module.system.citizen.service.creation.CitizenCreationService;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;

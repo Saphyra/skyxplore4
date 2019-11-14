@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.game.module.system.citizen.service.creation;
 
 import com.github.saphyra.skyxplore.game.common.GameProperties;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.Skill;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.SkillType;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.Skill;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.SkillType;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

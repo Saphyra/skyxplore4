@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.system;
 
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;

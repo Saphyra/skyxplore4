@@ -7,7 +7,7 @@ import com.github.saphyra.skyxplore.game.module.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.common.StarSystemDetailsQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceDao;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CookieValue;

@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.rest.view.system;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.Citizen;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.Citizen;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

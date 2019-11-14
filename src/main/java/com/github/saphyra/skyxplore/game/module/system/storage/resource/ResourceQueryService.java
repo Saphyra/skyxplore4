@@ -11,9 +11,9 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.Resource;
-import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.ResourceDao;
-import com.github.saphyra.skyxplore.game.module.system.storage.resource.domain.StorageType;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.RequiredArgsConstructor;
 
 @Service

@@ -1,9 +1,9 @@
 package com.github.saphyra.skyxplore.game.module.map.connection.creation;
 
 import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
-import com.github.saphyra.skyxplore.game.module.map.connection.domain.StarConnection;
-import com.github.saphyra.skyxplore.game.module.map.connection.domain.StarConnectionDao;
-import com.github.saphyra.skyxplore.game.module.map.star.domain.Star;
+import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnection;
+import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnectionDao;
+import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

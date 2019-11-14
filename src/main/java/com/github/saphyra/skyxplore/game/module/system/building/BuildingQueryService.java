@@ -2,8 +2,8 @@ package com.github.saphyra.skyxplore.game.module.system.building;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
-import com.github.saphyra.skyxplore.game.module.system.building.domain.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.Building;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

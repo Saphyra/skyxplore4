@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.module.system.building.creation;
 
-import com.github.saphyra.skyxplore.game.module.system.building.domain.Building;
+import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.data.gamedata;
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibilities;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 

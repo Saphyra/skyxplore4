@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.system;
 
-import com.github.saphyra.skyxplore.game.module.system.citizen.domain.SkillType;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.SkillType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;

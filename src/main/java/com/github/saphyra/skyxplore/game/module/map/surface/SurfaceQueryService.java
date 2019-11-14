@@ -2,9 +2,9 @@ package com.github.saphyra.skyxplore.game.module.map.surface;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.Surface;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceDao;
-import com.github.saphyra.skyxplore.game.module.map.surface.domain.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceDao;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

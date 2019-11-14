@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.surface;
 
-import com.github.saphyra.skyxplore.game.common.domain.ConstructionRequirements;
+import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
