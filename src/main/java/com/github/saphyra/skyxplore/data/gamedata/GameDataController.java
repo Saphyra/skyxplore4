@@ -27,6 +27,6 @@ public class GameDataController {
                 .flatMap(abstractDataService -> abstractDataService.values().stream())
                 .filter(gameDataItem -> gameDataItem.getId().equals(dataId))
                 .findFirst()
-                .orElseThrow(() -> ExceptionFactory.dataNotFount(dataId));
+                .orElseThrow(() -> ExceptionFactory.dataNotFound(dataId));
     }
 }

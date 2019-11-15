@@ -4,6 +4,7 @@
   "DATA_NOT_FOUND": "Játékadat nem található.",
   "GAME_NOT_FOUND": "A játék nem található.",
   "GENERAL_ERROR": "Hiba - ${generalErrorKey}",
+  "INVALID_BUILD_LOCATION": "Ezt ide nem építheted.",
   "INVALID_GAME_ACCESS": "Hozzáférés megtagadva.",
   "INVALID_LOCALE": "Érvénytelen nyelv.",
   "INVALID_STAR_ACCESS": "A csillagrendszer nem megtekinthető.",

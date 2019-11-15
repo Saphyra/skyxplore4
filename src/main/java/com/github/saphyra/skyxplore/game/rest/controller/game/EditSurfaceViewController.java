@@ -21,6 +21,7 @@ import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
+import com.github.saphyra.skyxplore.game.service.system.building.build.BuildNewBuildingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,6 +34,7 @@ public class EditSurfaceViewController {
     private static final String GET_SURFACE_DETAILS_MAPPING = API_PREFIX + "/game/surface/{surfaceId}";
     private static final String GET_TERRAFORMING_POSSIBILITIES = API_PREFIX + "/game/surface/{surfaceId}/terraform";
 
+    private final BuildNewBuildingService buildNewBuildingService;
     private final SurfaceQueryService surfaceQueryService;
     private final SurfaceViewConverter surfaceViewConverter;
     private final EditSurfaceQueryService editSurfaceQueryService;
@@ -45,7 +47,7 @@ public class EditSurfaceViewController {
         @RequestBody OneStringParamRequest dataId
     ) {
         log.info("{} wants to build a {} on surface {}", playerId, dataId.getValue(), surfaceId);
-        //TODO implement
+        buildNewBuildingService.buildNewBuilding(gameId, playerId, surfaceId, dataId.getValue());
     }
 
     @GetMapping(GET_BUILDABLE_BUILDINGS_MAPPING)
