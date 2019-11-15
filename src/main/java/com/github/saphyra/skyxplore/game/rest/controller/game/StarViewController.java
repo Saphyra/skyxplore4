@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.game.rest.controller.game;
 import com.github.saphyra.skyxplore.common.RequestConstants;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
-import com.github.saphyra.skyxplore.game.module.map.star.StarQueryService;
+import com.github.saphyra.skyxplore.game.service.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.common.StarSystemDetailsQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;

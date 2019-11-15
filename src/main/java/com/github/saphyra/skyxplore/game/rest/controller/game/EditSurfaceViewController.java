@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.saphyra.skyxplore.common.OneStringParamRequest;
-import com.github.saphyra.skyxplore.game.module.map.surface.EditSurfaceQueryService;
-import com.github.saphyra.skyxplore.game.module.map.surface.SurfaceQueryService;
+import com.github.saphyra.skyxplore.game.service.map.surface.EditSurfaceQueryService;
+import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;

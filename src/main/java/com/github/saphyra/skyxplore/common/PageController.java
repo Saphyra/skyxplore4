@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.github.saphyra.skyxplore.game.dao.game.GameDao;
-import com.github.saphyra.skyxplore.game.module.player.PlayerQueryService;
+import com.github.saphyra.skyxplore.game.service.player.PlayerQueryService;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
