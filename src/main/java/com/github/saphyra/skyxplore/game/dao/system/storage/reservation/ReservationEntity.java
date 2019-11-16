@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,9 @@ class ReservationEntity {
     private String starId;
     private String dataId;
     private Integer amount;
+
+    @Enumerated(EnumType.STRING)
+    private StorageType storageType;
 
     @Enumerated(EnumType.STRING)
     private ReservationType reservationType;

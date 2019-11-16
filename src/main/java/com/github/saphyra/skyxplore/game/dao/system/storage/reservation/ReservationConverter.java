@@ -14,26 +14,28 @@ public class ReservationConverter extends ConverterBase<ReservationEntity, Reser
     @Override
     protected Reservation processEntityConversion(ReservationEntity entity) {
         return Reservation.builder()
-            .reservationId(uuidConverter.convertEntity(entity.getReservationId()))
-            .gameId(uuidConverter.convertEntity(entity.getGameId()))
-            .userId(uuidConverter.convertEntity(entity.getUserId()))
-            .starId(uuidConverter.convertEntity(entity.getStarId()))
-            .dataId(entity.getDataId())
-            .amount(entity.getAmount())
-            .reservationType(entity.getReservationType())
-            .build();
+                .reservationId(uuidConverter.convertEntity(entity.getReservationId()))
+                .gameId(uuidConverter.convertEntity(entity.getGameId()))
+                .userId(uuidConverter.convertEntity(entity.getUserId()))
+                .starId(uuidConverter.convertEntity(entity.getStarId()))
+                .dataId(entity.getDataId())
+                .amount(entity.getAmount())
+                .storageType(entity.getStorageType())
+                .reservationType(entity.getReservationType())
+                .build();
     }
 
     @Override
     protected ReservationEntity processDomainConversion(Reservation domain) {
         return ReservationEntity.builder()
-            .reservationId(uuidConverter.convertDomain(domain.getReservationId()))
-            .gameId(uuidConverter.convertDomain(domain.getGameId()))
-            .userId(uuidConverter.convertDomain(domain.getUserId()))
-            .starId(uuidConverter.convertDomain(domain.getStarId()))
-            .dataId(domain.getDataId())
-            .amount(domain.getAmount())
-            .reservationType(domain.getReservationType())
-            .build();
+                .reservationId(uuidConverter.convertDomain(domain.getReservationId()))
+                .gameId(uuidConverter.convertDomain(domain.getGameId()))
+                .userId(uuidConverter.convertDomain(domain.getUserId()))
+                .starId(uuidConverter.convertDomain(domain.getStarId()))
+                .dataId(domain.getDataId())
+                .amount(domain.getAmount())
+                .storageType(domain.getStorageType())
+                .reservationType(domain.getReservationType())
+                .build();
     }
 }

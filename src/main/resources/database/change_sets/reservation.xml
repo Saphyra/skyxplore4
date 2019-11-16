@@ -18,6 +18,7 @@
             <column name="star_id" type="text"/>
             <column name="data_id" type="text"/>
             <column name="amount" type="number"/>
+            <column name="storage_type" type="text"/>
             <column name="reservation_type" type="text"/>
         </createTable>
     </changeSet>
