@@ -1,0 +1,13 @@
+{
+  "id": "iron",
+  "buildable": true,
+  "storageType": "bulk",
+  "constructionRequirements": {
+    "workPoints": 1,
+    "research": ["todo"],
+    "resources": {
+      "energy": 1,
+      "ore": 1
+    }
+  }
+}

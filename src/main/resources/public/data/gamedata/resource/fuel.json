@@ -1,0 +1,13 @@
+{
+  "id": "fuel",
+  "buildable": true,
+  "storageType": "liquid",
+  "constructionRequirements": {
+    "workPoints": 1,
+    "research": ["todo"],
+    "resources": {
+      "energy": 1,
+      "oil": 1
+    }
+  }
+}

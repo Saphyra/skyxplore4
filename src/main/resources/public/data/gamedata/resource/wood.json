@@ -1,0 +1,5 @@
+{
+  "id": "wood",
+  "buildable": false,
+  "storageType": "bulk"
+}

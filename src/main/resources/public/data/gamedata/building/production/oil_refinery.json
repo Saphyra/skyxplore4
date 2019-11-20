@@ -26,8 +26,13 @@
   "workers": 1,
   "constructionRequirements": {
     "1": {
+      "research": ["todo"],
       "workPoints": 1,
       "resources": {
+        "energy": 1,
+        "iron": 1,
+        "steel": 1,
+        "stone": 1
       }
     }
   }

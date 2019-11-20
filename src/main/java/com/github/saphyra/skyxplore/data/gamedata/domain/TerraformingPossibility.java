@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 public class TerraformingPossibility {
     private SurfaceType surfaceType;
-    private String researchRequirement;
     private ConstructionRequirements constructionRequirements;
 }

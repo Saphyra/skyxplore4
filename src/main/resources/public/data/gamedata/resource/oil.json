@@ -1,0 +1,5 @@
+{
+  "id": "oil",
+  "buildable": false,
+  "storageType": "liquid"
+}

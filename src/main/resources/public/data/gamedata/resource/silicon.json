@@ -1,0 +1,13 @@
+{
+  "id": "silicon",
+  "buildable": true,
+  "storageType": "bulk",
+  "constructionRequirements": {
+    "workPoints": 1,
+    "research": [],
+    "resources": {
+      "energy": 1,
+      "sand": 1
+    }
+  }
+}

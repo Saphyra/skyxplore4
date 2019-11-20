@@ -1,0 +1,13 @@
+{
+  "id": "plastic",
+  "buildable": true,
+  "storageType": "bulk",
+  "constructionRequirements": {
+    "workPoints": 1,
+    "research": [],
+    "resources": {
+      "energy": 1,
+      "oil": 1
+    }
+  }
+}

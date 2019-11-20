@@ -1,8 +1,8 @@
 [
   {
     "surfaceType": "desert",
-    "researchRequirement": "todo",
     "constructionRequirements": {
+      "research": ["todo"],
       "workPoints": 1,
       "resources": {
         "energy": 1,
@@ -12,8 +12,8 @@
   },
   {
     "surfaceType": "forest",
-    "researchRequirement": "todo",
     "constructionRequirements": {
+      "research": ["todo"],
       "workPoints": 1,
       "resources": {
         "wood": 1,
@@ -24,8 +24,8 @@
   },
   {
     "surfaceType": "lake",
-    "researchRequirement": "todo",
     "constructionRequirements": {
+      "research": ["todo"],
       "workPoints": 1,
       "resources": {
         "energy": 1,

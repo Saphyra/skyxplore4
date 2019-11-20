@@ -1,0 +1,12 @@
+{
+  "id": "wheat",
+  "buildable": true,
+  "storageType": "bulk",
+  "constructionRequirements": {
+    "workPoints": 1,
+    "research": [],
+    "resources": {
+      "water": 1
+    }
+  }
+}

@@ -1,13 +1,15 @@
 {
-  "id": "gas_turbine",
+  "id": "foundry",
   "buildingType": "production",
   "gives": {
-    "energy": {
+    "iron": {
       "placed": [
         "concrete"
       ],
       "uses": {
-        "fuel": 1
+        "coal": 1,
+        "energy": 1,
+        "iron": 1
       },
       "amount": 1
     }
@@ -20,8 +22,6 @@
       "resources": {
         "energy": 1,
         "iron": 1,
-        "silicon": 1,
-        "steel": 1,
         "stone": 1
       }
     }
