@@ -1,11 +1,16 @@
 package com.github.saphyra.skyxplore.common;
 
+import java.util.UUID;
+
 import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
-import com.github.saphyra.exceptionhandling.exception.*;
+import com.github.saphyra.exceptionhandling.exception.BadRequestException;
+import com.github.saphyra.exceptionhandling.exception.ConflictException;
+import com.github.saphyra.exceptionhandling.exception.ForbiddenException;
+import com.github.saphyra.exceptionhandling.exception.NotFoundException;
+import com.github.saphyra.exceptionhandling.exception.RestException;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.experimental.UtilityClass;
-
-import java.util.UUID;
 
 @UtilityClass
 public class ExceptionFactory {
@@ -20,8 +25,10 @@ public class ExceptionFactory {
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String STORAGE_FULL_PREFIX = "Storage for type %s is full at system %s";
     private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
+    private static final String TERRAFORMING_NOT_POSSIBLE_PREFIX = "Surface %s cannot be terraformed to %s";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
+    private static final String TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX = "Terraforming of surface %s is already in progress";
 
     public static RestException buildingNotFound(UUID buildingId) {
         return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId));
@@ -65,6 +72,14 @@ public class ExceptionFactory {
 
     public static NotFoundException surfaceNotFound(UUID surfaceId) {
         return new NotFoundException(createErrorMessage(ErrorCode.SURFACE_NOT_FOUND), String.format(SURFACE_NOT_FOUND_PREFIX, surfaceId));
+    }
+
+    public static RestException terraformingAlreadyInProgress(UUID surfaceId) {
+        return new ConflictException(createErrorMessage(ErrorCode.TERRAFORMING_ALREADY_IN_PROGRESS), String.format(TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX, surfaceId));
+    }
+
+    public static RestException terraformingNotPossible(UUID surfaceId, SurfaceType surfaceType) {
+        return new BadRequestException(createErrorMessage(ErrorCode.TERRAFORMING_NOT_POSSIBLE), String.format(TERRAFORMING_NOT_POSSIBLE_PREFIX, surfaceId, surfaceType));
     }
 
     public static RestException userNameAlreadyExists(String userName) {

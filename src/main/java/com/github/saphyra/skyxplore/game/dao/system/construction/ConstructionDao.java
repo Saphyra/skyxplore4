@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -21,5 +22,12 @@ public class ConstructionDao extends AbstractDao<ConstructionEntity, Constructio
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
+    }
+
+    public Optional<Construction> findByConstructionTypeAndExternalId(ConstructionType constructionType, UUID externalId) {
+        return converter.convertEntity(repository.findByConstructionTypeAndExternalId(
+            constructionType,
+            uuidConverter.convertDomain(externalId)
+        ));
     }
 }

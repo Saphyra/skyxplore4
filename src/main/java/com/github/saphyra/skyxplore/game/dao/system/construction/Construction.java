@@ -31,6 +31,9 @@ public class Construction {
     @NonNull
     private ConstructionStatus constructionStatus;
 
+    @NonNull
+    private final UUID externalId;
+
     private Integer currentWorkPoints;
 
     @NonNull

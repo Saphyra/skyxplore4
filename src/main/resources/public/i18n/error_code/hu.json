@@ -13,6 +13,8 @@
   "STAR_NOT_FOUND": "A csillag nem található.",
   "STORAGE_FULL": "A raktár tele van.",
   "SURFACE_NOT_FOUND": "Felszín nem található.",
+  "TERRAFORMING_ALREADY_IN_PROGRESS": "Az átalakítás már folyamatban van.",
+  "TERRAFORMING_NOT_POSSIBLE": "Átalakítás nem lehetséges.",
   "USER_NAME_ALREADY_EXISTS": "Felhasználónév foglalt.",
   "USER_NOT_FOUND": "Felhasználó nem található."
 }

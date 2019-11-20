@@ -48,4 +48,6 @@ class ConstructionEntity {
     private ConstructionStatus constructionStatus;
 
     private Integer priority;
+
+    private String externalId;
 }

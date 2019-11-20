@@ -19,6 +19,7 @@
             <column name="work_points" type="integer"/>
             <column name="current_work_points" type="integer"/>
             <column name="construction_type" type="text"/>
+            <column name="external_id" type="text"/>
             <column name="construction_status" type="text"/>
             <column name="priority" type="integer"/>
         </createTable>
