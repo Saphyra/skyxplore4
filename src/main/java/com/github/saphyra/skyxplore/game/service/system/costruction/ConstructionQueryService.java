@@ -20,4 +20,8 @@ public class ConstructionQueryService {
     public Optional<Construction> findByConstructionTypeAndExternalId(ConstructionType constructionType, UUID externalId) {
         return constructionDao.findByConstructionTypeAndExternalId(constructionType, externalId);
     }
+
+    public Optional<Construction> findByConstructionTypeAndSurfaceId(ConstructionType constructionType, UUID surfaceId) {
+        return constructionDao.findByConstructionTypeAndSurfaceId(constructionType, surfaceId);
+    }
 }

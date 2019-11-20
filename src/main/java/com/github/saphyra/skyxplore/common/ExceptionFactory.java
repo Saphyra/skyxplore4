@@ -15,6 +15,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ExceptionFactory {
     private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with id %s";
+    private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
@@ -32,6 +33,10 @@ public class ExceptionFactory {
 
     public static RestException buildingNotFound(UUID buildingId) {
         return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId));
+    }
+
+    public static RestException constructionInProgress(UUID surfaceId) {
+        return new ConflictException(createErrorMessage(ErrorCode.CONSTRUCTION_IN_PROGRESS), String.format(CONSTRUCTION_IN_PROGRESS_PREFIX, surfaceId));
     }
 
     public static RestException dataNotFound(String dataId) {

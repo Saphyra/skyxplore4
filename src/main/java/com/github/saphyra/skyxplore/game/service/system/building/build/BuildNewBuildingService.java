@@ -17,6 +17,7 @@ import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
+import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
 import com.github.saphyra.util.IdGenerator;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BuildNewBuildingService {
     private final BuildingDao buildingDao;
+    private final ConstructionQueryService constructionQueryService;
     private final ConstructionService constructionService;
     private final GameDataQueryService gameDataQueryService;
     private final IdGenerator idGenerator;
@@ -64,7 +66,9 @@ public class BuildNewBuildingService {
         if (!isNull(surface.getBuildingId())) {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
+
+        if(constructionQueryService.findByConstructionTypeAndExternalId(ConstructionType.TERRAFORMING, surface.getStarId()).isPresent()){
+            throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
+        }
     }
-
-
 }

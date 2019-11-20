@@ -53,6 +53,10 @@ public class TerraformSurfaceService {
             throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
         }
 
+        if(constructionQueryService.findByConstructionTypeAndSurfaceId(ConstructionType.BUILDING, surface.getSurfaceId()).isPresent()){
+            throw ExceptionFactory.constructionInProgress(surface.getSurfaceId());
+        }
+
         //TODO check researchRequirement
     }
 

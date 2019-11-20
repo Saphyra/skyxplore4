@@ -28,6 +28,7 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .currentWorkPoints(constructionEntity.getCurrentWorkPoints())
             .priority(constructionEntity.getPriority())
             .externalId(uuidConverter.convertEntity(constructionEntity.getExternalId()))
+            .surfaceId(uuidConverter.convertEntity(constructionEntity.getSurfaceId()))
             .build();
     }
 
@@ -52,6 +53,7 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .currentWorkPoints(domain.getCurrentWorkPoints())
             .priority(domain.getPriority())
             .externalId(uuidConverter.convertDomain(domain.getExternalId()))
+            .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
             .build();
     }
 }

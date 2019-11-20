@@ -10,4 +10,6 @@ interface ConstructionRepository extends JpaRepository<ConstructionEntity, Strin
     void deleteByGameIdAndUserId(String gameId, String userId);
 
     Optional<ConstructionEntity> findByConstructionTypeAndExternalId(ConstructionType constructionType, String externalId);
+
+    Optional<ConstructionEntity> findByConstructionTypeAndSurfaceId(ConstructionType constructionType, String surfaceId);
 }

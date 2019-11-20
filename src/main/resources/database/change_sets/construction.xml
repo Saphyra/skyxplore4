@@ -16,6 +16,7 @@
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
             <column name="star_id" type="text"/>
+            <column name="surface_id" type="text"/>
             <column name="work_points" type="integer"/>
             <column name="current_work_points" type="integer"/>
             <column name="construction_type" type="text"/>

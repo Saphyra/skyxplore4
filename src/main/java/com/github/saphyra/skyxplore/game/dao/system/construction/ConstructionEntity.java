@@ -50,4 +50,5 @@ class ConstructionEntity {
     private Integer priority;
 
     private String externalId;
+    private String surfaceId;
 }

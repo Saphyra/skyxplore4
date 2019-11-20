@@ -23,6 +23,9 @@ public class Construction {
     private final UUID starId;
 
     @NonNull
+    private final UUID surfaceId;
+
+    @NonNull
     private final ConstructionRequirements constructionRequirements;
 
     @NonNull

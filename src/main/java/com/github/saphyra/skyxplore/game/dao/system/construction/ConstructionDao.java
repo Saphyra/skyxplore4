@@ -30,4 +30,13 @@ public class ConstructionDao extends AbstractDao<ConstructionEntity, Constructio
             uuidConverter.convertDomain(externalId)
         ));
     }
+
+    public Optional<Construction> findByConstructionTypeAndSurfaceId(ConstructionType constructionType, UUID surfaceId) {
+        return converter.convertEntity(
+            repository.findByConstructionTypeAndSurfaceId(
+                constructionType,
+                uuidConverter.convertDomain(surfaceId)
+            )
+        );
+    }
 }
