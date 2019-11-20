@@ -31,4 +31,11 @@ public class ReservationDao extends AbstractDao<ReservationEntity, Reservation, 
             storageType
         ));
     }
+
+    public List<Reservation> getByStarIdAndDataId(UUID starId, String dataId) {
+        return converter.convertEntity(repository.getByStarIdAndDataId(
+            uuidConverter.convertDomain(starId),
+            dataId
+        ));
+    }
 }

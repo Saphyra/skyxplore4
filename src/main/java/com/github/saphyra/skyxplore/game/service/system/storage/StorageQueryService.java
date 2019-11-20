@@ -1,26 +1,27 @@
 package com.github.saphyra.skyxplore.game.service.system.storage;
 
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
+import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class StorageQueryService {
+    private final AllocationDao allocationDao;
     private final BuildingDao buildingDao;
     private final ReservationDao reservationDao;
     private final ResourceDao resourceDao;
@@ -49,25 +50,27 @@ public class StorageQueryService {
                 .sum();
     }
 
-    private int getReservedStorage(UUID starId, StorageType storageType) {
+    public int getReservedStorage(UUID starId, StorageType storageType) {
         return reservationDao.getByStarIdAndStorageType(starId, storageType).stream()
                 .mapToInt(Reservation::getAmount)
                 .sum();
     }
 
-    public int getAvailableResource(UUID starId, String resourceId) {
+    int getAvailableResource(UUID starId, String resourceId) {
         return resourceDao.findLatestByStarIdAndDataId(starId, resourceId)
                 .map(Resource::getAmount)
                 .orElse(0);
     }
 
-    @AllArgsConstructor
-    @Data
-    private static class StorageDto<K> {
-        @NonNull
-        private final K key;
+    public Integer getAllocatedStorage(UUID starId, StorageType storageType) {
+        return allocationDao.getByStarIdAndStorageType(starId, storageType).stream()
+            .mapToInt(Allocation::getAmount)
+            .sum();
+    }
 
-        @NonNull
-        private final Integer amount;
+    public Integer getReservationByStarIdAndDataId(UUID starId, String dataId) {
+        return reservationDao.getByStarIdAndDataId(starId, dataId).stream()
+            .mapToInt(Reservation::getAmount)
+            .sum();
     }
 }

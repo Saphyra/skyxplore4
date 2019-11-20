@@ -1,24 +1,26 @@
 package com.github.saphyra.skyxplore.game.service.system;
 
-import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
-import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
-import com.github.saphyra.skyxplore.game.dao.system.building.Building;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
-import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceQueryService;
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
-import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceAverageCalculator;
-import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceDifferenceCalculator;
-import com.github.saphyra.skyxplore.game.rest.view.system.ResourceDetailsView;
-import com.github.saphyra.skyxplore.game.rest.view.system.StorageTypeView;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
+import com.github.saphyra.skyxplore.game.dao.system.building.Building;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import com.github.saphyra.skyxplore.game.rest.view.system.ResourceDetailsView;
+import com.github.saphyra.skyxplore.game.rest.view.system.StorageTypeView;
+import com.github.saphyra.skyxplore.game.service.system.storage.StorageQueryService;
+import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceAverageCalculator;
+import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceDifferenceCalculator;
+import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceQueryService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +31,7 @@ public class StorageStatusQueryService {
     private final ResourceDifferenceCalculator resourceDifferenceCalculator;
     private final ResourceQueryService resourceQueryService;
     private final StorageBuildingService storageBuildingService;
+    private final StorageQueryService storageQueryService;
 
     public List<StorageTypeView> getStorageStatusOfStar(UUID starId) {
         return Arrays.stream(StorageType.values())
@@ -46,8 +49,8 @@ public class StorageStatusQueryService {
                 .capacity(countCapacity(storage, buildings))
                 .actual(countResources(resources))
                 .storageType(storageType)
-                .reserved(0) //TODO fill when reservation is implemented
-                .allocated(0) //TODO fill when allocation is implemented
+                .reserved(storageQueryService.getReservedStorage(starId, storageType))
+                .allocated(storageQueryService.getAllocatedStorage(starId, storageType))
                 .resources(mapResources(resources))
                 .build();
     }
@@ -74,7 +77,7 @@ public class StorageStatusQueryService {
         return ResourceDetailsView.builder()
                 .dataId(resource.getDataId())
                 .amount(resource.getAmount())
-                .reserved(0) //TODO calculate when reservation is implemented
+                .reserved(storageQueryService.getReservationByStarIdAndDataId(resource.getStarId(), resource.getDataId()))
                 .difference(resourceDifferenceCalculator.getDifference(resource))
                 .average(resourceAverageCalculator.getAverage(resource))
                 .build();

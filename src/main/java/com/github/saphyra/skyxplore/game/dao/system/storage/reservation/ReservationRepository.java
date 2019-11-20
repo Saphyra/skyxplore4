@@ -12,4 +12,6 @@ interface ReservationRepository extends JpaRepository<ReservationEntity, String>
     void deleteByGameIdAndUserId(String gameId, String userId);
 
     List<ReservationEntity> getByStarIdAndStorageType(String starId, StorageType storageType);
+
+    List<ReservationEntity> getByStarIdAndDataId(String starId, String dataId);
 }

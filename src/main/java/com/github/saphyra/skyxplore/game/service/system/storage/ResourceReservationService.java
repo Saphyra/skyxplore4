@@ -36,7 +36,7 @@ public class ResourceReservationService {
         int requiredResourceAmount = resourceEntry.getValue();
         if (available > 0) {
             int toAllocate = Math.min(available, requiredResourceAmount);
-            allocationService.allocate(surface.getGameId(), surface.getUserId(), surface.getStarId(), resourceEntry.getKey(), toAllocate, AllocationType.CONSTRUCTION);
+            allocationService.allocate(surface.getGameId(), surface.getUserId(), surface.getStarId(), resourceData, toAllocate, AllocationType.CONSTRUCTION);
             requiredResourceAmount -= toAllocate;
         }
 

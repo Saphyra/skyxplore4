@@ -17,6 +17,7 @@
             <column name="user_id" type="text"/>
             <column name="star_id" type="text"/>
             <column name="data_id" type="text"/>
+            <column name="storage_type" type="text"/>
             <column name="amount" type="number"/>
             <column name="allocation_type" type="text"/>
         </createTable>

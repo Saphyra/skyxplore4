@@ -19,6 +19,7 @@ class AllocationConverter extends ConverterBase<AllocationEntity, Allocation> {
             .userId(uuidConverter.convertEntity(entity.getUserId()))
             .starId(uuidConverter.convertEntity(entity.getStarId()))
             .dataId(entity.getDataId())
+            .storageType(entity.getStorageType())
             .amount(entity.getAmount())
             .allocationType(entity.getAllocationType())
             .build();
@@ -32,6 +33,7 @@ class AllocationConverter extends ConverterBase<AllocationEntity, Allocation> {
             .userId(uuidConverter.convertDomain(domain.getUserId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
             .dataId(domain.getDataId())
+            .storageType(domain.getStorageType())
             .amount(domain.getAmount())
             .allocationType(domain.getAllocationType())
             .build();

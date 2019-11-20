@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
 import java.util.UUID;
 
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -24,6 +25,9 @@ public class Allocation {
 
     @NonNull
     private final String dataId;
+
+    @NonNull
+    private final StorageType storageType;
 
     @NonNull
     private Integer amount;
