@@ -14,6 +14,7 @@
                 return possibilities;
             }
             request.processValidResponse = function(possibilities){
+                container.innerHTML = "";
                 if(possibilities.length){
                     new Stream(possibilities)
                         .map(function(possibility){return createPossibilityItem(surfaceId, possibility)})

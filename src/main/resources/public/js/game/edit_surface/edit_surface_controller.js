@@ -10,7 +10,7 @@
             const controller = new WindowController();
                 controller.create = createFunction(event.getPayload(), controller);
                 controller.refresh = refreshFunction(event.getPayload());
-                controller.close = closeFunction(event.getPayload());
+                controller.close = closeFunction(event.getPayload(), controller.getId());
             pageController.openWindow(controller);
         }
     ));
@@ -110,9 +110,10 @@
         }
     }
 
-    function closeFunction(surfaceId){
+    function closeFunction(surfaceId, controllerId){
         return function(){
             document.getElementById("pages").removeChild(document.getElementById(createEditSurfaceContainerId(surfaceId)));
+            pageController.removeFromList(controllerId);
         }
     }
 

@@ -17,6 +17,7 @@
     }
 
     function displaySurfaces(starId, surfaces, surfaceTable){
+        surfaceTable.innerHTML = "";
         const coordinateMapping = createCoordinateMapping(surfaces);
 
         for(let xIndex in coordinateMapping){

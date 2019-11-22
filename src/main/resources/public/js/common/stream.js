@@ -22,6 +22,18 @@ function Stream(a){
         return new Stream(newArray);
     }
 
+    this.filter = function(filterMethod){
+        const result = [];
+
+        this.forEach(function(item){
+            if(filterMethod(item)){
+                result.push(item);
+            }
+        })
+
+        return new Stream(result);
+    }
+
     this.forEach = function(consumer){
         for(let i in array){
             consumer(array[i]);

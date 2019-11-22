@@ -15,6 +15,7 @@
                     .toList();
             }
             request.processValidResponse = function(buildings){
+                container.innerHTML = "";
                 new Stream(buildings)
                     .map(function(building){return createBuildingItem(building)})
                     .forEach(function(item){container.appendChild(item)});

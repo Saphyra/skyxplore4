@@ -18,6 +18,7 @@
 
     function displayStarDetails(systemDetails, containerId){
         const container = document.getElementById(containerId);
+            container.innerHTML = "";
             container.appendChild(storageDetailsController.createStorageDetails(systemDetails.storage));
             container.appendChild(populationDetailsController.createPopulationDetails(systemDetails.population));
             container.appendChild(surfaceBuildingDetailsController.createSurfaceBuildingDetails(systemDetails.surfaceBuildings));

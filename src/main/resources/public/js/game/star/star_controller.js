@@ -10,7 +10,7 @@
             const controller = new WindowController();
                 controller.create = createFunction(event.getPayload(), controller);
                 controller.refresh = refreshFunction(event.getPayload());
-                controller.close = closeFunction(event.getPayload());
+                controller.close = closeFunction(event.getPayload(), controller.getId());
             pageController.openWindow(controller);
         }
     ));
@@ -125,9 +125,10 @@
         }
     }
 
-    function closeFunction(starId){
+    function closeFunction(starId, controllerId){
         return function(){
             document.getElementById("pages").removeChild(document.getElementById(createContainerId(starId)));
+            pageController.removeFromList(controllerId);
         }
     }
 
