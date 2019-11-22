@@ -12,4 +12,6 @@ interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
     void deleteByGameIdAndUserId(String gameId, String userId);
 
     List<AllocationEntity> getByStarIdAndStorageType(String starId, StorageType storageType);
+
+    List<AllocationEntity> getByStarIdAndDataId(String starId, String dataId);
 }

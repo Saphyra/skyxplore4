@@ -7,7 +7,7 @@
         this.loadNewBuildingPossibilities = loadNewBuildingPossibilities;
     }
 
-    function loadNewBuildingPossibilities(surfaceId, surfaceType, container){
+    function loadNewBuildingPossibilities(surfaceId, surfaceType, container, windowController){
         const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_BUILDABLE_BUILDINGS, surfaceId));
             request.convertResponse = function(response){
                 return new Stream(JSON.parse(response.body))
@@ -17,12 +17,12 @@
             request.processValidResponse = function(buildings){
                 container.innerHTML = "";
                 new Stream(buildings)
-                    .map(function(building){return createBuildingItem(building)})
+                    .map(function(building){return createBuildingItem(surfaceId, building, windowController)})
                     .forEach(function(item){container.appendChild(item)});
             }
         dao.sendRequestAsync(request);
 
-        function createBuildingItem(building){
+        function createBuildingItem(surfaceId, building, windowController){
             const container = document.createElement("div");
                 container.classList.add("new-building-item")
                 const name = document.createElement("h3");
@@ -44,7 +44,7 @@
                     .map(createResource)
                     .forEach(function(item){resourceTable.appendChild(item)});
 
-            container.appendChild(createBuildButton(building.dataId));
+            container.appendChild(createBuildButton(surfaceId, building.dataId, windowController));
             return container;
 
             function createTableHeader(){
@@ -81,15 +81,25 @@
             }
         }
 
-        function createBuildButton(){
+        function createBuildButton(surfaceId, dataId, windowController){
             const button = document.createElement("div");
                 button.classList.add("build-new-building-button");
                 button.classList.add("button");
                 button.innerHTML = Localization.getAdditionalContent("build-building-button");
                 button.onclick = function(){
-                    //TODO implement
+                    build(surfaceId, dataId, windowController);
                 }
             return button;
         }
+    }
+
+    function build(surfaceId, dataId, windowController){
+        const request = new Request(HttpMethod.POST, Mapping.concat(Mapping.BUILD_BUILDING, surfaceId), {value: dataId});
+            request.processValidResponse = function(){
+                notificationService.showSuccess(Localization.getAdditionalContent("building-started"));
+                eventProcessor.processEvent(new Event(events.REFRESH_WINDOWS, [WindowType.STAR]));
+                windowController.close();
+            }
+        dao.sendRequestAsync(request);
     }
 })();

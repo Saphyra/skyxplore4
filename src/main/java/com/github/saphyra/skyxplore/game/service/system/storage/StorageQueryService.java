@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.service.system.storage;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class StorageQueryService {
     }
 
     public int getReservedStorage(UUID starId, StorageType storageType) {
-        return reservationDao.getByStarIdAndStorageType(starId, storageType).stream()
+        return getReservationsByStarIdAndStorageType(starId, storageType).stream()
                 .mapToInt(Reservation::getAmount)
                 .sum();
     }
@@ -72,5 +73,15 @@ public class StorageQueryService {
         return reservationDao.getByStarIdAndDataId(starId, dataId).stream()
             .mapToInt(Reservation::getAmount)
             .sum();
+    }
+
+    public Integer getAllocationByStarIdAndDataId(UUID starId, String dataId) {
+        return allocationDao.getByStarIdAndDataId(starId, dataId).stream()
+            .mapToInt(Allocation::getAmount)
+            .sum();
+    }
+
+    public List<Reservation> getReservationsByStarIdAndStorageType(UUID starId, StorageType storageType) {
+        return reservationDao.getByStarIdAndStorageType(starId, storageType);
     }
 }

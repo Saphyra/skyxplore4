@@ -11,6 +11,7 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.Storag
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import com.github.saphyra.skyxplore.game.rest.view.system.ResourceDetailsView;
@@ -45,13 +46,18 @@ public class StorageStatusQueryService {
         List<Building> buildings = buildingDao.getByStarIdAndDataId(starId, storage.getId());
 
         List<Resource> resources = resourceQueryService.getActualsByStarIdAndStorageType(starId, storageType);
+        List<String> dataIds = resources.stream()
+            .map(Resource::getDataId)
+            .collect(Collectors.toList());
+        List<ResourceDetailsView> resourceDetailsViews = mapResources(resources);
+        resourceDetailsViews.addAll(createReservedOnlyResourceDetails(starId, storageType, dataIds));
         return StorageTypeView.builder()
                 .capacity(countCapacity(storage, buildings))
                 .actual(countResources(resources))
                 .storageType(storageType)
                 .reserved(storageQueryService.getReservedStorage(starId, storageType))
                 .allocated(storageQueryService.getAllocatedStorage(starId, storageType))
-                .resources(mapResources(resources))
+            .resources(resourceDetailsViews)
                 .build();
     }
 
@@ -67,6 +73,24 @@ public class StorageStatusQueryService {
                 .sum();
     }
 
+    private List<ResourceDetailsView> createReservedOnlyResourceDetails(UUID starId, StorageType storageType, List<String> dataIds) {
+        return storageQueryService.getReservationsByStarIdAndStorageType(starId, storageType).stream()
+            .filter(reservation -> !dataIds.contains(reservation.getDataId()))
+            .collect(Collectors.groupingBy(Reservation::getDataId))
+            .entrySet().stream()
+            .map(entry -> ResourceDetailsView.builder()
+                .dataId(entry.getKey())
+                .amount(0)
+                .allocated(0)
+                .reserved(entry.getValue().stream().mapToInt(Reservation::getAmount).sum())
+                .difference(0)
+                .average(0)
+                .build())
+            .collect(Collectors.toList());
+
+
+    }
+
     private List<ResourceDetailsView> mapResources(List<Resource> resources) {
         return resources.stream()
                 .map(this::mapResource)
@@ -77,6 +101,7 @@ public class StorageStatusQueryService {
         return ResourceDetailsView.builder()
                 .dataId(resource.getDataId())
                 .amount(resource.getAmount())
+            .allocated(storageQueryService.getAllocationByStarIdAndDataId(resource.getStarId(), resource.getDataId()))
                 .reserved(storageQueryService.getReservationByStarIdAndDataId(resource.getStarId(), resource.getDataId()))
                 .difference(resourceDifferenceCalculator.getDifference(resource))
                 .average(resourceAverageCalculator.getAverage(resource))

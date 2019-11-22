@@ -104,7 +104,7 @@
                 request.processValidResponse = function(surfaceDetails){
                     document.getElementById(createEditSurfaceTitleId(surfaceId)).innerHTML = Localization.getAdditionalContent("edit-surface-title") + " - " + localizations.surfaceTypeLocalization.get(surfaceDetails.surfaceType);
                     terraformSurfaceController.loadTerraformingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createTerraformContainerId(surfaceId)), controller);
-                    newBuildingController.loadNewBuildingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createBuildContainerId(surfaceId)));
+                    newBuildingController.loadNewBuildingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createBuildContainerId(surfaceId)), controller);
                 }
             dao.sendRequestAsync(request);
         }

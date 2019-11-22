@@ -31,4 +31,13 @@ public class AllocationDao extends AbstractDao<AllocationEntity, Allocation, Str
             storageType
         ));
     }
+
+    public List<Allocation> getByStarIdAndDataId(UUID starId, String dataId) {
+        return converter.convertEntity(
+            repository.getByStarIdAndDataId(
+                uuidConverter.convertDomain(starId),
+                dataId
+            )
+        );
+    }
 }

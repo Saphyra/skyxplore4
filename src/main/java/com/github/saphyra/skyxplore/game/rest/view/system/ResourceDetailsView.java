@@ -14,6 +14,9 @@ public class ResourceDetailsView {
     private final Integer amount;
 
     @NonNull
+    private final Integer allocated;
+
+    @NonNull
     private final Integer reserved;
 
     @NonNull

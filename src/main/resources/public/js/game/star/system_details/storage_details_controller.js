@@ -57,7 +57,7 @@
 
                             const ul = document.createElement("ul");
                                 const amount = document.createElement("li");
-                                    amount.innerHTML = Localization.getAdditionalContent("amount") + ": " + resource.amount + " (" + getDifference(resource.difference) + ")";
+                                    amount.innerHTML = Localization.getAdditionalContent("amount") + ": " + resource.amount + " (" + resource.allocated + ") / " + getDifference(resource.difference);
                             ul.appendChild(amount);
                                 const reserved = document.createElement("li");
                                     reserved.innerHTML = Localization.getAdditionalContent("reserved") + ": " + resource.reserved;
@@ -79,7 +79,7 @@
             function createStorageSummary(storage, detailedListContainer){
                 //TODO add indicators
                 const summaryContainer = document.createElement("div");
-                    summaryContainer.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.allocated + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("allocated") + ": " + storage.reserved;
+                    summaryContainer.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.allocated + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("reserved") + ": " + storage.reserved;
 
                     const extendButton = document.createElement("button");
                         extendButton.innerHTML = "+";

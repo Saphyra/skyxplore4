@@ -53,8 +53,9 @@ public class BuildNewBuildingService {
                 .buildingDataId(dataId)
                 .gameId(gameId)
                 .userId(surface.getUserId())
+                .starId(surface.getStarId())
                 .level(0)
-            .constructionId(constructionService.create(gameId, surface.getUserId(), surface.getStarId(), surfaceId, constructionRequirements, ConstructionType.BUILDING, buildingId))
+                .constructionId(constructionService.create(gameId, surface.getUserId(), surface.getStarId(), surfaceId, constructionRequirements, ConstructionType.BUILDING, buildingId))
                 .build();
         buildingDao.save(building);
     }
