@@ -1,29 +1,20 @@
 package com.github.saphyra.skyxplore.game.rest.controller.game;
 
 import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
-import static com.github.saphyra.skyxplore.common.RequestConstants.COOKIE_GAME_ID;
-import static com.github.saphyra.skyxplore.common.RequestConstants.COOKIE_PLAYER_ID;
 
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.saphyra.skyxplore.common.OneStringParamRequest;
-import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
 import com.github.saphyra.skyxplore.game.service.map.surface.EditSurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
-import com.github.saphyra.skyxplore.game.service.map.surface.terraform.TerraformSurfaceService;
-import com.github.saphyra.skyxplore.game.service.system.building.build.BuildNewBuildingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,28 +22,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class EditSurfaceViewController {
-    private static final String BUILD_NEW_BUILDING_MAPPING = API_PREFIX + "/game/building/{surfaceId}";
     private static final String GET_BUILDABLE_BUILDINGS_MAPPING = API_PREFIX + "/data/building/{surfaceId}";
     private static final String GET_SURFACE_DETAILS_MAPPING = API_PREFIX + "/game/surface/{surfaceId}";
     private static final String GET_TERRAFORMING_POSSIBILITIES = API_PREFIX + "/game/surface/{surfaceId}/terraform";
-    private static final String TERRAFORM_SURFACE_MAPPING = API_PREFIX + "/game/surface/{surfaceId}/terraform";
 
-    private final BuildNewBuildingService buildNewBuildingService;
     private final EditSurfaceQueryService editSurfaceQueryService;
     private final SurfaceQueryService surfaceQueryService;
     private final SurfaceViewConverter surfaceViewConverter;
-    private final TerraformSurfaceService terraformSurfaceService;
-
-    @PostMapping(BUILD_NEW_BUILDING_MAPPING)
-    void buildNewBuilding(
-        @PathVariable("surfaceId") UUID surfaceId,
-        @CookieValue(COOKIE_GAME_ID) UUID gameId,
-        @CookieValue(COOKIE_PLAYER_ID) UUID playerId,
-        @RequestBody OneStringParamRequest dataId
-    ) {
-        log.info("{} wants to build a {} on surface {}", playerId, dataId.getValue(), surfaceId);
-        buildNewBuildingService.buildNewBuilding(gameId, playerId, surfaceId, dataId.getValue());
-    }
 
     @GetMapping(GET_BUILDABLE_BUILDINGS_MAPPING)
     List<BuildableBuildingView> getBuildableBuildings(
@@ -72,16 +48,5 @@ public class EditSurfaceViewController {
     List<TerraformingPossibilityView> getTerraformingPossibilities(@PathVariable("surfaceId") UUID surfaceId){
         log.info("Querying terraforming possibilities of surface {}", surfaceId);
         return editSurfaceQueryService.getTerraformingPossibilities(surfaceId);
-    }
-
-    @PostMapping(TERRAFORM_SURFACE_MAPPING)
-    void terraformSurface(
-        @PathVariable("surfaceId") UUID surfaceId,
-        @CookieValue(COOKIE_GAME_ID) UUID gameId,
-        @CookieValue(COOKIE_PLAYER_ID) UUID playerId,
-        @RequestBody SurfaceType surfaceType
-    ) {
-        log.info("{} wants to terraform surface {} to {}", playerId, surfaceId, surfaceId);
-        terraformSurfaceService.terraform(gameId, playerId, surfaceId, surfaceType);
     }
 }

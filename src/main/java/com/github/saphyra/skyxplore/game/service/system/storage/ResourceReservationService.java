@@ -22,13 +22,13 @@ public class ResourceReservationService {
     private final ReservationService reservationService;
     private final StorageQueryService storageQueryService;
 
-    public void reserveResources(Surface surface, Map<String, Integer> resources) {
+    public void reserveResources(Surface surface, Map<String, Integer> resources, ReservationType reservationType) {
         for (Map.Entry<String, Integer> resourceEntry : resources.entrySet()) {
-            reserveResource(surface, resourceEntry);
+            reserveResource(surface, resourceEntry, reservationType);
         }
     }
 
-    private void reserveResource(Surface surface, Map.Entry<String, Integer> resourceEntry) {
+    private void reserveResource(Surface surface, Map.Entry<String, Integer> resourceEntry, ReservationType reservationType) {
         ResourceData resourceData = gameDataQueryService.getResourceData(resourceEntry.getKey());
         int availableStoragePlace = storageQueryService.getAvailableStoragePlace(surface.getStarId(), resourceData.getStorageType());
         int available = storageQueryService.getAvailableResource(surface.getStarId(), resourceEntry.getKey());
@@ -52,7 +52,7 @@ public class ResourceReservationService {
                 resourceEntry.getKey(),
                 requiredResourceAmount,
                 resourceData.getStorageType(),
-                ReservationType.CONSTRUCTION
+                reservationType
             );
         }
     }

@@ -7,7 +7,7 @@
     eventProcessor.registerProcessor(new EventProcessor(
         function(eventType){return eventType == events.SHOW_STAR},
         function(event){
-            const controller = new WindowController();
+            const controller = new WindowController(WindowType.STAR);
                 controller.create = createFunction(event.getPayload(), controller);
                 controller.refresh = refreshFunction(event.getPayload());
                 controller.close = closeFunction(event.getPayload(), controller.getId());

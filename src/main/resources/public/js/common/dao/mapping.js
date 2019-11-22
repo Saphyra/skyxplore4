@@ -13,6 +13,7 @@ window.Mapping = {
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",
+    TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
 
     ACCOUNT_PAGE: "/web/account",
     GAME_PAGE: "/web/game/",

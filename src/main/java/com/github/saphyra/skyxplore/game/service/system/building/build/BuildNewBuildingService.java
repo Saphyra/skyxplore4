@@ -16,6 +16,7 @@ import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
+import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
@@ -44,7 +45,7 @@ public class BuildNewBuildingService {
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(1);
         Map<String, Integer> resources = constructionRequirements.getResources();
-        resourceReservationService.reserveResources(surface, resources);
+        resourceReservationService.reserveResources(surface, resources, ReservationType.CONSTRUCTION);
 
         UUID buildingId = idGenerator.randomUUID();
         Building building = Building.builder()
@@ -53,7 +54,7 @@ public class BuildNewBuildingService {
                 .gameId(gameId)
                 .userId(surface.getUserId())
                 .level(0)
-            .constructionId(constructionService.create(gameId, surface.getUserId(), surface.getStarId(), constructionRequirements, ConstructionType.BUILDING, buildingId))
+            .constructionId(constructionService.create(gameId, surface.getUserId(), surface.getStarId(), surfaceId, constructionRequirements, ConstructionType.BUILDING, buildingId))
                 .build();
         buildingDao.save(building);
     }

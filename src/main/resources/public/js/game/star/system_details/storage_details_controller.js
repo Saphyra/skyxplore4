@@ -79,7 +79,7 @@
             function createStorageSummary(storage, detailedListContainer){
                 //TODO add indicators
                 const summaryContainer = document.createElement("div");
-                    summaryContainer.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.reserved + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("allocated") + ": " + storage.allocated;
+                    summaryContainer.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.allocated + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("allocated") + ": " + storage.reserved;
 
                     const extendButton = document.createElement("button");
                         extendButton.innerHTML = "+";

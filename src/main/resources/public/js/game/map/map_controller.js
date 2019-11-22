@@ -6,7 +6,7 @@
     }
 
     function createMapController(){
-        const controller = new WindowController();
+        const controller = new WindowController(WindowType.MAP);
             controller.create = createFunction();
             controller.refresh = refreshFunction();
         return controller;

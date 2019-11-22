@@ -1,6 +1,18 @@
 function WindowController(windowType){
-    const type = windowType;
+    const type = checkWindowType(windowType);
     const id = generateRandomId();
+
+    function checkWindowType(windowType){
+        if(!windowType){
+            throwException("IllegalArgument", "WindowType must be set.");
+        }
+
+        if(!WindowType[windowType]){
+            throwException("IllegalArgument", "Unknown WindowType: " + windowType);
+        }
+
+        return WindowType[windowType];
+    }
 
     this.getId = function(){
         return id;
@@ -32,7 +44,7 @@ function WindowController(windowType){
 
 const WindowType = {
     ALL: "ALL",
-    EDIT_SURFACE: "EdIT_SURFACE",
+    EDIT_SURFACE: "EDIT_SURFACE",
     MAP: "MAP",
     STAR: "STAR"
 }

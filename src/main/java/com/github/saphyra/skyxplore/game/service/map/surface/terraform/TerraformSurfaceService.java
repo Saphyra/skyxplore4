@@ -10,6 +10,7 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibility
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
+import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
@@ -33,11 +34,12 @@ public class TerraformSurfaceService {
 
         TerraformingPossibility terraformingPossibility = getTerraformingPossibility(surface.getSurfaceType(), surfaceType);
 
-        resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getResources());
+        resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getResources(), ReservationType.TERRAFORMING);
         constructionService.create(
             gameId,
             surface.getUserId(),
             surface.getStarId(),
+            surfaceId,
             terraformingPossibility.getConstructionRequirements(),
             ConstructionType.TERRAFORMING,
             surfaceId

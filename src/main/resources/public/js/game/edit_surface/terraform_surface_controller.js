@@ -6,7 +6,7 @@
         this.loadTerraformingPossibilities = loadTerraformingPossibilities;
     }
 
-    function loadTerraformingPossibilities(surfaceId, surfaceType, container){
+    function loadTerraformingPossibilities(surfaceId, surfaceType, container, windowController){
         const request = new Request(HttpMethod.GET, Mapping.replace(Mapping.GET_TERRAFORMING_POSSIBILITIES, {surfaceId: surfaceId}));
             request.convertResponse = function(response){
                 const possibilities = JSON.parse(response.body);
@@ -17,7 +17,7 @@
                 container.innerHTML = "";
                 if(possibilities.length){
                     new Stream(possibilities)
-                        .map(function(possibility){return createPossibilityItem(surfaceId, possibility)})
+                        .map(function(possibility){return createPossibilityItem(surfaceId, possibility, windowController)})
                         .forEach(function(i){container.appendChild(i)});
                 }else{
                     container.appendChild(createNoPossibility());
@@ -25,13 +25,13 @@
             };
         dao.sendRequestAsync(request);
 
-        function createPossibilityItem(surfaceId, possibility){
+        function createPossibilityItem(surfaceId, possibility, windowController){
             const container = document.createElement("div");
                 container.classList.add("bar-list-item");
 
                 container.appendChild(createHeader(possibility.surfaceType));
                 container.appendChild(createResourceContainer(possibility.constructionRequirements));
-                container.appendChild(createTerraformButton());
+                container.appendChild(createTerraformButton(surfaceId, possibility.surfaceType, windowController));
             return container;
 
             function createHeader(surfaceType){
@@ -86,13 +86,13 @@
                 }
             }
 
-            function createTerraformButton(){
+            function createTerraformButton(surfaceId, surfaceType, windowController){
                 const terraformButton = document.createElement("div");
                     terraformButton.classList.add("start-terraforming-button");
                     terraformButton.classList.add("button");
                     terraformButton.innerHTML = Localization.getAdditionalContent("start-terraforming");
                     terraformButton.onclick = function(){
-                        //todo implement
+                        terraform(surfaceId, surfaceType, windowController);
                     }
                 return terraformButton;
             }
@@ -105,5 +105,15 @@
                 container.innerHTML = Localization.getAdditionalContent("no-terraform-possibilities");
             return container;
         }
+    }
+
+    function terraform(surfaceId, surfaceType, windowController){
+        const request = new Request(HttpMethod.POST, Mapping.concat(Mapping.TERRAFORM_SURFACE, surfaceId), {value: surfaceType});
+            request.processValidResponse = function(){
+                notificationService.showSuccess(Localization.getAdditionalContent("terraforming-started"));
+                eventProcessor.processEvent(new Event(events.REFRESH_WINDOWS, [WindowType.STAR]));
+                windowController.close();
+            }
+        dao.sendRequestAsync(request);
     }
 })();

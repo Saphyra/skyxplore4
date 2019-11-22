@@ -7,9 +7,9 @@
     eventProcessor.registerProcessor(new EventProcessor(
         function(eventType){return eventType == events.SHOW_EDIT_SURFACE_WINDOW},
         function(event){
-            const controller = new WindowController();
+            const controller = new WindowController(WindowType.EDIT_SURFACE);
                 controller.create = createFunction(event.getPayload(), controller);
-                controller.refresh = refreshFunction(event.getPayload());
+                controller.refresh = refreshFunction(event.getPayload(), controller);
                 controller.close = closeFunction(event.getPayload(), controller.getId());
             pageController.openWindow(controller);
         }
@@ -95,7 +95,7 @@
         }
     }
 
-    function refreshFunction(surfaceId){
+    function refreshFunction(surfaceId, controller){
         return function(){
             const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_SURFACE_DETAILS, surfaceId));
                 request.convertResponse = function(response){
@@ -103,7 +103,7 @@
                 }
                 request.processValidResponse = function(surfaceDetails){
                     document.getElementById(createEditSurfaceTitleId(surfaceId)).innerHTML = Localization.getAdditionalContent("edit-surface-title") + " - " + localizations.surfaceTypeLocalization.get(surfaceDetails.surfaceType);
-                    terraformSurfaceController.loadTerraformingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createTerraformContainerId(surfaceId)));
+                    terraformSurfaceController.loadTerraformingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createTerraformContainerId(surfaceId)), controller);
                     newBuildingController.loadNewBuildingPossibilities(surfaceId, surfaceDetails.surfaceType, document.getElementById(createBuildContainerId(surfaceId)));
                 }
             dao.sendRequestAsync(request);
