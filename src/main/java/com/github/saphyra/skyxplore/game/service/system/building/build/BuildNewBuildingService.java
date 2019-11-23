@@ -23,8 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Map;
 import java.util.UUID;
 
-import static java.util.Objects.isNull;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -57,11 +55,11 @@ public class BuildNewBuildingService {
             .gameId(gameId)
             .userId(surface.getUserId())
             .starId(surface.getStarId())
+            .surfaceId(surfaceId)
             .level(0)
             .constructionId(constructionId)
             .build();
         buildingDao.save(building);
-        surface.setBuildingId(buildingId);
         surfaceDao.save(surface);
     }
 
@@ -70,7 +68,7 @@ public class BuildNewBuildingService {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
 
-        if (!isNull(surface.getBuildingId())) {
+        if (buildingDao.findBySurfaceId(surface.getSurfaceId()).isPresent()) {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
 

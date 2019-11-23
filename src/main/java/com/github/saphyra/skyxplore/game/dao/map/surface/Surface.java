@@ -5,8 +5,6 @@ import lombok.*;
 
 import java.util.UUID;
 
-import static java.util.Objects.isNull;
-
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Data
@@ -28,10 +26,4 @@ public class Surface {
 
     @NonNull
     private SurfaceType surfaceType;
-
-    private UUID buildingId;
-
-    public boolean isEmpty() {
-        return isNull(buildingId);
-    }
 }

@@ -1,16 +1,13 @@
 package com.github.saphyra.skyxplore.game.rest.view.surface;
 
+import com.github.saphyra.skyxplore.common.ViewConverter;
+import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.rest.view.ConstructionStatusView;
 import com.github.saphyra.skyxplore.game.rest.view.building.BuildingViewForSurface;
 import com.github.saphyra.skyxplore.game.rest.view.building.BuildingViewForSurfaceConverter;
 import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import com.github.saphyra.skyxplore.common.ViewConverter;
-import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -30,8 +27,7 @@ public class SurfaceViewConverter implements ViewConverter<Surface, SurfaceView>
     }
 
     private BuildingViewForSurface getBuilding(Surface domain) {
-        return Optional.ofNullable(domain.getBuildingId())
-            .map(buildingQueryService::findOneValidated)
+        return buildingQueryService.findBySurfaceId(domain.getSurfaceId())
             .map(buildingViewForSurfaceConverter::convertDomain)
             .orElse(null);
     }

@@ -29,6 +29,4 @@ class SurfaceEntity {
 
     @Enumerated(EnumType.STRING)
     private SurfaceType surfaceType;
-
-    private String buildingId;
 }

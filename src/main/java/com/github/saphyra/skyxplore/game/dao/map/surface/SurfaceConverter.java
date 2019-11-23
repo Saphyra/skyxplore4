@@ -22,7 +22,6 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
             .gameId(uuidConverter.convertEntity(surfaceEntity.getGameId()))
             .coordinate(coordinateConverter.convertEntity(surfaceEntity.getCoordinate(), surfaceEntity.getUserId()))
             .surfaceType(surfaceEntity.getSurfaceType())
-            .buildingId(uuidConverter.convertEntity(surfaceEntity.getBuildingId()))
             .build();
     }
 
@@ -35,7 +34,6 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
             .gameId(uuidConverter.convertDomain(surface.getGameId()))
             .coordinate(coordinateConverter.convertDomain(surface.getCoordinate(), uuidConverter.convertDomain(surface.getUserId())))
             .surfaceType(surface.getSurfaceType())
-            .buildingId(uuidConverter.convertDomain(surface.getBuildingId()))
             .build();
     }
 }

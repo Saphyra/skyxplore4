@@ -10,10 +10,11 @@ import com.github.saphyra.skyxplore.game.service.system.building.BuildingQuerySe
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.isNull;
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +31,9 @@ public class SurfaceBuildingSummaryQueryService {
 
     private SurfaceBuildingView summarize(Map.Entry<SurfaceType, List<Surface>> entry) {
         List<Building> buildings = entry.getValue().stream()
-            .filter(surface -> !isNull(surface.getBuildingId()))
-            .map(surface -> buildingQueryService.findOneValidated(surface.getBuildingId()))
+            .map(surface -> buildingQueryService.findBySurfaceId(surface.getSurfaceId()))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
             .collect(Collectors.toList());
 
         return SurfaceBuildingView.builder()

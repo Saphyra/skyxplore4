@@ -18,6 +18,7 @@ public class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
                 .gameId(uuidConverter.convertEntity(entity.getGameId()))
                 .userId(uuidConverter.convertEntity(entity.getUserId()))
                 .starId(uuidConverter.convertEntity(entity.getStarId()))
+                .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
                 .level(entity.getLevel())
                 .constructionId(uuidConverter.convertEntity(entity.getConstructionId()))
                 .build();
@@ -31,6 +32,7 @@ public class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
                 .gameId(uuidConverter.convertDomain(domain.getGameId()))
                 .userId(uuidConverter.convertDomain(domain.getUserId()))
                 .starId(uuidConverter.convertDomain(domain.getStarId()))
+                .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
                 .level(domain.getLevel())
                 .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
                 .build();

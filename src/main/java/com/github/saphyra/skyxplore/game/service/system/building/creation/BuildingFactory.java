@@ -12,14 +12,15 @@ import java.util.UUID;
 class BuildingFactory {
     private final IdGenerator idGenerator;
 
-    Building create(String buildingId, UUID gameId, UUID userId, UUID starId){
+    Building create(String buildingId, UUID gameId, UUID userId, UUID starId, UUID surfaceId) {
         return Building.builder()
-                .buildingId(idGenerator.randomUUID())
-                .buildingDataId(buildingId)
-                .gameId(gameId)
-                .userId(userId)
-                .starId(starId)
-                .level(1)
-                .build();
+            .buildingId(idGenerator.randomUUID())
+            .buildingDataId(buildingId)
+            .gameId(gameId)
+            .userId(userId)
+            .starId(starId)
+            .surfaceId(surfaceId)
+            .level(1)
+            .build();
     }
 }

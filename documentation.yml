@@ -140,7 +140,7 @@ Resources:
     source:
       conversion:
         from: sand
-        with: #todo
+        with:
     storageType: bulk
   Stone:
     source:

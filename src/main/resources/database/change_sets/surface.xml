@@ -22,4 +22,12 @@
             <column name="building_id" type="text"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="drop-column-building_id-from-surface" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="surface" columnName="building_id"/>
+        </preConditions>
+
+        <dropColumn tableName="surface" columnName="building_id"/>
+    </changeSet>
 </databaseChangeLog>

@@ -17,6 +17,4 @@ public class StarSystemDetailsView {
 
     @NonNull
     private final List<SurfaceBuildingView> surfaceBuildings;
-
-    //TODO System defence details
 }

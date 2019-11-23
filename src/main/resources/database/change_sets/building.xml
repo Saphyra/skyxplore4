@@ -32,4 +32,16 @@
             <column name="star_id" type="text"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="add-column-surface_id_to-building" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="building" columnName="surface_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="building">
+            <column name="surface_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

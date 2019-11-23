@@ -7,6 +7,7 @@ import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -14,6 +15,10 @@ import java.util.UUID;
 public class BuildingQueryService {
     private final BuildingDao buildingDao;
     private final UuidConverter uuidConverter;
+
+    public Optional<Building> findBySurfaceId(UUID surfaceId) {
+        return buildingDao.findBySurfaceId(surfaceId);
+    }
 
     public Building findOneValidated(UUID buildingId) {
         return buildingDao.findById(uuidConverter.convertDomain(buildingId))
