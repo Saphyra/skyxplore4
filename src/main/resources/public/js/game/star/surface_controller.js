@@ -103,7 +103,8 @@
             }
 
             function createFooterContent(building){
-                if(building.construction == null){
+                const construction = building.construction;
+                if(construction == null){
                     const upgradeButton = document.createElement("button");
                         upgradeButton.innerHTML = Localization.getAdditionalContent("upgrade");
                         upgradeButton.onclick = function(){
@@ -112,7 +113,36 @@
                     return upgradeButton;
                 }else{
                     const constructionStatusContainer = document.createElement("div");
-                    //TODO display progress bar
+                        constructionStatusContainer.classList.add("construction-status-container");
+
+                            const background = document.createElement("DIV");
+                                background.classList.add("progress-bar");
+                            const text = document.createElement("DIV");
+                                text.classList.add("progress-bar-text");
+                        switch(construction.status){
+                            case "QUEUED":
+                                constructionStatusContainer.classList.add("surface-footer-construction-queued");
+                                constructionStatusContainer.innerHTML = Localization.getAdditionalContent("construction-queued");
+                            break;
+                            case "RESOURCE_COLLECTION":
+                                    background.classList.add("surface-footer-construction-resource-collection");
+                                    background.style.width = construction.allocatedResourcesAmount / construction.requiredResourcesAmount * 100 + "%";
+                                constructionStatusContainer.appendChild(background);
+
+                                    text.innerHTML = construction.allocatedResourcesAmount + " / " + construction.requiredResourcesAmount;
+                                constructionStatusContainer.appendChild(text);
+                            break;
+                            case "IN_PROGRESS":
+                                    background.classList.add("surface-footer-construction-in-progress");
+                                    background.style.width = construction.currentWorkPoints / construction.requiredWorkPoints * 100 + "%";
+                                constructionStatusContainer.appendChild(background);
+
+                                    text.innerHTML = construction.currentWorkPoints + " / " + construction.requiredWorkPoints;
+                                constructionStatusContainer.appendChild(text);
+                            break;
+                            default:
+                                throwException("IllegalArgument", "Unknown constructionStatus " + construction.status);
+                        }
 
                     return constructionStatusContainer;
                 }

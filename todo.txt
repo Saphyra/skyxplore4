@@ -1,3 +1,4 @@
 //TODO Add gameId-playerId verification to endpoints
 //TODO API tests
 //TODO spinner when loading
+//TODO cancel constructions
