@@ -18,8 +18,12 @@ public class ConstructionViewQueryService {
 
     public ConstructionStatusView findByConstructionId(UUID constructionId) {
         Construction construction = constructionQueryService.findByConstructionId(constructionId);
+        return findByConstruction(construction);
+    }
+
+    public ConstructionStatusView findByConstruction(Construction construction) {
         return ConstructionStatusView.builder()
-            .constructionId(constructionId)
+            .constructionId(construction.getConstructionId())
             .status(construction.getConstructionStatus())
             .currentWorkPoints(construction.getCurrentWorkPoints())
             .requiredWorkPoints(construction.getConstructionRequirements().getWorkPoints())

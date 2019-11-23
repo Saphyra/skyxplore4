@@ -19,5 +19,5 @@ public class SurfaceView {
     @NonNull
     private SurfaceType surfaceType;
     private BuildingViewForSurface building;
-    private ConstructionStatusView constructionStatusView;
+    private ConstructionStatusView terraformStatus;
 }

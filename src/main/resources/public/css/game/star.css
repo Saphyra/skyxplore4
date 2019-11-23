@@ -1,7 +1,7 @@
 :root{
     --star-view-side-bar-width: 25rem;
     --surface-table-cell-size: 6vw;
-    --min-surface-table-cell-size: 5rem;
+    --min-surface-table-cell-size: 6rem;
 }
 
 .star-view-container .left-bar{
@@ -90,7 +90,7 @@
                 background-size: cover;
             }
 
-                .building-level{
+                .surface-header{
                     text-align: center;
                     opacity: 0.75;
                     background-color: rgb(0,0,0);
@@ -100,6 +100,7 @@
                     top: 0;
                     left: 0;
                     right: 0;
+                    white-space: initial;
                 }
 
                 .surface-footer{

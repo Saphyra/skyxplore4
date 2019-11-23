@@ -32,7 +32,9 @@
                     cell.classList.add("surface-table-cell");
                     if(surface.building){
                         cell.appendChild(createBuildingContent(surface.building));
-                    }else{
+                    }else if(surface.terraformStatus)
+                        cell.appendChild(createTerraformContent(surface.terraformStatus));
+                    else{
                         cell.appendChild(createBuildButton(surface.surfaceId));
                     }
                 row.appendChild(cell);
@@ -89,7 +91,7 @@
 
                 const levelCell = document.createElement("DIV");
                     levelCell.innerHTML = Localization.getAdditionalContent("level") + ": " + building.level;
-                    levelCell.classList.add("building-level");
+                    levelCell.classList.add("surface-header");
             content.appendChild(levelCell);
 
                 const footer = document.createElement("DIV");
@@ -147,6 +149,58 @@
                     return constructionStatusContainer;
                 }
             }
+        }
+
+        function createTerraformContent(terraformStatus){
+             const content = document.createElement("DIV");
+                content.classList.add("surface-content");
+
+                const header = document.createElement("DIV");
+                    header.innerHTML = Localization.getAdditionalContent("terraforming-in-progress");
+                    header.classList.add("surface-header");
+            content.appendChild(header);
+
+                const footer = document.createElement("DIV");
+                    footer.classList.add("surface-footer");
+                    footer.appendChild(createFooterContent(terraformStatus));
+                content.appendChild(footer);
+             return content;
+
+             function createFooterContent(terraformStatus){
+                 const constructionStatusContainer = document.createElement("div");
+                     constructionStatusContainer.classList.add("construction-status-container");
+
+                         const background = document.createElement("DIV");
+                             background.classList.add("progress-bar");
+                         const text = document.createElement("DIV");
+                             text.classList.add("progress-bar-text");
+                     switch(terraformStatus.status){
+                         case "QUEUED":
+                             constructionStatusContainer.classList.add("surface-footer-construction-queued");
+                             constructionStatusContainer.innerHTML = Localization.getAdditionalContent("construction-queued");
+                         break;
+                         case "RESOURCE_COLLECTION":
+                                 background.classList.add("surface-footer-construction-resource-collection");
+                                 background.style.width = terraformStatus.allocatedResourcesAmount / terraformStatus.requiredResourcesAmount * 100 + "%";
+                             constructionStatusContainer.appendChild(background);
+
+                                 text.innerHTML = terraformStatus.allocatedResourcesAmount + " / " + terraformStatus.requiredResourcesAmount;
+                             constructionStatusContainer.appendChild(text);
+                         break;
+                         case "IN_PROGRESS":
+                                 background.classList.add("surface-footer-construction-in-progress");
+                                 background.style.width = terraformStatus.currentWorkPoints / terraformStatus.requiredWorkPoints * 100 + "%";
+                             constructionStatusContainer.appendChild(background);
+
+                                 text.innerHTML = terraformStatus.currentWorkPoints + " / " + terraformStatus.requiredWorkPoints;
+                             constructionStatusContainer.appendChild(text);
+                         break;
+                         default:
+                             throwException("IllegalArgument", "Unknown constructionStatus " + terraformStatus.status);
+                     }
+
+                 return constructionStatusContainer;
+             }
         }
 
         function createBuildButton(surfaceId){
