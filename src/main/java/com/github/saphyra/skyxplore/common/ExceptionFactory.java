@@ -1,21 +1,18 @@
 package com.github.saphyra.skyxplore.common;
 
-import java.util.UUID;
-
 import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
-import com.github.saphyra.exceptionhandling.exception.BadRequestException;
-import com.github.saphyra.exceptionhandling.exception.ConflictException;
-import com.github.saphyra.exceptionhandling.exception.ForbiddenException;
-import com.github.saphyra.exceptionhandling.exception.NotFoundException;
-import com.github.saphyra.exceptionhandling.exception.RestException;
+import com.github.saphyra.exceptionhandling.exception.*;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.experimental.UtilityClass;
+
+import java.util.UUID;
 
 @UtilityClass
 public class ExceptionFactory {
     private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with id %s";
     private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
+    private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with id %s";
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
@@ -37,6 +34,10 @@ public class ExceptionFactory {
 
     public static RestException constructionInProgress(UUID surfaceId) {
         return new ConflictException(createErrorMessage(ErrorCode.CONSTRUCTION_IN_PROGRESS), String.format(CONSTRUCTION_IN_PROGRESS_PREFIX, surfaceId));
+    }
+
+    public static RestException constructionNotFound(UUID constructionId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.CONSTRUCTION_NOT_FOUND), String.format(CONSTRUCTION_NOT_FOUND_PREFIX, constructionId));
     }
 
     public static RestException dataNotFound(String dataId) {

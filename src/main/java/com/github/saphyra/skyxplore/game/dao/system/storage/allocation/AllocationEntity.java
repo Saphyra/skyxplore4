@@ -1,16 +1,12 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Builder
 @Data
@@ -24,6 +20,7 @@ class AllocationEntity {
     private String gameId;
     private String userId;
     private String starId;
+    private String externalReference;
     private String dataId;
 
     @Enumerated(EnumType.STRING)

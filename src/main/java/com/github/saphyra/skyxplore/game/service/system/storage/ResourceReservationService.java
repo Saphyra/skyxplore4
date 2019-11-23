@@ -1,9 +1,5 @@
 package com.github.saphyra.skyxplore.game.service.system.storage;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.ResourceData;
@@ -13,6 +9,10 @@ import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservat
 import com.github.saphyra.skyxplore.game.service.system.storage.allocation.AllocationService;
 import com.github.saphyra.skyxplore.game.service.system.storage.reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,13 +22,13 @@ public class ResourceReservationService {
     private final ReservationService reservationService;
     private final StorageQueryService storageQueryService;
 
-    public void reserveResources(Surface surface, Map<String, Integer> resources, ReservationType reservationType) {
+    public void reserveResources(Surface surface, Map<String, Integer> resources, ReservationType reservationType, UUID externalReference) {
         for (Map.Entry<String, Integer> resourceEntry : resources.entrySet()) {
-            reserveResource(surface, resourceEntry, reservationType);
+            reserveResource(surface, resourceEntry, reservationType, externalReference);
         }
     }
 
-    private void reserveResource(Surface surface, Map.Entry<String, Integer> resourceEntry, ReservationType reservationType) {
+    private void reserveResource(Surface surface, Map.Entry<String, Integer> resourceEntry, ReservationType reservationType, UUID externalReference) {
         ResourceData resourceData = gameDataQueryService.getResourceData(resourceEntry.getKey());
         int availableStoragePlace = storageQueryService.getAvailableStoragePlace(surface.getStarId(), resourceData.getStorageType());
         int available = storageQueryService.getAvailableResource(surface.getStarId(), resourceEntry.getKey());
@@ -36,7 +36,7 @@ public class ResourceReservationService {
         int requiredResourceAmount = resourceEntry.getValue();
         if (available > 0) {
             int toAllocate = Math.min(available, requiredResourceAmount);
-            allocationService.allocate(surface.getGameId(), surface.getUserId(), surface.getStarId(), resourceData, toAllocate, AllocationType.CONSTRUCTION);
+            allocationService.allocate(surface.getGameId(), surface.getUserId(), surface.getStarId(), externalReference, resourceData, toAllocate, AllocationType.CONSTRUCTION);
             requiredResourceAmount -= toAllocate;
         }
 

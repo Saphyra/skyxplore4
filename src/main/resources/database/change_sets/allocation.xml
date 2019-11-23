@@ -23,4 +23,16 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="add-column-external_reference-to-allocation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="allocation" columnName="external_reference"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="allocation">
+            <column name="external_reference" type="text"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

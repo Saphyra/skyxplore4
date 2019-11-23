@@ -33,6 +33,6 @@ public class BuildingController {
         @RequestBody OneStringParamRequest dataId
     ) {
         log.info("{} wants to build a {} on surface {}", playerId, dataId.getValue(), surfaceId);
-        buildNewBuildingService.buildNewBuilding(gameId, playerId, surfaceId, dataId.getValue());
+        buildNewBuildingService.buildNewBuilding(gameId, surfaceId, dataId.getValue());
     }
 }

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,15 +18,8 @@ public class SurfaceQueryService {
     private final UuidConverter uuidConverter;
 
     public Map<SurfaceType, List<Surface>> getMappingBySurfaceType(UUID starId) {
-        List<Surface> surfaces = surfaceDao.getByStarId(starId);
-        Map<SurfaceType, List<Surface>> result = new HashMap<>();
-        for (Surface surface : surfaces) {
-            if (!result.containsKey(surface.getSurfaceType())) {
-                result.put(surface.getSurfaceType(), new ArrayList<>());
-            }
-            result.get(surface.getSurfaceType()).add(surface);
-        }
-        return result;
+        return surfaceDao.getByStarId(starId).stream()
+            .collect(Collectors.groupingBy(Surface::getSurfaceType));
     }
 
     public Surface findBySurfaceId(UUID surfaceId) {

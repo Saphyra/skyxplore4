@@ -1,10 +1,5 @@
 package com.github.saphyra.skyxplore.game.service.system.storage;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
@@ -17,6 +12,10 @@ import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,12 +27,12 @@ public class StorageQueryService {
     private final ResourceDao resourceDao;
     private final StorageBuildingService storageBuildingService;
 
-    public int getAvailableStoragePlace(UUID starId, StorageType storageType) {
+    int getAvailableStoragePlace(UUID starId, StorageType storageType) {
         int capacity = getCapacity(starId, storageType);
         int usedStorage = getUsedStorage(starId, storageType);
         int reservedStorage = getReservedStorage(starId, storageType);
         int available = capacity - usedStorage - reservedStorage;
-        log.info("Available storage for {} at system {}: {}. Capacity: {}, usedStorage: {}, reservedStorage: {}", storageType, starId, available, capacity, usedStorage, reservedStorage);
+        log.debug("Available storage for {} at system {}: {}. Capacity: {}, usedStorage: {}, reservedStorage: {}", storageType, starId, available, capacity, usedStorage, reservedStorage);
         return available;
     }
 
@@ -41,32 +40,36 @@ public class StorageQueryService {
     private int getCapacity(UUID starId, StorageType storageType) {
         StorageBuilding buildingData = storageBuildingService.findByStorageType(storageType);
         return buildingDao.getByStarIdAndDataId(starId, buildingData.getId()).stream()
-                .mapToInt(building -> building.getLevel() * buildingData.getCapacity())
-                .sum();
+            .mapToInt(building -> building.getLevel() * buildingData.getCapacity())
+            .sum();
     }
 
     private int getUsedStorage(UUID starId, StorageType storageType) {
         return resourceDao.getLatestByStarIdAndStorageType(starId, storageType).stream()
-                .mapToInt(Resource::getAmount)
-                .sum();
+            .mapToInt(Resource::getAmount)
+            .sum();
     }
 
     public int getReservedStorage(UUID starId, StorageType storageType) {
         return getReservationsByStarIdAndStorageType(starId, storageType).stream()
-                .mapToInt(Reservation::getAmount)
-                .sum();
+            .mapToInt(Reservation::getAmount)
+            .sum();
     }
 
     int getAvailableResource(UUID starId, String resourceId) {
         return resourceDao.findLatestByStarIdAndDataId(starId, resourceId)
-                .map(Resource::getAmount)
-                .orElse(0);
+            .map(Resource::getAmount)
+            .orElse(0);
     }
 
     public Integer getAllocatedStorage(UUID starId, StorageType storageType) {
         return allocationDao.getByStarIdAndStorageType(starId, storageType).stream()
             .mapToInt(Allocation::getAmount)
             .sum();
+    }
+
+    public List<Allocation> getAllocationsByExternalReference(UUID externalReference) {
+        return allocationDao.getByExternalReference(externalReference);
     }
 
     public Integer getReservationByStarIdAndDataId(UUID starId, String dataId) {

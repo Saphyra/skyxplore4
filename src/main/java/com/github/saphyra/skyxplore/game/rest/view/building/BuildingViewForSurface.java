@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.building;
 
+import com.github.saphyra.skyxplore.game.rest.view.ConstructionStatusView;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -18,5 +19,5 @@ public class BuildingViewForSurface {
     @NonNull
     private final Integer level;
 
-    private Object construction;//TODO proper response
+    private final ConstructionStatusView construction;
 }

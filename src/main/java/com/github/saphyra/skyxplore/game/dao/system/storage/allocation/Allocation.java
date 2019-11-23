@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
-import java.util.UUID;
-
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.UUID;
 
 @Data
 @Builder
@@ -23,6 +23,15 @@ public class Allocation {
     @NonNull
     private final UUID starId;
 
+    /**
+     * Id of the order/construction the allocation belongs to
+     */
+    @NonNull
+    private final UUID externalReference;
+
+    /**
+     * Id of the resource
+     */
     @NonNull
     private final String dataId;
 

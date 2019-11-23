@@ -2,6 +2,7 @@
   "BAD_CREDENTIALS": "Hibás felhasználónév vagy jelszó",
   "BUILDING_NOT_FOUND": "Épület nem található.",
   "CONSTRUCTION_IN_PROGRESS": "Már van folyamatban építkezés.",
+  "CONSTRUCTION_NOT_FOUND": "Az építkezés nem található",
   "DATA_NOT_FOUND": "Játékadat nem található.",
   "GAME_NOT_FOUND": "A játék nem található.",
   "GENERAL_ERROR": "Hiba - ${generalErrorKey}",

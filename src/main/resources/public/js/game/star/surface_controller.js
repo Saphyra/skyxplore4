@@ -111,7 +111,10 @@
                         }
                     return upgradeButton;
                 }else{
+                    const constructionStatusContainer = document.createElement("div");
                     //TODO display progress bar
+
+                    return constructionStatusContainer;
                 }
             }
         }

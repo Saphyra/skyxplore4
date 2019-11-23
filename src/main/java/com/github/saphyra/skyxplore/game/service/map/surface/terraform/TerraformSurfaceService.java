@@ -1,9 +1,5 @@
 package com.github.saphyra.skyxplore.game.service.map.surface.terraform;
 
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.TerraformingPossibilitiesService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibility;
@@ -17,6 +13,10 @@ import com.github.saphyra.skyxplore.game.service.system.costruction.Construction
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -28,14 +28,14 @@ public class TerraformSurfaceService {
     private final SurfaceQueryService surfaceQueryService;
     private final TerraformingPossibilitiesService terraformingPossibilitiesService;
 
+    @Transactional
     public void terraform(UUID gameId, UUID playerId, UUID surfaceId, SurfaceType surfaceType) {
         Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
         verifyTerraformAvailable(surface, surfaceType);
 
         TerraformingPossibility terraformingPossibility = getTerraformingPossibility(surface.getSurfaceType(), surfaceType);
 
-        resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getResources(), ReservationType.TERRAFORMING);
-        constructionService.create(
+        UUID constructionId = constructionService.create(
             gameId,
             surface.getUserId(),
             surface.getStarId(),
@@ -44,6 +44,7 @@ public class TerraformSurfaceService {
             ConstructionType.TERRAFORMING,
             surfaceId
         );
+        resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getResources(), ReservationType.TERRAFORMING, constructionId);
     }
 
     private void verifyTerraformAvailable(Surface surface, SurfaceType surfaceType) {
