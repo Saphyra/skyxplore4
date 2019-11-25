@@ -1,18 +1,20 @@
 package com.github.saphyra.skyxplore.game.service.system.storage;
 
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.ResourceData;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
+import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.system.storage.allocation.AllocationService;
 import com.github.saphyra.skyxplore.game.service.system.storage.reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +23,16 @@ public class ResourceReservationService {
     private final GameDataQueryService gameDataQueryService;
     private final ReservationService reservationService;
     private final StorageQueryService storageQueryService;
+    private final SurfaceQueryService surfaceQueryService;
+
+    public void reserveResources(UUID surfaceId, Map<String, Integer> resources, ReservationType reservationType, UUID externalReference) {
+        reserveResources(
+            surfaceQueryService.findBySurfaceId(surfaceId),
+            resources,
+            reservationType,
+            externalReference
+        );
+    }
 
     public void reserveResources(Surface surface, Map<String, Integer> resources, ReservationType reservationType, UUID externalReference) {
         for (Map.Entry<String, Integer> resourceEntry : resources.entrySet()) {

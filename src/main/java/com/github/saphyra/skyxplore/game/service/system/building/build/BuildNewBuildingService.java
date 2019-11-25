@@ -1,5 +1,11 @@
 package com.github.saphyra.skyxplore.game.service.system.building.build;
 
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
@@ -17,11 +23,6 @@ import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservat
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +42,8 @@ public class BuildNewBuildingService {
         BuildingData buildingData = gameDataQueryService.findBuildingData(dataId);
         Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
         validateBuildingLocation(buildingData, surface);
+
+        //TODO check researchRequirement
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(1);
         Map<String, Integer> resources = constructionRequirements.getResources();

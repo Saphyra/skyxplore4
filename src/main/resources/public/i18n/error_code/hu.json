@@ -10,6 +10,7 @@
   "INVALID_GAME_ACCESS": "Hozzáférés megtagadva.",
   "INVALID_LOCALE": "Érvénytelen nyelv.",
   "INVALID_STAR_ACCESS": "A csillagrendszer nem megtekinthető.",
+  "MAX_LEVEL_REACHED": "A maximális szint elérve.",
   "PLAYER_NOT_FOUND": "Játékos nem található",
   "SESSION_EXPIRED": "A bejelentkezés lejárt.",
   "STAR_NOT_FOUND": "A csillag nem található.",
@@ -17,6 +18,7 @@
   "SURFACE_NOT_FOUND": "Felszín nem található.",
   "TERRAFORMING_ALREADY_IN_PROGRESS": "Az átalakítás már folyamatban van.",
   "TERRAFORMING_NOT_POSSIBLE": "Átalakítás nem lehetséges.",
+  "UPGRADE_ALREADY_IN_PROGRESS": "A fejlesztés már folyamatban.",
   "USER_NAME_ALREADY_EXISTS": "Felhasználónév foglalt.",
   "USER_NOT_FOUND": "Felhasználó nem található."
 }
