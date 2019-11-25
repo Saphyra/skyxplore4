@@ -15,6 +15,7 @@ window.Mapping = {
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
+    UPGRADE_BUILDING: "/api/game/building/*/upgrade",
 
     ACCOUNT_PAGE: "/web/account",
     GAME_PAGE: "/web/game/",

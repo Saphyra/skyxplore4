@@ -94,10 +94,12 @@
                     levelCell.classList.add("surface-header");
             content.appendChild(levelCell);
 
-                const footer = document.createElement("DIV");
-                    footer.classList.add("surface-footer");
-                    footer.appendChild(createFooterContent(building));
-            content.appendChild(footer);
+                if(building.level < building.maxLevel){
+                    const footer = document.createElement("DIV");
+                        footer.classList.add("surface-footer");
+                        footer.appendChild(createFooterContent(building));
+                    content.appendChild(footer);
+                }
             return content;
 
             function createBuildingIdClass(dataId){
@@ -110,7 +112,7 @@
                     const upgradeButton = document.createElement("button");
                         upgradeButton.innerHTML = Localization.getAdditionalContent("upgrade");
                         upgradeButton.onclick = function(){
-                            //TODO upgrade building
+                            upgradeBuilding(building.buildingId);
                         }
                     return upgradeButton;
                 }else{
@@ -215,5 +217,14 @@
             footer.appendChild(buildButton);
             return footer;
         }
+    }
+
+    function upgradeBuilding(buildingId){
+        const request = new Request(HttpMethod.POST, Mapping.concat(Mapping.UPGRADE_BUILDING, buildingId));
+            request.processValidResponse = function(){
+                notificationService.showSuccess(Localization.getAdditionalContent("upgrade-started"));
+                eventProcessor.processEvent(new Event(events.REFRESH_WINDOWS, [WindowType.STAR]));
+            }
+        dao.sendRequestAsync(request);
     }
 })();

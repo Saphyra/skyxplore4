@@ -48,6 +48,14 @@
         "energy": 1,
         "wood": 1
       }
+    },
+    "2": {
+      "research": [],
+      "workPoints": 2,
+      "resources": {
+        "energy": 2,
+        "wood": 2
+      }
     }
   }
 }
