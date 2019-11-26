@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConstructionRequirements {
-    private Integer workPoints;
-    private List<String> research;
-    private Map<String, Integer> resources;
+    private Integer currentWorkPoints;
+    private Integer requiredWorkPoints;
+    private List<String> researchRequirements;
+    private Map<String, Integer> requiredResources;
 }

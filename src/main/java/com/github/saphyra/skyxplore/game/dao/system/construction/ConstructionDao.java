@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,5 +39,9 @@ public class ConstructionDao extends AbstractDao<ConstructionEntity, Constructio
                 uuidConverter.convertDomain(surfaceId)
             )
         );
+    }
+
+    public List<Construction> getByStarId(UUID starId) {
+        return converter.convertEntity(repository.getByStarId(uuidConverter.convertDomain(starId)));
     }
 }

@@ -2,6 +2,8 @@ package com.github.saphyra.skyxplore.game.dao.system.construction;
 
 import java.util.UUID;
 
+import com.github.saphyra.skyxplore.game.common.interfaces.DisplayedQueueable;
+import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.NonNull;
 
 @Data
 @Builder
-public class Construction {
+public class Construction implements DisplayedQueueable {
     @NonNull
     private final UUID constructionId;
 
@@ -37,8 +39,21 @@ public class Construction {
     @NonNull
     private final UUID externalId;
 
+    @NonNull
+    private final String dataId;
+
     private Integer currentWorkPoints;
 
     @NonNull
     private Integer priority;
+
+    @Override
+    public QueueType getQueueType() {
+        return QueueType.CONSTRUCTION;
+    }
+
+    @Override
+    public UUID getId() {
+        return constructionId;
+    }
 }

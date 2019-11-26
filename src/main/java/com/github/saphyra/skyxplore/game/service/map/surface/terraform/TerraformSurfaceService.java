@@ -44,7 +44,7 @@ public class TerraformSurfaceService {
             ConstructionType.TERRAFORMING,
             surfaceId
         );
-        resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getResources(), ReservationType.TERRAFORMING, constructionId);
+        resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getRequiredResources(), ReservationType.TERRAFORMING, constructionId);
     }
 
     private void verifyTerraformAvailable(Surface surface, SurfaceType surfaceType) {

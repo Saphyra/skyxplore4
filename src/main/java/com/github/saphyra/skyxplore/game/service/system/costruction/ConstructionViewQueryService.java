@@ -26,8 +26,8 @@ public class ConstructionViewQueryService {
             .constructionId(construction.getConstructionId())
             .status(construction.getConstructionStatus())
             .currentWorkPoints(construction.getCurrentWorkPoints())
-            .requiredWorkPoints(construction.getConstructionRequirements().getWorkPoints())
-            .requiredResourcesAmount(calculateRequiredResourcesAmount(construction.getConstructionRequirements().getResources()))
+            .requiredWorkPoints(construction.getConstructionRequirements().getCurrentWorkPoints())
+            .requiredResourcesAmount(calculateRequiredResourcesAmount(construction.getConstructionRequirements().getRequiredResources()))
             .allocatedResourcesAmount(fetchAllocatedResourcesAmount(construction.getConstructionId()))
             .build();
     }

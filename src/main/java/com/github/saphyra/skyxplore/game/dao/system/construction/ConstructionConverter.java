@@ -22,20 +22,30 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .gameId(uuidConverter.convertEntity(constructionEntity.getGameId()))
             .userId(uuidConverter.convertEntity(constructionEntity.getUserId()))
             .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
-            .constructionRequirements(convertRequirements(constructionEntity.getResourceRequirements(), constructionEntity.getWorkPoints()))
+            .constructionRequirements(convertRequirements(
+                constructionEntity.getResourceRequirements(),
+                constructionEntity.getCurrentWorkPoints(),
+                constructionEntity.getRequiredWorkPoints()
+            ))
             .constructionType(constructionEntity.getConstructionType())
             .constructionStatus(constructionEntity.getConstructionStatus())
             .currentWorkPoints(constructionEntity.getCurrentWorkPoints())
             .priority(constructionEntity.getPriority())
             .externalId(uuidConverter.convertEntity(constructionEntity.getExternalId()))
+            .dataId(constructionEntity.getDataId())
             .surfaceId(uuidConverter.convertEntity(constructionEntity.getSurfaceId()))
             .build();
     }
 
-    private ConstructionRequirements convertRequirements(Map<String, Integer> resourceRequirements, Integer workPoints) {
+    private ConstructionRequirements convertRequirements(
+        Map<String, Integer> resourceRequirements,
+        Integer currentWorkPoints,
+        Integer requiredWorkPoints
+    ) {
         return ConstructionRequirements.builder()
-            .workPoints(workPoints)
-            .resources(new HashMap<>(resourceRequirements))
+            .currentWorkPoints(currentWorkPoints)
+            .requiredWorkPoints(requiredWorkPoints)
+            .requiredResources(new HashMap<>(resourceRequirements))
             .build();
     }
 
@@ -46,13 +56,15 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
             .userId(uuidConverter.convertDomain(domain.getUserId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
-            .resourceRequirements(domain.getConstructionRequirements().getResources())
-            .workPoints(domain.getConstructionRequirements().getWorkPoints())
+            .resourceRequirements(domain.getConstructionRequirements().getRequiredResources())
+            .currentWorkPoints(domain.getConstructionRequirements().getCurrentWorkPoints())
+            .requiredWorkPoints(domain.getConstructionRequirements().getRequiredWorkPoints())
             .constructionStatus(domain.getConstructionStatus())
             .constructionType(domain.getConstructionType())
             .currentWorkPoints(domain.getCurrentWorkPoints())
             .priority(domain.getPriority())
             .externalId(uuidConverter.convertDomain(domain.getExternalId()))
+            .dataId(domain.getDataId())
             .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
             .build();
     }

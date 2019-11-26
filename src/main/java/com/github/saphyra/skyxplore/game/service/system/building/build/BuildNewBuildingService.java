@@ -46,10 +46,18 @@ public class BuildNewBuildingService {
         //TODO check researchRequirement
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(1);
-        Map<String, Integer> resources = constructionRequirements.getResources();
+        Map<String, Integer> resources = constructionRequirements.getRequiredResources();
 
         UUID buildingId = idGenerator.randomUUID();
-        UUID constructionId = constructionService.create(gameId, surface.getUserId(), surface.getStarId(), surfaceId, constructionRequirements, ConstructionType.BUILDING, buildingId);
+        UUID constructionId = constructionService.create(
+            gameId,
+            surface.getUserId(),
+            surface.getStarId(),
+            surfaceId,
+            constructionRequirements,
+            ConstructionType.BUILDING,
+            buildingId
+        );
         resourceReservationService.reserveResources(surface, resources, ReservationType.CONSTRUCTION, constructionId);
 
         Building building = Building.builder()

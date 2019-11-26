@@ -39,4 +39,24 @@
             <column name="required_amount" type="integer"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="rename-column_work-points_to_required-work-points" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="construction" columnName="work_points"/>
+        </preConditions>
+
+        <renameColumn tableName="construction" oldColumnName="work_points" newColumnName="required_work_points" columnDataType="integer"/>
+    </changeSet>
+
+    <changeSet id="add-column_data-id_to-construction" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="construction" columnName="data_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="construction">
+            <column name="data_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

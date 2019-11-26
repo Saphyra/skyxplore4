@@ -37,7 +37,7 @@ public class UpgradeBuildingService {
         validateUpgradeRequirements(building, buildingData);
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(building.getLevel() + 1);
-        Map<String, Integer> resources = constructionRequirements.getResources();
+        Map<String, Integer> resources = constructionRequirements.getRequiredResources();
 
         UUID constructionId = constructionService.create(
             gameId,

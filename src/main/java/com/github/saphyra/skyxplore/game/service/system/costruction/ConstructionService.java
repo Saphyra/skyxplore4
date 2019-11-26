@@ -27,7 +27,15 @@ public class ConstructionService {
         constructionDao.deleteByGameIdAndUserId(gameDeletedEvent.getGameId(), gameDeletedEvent.getUserId());
     }
 
-    public UUID create(UUID gameId, UUID userId, UUID starId, UUID surfaceId, ConstructionRequirements constructionRequirements, ConstructionType constructionType, UUID externalId) {
+    public UUID create(
+        UUID gameId,
+        UUID userId,
+        UUID starId,
+        UUID surfaceId,
+        ConstructionRequirements constructionRequirements,
+        ConstructionType constructionType,
+        UUID externalId
+    ) {
         Construction construction = Construction.builder()
                 .constructionId(idGenerator.randomUUID())
                 .gameId(gameId)

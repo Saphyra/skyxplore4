@@ -37,7 +37,7 @@ class ConstructionEntity {
     @CollectionTable(name = "construction_resource_requirements", joinColumns = @JoinColumn(name = "construction_id"))
     private Map<String, Integer> resourceRequirements;
 
-    private Integer workPoints;
+    private Integer requiredWorkPoints;
 
     private Integer currentWorkPoints;
 
@@ -50,5 +50,6 @@ class ConstructionEntity {
     private Integer priority;
 
     private String externalId;
+    private String dataId;
     private String surfaceId;
 }

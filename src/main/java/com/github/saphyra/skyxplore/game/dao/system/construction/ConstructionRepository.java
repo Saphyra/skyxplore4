@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,6 @@ interface ConstructionRepository extends JpaRepository<ConstructionEntity, Strin
     Optional<ConstructionEntity> findByConstructionTypeAndExternalId(ConstructionType constructionType, String externalId);
 
     Optional<ConstructionEntity> findByConstructionTypeAndSurfaceId(ConstructionType constructionType, String surfaceId);
+
+    List<ConstructionEntity> getByStarId(String starId);
 }
