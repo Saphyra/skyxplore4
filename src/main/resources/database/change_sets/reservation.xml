@@ -23,4 +23,15 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="add-column-external_reference-to-reservation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="reservation" columnName="external_reference"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="reservation">
+            <column name="external_reference" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

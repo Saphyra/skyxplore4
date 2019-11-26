@@ -24,6 +24,7 @@ class ReservationEntity {
     private String gameId;
     private String userId;
     private String starId;
+    private String externalReference;
     private String dataId;
     private Integer amount;
 
