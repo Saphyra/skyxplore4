@@ -52,7 +52,15 @@ public class Construction implements DisplayedQueueable {
 
     @Override
     public QueueType getQueueType() {
-        return QueueType.CONSTRUCTION;
+        switch (constructionType) {
+            case TERRAFORMING:
+                return QueueType.TERRAFORMING;
+            case BUILDING:
+            case UPGRADE_BUILDING:
+                return QueueType.CONSTRUCTION;
+            default:
+                throw new IllegalStateException(constructionType + " cannot be mapped to QueueType");
+        }
     }
 
     @Override

@@ -82,6 +82,7 @@
                 const rightBar = document.createElement("DIV");
                     rightBar.classList.add("bar");
                     rightBar.classList.add("right-bar");
+                    rightBar.classList.add("star-view-queue-container")
 
                     const title = document.createElement("DIV");
                         title.classList.add("bar-title");

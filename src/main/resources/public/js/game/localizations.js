@@ -7,5 +7,6 @@
         this.resourceLocalization = new CustomLocalization("resource");
         this.storageTypeLocalization = new CustomLocalization("storage_type");
         this.surfaceTypeLocalization = new CustomLocalization("surface_type");
+        this.queueTypeLocalization = new CustomLocalization("queue_type");
     }
 })();
