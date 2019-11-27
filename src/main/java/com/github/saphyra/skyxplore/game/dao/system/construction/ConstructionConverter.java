@@ -24,7 +24,6 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
             .constructionRequirements(convertRequirements(
                 constructionEntity.getResourceRequirements(),
-                constructionEntity.getCurrentWorkPoints(),
                 constructionEntity.getRequiredWorkPoints()
             ))
             .constructionType(constructionEntity.getConstructionType())
@@ -39,11 +38,9 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
 
     private ConstructionRequirements convertRequirements(
         Map<String, Integer> resourceRequirements,
-        Integer currentWorkPoints,
         Integer requiredWorkPoints
     ) {
         return ConstructionRequirements.builder()
-            .currentWorkPoints(currentWorkPoints)
             .requiredWorkPoints(requiredWorkPoints)
             .requiredResources(new HashMap<>(resourceRequirements))
             .build();
@@ -57,7 +54,7 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .userId(uuidConverter.convertDomain(domain.getUserId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
             .resourceRequirements(domain.getConstructionRequirements().getRequiredResources())
-            .currentWorkPoints(domain.getConstructionRequirements().getCurrentWorkPoints())
+            .currentWorkPoints(domain.getCurrentWorkPoints())
             .requiredWorkPoints(domain.getConstructionRequirements().getRequiredWorkPoints())
             .constructionStatus(domain.getConstructionStatus())
             .constructionType(domain.getConstructionType())

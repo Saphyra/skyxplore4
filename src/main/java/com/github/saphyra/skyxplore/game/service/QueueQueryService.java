@@ -30,7 +30,7 @@ public class QueueQueryService {
     private QueueView convert(Queueable queueItem) {
         return QueueView.builder()
             .status(queueItem.getConstructionStatus())
-            .currentWorkPoints(queueItem.getConstructionRequirements().getCurrentWorkPoints())
+            .currentWorkPoints(queueItem.getCurrentWorkPoints())
             .requiredResourcesAmount(queueItem.getConstructionRequirements().getRequiredWorkPoints())
             .requiredResourcesAmount(getRequiredResourcesAmount(queueItem))
             .allocatedResourcesAmount(getAllocatedResourcesAmount(queueItem))

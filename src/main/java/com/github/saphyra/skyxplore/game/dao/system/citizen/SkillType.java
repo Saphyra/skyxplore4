@@ -5,6 +5,7 @@ public enum SkillType {
     BUILDING,
     DOCTORING,
     ENGINEERING,
+    ENTERTAINING,
     FARMING,
     MELEE_FIGHTING,
     PILOTING,

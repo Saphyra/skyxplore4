@@ -12,6 +12,8 @@ public interface Queueable extends Prioritizable {
 
     ConstructionStatus getConstructionStatus();
 
+    Integer getCurrentWorkPoints();
+
     ConstructionRequirements getConstructionRequirements();
 
     String getDataId();

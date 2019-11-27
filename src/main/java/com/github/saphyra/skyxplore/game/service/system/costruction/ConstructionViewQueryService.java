@@ -1,14 +1,15 @@
 package com.github.saphyra.skyxplore.game.service.system.costruction;
 
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
 import com.github.saphyra.skyxplore.game.rest.view.ConstructionStatusView;
 import com.github.saphyra.skyxplore.game.service.system.storage.StorageQueryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class ConstructionViewQueryService {
             .constructionId(construction.getConstructionId())
             .status(construction.getConstructionStatus())
             .currentWorkPoints(construction.getCurrentWorkPoints())
-            .requiredWorkPoints(construction.getConstructionRequirements().getCurrentWorkPoints())
+            .requiredWorkPoints(construction.getCurrentWorkPoints())
             .requiredResourcesAmount(calculateRequiredResourcesAmount(construction.getConstructionRequirements().getRequiredResources()))
             .allocatedResourcesAmount(fetchAllocatedResourcesAmount(construction.getConstructionId()))
             .build();
