@@ -56,7 +56,8 @@ public class BuildNewBuildingService {
             surfaceId,
             constructionRequirements,
             ConstructionType.BUILDING,
-            buildingId
+            buildingId,
+            buildingData.getId()
         );
         resourceReservationService.reserveResources(surface, resources, ReservationType.CONSTRUCTION, constructionId);
 

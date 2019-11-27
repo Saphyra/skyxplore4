@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.rest.view.queue;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
@@ -22,8 +23,10 @@ public class QueueView extends ProductionStatusView {
     @NonNull
     private final Integer priority;
 
+    private final String additionalData;
+
     @NonNull
-    private final String dataId;
+    private final OffsetDateTime addedAt;
 
     @Builder
     public QueueView(
@@ -35,11 +38,14 @@ public class QueueView extends ProductionStatusView {
         @NonNull QueueType queueType,
         @NonNull UUID queueItemId,
         @NonNull Integer priority,
-        @NonNull String dataId) {
+        String additionalData,
+        @NonNull OffsetDateTime addedAt
+    ) {
         super(status, currentWorkPoints, requiredWorkPoints, requiredResourcesAmount, allocatedResourcesAmount);
         this.queueType = queueType;
         this.queueItemId = queueItemId;
         this.priority = priority;
-        this.dataId = dataId;
+        this.additionalData = additionalData;
+        this.addedAt = addedAt;
     }
 }

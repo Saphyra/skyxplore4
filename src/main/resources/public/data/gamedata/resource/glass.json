@@ -3,9 +3,9 @@
   "buildable": true,
   "storageType": "bulk",
   "constructionRequirements": {
-    "workPoints": 1,
-    "research": ["todo"],
-    "resources": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": ["todo"],
+    "resourceRequirements": {
       "energy": 1,
       "sand": 1
     }

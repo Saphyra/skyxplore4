@@ -3,9 +3,9 @@
   "buildable": true,
   "storageType": "bulk",
   "constructionRequirements": {
-    "workPoints": 1,
-    "research": [],
-    "resources": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [],
+    "resourceRequirements": {
       "energy": 1,
       "plastic": 1,
       "raw_food": 1,

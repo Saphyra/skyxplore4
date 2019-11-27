@@ -2,9 +2,9 @@
   {
     "surfaceType": "concrete",
     "constructionRequirements": {
-      "research": [],
-      "workPoints": 1,
-      "resources": {
+      "researchRequirements": [],
+      "requiredWorkPoints": 1,
+      "requiredResources": {
         "stone": 1,
         "water": 1,
         "energy": 1
@@ -14,9 +14,9 @@
   {
     "surfaceType": "forest",
     "constructionRequirements": {
-      "research": ["todo"],
-      "workPoints": 1,
-      "resources": {
+      "researchRequirements": ["todo"],
+      "requiredWorkPoints": 1,
+      "requiredResources": {
         "wood": 1,
         "water": 1,
         "energy": 1
@@ -26,9 +26,9 @@
   {
     "surfaceType": "lake",
     "constructionRequirements": {
-      "research": ["todo"],
-      "workPoints": 1,
-      "resources": {
+      "researchRequirements": ["todo"],
+      "requiredWorkPoints": 1,
+      "requiredResources": {
         "energy": 1,
         "water": 1
       }

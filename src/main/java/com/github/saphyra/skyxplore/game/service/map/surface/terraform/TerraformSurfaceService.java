@@ -1,5 +1,11 @@
 package com.github.saphyra.skyxplore.game.service.map.surface.terraform;
 
+import java.util.UUID;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.TerraformingPossibilitiesService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.TerraformingPossibility;
@@ -13,10 +19,6 @@ import com.github.saphyra.skyxplore.game.service.system.costruction.Construction
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -42,7 +44,8 @@ public class TerraformSurfaceService {
             surfaceId,
             terraformingPossibility.getConstructionRequirements(),
             ConstructionType.TERRAFORMING,
-            surfaceId
+            surfaceId,
+            surfaceType.name()
         );
         resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getRequiredResources(), ReservationType.TERRAFORMING, constructionId);
     }

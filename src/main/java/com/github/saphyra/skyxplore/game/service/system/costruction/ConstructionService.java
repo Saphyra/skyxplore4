@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import com.github.saphyra.skyxplore.common.DateTimeUtil;
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
@@ -20,6 +21,7 @@ public class ConstructionService {
     private static final int DEFAULT_PRIORITY = 5;
 
     private final ConstructionDao constructionDao;
+    private final DateTimeUtil dateTimeUtil;
     private final IdGenerator idGenerator;
 
     @EventListener
@@ -34,7 +36,8 @@ public class ConstructionService {
         UUID surfaceId,
         ConstructionRequirements constructionRequirements,
         ConstructionType constructionType,
-        UUID externalId
+        UUID externalId,
+        String additionalData
     ) {
         Construction construction = Construction.builder()
                 .constructionId(idGenerator.randomUUID())
@@ -48,6 +51,8 @@ public class ConstructionService {
                 .currentWorkPoints(0)
                 .priority(DEFAULT_PRIORITY)
                 .externalId(externalId)
+            .additionalData(additionalData)
+            .addedAt(dateTimeUtil.now())
                 .build();
         constructionDao.save(construction);
         return construction.getConstructionId();

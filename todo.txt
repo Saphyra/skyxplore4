@@ -1,3 +1,4 @@
+//TODO add primary keys to liquibase
 //TODO Add gameId-playerId verification to endpoints
 //TODO API tests
 //TODO spinner when loading

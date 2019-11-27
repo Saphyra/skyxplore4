@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.converter.ConverterBase;
+import com.github.saphyra.skyxplore.common.DateTimeUtil;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Component
 public class ConstructionConverter extends ConverterBase<ConstructionEntity, Construction> {
+    private final DateTimeUtil dateTimeUtil;
     private final UuidConverter uuidConverter;
 
     @Override
@@ -31,8 +33,9 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .currentWorkPoints(constructionEntity.getCurrentWorkPoints())
             .priority(constructionEntity.getPriority())
             .externalId(uuidConverter.convertEntity(constructionEntity.getExternalId()))
-            .dataId(constructionEntity.getDataId())
             .surfaceId(uuidConverter.convertEntity(constructionEntity.getSurfaceId()))
+            .additionalData(constructionEntity.getAdditionalData())
+            .addedAt(dateTimeUtil.convertEntity(constructionEntity.getAddedAt()))
             .build();
     }
 
@@ -61,8 +64,9 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .currentWorkPoints(domain.getCurrentWorkPoints())
             .priority(domain.getPriority())
             .externalId(uuidConverter.convertDomain(domain.getExternalId()))
-            .dataId(domain.getDataId())
             .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
+            .additionalData(domain.getAdditionalData())
+            .addedAt(dateTimeUtil.convertDomain(domain.getAddedAt()))
             .build();
     }
 }

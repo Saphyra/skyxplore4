@@ -1,6 +1,7 @@
 (function StarController(){
     scriptLoader.loadScript("/js/game/star/surface_controller.js");
     scriptLoader.loadScript("/js/game/star/system_details_controller.js");
+    scriptLoader.loadScript("/js/game/star/queue_controller.js");
 
     events.SHOW_STAR = "show_star";
 
@@ -122,6 +123,7 @@
         return function(){
             systemDetailsController.showSystemDetails(starId, createLeftBarId(starId))
             surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
+            queueController.showQueue(starId, createRightBarId(starId));
         }
     }
 

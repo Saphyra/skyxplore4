@@ -42,17 +42,17 @@
   "workers": 1,
   "constructionRequirements": {
     "1": {
-      "research": [],
-      "workPoints": 1,
-      "resources": {
+      "researchRequirements": [],
+      "requiredWorkPoints": 1,
+      "requiredResources": {
         "energy": 1,
         "wood": 1
       }
     },
     "2": {
-      "research": [],
-      "workPoints": 2,
-      "resources": {
+      "researchRequirements": [],
+      "requiredWorkPoints": 2,
+      "requiredResources": {
         "energy": 2,
         "wood": 2
       }

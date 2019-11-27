@@ -46,7 +46,8 @@ public class UpgradeBuildingService {
             building.getSurfaceId(),
             constructionRequirements,
             ConstructionType.UPGRADE_BUILDING,
-            buildingId
+            buildingId,
+            buildingData.getId()
         );
 
         resourceReservationService.reserveResources(

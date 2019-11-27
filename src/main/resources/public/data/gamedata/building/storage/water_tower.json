@@ -6,9 +6,9 @@
   "defaultBuilding": true,
   "constructionRequirements": {
     "1": {
-      "research": [],
-      "workPoints": 1,
-      "resources": {
+      "researchRequirements": [],
+      "requiredWorkPoints": 1,
+      "requiredResources": {
         "energy": 1,
         "iron": 1,
         "stone": 1

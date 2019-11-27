@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.common.interfaces;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
@@ -16,5 +17,7 @@ public interface Queueable extends Prioritizable {
 
     ConstructionRequirements getConstructionRequirements();
 
-    String getDataId();
+    String getAdditionalData();
+
+    OffsetDateTime addedAt();
 }

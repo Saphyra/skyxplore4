@@ -64,7 +64,8 @@ public class ResourceReservationService {
                 resourceEntry.getKey(),
                 requiredResourceAmount,
                 resourceData.getStorageType(),
-                reservationType
+                reservationType,
+                externalReference
             );
         }
     }

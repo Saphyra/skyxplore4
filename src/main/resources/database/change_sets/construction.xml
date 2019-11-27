@@ -59,4 +59,24 @@
             <column name="data_id" type="text"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="rename-column_data-id_to_additional-data" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="construction" columnName="data_id"/>
+        </preConditions>
+
+        <renameColumn tableName="construction" oldColumnName="data_id" newColumnName="additional_data" columnDataType="text"/>
+    </changeSet>
+
+    <changeSet id="add-column_dadded-at_to-construction" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="construction" columnName="added_at"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="construction">
+            <column name="added_at" type="bigint"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

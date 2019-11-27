@@ -31,13 +31,14 @@ public class QueueQueryService {
         return QueueView.builder()
             .status(queueItem.getConstructionStatus())
             .currentWorkPoints(queueItem.getCurrentWorkPoints())
-            .requiredResourcesAmount(queueItem.getConstructionRequirements().getRequiredWorkPoints())
+            .requiredWorkPoints(queueItem.getConstructionRequirements().getRequiredWorkPoints())
             .requiredResourcesAmount(getRequiredResourcesAmount(queueItem))
             .allocatedResourcesAmount(getAllocatedResourcesAmount(queueItem))
             .queueType(queueItem.getQueueType())
             .queueItemId(queueItem.getId())
             .priority(queueItem.getPriority())
-            .dataId(queueItem.getDataId())
+            .additionalData(queueItem.getAdditionalData())
+            .addedAt(queueItem.addedAt())
             .build();
     }
 

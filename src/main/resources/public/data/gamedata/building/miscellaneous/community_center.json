@@ -1,17 +1,17 @@
 {
   "id": "community_center",
   "buildingType": "miscellaneous",
-  "placed": [
+  "placeableSurfaceTypes": [
     "concrete"
   ],
   "workers": 1,
   "constructionRequirements": {
     "1": {
-      "research": [
+      "researchRequirements": [
         "todo"
       ],
-      "workPoints": 1,
-      "resources": {
+      "requiredWorkPoints": 1,
+      "requiredResources": {
         "energy": 1,
         "wood": 1,
         "stone": 1
