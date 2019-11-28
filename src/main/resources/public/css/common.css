@@ -171,13 +171,27 @@ input:disabled, button:disabled, textarea:disabled, .disabled{
     background-color: rgba(150,150,150,0.8);
 }
 
-/*=======ADDIITIONAL=======*/
+/*=======ADDITIONAL=======*/
 .notification-container{
     color: red;
 }
 
 .centered{
     text-align: center;
+}
+
+.spinner{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/images/spinner.gif");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 10% 10%;
+    background-color: rgba(0,0,0,0.5);
+    background-repeat: no-repeat;
 }
 
 /*======SCROLLBAR======*/

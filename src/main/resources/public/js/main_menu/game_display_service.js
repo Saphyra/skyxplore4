@@ -62,10 +62,12 @@
             return;
         }
 
+        spinner.open();
         const request = new Request(HttpMethod.DELETE, Mapping.concat(Mapping.DELETE_GAME, gameId));
             request.processValidResponse = function(){
                 notificationService.showSuccess(Localization.getAdditionalContent("game-deleted"));
                 loadGames();
+                spinner.close();
             }
         dao.sendRequestAsync(request);
     }

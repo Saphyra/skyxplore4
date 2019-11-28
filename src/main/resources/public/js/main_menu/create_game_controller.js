@@ -1,5 +1,6 @@
 (function CreateGameController(){
     scriptLoader.loadScript("/js/common/validation_util.js");
+    scriptLoader.loadScript("/js/common/animation/spinner.js");
 
     const INVALID_GAME_NAME = "#invalid-new-game-name";
 
@@ -56,6 +57,7 @@
                 return;
             }
 
+            spinner.open();
             const gameName = getGameName();
                 document.getElementById("new-game-name").value = "";
             const request = new Request(HttpMethod.PUT, Mapping.CREATE_GAME, {value: gameName});
