@@ -12,9 +12,19 @@
         </preConditions>
 
         <createTable tableName="storage">
-            <column name="user_id" type="text"/>
-            <column name="storage_key" type="text"/>
+            <column name="user_id" type="varchar(37)"/>
+            <column name="storage_key" type="varchar(255)"/>
             <column name="value" type="text"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_storage" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="storage" primaryKeyName="storage-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="storage" columnNames="storage_key, user_id" constraintName="storage-pk"/>
     </changeSet>
 </databaseChangeLog>

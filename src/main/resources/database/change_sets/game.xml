@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="game">
-            <column name="game_id" type="text"/>
+            <column name="game_id" type="varchar(37)"/>
             <column name="user_id" type="text"/>
             <column name="game_name" type="text"/>
         </createTable>
@@ -28,5 +28,15 @@
         <addColumn tableName="game">
             <column name="round" type="number"/>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_game" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="game" primaryKeyName="game-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="game" columnNames="game_id" constraintName="game-pk"/>
     </changeSet>
 </databaseChangeLog>

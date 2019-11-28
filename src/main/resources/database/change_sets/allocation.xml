@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="allocation">
-            <column name="allocation_id" type="text"/>
+            <column name="allocation_id" type="varchar(37)"/>
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
             <column name="star_id" type="text"/>
@@ -35,4 +35,13 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="add-primary-key-to_allocation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="allocation" primaryKeyName="allocation-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="allocation" columnNames="allocation_id" constraintName="allocation-pk"/>
+    </changeSet>
 </databaseChangeLog>

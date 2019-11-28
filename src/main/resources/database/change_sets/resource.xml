@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="resource">
-            <column name="resource_id" type="text"/>
+            <column name="resource_id" type="varchar(37)"/>
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
             <column name="storage_type" type="text"/>
@@ -21,5 +21,15 @@
             <column name="amount" type="number"/>
             <column name="round" type="number"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_resource" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="resource" primaryKeyName="resource-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="resource" columnNames="resource_id" constraintName="resource-pk"/>
     </changeSet>
 </databaseChangeLog>

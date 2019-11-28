@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="citizen">
-            <column name="citizen_id" type="text"/>
+            <column name="citizen_id" type="varchar(37)"/>
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
             <column name="location_type" type="text"/>
@@ -30,7 +30,7 @@
         </preConditions>
 
         <createTable tableName="skill">
-            <column name="skill_id" type="text"/>
+            <column name="skill_id" type="varchar(37)"/>
             <column name="citizen_id" type="text"/>
             <column name="skill_type" type="text"/>
             <column name="level" type="number"/>
@@ -49,5 +49,25 @@
         <addColumn tableName="citizen">
             <column name="citizen_name" type="text"/>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_citizen" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="citizen" primaryKeyName="citizen-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="citizen" columnNames="citizen_id" constraintName="citizen-pk"/>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_skill" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="skill" primaryKeyName="skill-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="skill" columnNames="skill_id" constraintName="skill-pk"/>
     </changeSet>
 </databaseChangeLog>

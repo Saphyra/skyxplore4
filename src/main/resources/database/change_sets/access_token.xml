@@ -12,9 +12,19 @@
         </preConditions>
 
         <createTable tableName="access_token">
-            <column name="access_token_id" type="text"/>
+            <column name="access_token_id" type="varchar(37)"/>
             <column name="user_id" type="text"/>
             <column name="last_access" type="datetime"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_access-token" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="access_token" primaryKeyName="access_token-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="access_token" columnNames="access_token_id" constraintName="access_token-pk"/>
     </changeSet>
 </databaseChangeLog>

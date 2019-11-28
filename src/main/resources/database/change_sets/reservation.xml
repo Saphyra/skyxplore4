@@ -12,7 +12,7 @@
         </preConditions>
 
         <createTable tableName="reservation">
-            <column name="reservation_id" type="text"/>
+            <column name="reservation_id" type="varchar(37)"/>
             <column name="game_id" type="text"/>
             <column name="user_id" type="text"/>
             <column name="star_id" type="text"/>
@@ -33,5 +33,15 @@
         <addColumn tableName="reservation">
             <column name="external_reference" type="text"/>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="add-primary-key-to_reservation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="reservation" primaryKeyName="reservation-pk"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey tableName="reservation" columnNames="reservation_id" constraintName="reservation-pk"/>
     </changeSet>
 </databaseChangeLog>
