@@ -1,5 +1,6 @@
 window.Mapping = {
     BUILD_BUILDING: "/api/game/building/*",
+    CANCEL_QUEUE_ITEM: "/api/game/star/{starId}/queue/{queueItemId}",
     CREATE_GAME: "/api/game",
     DELETE_GAME: "/api/game/*",
     GET_BUILDABLE_BUILDINGS: "/api/data/building/*",
@@ -16,6 +17,7 @@ window.Mapping = {
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
+    UPDATE_PRIORITY: "/api/game/star/{starId}/queue/{queueItemId}",
     UPGRADE_BUILDING: "/api/game/building/*/upgrade",
 
     ACCOUNT_PAGE: "/web/account",
@@ -31,12 +33,12 @@ window.Mapping = {
         let result = path;
         for(let index in pathVariables){
             const key = createKey(index);
-            result = path.replace(key, pathVariables[index]);
+            result = result.replace(key, pathVariables[index]);
         }
 
         return result;
         function createKey(index){
-            return "{"+index+"}";
+            return "{" + index + "}";
         }
     }
 }

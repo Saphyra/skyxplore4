@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.service;
+package com.github.saphyra.skyxplore.game.service.queue;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class QueueQueryService {
-    private final List<QueueItemProvider> queueSuppliers;
+    private final List<QueueItemDao> queueSuppliers;
     private final StorageQueryService storageQueryService;
 
     public List<QueueView> getQueueOfStar(UUID starId) {

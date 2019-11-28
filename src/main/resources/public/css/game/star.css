@@ -242,3 +242,11 @@
         margin-top: 0.5rem;
         margin-bottom: 0.25rem;
     }
+
+        .star-view-queue-slider-container{
+            text-align: center;
+        }
+
+            .star-view-queue-slider-container input[type=range]{
+                vertical-align: middle;
+            }

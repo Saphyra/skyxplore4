@@ -36,10 +36,10 @@
 
                 const resourceTable = document.createElement("table");
                     resourceTable.appendChild(createTableHeader());
-                    resourceTable.appendChild(createWorkPoints(building.constructionRequirements.workPoints));
+                    resourceTable.appendChild(createWorkPoints(building.constructionRequirements.requiredWorkPoints));
             container.appendChild(resourceTable);
 
-                new Stream(entryList(building.constructionRequirements.resources))
+                new Stream(entryList(building.constructionRequirements.requiredResources))
                     .sorted(function(a, b){return resourceLocalization.get(a.getKey()).localeCompare(resourceLocalization.get(b.getKey()))})
                     .map(createResource)
                     .forEach(function(item){resourceTable.appendChild(item)});

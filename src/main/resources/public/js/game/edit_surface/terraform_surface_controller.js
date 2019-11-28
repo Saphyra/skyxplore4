@@ -44,9 +44,9 @@
             function createResourceContainer(constructionRequirements){
                 const resourceContainer = document.createElement("table");
                     resourceContainer.appendChild(createHeaderRow());
-                    resourceContainer.appendChild(createWorkPointsRow(constructionRequirements.workPoints));
+                    resourceContainer.appendChild(createWorkPointsRow(constructionRequirements.requiredWorkPoints));
 
-                    new Stream(entryList(constructionRequirements.resources))
+                    new Stream(entryList(constructionRequirements.requiredResources))
                         .sorted(function(a, b){return resourceLocalization.get(a.getKey()).localeCompare(resourceLocalization.get(b.getKey()))})
                         .map(createResourceItem)
                         .forEach(function(r){resourceContainer.appendChild(r)});

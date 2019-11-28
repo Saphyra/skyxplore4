@@ -35,6 +35,8 @@
     "level-summary": "Összesített szint",
     "no-terraform-possibilities": "Ez a felszín nem átalakítható.",
     "population": "Lakosság",
+    "priority": "Prioritás",
+    "queue-item-cancelled": "Elem visszavonva.",
     "queue-title": "Gyártósor",
     "reserved": "Lefoglalt",
     "resource": "Nyersanyag",
