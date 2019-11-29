@@ -13,6 +13,8 @@ import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
+import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
 import com.github.saphyra.skyxplore.game.rest.request.UpdatePriorityRequest;
 import com.github.saphyra.skyxplore.game.service.queue.QueueItemDao;
 import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
@@ -23,10 +25,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class ConstructionQueueDao implements QueueItemDao {
-    private final ConstructionDao constructionDao;
-    private final ConstructionQueryService constructionQueryService;
+    private final AllocationDao allocationDao;
     private final BuildingDao buildingDao;
     private final BuildingQueryService buildingQueryService;
+    private final ConstructionDao constructionDao;
+    private final ConstructionQueryService constructionQueryService;
+    private final ReservationDao reservationDao;
     private final UuidConverter uuidConverter;
 
     @Override
@@ -59,5 +63,7 @@ public class ConstructionQueueDao implements QueueItemDao {
             }
         }
         constructionDao.deleteById(uuidConverter.convertDomain(queueItemId));
+        allocationDao.deleteByExternalReference(construction.getConstructionId());
+        reservationDao.deleteByExternalReference(construction.getConstructionId());
     }
 }

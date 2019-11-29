@@ -1,22 +1,23 @@
 :root{
-    --star-view-side-bar-width: 25rem;
+    --star-view-left-bar-width: 33rem;
+    --star-view-right-bar-width: 17rem;
     --surface-table-cell-size: 6vw;
     --min-surface-table-cell-size: 6rem;
 }
 
 .star-view-container .left-bar{
-    width: var(--star-view-side-bar-width);
+    width: var(--star-view-left-bar-width);
 }
 
 .star-view-container .right-bar{
-    width: var(--star-view-side-bar-width);
+    width: var(--star-view-right-bar-width);
 }
 
 .surface-table-container{
     position: absolute;
     top: 0;
-    right: var(--star-view-side-bar-width);
-    left: var(--star-view-side-bar-width);
+    right: var(--star-view-right-bar-width);
+    left: var(--star-view-left-bar-width);
     bottom: 0;
     overflow: auto;
 }
@@ -187,6 +188,23 @@
             .surface-content.building-water_tower{
                 background-image: url("/images/building/water_tower.png");
             }
+
+    .star-view-storage-summary-container{
+        position: relative;
+        height: 1.5rem;
+    }
+
+        .star-view-storage-summary-container .actual-progress-bar{
+            background-color: blue;
+        }
+
+        .star-view-storage-summary-container .allocated-progress-bar{
+            background-color: darkblue;
+        }
+
+        .star-view-storage-summary-container .reserved-progress-bar{
+            background-color: purple;
+        }
 
     .detailed-resource-list-container{
         display: none;

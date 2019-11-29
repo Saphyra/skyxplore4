@@ -3,6 +3,8 @@ package com.github.saphyra.skyxplore.game.service.queue;
 import java.util.List;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
@@ -21,6 +23,7 @@ public class QueueService {
             .updatePriority(starId, queueItemId, request);
     }
 
+    @Transactional
     public void cancel(UUID starId, UUID queueItemId, QueueType queueType) {
         getQueueItemDaoByQueueType(queueType)
             .cancel(starId, queueItemId, queueType);

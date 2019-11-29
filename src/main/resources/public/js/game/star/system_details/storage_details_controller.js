@@ -77,9 +77,37 @@
             }
 
             function createStorageSummary(storage, detailedListContainer){
-                //TODO add indicators
+                const actualWidth = (storage.actual - storage.allocated) / storage.capacity * 100;
+                const allocatedWidth = storage.allocated / storage.capacity * 100;
+                const reservedWidth = storage.reserved / storage.capacity * 100;
+
                 const summaryContainer = document.createElement("div");
-                    summaryContainer.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.allocated + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("reserved") + ": " + storage.reserved;
+                    summaryContainer.classList.add("star-view-storage-summary-container");
+
+                    const actualProgressBar = document.createElement("div");
+                        actualProgressBar.classList.add("progress-bar");
+                        actualProgressBar.classList.add("actual-progress-bar");
+                        actualProgressBar.style.width = actualWidth + "%";
+                summaryContainer.appendChild(actualProgressBar);
+
+                    const allocatedProgressBar = document.createElement("div");
+                            allocatedProgressBar.classList.add("progress-bar");
+                            allocatedProgressBar.classList.add("allocated-progress-bar");
+                            allocatedProgressBar.style.left = actualWidth + "%";
+                            allocatedProgressBar.style.width = allocatedWidth + "%";
+                summaryContainer.appendChild(allocatedProgressBar);
+
+                    const reservedProgressBar = document.createElement("div");
+                            reservedProgressBar.classList.add("progress-bar");
+                            reservedProgressBar.classList.add("reserved-progress-bar");
+                            reservedProgressBar.style.left = (actualWidth + allocatedWidth) + "%";
+                            reservedProgressBar.style.width = reservedWidth + "%";
+                summaryContainer.appendChild(reservedProgressBar);
+
+                    const summaryText = document.createElement("div");
+                        summaryText.classList.add("progress-bar-text");
+                        summaryText.innerHTML = storageTypeLocalization.get(storage.storageType) + ": " + storage.actual + " (" + storage.allocated + ") / " + storage.capacity + " - " + Localization.getAdditionalContent("reserved") + ": " + storage.reserved;
+                summaryContainer.appendChild(summaryText);
 
                     const extendButton = document.createElement("button");
                         extendButton.innerHTML = "+";
