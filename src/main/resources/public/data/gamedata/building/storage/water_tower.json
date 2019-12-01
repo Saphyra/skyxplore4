@@ -2,7 +2,7 @@
   "id": "water_tower",
   "buildingType": "storage",
   "stores": "liquid",
-  "capacity": 100,
+  "capacity": 1000,
   "defaultBuilding": true,
   "constructionRequirements": {
     "1": {
