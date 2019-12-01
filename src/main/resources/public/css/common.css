@@ -189,7 +189,7 @@ input:disabled, button:disabled, textarea:disabled, .disabled{
     background-image: url("/images/spinner.gif");
     background-position: center;
     background-attachment: fixed;
-    background-size: 10% 10%;
+    background-size: 10vw 10vw;
     background-color: rgba(0,0,0,0.5);
     background-repeat: no-repeat;
 }
