@@ -2,7 +2,7 @@
   "id": "foundry",
   "buildingType": "production",
   "gives": {
-    "iron": {
+    "steel": {
       "placed": [
         "concrete"
       ],
