@@ -1,0 +1,42 @@
+{
+  "id": "oil_mining",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [
+    ],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "plastics_manufacturing",
+        "type": "RESEARCH"
+      },
+      {
+        "dataId": "oil_rig",
+        "type": "BUILDING"
+      },
+      {
+        "dataId": "oil_refinery",
+        "type": "BUILDING"
+      },
+      {
+        "dataId": "oil_refinery",
+        "type": "BUILDING"
+      },
+      {
+        "dataId": "oil",
+        "type": "PRODUCTION"
+      },
+      {
+        "dataId": "fuel",
+        "type": "PRODUCTION"
+      }
+    ]
+  },
+  "usedIn": [
+    {
+      "dataId": "gas_turbine",
+      "type": "BUILDING"
+    }
+  ]
+}

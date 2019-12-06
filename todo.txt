@@ -1,3 +1,4 @@
+//TODO validate data files loaded
 //TODO display missing research requirements
 //TODO block construction if requirements are not met
 //TODO Add gameId-playerId verification to endpoints

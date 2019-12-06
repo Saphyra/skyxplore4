@@ -1,0 +1,16 @@
+{
+  "id": "plastics_manufacturing",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [
+    ],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "plastic",
+        "type": "PRODUCTION"
+      }
+    ]
+  }
+}

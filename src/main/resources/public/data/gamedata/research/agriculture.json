@@ -1,0 +1,28 @@
+{
+  "id": "agriculture",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [
+    ],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "food_packaging",
+        "type": "RESEARCH"
+      },
+      {
+        "dataId": "farm",
+        "type": "BUILDING"
+      },
+      {
+        "dataId": "food",
+        "type": "PRODUCTION"
+      },
+      {
+        "dataId": "wheat",
+        "type": "PRODUCTION"
+      }
+    ]
+  }
+}

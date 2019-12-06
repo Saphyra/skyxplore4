@@ -1,0 +1,15 @@
+{
+  "id": "community_center",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "community_center",
+        "type": "BUILDING"
+      }
+    ]
+  }
+}

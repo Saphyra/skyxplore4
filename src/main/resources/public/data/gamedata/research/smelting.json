@@ -1,0 +1,23 @@
+{
+  "id": "smelting",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "forge",
+        "type": "BUILDING"
+      },
+      {
+        "dataId": "iron",
+        "type": "PRODUCTION"
+      },
+      {
+        "dataId": "stealmaking",
+        "type": "RESEARCH"
+      }
+    ]
+  }
+}

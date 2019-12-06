@@ -1,0 +1,15 @@
+{
+  "id": "public_education",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "school",
+        "type": "BUILDING"
+      }
+    ]
+  }
+}

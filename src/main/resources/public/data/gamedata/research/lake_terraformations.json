@@ -1,0 +1,24 @@
+{
+  "id": "lake_terraformations",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [
+    ],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "lake_to_concrete",
+        "type": "TERRAFORMING"
+      },
+      {
+        "dataId": "lake_to_forest",
+        "type": "TERRAFORMING"
+      },
+      {
+        "dataId": "lake_to_desert",
+        "type": "TERRAFORMING"
+      }
+    ]
+  }
+}

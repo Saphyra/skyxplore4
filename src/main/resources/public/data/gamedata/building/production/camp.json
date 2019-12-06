@@ -8,6 +8,13 @@
         "mountain"
       ],
       "amount": 1
+    },
+    "leather": {
+      "placed": [
+        "forest",
+        "mountain"
+      ],
+      "amount": 1
     }
   },
   "workers": 1,

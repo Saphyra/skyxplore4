@@ -1,0 +1,15 @@
+{
+  "id": "glass_production",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "glass",
+        "type": "PRODUCTION"
+      }
+    ]
+  }
+}

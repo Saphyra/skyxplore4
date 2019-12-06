@@ -1,0 +1,20 @@
+{
+  "id": "concrete_terraformations",
+  "constructionRequirements": {
+    "requiredWorkPoints": 1,
+    "researchRequirements": [
+    ],
+    "requiredResources": {
+    },
+    "unlocks": [
+      {
+        "dataId": "concrete_to_forest",
+        "type": "TERRAFORMING"
+      },
+      {
+        "dataId": "concrete_to_lake",
+        "type": "TERRAFORMING"
+      }
+    ]
+  }
+}
