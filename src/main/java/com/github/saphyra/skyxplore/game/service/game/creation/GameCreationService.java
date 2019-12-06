@@ -1,21 +1,20 @@
 package com.github.saphyra.skyxplore.game.service.game.creation;
 
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
+
 import com.github.saphyra.skyxplore.game.dao.game.Game;
 import com.github.saphyra.skyxplore.game.dao.game.GameDao;
 import com.github.saphyra.skyxplore.game.service.map.star.creation.StarCreationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StopWatch;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class GameCreationService {
-    private final ApplicationEventPublisher eventPublisher;
     private final GameDao gameDao;
     private final GameFactroy gameFactroy;
     private final StarCreationService starCreationService;
