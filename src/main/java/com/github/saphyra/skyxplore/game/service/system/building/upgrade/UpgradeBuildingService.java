@@ -15,6 +15,7 @@ import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
+import com.github.saphyra.skyxplore.game.service.ResearchRequirementChecker;
 import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
@@ -29,6 +30,7 @@ public class UpgradeBuildingService {
     private final BuildingQueryService buildingQueryService;
     private final ConstructionService constructionService;
     private final GameDataQueryService gameDataQueryService;
+    private final ResearchRequirementChecker researchRequirementChecker;
     private final ResourceReservationService resourceReservationService;
 
     public void upgrade(UUID gameId, UUID buildingId) {
@@ -37,6 +39,7 @@ public class UpgradeBuildingService {
         validateUpgradeRequirements(building, buildingData);
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(building.getLevel() + 1);
+        researchRequirementChecker.checkResearchRequirements(building.getStarId(), building.getUserId(), constructionRequirements.getResearchRequirements());
         Map<String, Integer> resources = constructionRequirements.getRequiredResources();
 
         UUID constructionId = constructionService.create(
@@ -66,7 +69,7 @@ public class UpgradeBuildingService {
             throw ExceptionFactory.upgradeAlreadyInProgress(building.getBuildingId());
         }
 
-        //TODO check researchRequirements
+
         if (building.getLevel() >= buildingData.getConstructionRequirements().size()) {
             throw ExceptionFactory.maxLevelReached(building.getBuildingId());
         }

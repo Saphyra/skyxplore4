@@ -6,9 +6,6 @@
       "placed": [
         "concrete"
       ],
-      "uses": {
-        "fuel": 1
-      },
       "amount": 1
     }
   },

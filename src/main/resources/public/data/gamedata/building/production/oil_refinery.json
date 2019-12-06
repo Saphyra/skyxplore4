@@ -6,20 +6,12 @@
       "placed": [
         "concrete"
       ],
-      "uses": {
-        "energy": 1,
-        "oil": 1
-      },
       "amount": 1
     },
     "plastic": {
       "placed": [
         "concrete"
       ],
-      "uses": {
-        "energy": 1,
-        "oil": 1
-      },
       "amount": 1
     }
   },

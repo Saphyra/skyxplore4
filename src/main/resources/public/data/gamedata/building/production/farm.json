@@ -29,9 +29,6 @@
         "desert",
         "forest"
       ],
-      "uses": {
-        "water": 1
-      },
       "amount": 1
     }
   },

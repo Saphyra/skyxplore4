@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.data.gamedata.domain;
+package com.github.saphyra.skyxplore.data.gamedata.domain.terraforming;
 
 import java.util.ArrayList;
 

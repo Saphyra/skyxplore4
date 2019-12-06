@@ -42,4 +42,20 @@
 
         <addPrimaryKey tableName="star" columnNames="star_id" constraintName="star-pk"/>
     </changeSet>
+
+    <changeSet id="create-table-research" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="research"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="research">
+            <column name="research_id" type="varchar(37)"/>
+            <column name="star_id" type="varchar(37)"/>
+            <column name="data_id" type="text"/>
+        </createTable>
+
+        <addPrimaryKey tableName="research" columnNames="research_id" constraintName="research-pk"/>
+    </changeSet>
 </databaseChangeLog>

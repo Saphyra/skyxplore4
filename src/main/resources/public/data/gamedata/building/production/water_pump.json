@@ -6,9 +6,6 @@
       "placed": [
         "lake"
       ],
-      "uses": {
-        "energy": 1
-      },
       "amount": 1
     }
   },

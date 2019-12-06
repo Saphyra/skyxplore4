@@ -6,9 +6,6 @@
       "placed": [
         "forest"
       ],
-      "uses": {
-        "energy": 1
-      },
       "amount": 1
     }
   },

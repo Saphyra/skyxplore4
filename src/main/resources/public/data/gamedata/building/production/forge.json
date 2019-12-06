@@ -6,10 +6,6 @@
       "placed": [
         "concrete"
       ],
-      "uses": {
-        "energy": 1,
-        "ore": 1
-      },
       "amount": 1
     }
   },

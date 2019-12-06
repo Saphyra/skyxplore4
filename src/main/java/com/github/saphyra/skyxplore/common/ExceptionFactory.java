@@ -7,6 +7,7 @@ import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
 import com.github.saphyra.exceptionhandling.exception.ForbiddenException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;
+import com.github.saphyra.exceptionhandling.exception.PreconditionFailedException;
 import com.github.saphyra.exceptionhandling.exception.RestException;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
@@ -25,6 +26,7 @@ public class ExceptionFactory {
     private static final String INVALID_STAR_ACCESS_PREFIX = "Player %s has no access to access to star %s";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
     private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
+    private static final String RESEARCH_NOT_PRESENT_PREFIX = "Research not present.";
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String STORAGE_FULL_PREFIX = "Storage for type %s is full at system %s";
     private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
@@ -76,6 +78,10 @@ public class ExceptionFactory {
 
     public static RestException playerNotFound(UUID userId, UUID gameId) {
         return new NotFoundException(createErrorMessage(ErrorCode.PLAYER_NOT_FOUND), String.format(PLAYER_NOT_FOUND_PREFIX, gameId, userId));
+    }
+
+    public static RestException researchNotPresentException() {
+        return new PreconditionFailedException(createErrorMessage(ErrorCode.RESEARCH_NOT_PRESENT), RESEARCH_NOT_PRESENT_PREFIX);
     }
 
     public static RestException starNotFound(UUID starId) {

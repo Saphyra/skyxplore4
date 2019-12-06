@@ -1,16 +1,16 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building.production;
 
-import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
-import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import static java.util.Objects.isNull;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.isNull;
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

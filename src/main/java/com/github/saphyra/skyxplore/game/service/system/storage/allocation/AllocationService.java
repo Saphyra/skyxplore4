@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.service.system.storage.allocation;
 
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
-import com.github.saphyra.skyxplore.data.gamedata.domain.ResourceData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceData;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationType;

@@ -1,6 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.map.star;
 
+import java.util.List;
 import java.util.UUID;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import lombok.AllArgsConstructor;
@@ -29,4 +34,9 @@ public class Star  {
 
     @NonNull
     private UUID ownerId;
+
+    @NonNull
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "star_id")
+    private List<Research> researches;
 }

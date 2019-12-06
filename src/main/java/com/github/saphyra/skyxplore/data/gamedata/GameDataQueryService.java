@@ -2,7 +2,8 @@ package com.github.saphyra.skyxplore.data.gamedata;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.gamedata.domain.ResourceData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceDataService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;

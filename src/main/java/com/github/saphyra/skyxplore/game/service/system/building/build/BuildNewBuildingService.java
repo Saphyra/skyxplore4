@@ -16,6 +16,7 @@ import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
+import com.github.saphyra.skyxplore.game.service.ResearchRequirementChecker;
 import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
@@ -34,6 +35,7 @@ public class BuildNewBuildingService {
     private final GameDataQueryService gameDataQueryService;
     private final IdGenerator idGenerator;
     private final ResourceReservationService resourceReservationService;
+    private final ResearchRequirementChecker researchRequirementChecker;
     private final SurfaceDao surfaceDao;
     private final SurfaceQueryService surfaceQueryService;
 
@@ -43,9 +45,8 @@ public class BuildNewBuildingService {
         Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
         validateBuildingLocation(buildingData, surface);
 
-        //TODO check researchRequirement
-
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(1);
+        researchRequirementChecker.checkResearchRequirements(surface.getStarId(), surface.getUserId(), constructionRequirements.getResearchRequirements());
         Map<String, Integer> resources = constructionRequirements.getRequiredResources();
 
         UUID buildingId = idGenerator.randomUUID();

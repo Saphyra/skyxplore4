@@ -1,5 +1,6 @@
-package com.github.saphyra.skyxplore.data.gamedata.domain;
+package com.github.saphyra.skyxplore.data.gamedata.domain.resource;
 
+import com.github.saphyra.skyxplore.data.gamedata.domain.GameDataItem;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.Data;

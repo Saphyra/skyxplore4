@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
-import com.github.saphyra.skyxplore.data.gamedata.domain.ResourceData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceData;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;

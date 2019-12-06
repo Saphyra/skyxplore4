@@ -6,9 +6,6 @@
       "placed": [
         "oil_field"
       ],
-      "uses": {
-        "energy": 1
-      },
       "amount": 1
     }
   },

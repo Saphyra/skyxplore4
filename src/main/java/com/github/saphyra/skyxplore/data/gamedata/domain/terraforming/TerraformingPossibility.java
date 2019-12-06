@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.data.gamedata.domain;
+package com.github.saphyra.skyxplore.data.gamedata.domain.terraforming;
 
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;

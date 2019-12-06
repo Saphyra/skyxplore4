@@ -1,11 +1,11 @@
-package com.github.saphyra.skyxplore.data.gamedata;
+package com.github.saphyra.skyxplore.data.gamedata.domain.resource;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Component;
 
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
-import com.github.saphyra.skyxplore.data.gamedata.domain.ResourceData;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 
 @Component

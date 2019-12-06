@@ -6,9 +6,6 @@
       "placed": [
         "concrete"
       ],
-      "uses": {
-        "coal": 1
-      },
       "amount": 1
     }
   },

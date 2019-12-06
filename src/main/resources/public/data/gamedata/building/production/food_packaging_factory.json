@@ -6,13 +6,6 @@
       "placed": [
         "concrete"
       ],
-      "uses": {
-        "energy": 1,
-        "fish": 1,
-        "meat": 1,
-        "wheat": 1,
-        "plastic": 1
-      },
       "amount": 1
     }
   },
