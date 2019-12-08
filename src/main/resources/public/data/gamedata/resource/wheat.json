@@ -4,7 +4,7 @@
   "storageType": "bulk",
   "constructionRequirements": {
     "requiredWorkPoints": 1,
-    "researchRequirements": [],
+    "researchRequirements": ["agriculture"],
     "resourceRequirements": {
       "water": 1
     }

@@ -2,7 +2,7 @@
   {
     "surfaceType": "concrete",
     "constructionRequirements": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": ["forest_terraformations"],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "stone": 1,
@@ -14,7 +14,7 @@
   {
     "surfaceType": "lake",
     "constructionRequirements": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": ["forest_terraformations"],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,
@@ -25,7 +25,7 @@
   {
     "surfaceType": "desert",
     "constructionRequirements": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": ["forest_terraformations"],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

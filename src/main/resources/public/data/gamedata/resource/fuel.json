@@ -4,7 +4,7 @@
   "storageType": "liquid",
   "constructionRequirements": {
     "requiredWorkPoints": 1,
-    "researchRequirements": ["todo"],
+    "researchRequirements": ["oil_mining"],
     "resourceRequirements": {
       "energy": 1,
       "oil": 1

@@ -8,7 +8,7 @@
   "constructionRequirements": {
     "1": {
       "researchRequirements": [
-        "todo"
+        "community_center"
       ],
       "requiredWorkPoints": 1,
       "requiredResources": {

@@ -12,7 +12,10 @@
   "workers": 0,
   "constructionRequirements": {
     "1": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": [
+        "energy_generation",
+        "oil_mining"
+      ],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

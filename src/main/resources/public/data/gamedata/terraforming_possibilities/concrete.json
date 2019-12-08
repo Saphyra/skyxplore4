@@ -13,7 +13,7 @@
   {
     "surfaceType": "forest",
     "constructionRequirements": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": ["concrete_terraformations"],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "wood": 1,
@@ -25,7 +25,7 @@
   {
     "surfaceType": "lake",
     "constructionRequirements": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": ["concrete_terraformations"],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

@@ -4,7 +4,7 @@
   "storageType": "bulk",
   "constructionRequirements": {
     "requiredWorkPoints": 1,
-    "researchRequirements": ["todo"],
+    "researchRequirements": ["plastic_manufacturing"],
     "resourceRequirements": {
       "energy": 1,
       "oil": 1

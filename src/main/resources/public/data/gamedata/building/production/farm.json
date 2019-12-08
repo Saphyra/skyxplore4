@@ -27,7 +27,7 @@
   "workers": 1,
   "constructionRequirements": {
     "1": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": ["agriculture"],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

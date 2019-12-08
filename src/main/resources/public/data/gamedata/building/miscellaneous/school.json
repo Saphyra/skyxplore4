@@ -8,7 +8,7 @@
   "constructionRequirements": {
     "1": {
       "researchRequirements": [
-        "todo"
+        "public_education"
       ],
       "requiredWorkPoints": 1,
       "requiredResources": {
