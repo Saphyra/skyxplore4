@@ -1,5 +1,4 @@
 {
   "id": "energy",
-  "buildable": false,
   "storageType": "energy"
 }

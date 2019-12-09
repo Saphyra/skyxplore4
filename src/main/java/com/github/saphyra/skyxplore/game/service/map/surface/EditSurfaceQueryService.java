@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
-import com.github.saphyra.skyxplore.data.gamedata.TerraformingPossibilitiesService;
+import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibilitiesService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibilities;
 import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibility;

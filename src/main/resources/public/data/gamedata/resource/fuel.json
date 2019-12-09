@@ -1,6 +1,5 @@
 {
   "id": "fuel",
-  "buildable": true,
   "storageType": "liquid",
   "constructionRequirements": {
     "requiredWorkPoints": 1,

@@ -1,14 +1,4 @@
 {
   "id": "steel",
-  "buildable": true,
-  "storageType": "bulk",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": ["stealmaking"],
-    "resourceRequirements": {
-      "coal": 1,
-      "energy": 1,
-      "iron": 1
-    }
-  }
+  "storageType": "bulk"
 }

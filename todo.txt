@@ -1,6 +1,4 @@
-//TODO validate data files when loaded
 //TODO move resources' construction requirements to the producer buildings
-//TODO check resource producer availability when creating order
 //TODO display missing research requirements
 //TODO block construction if requirements are not met
 //TODO Add gameId-playerId verification to endpoints

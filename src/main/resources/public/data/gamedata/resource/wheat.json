@@ -1,6 +1,5 @@
 {
   "id": "wheat",
-  "buildable": true,
   "storageType": "bulk",
   "constructionRequirements": {
     "requiredWorkPoints": 1,

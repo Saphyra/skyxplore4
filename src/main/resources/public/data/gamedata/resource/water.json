@@ -1,5 +1,4 @@
 {
   "id": "water",
-  "buildable": false,
   "storageType": "liquid"
 }

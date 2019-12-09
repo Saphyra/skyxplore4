@@ -1,8 +1,7 @@
-package com.github.saphyra.skyxplore.data.gamedata;
+package com.github.saphyra.skyxplore.data.gamedata.domain.terraforming;
 
-import com.github.saphyra.skyxplore.data.base.AbstractDataService;
+import com.github.saphyra.skyxplore.data.base.ValidationAbstractDataService;
 import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
-import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibilities;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
@@ -10,9 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-public class TerraformingPossibilitiesService extends AbstractDataService<SurfaceType, TerraformingPossibilities> {
-    public TerraformingPossibilitiesService(ContentLoaderFactory contentLoaderFactory) {
-        super("public/data/gamedata/terraforming_possibilities", contentLoaderFactory);
+public class TerraformingPossibilitiesService extends ValidationAbstractDataService<SurfaceType, TerraformingPossibilities> {
+    public TerraformingPossibilitiesService(ContentLoaderFactory contentLoaderFactory, TerraformingPossibilitiesValidator terraformingPossibilitiesValidator) {
+        super("public/data/gamedata/terraforming_possibilities", contentLoaderFactory, terraformingPossibilitiesValidator);
     }
 
     @Override

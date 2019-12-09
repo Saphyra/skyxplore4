@@ -6,19 +6,19 @@
       "placed": [
         "concrete"
       ],
-      "amount": 1
-    }
-  },
-  "workers": 0,
-  "constructionRequirements": {
-    "1": {
-      "researchRequirements": ["stealmaking"],
-      "requiredWorkPoints": 1,
-      "requiredResources": {
-        "energy": 1,
-        "iron": 1,
-        "stone": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "stealmaking"
+        ],
+        "resourceRequirements": {
+          "coal": 1,
+          "energy": 1,
+          "iron": 1
+        }
       }
     }
-  }
+  },
+  "workers": 0
 }

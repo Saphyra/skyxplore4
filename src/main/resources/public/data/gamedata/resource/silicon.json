@@ -1,6 +1,5 @@
 {
   "id": "silicon",
-  "buildable": true,
   "storageType": "bulk",
   "constructionRequirements": {
     "requiredWorkPoints": 1,

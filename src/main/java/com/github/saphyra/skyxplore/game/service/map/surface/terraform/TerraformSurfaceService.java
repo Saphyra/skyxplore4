@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
-import com.github.saphyra.skyxplore.data.gamedata.TerraformingPossibilitiesService;
+import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibilitiesService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibility;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;

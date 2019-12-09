@@ -1,6 +1,5 @@
 {
   "id": "glass",
-  "buildable": true,
   "storageType": "bulk",
   "constructionRequirements": {
     "requiredWorkPoints": 1,

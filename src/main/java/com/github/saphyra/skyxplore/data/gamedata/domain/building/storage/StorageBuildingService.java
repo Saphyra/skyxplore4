@@ -1,18 +1,20 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building.storage;
 
-import com.github.saphyra.skyxplore.data.base.AbstractDataService;
+import com.github.saphyra.skyxplore.data.base.DataValidator;
+import com.github.saphyra.skyxplore.data.base.ValidationAbstractDataService;
 import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Map;
 
 @Component
 @Slf4j
-public class StorageBuildingService extends AbstractDataService<String, StorageBuilding> {
-    public StorageBuildingService(ContentLoaderFactory contentLoaderFactory) {
-        super("public/data/gamedata/building/storage", contentLoaderFactory);
+public class StorageBuildingService extends ValidationAbstractDataService<String, StorageBuilding> {
+    public StorageBuildingService(ContentLoaderFactory contentLoaderFactory, DataValidator<Map<String, StorageBuilding>> dataValidator) {
+        super("public/data/gamedata/building/storage", contentLoaderFactory, dataValidator);
     }
 
     @Override

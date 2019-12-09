@@ -11,7 +11,9 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ResourceData extends GameDataItem {
-    private boolean buildable;
+    @Deprecated
+    private Boolean buildable;
     private StorageType storageType;
+    @Deprecated
     private ConstructionRequirements constructionRequirements;
 }
