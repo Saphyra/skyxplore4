@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,6 +51,7 @@ public class StarCreationService {
                 .starName(starName)
                 .coordinate(coordinate)
                 .ownerId(player.getPlayerId())
+                .researches(Collections.emptyList())
                 .build();
             log.debug("Star created: {}", star);
             createdStars.add(star);

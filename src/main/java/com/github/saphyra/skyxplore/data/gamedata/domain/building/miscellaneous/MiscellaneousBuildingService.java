@@ -1,18 +1,17 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building.miscellaneous;
 
-import javax.annotation.PostConstruct;
-
+import com.github.saphyra.skyxplore.data.base.AbstractDataService;
+import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.PostConstruct;
 
 @Component
 @Slf4j
 public class MiscellaneousBuildingService extends AbstractDataService<String, MiscellaneousBuilding> {
-    public MiscellaneousBuildingService(FileUtil fileUtil) {
-        super("public/data/gamedata/building/miscellaneous", fileUtil);
+    public MiscellaneousBuildingService(ContentLoaderFactory contentLoaderFactory) {
+        super("public/data/gamedata/building/miscellaneous", contentLoaderFactory);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building.storage;
 
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
+import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,8 +11,8 @@ import javax.annotation.PostConstruct;
 @Component
 @Slf4j
 public class StorageBuildingService extends AbstractDataService<String, StorageBuilding> {
-    public StorageBuildingService(FileUtil fileUtil) {
-        super("public/data/gamedata/building/storage", fileUtil);
+    public StorageBuildingService(ContentLoaderFactory contentLoaderFactory) {
+        super("public/data/gamedata/building/storage", contentLoaderFactory);
     }
 
     @Override

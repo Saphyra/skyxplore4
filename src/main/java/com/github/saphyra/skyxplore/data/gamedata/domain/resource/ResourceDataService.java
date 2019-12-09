@@ -1,17 +1,16 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.resource;
 
-import javax.annotation.PostConstruct;
-
+import com.github.saphyra.skyxplore.data.base.AbstractDataService;
+import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
 import org.springframework.stereotype.Component;
 
-import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
+import javax.annotation.PostConstruct;
 
 
 @Component
 public class ResourceDataService extends AbstractDataService<String, ResourceData> {
-    public ResourceDataService(FileUtil fileUtil) {
-        super("public/data/gamedata/resource", fileUtil);
+    public ResourceDataService(ContentLoaderFactory contentLoaderFactory) {
+        super("public/data/gamedata/resource", contentLoaderFactory);
     }
 
     @Override

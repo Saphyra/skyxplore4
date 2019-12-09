@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.data.errorcode;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.base.loader.FileUtil;
+import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +10,8 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class ErrorCodeService extends AbstractDataService<String, ErrorCodeLocalization> {
-    public ErrorCodeService(FileUtil fileUtil) {
-        super("public/i18n/error_code", fileUtil);
+    public ErrorCodeService(ContentLoaderFactory contentLoaderFactory) {
+        super("public/i18n/error_code", contentLoaderFactory);
     }
 
     @Override
