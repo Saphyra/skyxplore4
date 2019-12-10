@@ -1,8 +1,8 @@
 {
-  "id": "oil_refinery",
+  "id": "sand_processing_plant",
   "buildingType": "production",
   "gives": {
-    "fuel": {
+    "glass": {
       "placed": [
         "concrete"
       ],
@@ -10,44 +10,28 @@
       "constructionRequirements": {
         "requiredWorkPoints": 1,
         "researchRequirements": [
-          "oil_mining"
+          "glass_production"
         ],
         "resourceRequirements": {
           "energy": 1,
-          "oil": 1
+          "sand": 1
         }
       }
     },
-    "plastic": {
+    "silicon": {
       "placed": [
         "concrete"
       ],
       "amount": 1,
       "constructionRequirements": {
         "requiredWorkPoints": 1,
-        "researchRequirements": [
-          "plastic_manufacturing"
-        ],
+        "researchRequirements": [],
         "resourceRequirements": {
           "energy": 1,
-          "oil": 1
+          "sand": 1
         }
       }
     }
   },
-  "workers": 1,
-  "constructionRequirements": {
-    "1": {
-      "researchRequirements": [
-        "oil_mining"
-      ],
-      "requiredWorkPoints": 1,
-      "requiredResources": {
-        "energy": 1,
-        "iron": 1,
-        "steel": 1,
-        "stone": 1
-      }
-    }
-  }
+  "workers": 1
 }

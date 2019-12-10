@@ -1,12 +1,4 @@
 {
   "id": "fuel",
-  "storageType": "liquid",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": ["oil_mining"],
-    "resourceRequirements": {
-      "energy": 1,
-      "oil": 1
-    }
-  }
+  "storageType": "liquid"
 }

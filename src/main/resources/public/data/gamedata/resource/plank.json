@@ -1,12 +1,4 @@
 {
   "id": "plank",
-  "storageType": "bulk",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": ["todo"],
-    "resourceRequirements": {
-      "energy": 1,
-      "wood": 1
-    }
-  }
+  "storageType": "bulk"
 }

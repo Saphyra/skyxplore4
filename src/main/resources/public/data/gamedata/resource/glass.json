@@ -1,12 +1,4 @@
 {
   "id": "glass",
-  "storageType": "bulk",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": ["glass_production"],
-    "resourceRequirements": {
-      "energy": 1,
-      "sand": 1
-    }
-  }
+  "storageType": "bulk"
 }

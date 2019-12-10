@@ -1,12 +1,4 @@
 {
   "id": "iron",
-  "storageType": "bulk",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": ["smelting"],
-    "resourceRequirements": {
-      "energy": 1,
-      "ore": 1
-    }
-  }
+  "storageType": "bulk"
 }

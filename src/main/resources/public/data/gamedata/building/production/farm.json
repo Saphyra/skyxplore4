@@ -2,7 +2,7 @@
   "id": "farm",
   "buildingType": "production",
   "gives": {
-    "leather":{
+    "leather": {
       "placed": [
         "desert",
         "forest"
@@ -21,13 +21,24 @@
         "desert",
         "forest"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "agriculture"
+        ],
+        "resourceRequirements": {
+          "water": 1
+        }
+      }
     }
   },
   "workers": 1,
   "constructionRequirements": {
     "1": {
-      "researchRequirements": ["agriculture"],
+      "researchRequirements": [
+        "agriculture"
+      ],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

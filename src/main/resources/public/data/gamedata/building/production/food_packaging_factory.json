@@ -6,13 +6,27 @@
       "placed": [
         "concrete"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "food_packaging"
+        ],
+        "resourceRequirements": {
+          "energy": 1,
+          "plastic": 1,
+          "raw_food": 1,
+          "water": 1
+        }
+      }
     }
   },
   "workers": 1,
   "constructionRequirements": {
     "1": {
-      "researchRequirements": ["food_packaging"],
+      "researchRequirements": [
+        "food_packaging"
+      ],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

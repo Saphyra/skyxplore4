@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.data.gamedata.domain.resource;
 
 import com.github.saphyra.skyxplore.data.base.DataValidator;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.GameDataItemValidator;
+import com.github.saphyra.skyxplore.data.gamedata.domain.building.production.ProductionBuildingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import static java.util.Objects.requireNonNull;
 @RequiredArgsConstructor
 public class ResourceValidator implements DataValidator<Map<String, ResourceData>> {
     private final GameDataItemValidator gameDataItemValidator;
+    private final ProductionBuildingService productionBuildingService;
 
     @Override
     public void validate(Map<String, ResourceData> item) {
@@ -31,9 +33,17 @@ public class ResourceValidator implements DataValidator<Map<String, ResourceData
             requireNull(resource.getConstructionRequirements(), "ConstructionRequirements must be null.");
 
             requireNonNull(resource.getStorageType(), "StorageType must not be null.");
+
+            if (!hasProducer(resource)) {
+                throw new IllegalStateException("Producer required.");
+            }
         } catch (Exception e) {
             throw new IllegalStateException("Invalid data with key " + key, e);
         }
+    }
+
+    private boolean hasProducer(ResourceData resource) {
+        return productionBuildingService.values().stream().flatMap(productionBuilding -> productionBuilding.getGives().keySet().stream()).anyMatch(s -> s.equals(resource.getId()));
     }
 
     private void requireNull(Object o, String message) {

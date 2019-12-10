@@ -1,14 +1,4 @@
 {
   "id": "food",
-  "storageType": "bulk",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": ["food_packaging"],
-    "resourceRequirements": {
-      "energy": 1,
-      "plastic": 1,
-      "raw_food": 1,
-      "water": 1
-    }
-  }
+  "storageType": "bulk"
 }

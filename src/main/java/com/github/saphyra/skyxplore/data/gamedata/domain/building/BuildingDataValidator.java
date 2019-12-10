@@ -16,6 +16,7 @@ public class BuildingDataValidator implements DataValidator<BuildingData> {
     @Override
     public void validate(BuildingData buildingData) {
         gameDataItemValidator.validate(buildingData);
+        requireNonNull(buildingData.getConstructionRequirements(), "ConstructionRequirements must not be null.");
         buildingData.getConstructionRequirements().values().forEach(constructionRequirementsValidator::validate);
         requireNonNull(buildingData.getBuildingType(), "BuildingType must not be null.");
     }

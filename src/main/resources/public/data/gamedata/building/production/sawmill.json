@@ -7,6 +7,23 @@
         "forest"
       ],
       "amount": 1
+    },
+    "plank": {
+      "placed": [
+        "forest",
+        "concrete"
+      ],
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "todo"
+        ],
+        "resourceRequirements": {
+          "energy": 1,
+          "wood": 1
+        }
+      }
     }
   },
   "workers": 1,

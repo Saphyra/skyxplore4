@@ -1,12 +1,4 @@
 {
   "id": "silicon",
-  "storageType": "bulk",
-  "constructionRequirements": {
-    "requiredWorkPoints": 1,
-    "researchRequirements": [],
-    "resourceRequirements": {
-      "energy": 1,
-      "sand": 1
-    }
-  }
+  "storageType": "bulk"
 }
