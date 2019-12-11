@@ -4,12 +4,12 @@
     "requiredWorkPoints": 1,
     "researchRequirements": [],
     "requiredResources": {
-    },
-    "unlocks": [
-      {
-        "dataId": "community_center",
-        "type": "BUILDING"
-      }
-    ]
-  }
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "community_center",
+      "type": "BUILDING"
+    }
+  ]
 }

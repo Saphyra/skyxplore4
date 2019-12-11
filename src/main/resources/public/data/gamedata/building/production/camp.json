@@ -2,19 +2,33 @@
   "id": "camp",
   "buildingType": "production",
   "gives": {
-    "meat": {
+    "raw_food": {
       "placed": [
         "forest",
         "mountain"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+        ],
+        "resourceRequirements": {
+        }
+      }
     },
     "leather": {
       "placed": [
         "forest",
         "mountain"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+        ],
+        "resourceRequirements": {
+        }
+      }
     }
   },
   "workers": 1,

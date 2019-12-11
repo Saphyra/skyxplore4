@@ -1,18 +1,19 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.research;
 
-import com.github.saphyra.skyxplore.data.base.AbstractDataService;
-import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import com.github.saphyra.skyxplore.data.base.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.data.base.loader.ContentLoaderFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Component
 @Slf4j
-public class ResearchDataService extends AbstractDataService<String, ResearchData> {
-    public ResearchDataService(ContentLoaderFactory contentLoaderFactory) {
-        super("public/data/gamedata/research", contentLoaderFactory);
+public class ResearchDataService extends ValidationAbstractDataService<String, ResearchData> {
+    public ResearchDataService(ContentLoaderFactory contentLoaderFactory, ResearchDataValidator researchDataValidator) {
+        super("public/data/gamedata/research", contentLoaderFactory, researchDataValidator);
     }
 
     @Override

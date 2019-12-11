@@ -6,16 +6,16 @@
       "smelting"
     ],
     "requiredResources": {
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "foundry",
+      "type": "BUILDING"
     },
-    "unlocks": [
-      {
-        "dataId": "foundry",
-        "type": "BUILDING"
-      },
-      {
-        "dataId": "steel",
-        "type": "PRODUCTION"
-      }
-    ]
-  }
-}{energy_generation=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[Unlock(type=BUILDING, dataId=gas_turbine)]), stealmaking=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[smelting], requiredResources={}), unlocks=null, usedIn=[]), community_center=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), plastics_manufacturing=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), oil_mining=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[Unlock(type=BUILDING, dataId=gas_turbine)]), agriculture=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), glass_production=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), public_education=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), forest_terraformations=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), lake_terraformations=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), food_packaging=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[agriculture], requiredResources={}), unlocks=null, usedIn=[]), desert_terraformations=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), concrete_terraformations=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[]), smelting=ResearchData(constructionRequirements=ConstructionRequirements(requiredWorkPoints=1, researchRequirements=[], requiredResources={}), unlocks=null, usedIn=[])}
+    {
+      "dataId": "steel",
+      "type": "PRODUCTION"
+    }
+  ]
+}

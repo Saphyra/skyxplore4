@@ -6,7 +6,16 @@
       "placed": [
         "concrete"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+        ],
+        "resourceRequirements": {
+          "energy": 1,
+          "water": 1
+        }
+      }
     }
   },
   "workers": 1,

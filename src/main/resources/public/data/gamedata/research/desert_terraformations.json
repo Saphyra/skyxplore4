@@ -5,16 +5,16 @@
     "researchRequirements": [
     ],
     "requiredResources": {
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "desert_to_forest",
+      "type": "TERRAFORMING"
     },
-    "unlocks": [
-      {
-        "dataId": "desert_to_forest",
-        "type": "TERRAFORMING"
-      },
-      {
-        "dataId": "desert_to_lake",
-        "type": "TERRAFORMING"
-      }
-    ]
-  }
+    {
+      "dataId": "desert_to_lake",
+      "type": "TERRAFORMING"
+    }
+  ]
 }

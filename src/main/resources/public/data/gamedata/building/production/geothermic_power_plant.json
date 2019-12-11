@@ -6,13 +6,22 @@
       "placed": [
         "volcano"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 0,
+        "researchRequirements": [
+        ],
+        "resourceRequirements": {
+        }
+      }
     }
   },
   "workers": 0,
   "constructionRequirements": {
     "1": {
-      "researchRequirements": ["energy_generation"],
+      "researchRequirements": [
+        "energy_generation"
+      ],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

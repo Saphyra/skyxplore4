@@ -20,5 +20,18 @@
       }
     }
   },
-  "workers": 1
+  "workers": 1,
+  "constructionRequirements": {
+    "1": {
+      "researchRequirements": [
+        "stealmaking"
+      ],
+      "requiredWorkPoints": 1,
+      "requiredResources": {
+        "energy": 1,
+        "stone": 1,
+        "iron": 1
+      }
+    }
+  }
 }

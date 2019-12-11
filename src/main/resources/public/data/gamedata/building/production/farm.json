@@ -7,14 +7,33 @@
         "desert",
         "forest"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "agriculture"
+        ],
+        "resourceRequirements": {
+          "wheat": 1
+        }
+      }
     },
     "raw_food": {
       "placed": [
         "desert",
         "forest"
       ],
-      "amount": 1
+      "amount": 2,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "agriculture"
+        ],
+        "resourceRequirements": {
+          "wheat": 1,
+          "water": 1
+        }
+      }
     },
     "wheat": {
       "placed": [

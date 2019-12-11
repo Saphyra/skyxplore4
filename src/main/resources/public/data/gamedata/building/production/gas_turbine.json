@@ -6,7 +6,16 @@
       "placed": [
         "concrete"
       ],
-      "amount": 1
+      "amount": 2,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+          "oil_mining"
+        ],
+        "resourceRequirements": {
+          "fuel": 1
+        }
+      }
     }
   },
   "workers": 0,

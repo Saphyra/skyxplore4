@@ -5,22 +5,22 @@
     "researchRequirements": [
     ],
     "requiredResources": {
-    },
-    "unlocks": [
-      {
-        "dataId": "plastics_manufacturing",
-        "type": "RESEARCH"
-      },
-      {
-        "dataId": "heat_power_plant",
-        "type": "BUILDING"
-      },
-      {
-        "dataId": "geothermic_power_plant",
-        "type": "BUILDING"
-      }
-    ]
+    }
   },
+  "unlocks": [
+    {
+      "dataId": "plastics_manufacturing",
+      "type": "RESEARCH"
+    },
+    {
+      "dataId": "heat_power_plant",
+      "type": "BUILDING"
+    },
+    {
+      "dataId": "geothermic_power_plant",
+      "type": "BUILDING"
+    }
+  ],
   "usedIn": [
     {
       "dataId": "gas_turbine",

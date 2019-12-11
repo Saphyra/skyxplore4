@@ -4,20 +4,20 @@
     "requiredWorkPoints": 1,
     "researchRequirements": [],
     "requiredResources": {
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "forge",
+      "type": "BUILDING"
     },
-    "unlocks": [
-      {
-        "dataId": "forge",
-        "type": "BUILDING"
-      },
-      {
-        "dataId": "iron",
-        "type": "PRODUCTION"
-      },
-      {
-        "dataId": "stealmaking",
-        "type": "RESEARCH"
-      }
-    ]
-  }
+    {
+      "dataId": "iron",
+      "type": "PRODUCTION"
+    },
+    {
+      "dataId": "stealmaking",
+      "type": "RESEARCH"
+    }
+  ]
 }

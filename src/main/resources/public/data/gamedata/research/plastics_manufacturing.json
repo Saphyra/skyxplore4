@@ -5,12 +5,18 @@
     "researchRequirements": [
     ],
     "requiredResources": {
-    },
-    "unlocks": [
-      {
-        "dataId": "plastic",
-        "type": "PRODUCTION"
-      }
-    ]
-  }
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "plastic",
+      "type": "PRODUCTION"
+    }
+  ],
+  "usedIn": [
+    {
+      "dataId": "food_packaging",
+      "type": "BUILDING"
+    }
+  ]
 }

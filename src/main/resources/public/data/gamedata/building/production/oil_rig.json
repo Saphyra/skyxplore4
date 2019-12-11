@@ -6,13 +6,24 @@
       "placed": [
         "oil_field"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 0,
+        "researchRequirements": [
+          "oil_mining"
+        ],
+        "resourceRequirements": {
+          "energy": 1
+        }
+      }
     }
   },
   "workers": 0,
   "constructionRequirements": {
     "1": {
-      "researchRequirements": ["oil_mining"],
+      "researchRequirements": [
+        "oil_mining"
+      ],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

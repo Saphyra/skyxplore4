@@ -3,19 +3,20 @@
   "constructionRequirements": {
     "requiredWorkPoints": 1,
     "researchRequirements": [
-      "agriculture"
+      "agriculture",
+      "plastic_manufacturing"
     ],
     "requiredResources": {
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "food",
+      "type": "PRODUCTION"
     },
-    "unlocks": [
-      {
-        "dataId": "food",
-        "type": "PRODUCTION"
-      },
-      {
-        "dataId": "food_packaging_factory",
-        "type": "BUILDING"
-      }
-    ]
-  }
+    {
+      "dataId": "food_packaging_factory",
+      "type": "BUILDING"
+    }
+  ]
 }

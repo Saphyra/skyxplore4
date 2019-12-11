@@ -6,7 +6,15 @@
       "placed": [
         "lake"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 0,
+        "researchRequirements": [
+        ],
+        "resourceRequirements": {
+          "energy": 1
+        }
+      }
     }
   },
   "workers": 0,

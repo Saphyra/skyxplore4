@@ -4,12 +4,12 @@
     "requiredWorkPoints": 1,
     "researchRequirements": [],
     "requiredResources": {
-    },
-    "unlocks": [
-      {
-        "dataId": "glass",
-        "type": "PRODUCTION"
-      }
-    ]
-  }
+    }
+  },
+  "unlocks": [
+    {
+      "dataId": "glass",
+      "type": "PRODUCTION"
+    }
+  ]
 }

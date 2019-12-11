@@ -7,7 +7,14 @@
         "desert",
         "concrete"
       ],
-      "amount": 1
+      "amount": 1,
+      "constructionRequirements": {
+        "requiredWorkPoints": 1,
+        "researchRequirements": [
+        ],
+        "resourceRequirements": {
+        }
+      }
     }
   },
   "workers": 0,
