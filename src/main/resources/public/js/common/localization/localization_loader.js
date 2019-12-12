@@ -12,7 +12,8 @@ function loadLocalization(fileName, successCallback){
             createQuery(
                 fileName,
                 DEFAULT_LOCALE,
-                successCallback
+                successCallback,
+                function(){throwException("ResourceNotFound", "Localization not found for fileName " + fileName)}
             )
         )
     )();

@@ -1,4 +1,5 @@
 (function TerraformSurfaceController(){
+    const researchLocalization = localizations.researchLocalization;
     const resourceLocalization = localizations.resourceLocalization;
     const surfaceTypeLocalization = localizations.surfaceTypeLocalization;
 
@@ -28,10 +29,17 @@
         function createPossibilityItem(surfaceId, possibility, windowController){
             const container = document.createElement("div");
                 container.classList.add("bar-list-item");
+                container.classList.add("terraforming-possibility");
 
                 container.appendChild(createHeader(possibility.surfaceType));
                 container.appendChild(createResourceContainer(possibility.constructionRequirements));
-                container.appendChild(createTerraformButton(surfaceId, possibility.surfaceType, windowController));
+
+                let terraformButtonDisabled = false;
+                if(possibility.constructionRequirements.researchRequirements.length){
+                    terraformButtonDisabled = true;
+                    container.appendChild(createResearchRequirements(possibility.constructionRequirements.researchRequirements));
+                }
+                container.appendChild(createTerraformButton(surfaceId, possibility.surfaceType, windowController, terraformButtonDisabled));
             return container;
 
             function createHeader(surfaceType){
@@ -86,13 +94,39 @@
                 }
             }
 
+            function createResearchRequirements(researchRequirements){
+                const container = document.createElement("div");
+                    container.classList.add("missing-research");
+                    const header = document.createElement("div");
+                        header.classList.add("missing-research-header");
+                        header.innerHTML = Localization.getAdditionalContent("missing-research");
+                container.appendChild(header);
+
+                    new Stream(researchRequirements)
+                        .map(createResearchItem)
+                        .forEach(function(item){container.appendChild(item)});
+
+                return container;
+
+                function createResearchItem(dataId){
+                    const item = document.createElement("div");
+                        item.innerHTML = researchLocalization.get(dataId);
+                        item.classList.add("missing-research-item");
+                    return item;
+                }
+            }
+
             function createTerraformButton(surfaceId, surfaceType, windowController){
                 const terraformButton = document.createElement("div");
                     terraformButton.classList.add("start-terraforming-button");
                     terraformButton.classList.add("button");
                     terraformButton.innerHTML = Localization.getAdditionalContent("start-terraforming");
-                    terraformButton.onclick = function(){
-                        terraform(surfaceId, surfaceType, windowController);
+                    if(terraformButtonDisabled){
+                        terraformButton.classList.add("disabled");
+                    }else{
+                        terraformButton.onclick = function(){
+                            terraform(surfaceId, surfaceType, windowController);
+                        }
                     }
                 return terraformButton;
             }

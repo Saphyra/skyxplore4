@@ -100,6 +100,11 @@ button, .button, a, select, footer label{
     text-align: center;
 }
 
+    .button.disabled{
+        border-color: rgb(100,100,100) !important;
+        cursor: no-drop;
+    }
+
 footer label *{
     cursor: pointer;
 }
@@ -112,6 +117,12 @@ button:active, .button:active, a:active, footer label:active{
     border-style: inset;
     outline: none;
 }
+
+    .button.disabled:active{
+        border-color: white;
+        border-style: outset;
+        outline: default;
+    }
 
 input, textarea, div[contenteditable='true']{
     background: black;

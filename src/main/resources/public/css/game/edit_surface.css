@@ -10,11 +10,30 @@
         text-align: right;
     }
 
-    .start-terraforming-button{
-        width: 50%;
-        margin: auto;
-        font-size: 1rem;
-    }
+    .terraforming-possibility .missing-research{
+            margin: 1rem;
+        }
+
+            .terraforming-possibility .missing-research{
+                padding: 0.5rem;
+                text-align: center;
+                background: rgba(0,0,0,0.5);
+            }
+
+                .terraforming-possibility .missing-research-header{
+                    font-size: 1.25rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                .terraforming-possibility .missing-research-item{
+                    color: red;
+                }
+
+        .start-terraforming-button{
+            width: 50%;
+            margin: auto;
+            font-size: 1rem;
+        }
 
 .edit-surface-content-controller .right-bar{
     width: calc(100% - var(--edit-surface-bar-width));
@@ -54,3 +73,22 @@
             width: 15rem;
             margin: 0.5rem auto;
         }
+
+    .new-building-item .missing-research{
+        margin: 1rem;
+    }
+
+        .new-building-item .missing-research{
+            padding: 0.5rem;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+        }
+
+            .new-building-item .missing-research-header{
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .new-building-item .missing-research-item{
+                color: red;
+            }
