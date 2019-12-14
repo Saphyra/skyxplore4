@@ -1,14 +1,12 @@
-package com.github.saphyra.skyxplore.platform.configuration;
+package com.github.saphyra.skyxplore.platform.metrics;
 
-import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.github.saphyra.skyxplore.platform.MetricsFilter;
-import lombok.extern.slf4j.Slf4j;
+import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
 @Configuration
 @ConditionalOnProperty(value = "metrics.enabled", havingValue = "true")

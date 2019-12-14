@@ -1,17 +1,15 @@
-package com.github.saphyra.skyxplore.platform;
+package com.github.saphyra.skyxplore.platform.metrics;
 
-import java.io.IOException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StopWatch;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.util.StopWatch;
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
