@@ -125,7 +125,9 @@
                     levelNode.innerHTML = level.toUpperCase();
             messageContainer.appendChild(levelNode);
 
-            messageContainer.appendChild(createTextNode(prefix));
+            if(prefix && prefix.length){
+                messageContainer.appendChild(createTextNode(prefix + " - "));
+            }
 
             if(message == null){
                 messageContainer.appendChild(createTextNode("null"));

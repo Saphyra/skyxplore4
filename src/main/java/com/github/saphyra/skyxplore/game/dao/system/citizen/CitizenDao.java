@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
+//TODO make package-private
 public class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepository> {
     private final UuidConverter uuidConverter;
 

@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.UUID;
 
 @Component
+//TODO make package-private
 public class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String, ReservationRepository> {
     private final UuidConverter uuidConverter;
 

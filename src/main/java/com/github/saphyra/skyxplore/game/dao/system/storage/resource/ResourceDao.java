@@ -1,18 +1,18 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 
+import com.github.saphyra.converter.Converter;
+import com.github.saphyra.dao.AbstractDao;
+import com.github.saphyra.skyxplore.common.UuidConverter;
+import org.springframework.stereotype.Component;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
-import com.github.saphyra.converter.Converter;
-import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore.common.UuidConverter;
-
 @Component
+//TODO make package-private
 public class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, ResourceRepository> {
     private final UuidConverter uuidConverter;
 

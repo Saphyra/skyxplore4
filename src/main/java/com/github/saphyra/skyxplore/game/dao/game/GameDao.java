@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository> {
+class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository> {
     private final UuidConverter uuidConverter;
 
     public GameDao(GameConverter converter, GameRepository repository, UuidConverter uuidConverter) {
@@ -17,11 +17,11 @@ public class GameDao extends AbstractDao<GameEntity, Game, String, GameRepositor
         this.uuidConverter = uuidConverter;
     }
 
-    public List<Game> getByUserId(UUID userId) {
+    List<Game> getByUserId(UUID userId) {
         return converter.convertEntity(repository.getByUserId(uuidConverter.convertDomain(userId)));
     }
 
-    public Optional<Game> findByGameIdAndUserId(UUID gameId, UUID userId) {
+    Optional<Game> findByGameIdAndUserId(UUID gameId, UUID userId) {
         return converter.convertEntity(repository.findByGameIdAndUserId(
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)

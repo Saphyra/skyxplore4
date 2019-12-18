@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.platform.context;
 
+import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,9 @@ public class ContextFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             try {
-                requestContextHolder.setContext(requestContextFactory.createContext(request));
+                RequestContext context = requestContextFactory.createContext(request);
+                requestContextHolder.setContext(context);
+                log.info("{} - {}, {}", request.getMethod(), request.getRequestURI(), context.toString());
             } catch (Throwable ex) {
                 log.warn("Error occurred during RequestContext creation", ex);
             }

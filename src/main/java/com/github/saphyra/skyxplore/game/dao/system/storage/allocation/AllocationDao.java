@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.UUID;
 
 @Component
+//TODO make package-private
 public class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, AllocationRepository> {
     private final UuidConverter uuidConverter;
 

@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
+import com.github.saphyra.dao.AbstractDao;
+import com.github.saphyra.skyxplore.common.UuidConverter;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.stereotype.Component;
-
-import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore.common.UuidConverter;
-
 @Component
+//TODO make package-private
 public class ConstructionDao extends AbstractDao<ConstructionEntity, Construction, String, ConstructionRepository> {
     private final UuidConverter uuidConverter;
 

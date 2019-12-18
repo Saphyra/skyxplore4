@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.UUID;
+
 import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
 
 @Component
@@ -25,9 +27,10 @@ class RequestContextFactory {
                 .build();
     }
 
-    private String fetch(HttpServletRequest request, String name) {
+    private UUID fetch(HttpServletRequest request, String name) {
         return cookieUtil.getCookie(request, name)
                 .filter(s -> !isNullOrEmpty(s))
+                .map(UUID::fromString)
                 .orElseGet(() -> {
                     log.debug("Cookie is empty with name {}", name);
                     return null;

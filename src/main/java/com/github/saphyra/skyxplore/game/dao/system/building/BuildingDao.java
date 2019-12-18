@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
+//TODO make package-private
 public class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> {
     private final UuidConverter uuidConverter;
 

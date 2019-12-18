@@ -1,14 +1,14 @@
 package com.github.saphyra.skyxplore.game.dao.map.connection;
 
+import com.github.saphyra.dao.AbstractDao;
+import com.github.saphyra.skyxplore.common.UuidConverter;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.stereotype.Component;
-
-import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore.common.UuidConverter;
-
 @Component
+//TODO make package-private
 public class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarConnection, String, StarConnectionRepository> {
     private final UuidConverter uuidConverter;
 
