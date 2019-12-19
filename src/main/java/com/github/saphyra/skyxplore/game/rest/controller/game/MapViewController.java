@@ -2,7 +2,8 @@ package com.github.saphyra.skyxplore.game.rest.controller.game;
 
 import com.github.saphyra.skyxplore.common.RequestConstants;
 import com.github.saphyra.skyxplore.game.rest.view.MapView;
-import com.github.saphyra.skyxplore.game.service.map.connection.StarConnectionQueryService;
+import com.github.saphyra.skyxplore.game.rest.view.connection.StarConnectionView;
+import com.github.saphyra.skyxplore.game.service.map.connection.VisibleStarConnectionQueryService;
 import com.github.saphyra.skyxplore.game.service.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 public class MapViewController {
     private static final String GET_STARS_MAPPING = API_PREFIX + "/game/map";
 
-    private final StarConnectionQueryService starConnectionQueryService;
+    private final VisibleStarConnectionQueryService visibleStarConnectionQueryService;
     private final StarQueryService starQueryService;
 
     @GetMapping(GET_STARS_MAPPING)
@@ -36,7 +37,14 @@ public class MapViewController {
         List<StarMapView> visibleStars = starQueryService.getVisibleStars(gameId, userId, playerId);
         return MapView.builder()
             .stars(visibleStars)
-            .connections(starConnectionQueryService.getVisibleByGameIdAndUserId(gameId, userId, visibleStars.stream().map(StarMapView::getStarId).collect(Collectors.toList())))
+            .connections(getConnections(visibleStars))
             .build();
+    }
+
+    private List<StarConnectionView> getConnections(List<StarMapView> visibleStars) {
+        List<UUID> visibleStarIds = visibleStars.stream()
+            .map(StarMapView::getStarId)
+            .collect(Collectors.toList());
+        return visibleStarConnectionQueryService.getVisibleByGameIdAndUserId(visibleStarIds);
     }
 }

@@ -21,19 +21,19 @@ class RequestContextFactory {
 
     RequestContext createContext(HttpServletRequest request) {
         return RequestContext.builder()
-                .gameId(fetch(request, RequestConstants.COOKIE_GAME_ID))
-                .userId(fetch(request, RequestConstants.COOKIE_USER_ID))
-                .playerId(fetch(request, RequestConstants.COOKIE_PLAYER_ID))
-                .build();
+            .gameId(fetch(request, RequestConstants.COOKIE_GAME_ID))
+            .userId(fetch(request, RequestConstants.COOKIE_USER_ID))
+            .playerId(fetch(request, RequestConstants.COOKIE_PLAYER_ID))
+            .build();
     }
 
     private UUID fetch(HttpServletRequest request, String name) {
         return cookieUtil.getCookie(request, name)
-                .filter(s -> !isNullOrEmpty(s))
-                .map(UUID::fromString)
-                .orElseGet(() -> {
-                    log.debug("Cookie is empty with name {}", name);
-                    return null;
-                });
+            .filter(s -> !isNullOrEmpty(s))
+            .map(UUID::fromString)
+            .orElseGet(() -> {
+                log.debug("Cookie is empty with name {}", name);
+                return null;
+            });
     }
 }

@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.game.service.map.connection.creation;
 
 import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
 import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnection;
-import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnectionDao;
+import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnectionCommandService;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ConnectionCreationService {
     private final ConnectionCreationConfiguration configuration;
-    private final StarConnectionDao starConnectionDao;
+    private final StarConnectionCommandService starConnectionCommandService;
     private final DistanceCalculator distanceCalculator;
     private final IdGenerator idGenerator;
 
@@ -30,7 +30,7 @@ public class ConnectionCreationService {
         stars.forEach(star -> connections.addAll(connectCloseStars(star, stars)));
         connections.addAll(connectDistantStars(stars, connections));
         removeConnections(connections, stars);
-        starConnectionDao.saveAll(connections);
+        starConnectionCommandService.saveAll(connections);
     }
 
     private List<StarConnection> connectCloseStars(Star star, List<Star> stars) {
