@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.game.rest.view.connection;
 
+import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.skyxplore.common.ViewConverter;
 import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnection;
-import com.github.saphyra.skyxplore.game.service.map.star.StarQueryService;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -15,8 +15,8 @@ public class StarConnectionViewConverter implements ViewConverter<StarConnection
     @Override
     public StarConnectionView convertDomain(StarConnection domain) {
         return StarConnectionView.builder()
-            .coordinate1(starQueryService.findByStarIdAndUserIdValidated(domain.getStar1(), domain.getUserId()).getCoordinate())
-            .coordinate2(starQueryService.findByStarIdAndUserIdValidated(domain.getStar2(), domain.getUserId()).getCoordinate())
+            .coordinate1(starQueryService.getCoordinateOfStar(domain.getStar1()))
+            .coordinate2(starQueryService.getCoordinateOfStar(domain.getStar2()))
             .build();
     }
 }

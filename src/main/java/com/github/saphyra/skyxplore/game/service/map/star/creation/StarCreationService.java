@@ -2,9 +2,9 @@ package com.github.saphyra.skyxplore.game.service.map.star.creation;
 
 import com.github.saphyra.skyxplore.data.gamedata.StarNames;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
+import com.github.saphyra.skyxplore.game.dao.map.star.StarCommandService;
 import com.github.saphyra.skyxplore.game.service.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
-import com.github.saphyra.skyxplore.game.dao.map.star.StarDao;
 import com.github.saphyra.skyxplore.game.service.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.service.player.PlayerService;
 import com.github.saphyra.skyxplore.game.dao.player.Player;
@@ -28,7 +28,7 @@ public class StarCreationService {
     private final CoordinateProvider coordinateProvider;
     private final IdGenerator idGenerator;
     private final PlayerService playerService;
-    private final StarDao starDao;
+    private final StarCommandService starCommandService;
     private final StarNames starNames;
     private final SurfaceCreationService surfaceCreationService;
 
@@ -58,7 +58,7 @@ public class StarCreationService {
             usedPlayerNames.add(player.getPlayerName());
             isAi= true;
         }
-        starDao.saveAll(createdStars);
+        starCommandService.saveAll(createdStars);
         connectionCreationService.createConnections(createdStars);
         surfaceCreationService.createSurfaces(createdStars);
         citizenCreationService.createCitizens(createdStars);

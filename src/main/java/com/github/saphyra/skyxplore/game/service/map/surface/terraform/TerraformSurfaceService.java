@@ -65,7 +65,7 @@ public class TerraformSurfaceService {
             throw ExceptionFactory.constructionInProgress(surface.getSurfaceId());
         }
 
-        researchRequirementChecker.checkResearchRequirements(surface.getStarId(), surface.getUserId(), researchRequirements);
+        researchRequirementChecker.checkResearchRequirements(surface.getStarId(), researchRequirements);
     }
 
     private TerraformingPossibility getTerraformingPossibility(SurfaceType from, SurfaceType to) {

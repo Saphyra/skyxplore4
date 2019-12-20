@@ -4,10 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 interface StarRepository extends JpaRepository<StarEntity, String> {
     void deleteByGameIdAndUserId(String gameId, String userId);
 
-    List<StarEntity> getByGameIdAndUserId(String gameId, String userId);
+    List<StarEntity> getByGameIdAndOwnerId(String gameId, String ownerId);
+
+    Optional<StarEntity> findByStarIdAndGameIdAndOwnerId(String starId, String gameId, String ownerId);
 }

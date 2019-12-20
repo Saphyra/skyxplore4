@@ -46,7 +46,7 @@ public class BuildNewBuildingService {
         validateBuildingLocation(buildingData, surface);
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(1);
-        researchRequirementChecker.checkResearchRequirements(surface.getStarId(), surface.getUserId(), constructionRequirements.getResearchRequirements());
+        researchRequirementChecker.checkResearchRequirements(surface.getStarId(), constructionRequirements.getResearchRequirements());
         Map<String, Integer> resources = constructionRequirements.getRequiredResources();
 
         UUID buildingId = idGenerator.randomUUID();

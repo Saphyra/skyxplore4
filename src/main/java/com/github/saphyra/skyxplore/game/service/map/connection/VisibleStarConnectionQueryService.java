@@ -19,7 +19,7 @@ public class VisibleStarConnectionQueryService {
     private final StarConnectionQueryService starConnectionQueryService;
     private final StarConnectionViewConverter starConnectionViewConverter;
 
-    public List<StarConnectionView> getVisibleByGameIdAndUserId(List<UUID> visibleStarIds) {
+    public List<StarConnectionView> getVisibleByStars(List<UUID> visibleStarIds) {
         List<StarConnection> visibleConnections = starConnectionQueryService.getByGameIdAndUserId().stream()
             .filter(starConnection -> isVisible(starConnection, visibleStarIds))
             .collect(Collectors.toList());
