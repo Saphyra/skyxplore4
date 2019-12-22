@@ -22,6 +22,9 @@ public class Surface {
     private final UUID gameId;
 
     @NonNull
+    private final UUID playerId;
+
+    @NonNull
     private final Coordinate coordinate;
 
     @NonNull

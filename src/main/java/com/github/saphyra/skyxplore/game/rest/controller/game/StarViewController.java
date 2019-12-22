@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.game.rest.controller.game;
 import com.github.saphyra.skyxplore.common.RequestConstants;
 import com.github.saphyra.skyxplore.game.common.StarSystemDetailsQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
-import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceDao;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.star.StarMapView;
 import com.github.saphyra.skyxplore.game.rest.view.star.StarMapViewConverter;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
@@ -33,7 +33,7 @@ public class StarViewController {
     private final StarMapViewConverter starMapViewConverter;
     private final StarQueryService starQueryService;
     private final StarSystemDetailsQueryService starSystemDetailsQueryService;
-    private final SurfaceDao surfaceDao;
+    private final SurfaceQueryService surfaceQueryService;
     private final SurfaceViewConverter surfaceViewConverter;
 
     @GetMapping(GET_STAR_MAPPING)
@@ -58,6 +58,6 @@ public class StarViewController {
         @PathVariable("starId") UUID starId
     ) {
         log.info("Player {} wants to know the surfaces of star {}", playerId, starId);
-        return surfaceViewConverter.convertDomain(surfaceDao.getByStarId(starId));
+        return surfaceViewConverter.convertDomain(surfaceQueryService.getByStarIdAndGameIdAndPlayerId(starId));
     }
 }

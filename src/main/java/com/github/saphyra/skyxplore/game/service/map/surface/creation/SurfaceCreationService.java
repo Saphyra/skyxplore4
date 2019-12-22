@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.game.service.map.surface.creation;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
-import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceDao;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceCommandService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.service.system.building.creation.DefaultBuildingCreationService;
 import com.github.saphyra.util.IdGenerator;
@@ -26,7 +26,7 @@ public class SurfaceCreationService {
     private final IdGenerator idGenerator;
     private final Random random;
     private final SurfaceCreationProperties properties;
-    private final SurfaceDao surfaceDao;
+    private final SurfaceCommandService surfaceCommandService;
 
     public void createSurfaces(List<Star> stars) {
         log.info("Creating surfaces...");
@@ -35,7 +35,7 @@ public class SurfaceCreationService {
             .flatMap(this::createSurfaces)
             .collect(Collectors.toList());
         log.info("Number of surfaces created: {}", surfaces.size());
-        surfaceDao.saveAll(surfaces);
+        surfaceCommandService.saveAll(surfaces);
     }
 
     private Stream<Surface> createSurfaces(Star star) {
@@ -177,6 +177,7 @@ public class SurfaceCreationService {
                     .starId(star.getStarId())
                     .userId(star.getUserId())
                     .gameId(star.getGameId())
+                    .playerId(star.getOwnerId())
                     .coordinate(new Coordinate(x, y))
                     .surfaceType(surfaceMap[x][y])
                     .build();

@@ -9,6 +9,7 @@ import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore.game.dao.map.star.Research;
 import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class EditSurfaceQueryService {
     private final TerraformingPossibilitiesService terraformingPossibilitiesService;
 
     public List<TerraformingPossibilityView> getTerraformingPossibilities(UUID surfaceId) {
-        Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
+        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
         List<String> researches = getResearches(surface);
         return terraformingPossibilitiesService.getOrDefault(surface.getSurfaceType(), new TerraformingPossibilities()).stream()
             .map(terraformingPossibility -> convert(terraformingPossibility, researches))
@@ -43,7 +44,7 @@ public class EditSurfaceQueryService {
     }
 
     public List<BuildableBuildingView> getBuildableBuildings(UUID surfaceId) {
-        Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
+        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
         List<String> researches = getResearches(surface);
         return gameDataQueryService.getBuildingsBuildableAtSurfaceType(surface.getSurfaceType()).stream()
             .map(buildingData -> convert(buildingData, researches))

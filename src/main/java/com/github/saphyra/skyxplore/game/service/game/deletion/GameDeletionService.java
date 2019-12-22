@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -17,8 +19,8 @@ public class GameDeletionService {
     private final GameCommandService gameCommandService;
     private final GameQueryService gameQueryService;
 
-    public void deleteByGameIdAndUserId() {
-        deleteGame(gameQueryService.findByGameIdAndUserIdValidated());
+    public void deleteByGameIdAndUserId(UUID gameId) {
+        deleteGame(gameQueryService.findByGameIdAndUserIdValidated(gameId));
     }
 
     private void deleteGame(Game game) {

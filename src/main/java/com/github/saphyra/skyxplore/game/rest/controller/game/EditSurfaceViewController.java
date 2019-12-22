@@ -1,22 +1,21 @@
 package com.github.saphyra.skyxplore.game.rest.controller.game;
 
-import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
-
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceView;
 import com.github.saphyra.skyxplore.game.rest.view.surface.SurfaceViewConverter;
 import com.github.saphyra.skyxplore.game.rest.view.surface.TerraformingPossibilityView;
 import com.github.saphyra.skyxplore.game.service.map.surface.EditSurfaceQueryService;
-import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.UUID;
+
+import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,7 +40,7 @@ public class EditSurfaceViewController {
     @GetMapping(GET_SURFACE_DETAILS_MAPPING)
     SurfaceView getSurfaceDetails(@PathVariable("surfaceId") UUID surfaceId) {
         log.info("Querying surface with surfaceId {}", surfaceId);
-        return surfaceViewConverter.convertDomain(surfaceQueryService.findBySurfaceId(surfaceId));
+        return surfaceViewConverter.convertDomain(surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId));
     }
 
     @GetMapping(GET_TERRAFORMING_POSSIBILITIES)

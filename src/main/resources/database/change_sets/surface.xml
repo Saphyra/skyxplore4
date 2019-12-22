@@ -40,4 +40,16 @@
 
         <addPrimaryKey tableName="surface" columnNames="surface_id" constraintName="surface-pk"/>
     </changeSet>
+
+    <changeSet id="add-column_player-id_to-surface" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="surface" columnName="player_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="surface">
+            <column name="player_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

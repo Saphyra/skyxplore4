@@ -7,34 +7,46 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
-//TODO make package-private
-public class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> {
+class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> {
     private final EntityManager entityManager;
     private final UuidConverter uuidConverter;
 
-    public SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, EntityManager entityManager, UuidConverter uuidConverter) {
+    SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, EntityManager entityManager, UuidConverter uuidConverter) {
         super(converter, repository);
         this.entityManager = entityManager;
         this.uuidConverter = uuidConverter;
     }
 
-    public void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
+    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
         repository.deleteByGameIdAndUserId(
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
     }
 
-    public void saveAll(List<Surface> surfaces) {
+    void saveAll(List<Surface> surfaces) {
         List<SurfaceEntity> entities = converter.convertDomain(surfaces);
         entities.forEach(entityManager::persist);
         entityManager.flush();
     }
 
-    public List<Surface> getByStarId(UUID starId) {
-        return converter.convertEntity(repository.getByStarId(uuidConverter.convertDomain(starId)));
+    List<Surface> getByStarIdAndGameIdAndPlayerId(UUID starId, UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndGameIdAndPlayerId(
+            uuidConverter.convertDomain(starId),
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
+    Optional<Surface> findBySurfaceIdAndGameIdAndPlayerId(UUID surfaceId, UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.findBySurfaceIdAndGameIdAndPlayerId(
+            uuidConverter.convertDomain(surfaceId),
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+        ));
     }
 }

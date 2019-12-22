@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.service;
 
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.rest.view.system.BuildingSummaryView;
 import com.github.saphyra.skyxplore.game.rest.view.system.SurfaceBuildingView;
-import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,10 @@ public class SurfaceBuildingSummaryQueryService {
     private final SurfaceQueryService surfaceQueryService;
 
     public List<SurfaceBuildingView> getSummary(UUID starId) {
-        Map<SurfaceType, List<Surface>> surfaceMap = surfaceQueryService.getMappingBySurfaceType(starId);
-        return surfaceMap.entrySet().stream()
+        return surfaceQueryService.getByStarIdAndGameIdAndPlayerId(starId).stream()
+            .collect(Collectors.groupingBy(Surface::getSurfaceType))
+            .entrySet()
+            .stream()
             .map(this::summarize)
             .collect(Collectors.toList());
     }

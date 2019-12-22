@@ -24,6 +24,8 @@ class SurfaceEntity {
 
     private String gameId;
 
+    private String playerId;
+
     @Embedded
     private CoordinateEntity coordinate;
 

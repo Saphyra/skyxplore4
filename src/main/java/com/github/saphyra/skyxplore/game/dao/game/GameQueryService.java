@@ -20,9 +20,8 @@ public class GameQueryService {
         return gameDao.findByGameIdAndUserId(gameId, requestContextHolder.get().getUserId());
     }
 
-    public Game findByGameIdAndUserIdValidated() {
+    public Game findByGameIdAndUserIdValidated(UUID gameId) {
         RequestContext requestContext = requestContextHolder.get();
-        UUID gameId = requestContext.getGameId();
         UUID userId = requestContext.getUserId();
         return gameDao.findByGameIdAndUserId(gameId, userId)
                 .orElseThrow(() -> ExceptionFactory.gameNotFound(gameId, userId));

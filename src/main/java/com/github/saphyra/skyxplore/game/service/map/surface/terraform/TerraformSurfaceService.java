@@ -1,26 +1,24 @@
 package com.github.saphyra.skyxplore.game.service.map.surface.terraform;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibilitiesService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibility;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
+import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.service.ResearchRequirementChecker;
-import com.github.saphyra.skyxplore.game.service.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -34,8 +32,8 @@ public class TerraformSurfaceService {
     private final TerraformingPossibilitiesService terraformingPossibilitiesService;
 
     @Transactional
-    public void terraform(UUID gameId, UUID playerId, UUID surfaceId, SurfaceType surfaceType) {
-        Surface surface = surfaceQueryService.findBySurfaceId(surfaceId);
+    public void terraform(UUID gameId, UUID surfaceId, SurfaceType surfaceType) {
+        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
         TerraformingPossibility terraformingPossibility = getTerraformingPossibility(surface.getSurfaceType(), surfaceType);
         verifyTerraformAvailable(surface, surfaceType, terraformingPossibility.getConstructionRequirements().getResearchRequirements());
 

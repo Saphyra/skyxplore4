@@ -43,8 +43,9 @@ public class GameController {
     @DeleteMapping(DELETE_GAME_MAPPING)
     @Transactional
     public void deleteGame(
+        @PathVariable("gameId") UUID gameId
     ) {
-        gameDeletionService.deleteByGameIdAndUserId();
+        gameDeletionService.deleteByGameIdAndUserId(gameId);
     }
 
     @GetMapping(GET_GAMES_MAPPING)

@@ -20,6 +20,7 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
             .starId(uuidConverter.convertEntity(surfaceEntity.getStarId()))
             .userId(uuidConverter.convertEntity(surfaceEntity.getUserId()))
             .gameId(uuidConverter.convertEntity(surfaceEntity.getGameId()))
+            .playerId(uuidConverter.convertEntity(surfaceEntity.getPlayerId()))
             .coordinate(coordinateConverter.convertEntity(surfaceEntity.getCoordinate(), surfaceEntity.getUserId()))
             .surfaceType(surfaceEntity.getSurfaceType())
             .build();
@@ -32,6 +33,7 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
             .starId(uuidConverter.convertDomain(surface.getStarId()))
             .userId(uuidConverter.convertDomain(surface.getUserId()))
             .gameId(uuidConverter.convertDomain(surface.getGameId()))
+            .playerId(uuidConverter.convertDomain(surface.getPlayerId()))
             .coordinate(coordinateConverter.convertDomain(surface.getCoordinate(), uuidConverter.convertDomain(surface.getUserId())))
             .surfaceType(surface.getSurfaceType())
             .build();
