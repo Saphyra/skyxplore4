@@ -10,7 +10,9 @@ import java.util.Optional;
 interface BuildingRepository extends JpaRepository<BuildingEntity, String> {
     void deleteByGameIdAndUserId(String gameId, String userId);
 
-    List<BuildingEntity> getByStarIdAndBuildingDataId(String starId, String dataId);
+    Optional<BuildingEntity> findByBuildingIdAndPlayerId(String buildingId, String playerId);
 
-    Optional<BuildingEntity> findBySurfaceId(String surfaceId);
+    Optional<BuildingEntity> findBySurfaceIdAndPlayerId(String surfaceId, String playerId);
+
+    List<BuildingEntity> getByStarIdAndBuildingDataIdAndPlayerId(String starId, String dataId, String playerId);
 }

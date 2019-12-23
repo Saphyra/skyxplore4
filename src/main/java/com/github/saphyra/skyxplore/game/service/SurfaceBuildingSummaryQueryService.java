@@ -6,7 +6,7 @@ import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.rest.view.system.BuildingSummaryView;
 import com.github.saphyra.skyxplore.game.rest.view.system.SurfaceBuildingView;
-import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class SurfaceBuildingSummaryQueryService {
 
     private SurfaceBuildingView summarize(Map.Entry<SurfaceType, List<Surface>> entry) {
         List<Building> buildings = entry.getValue().stream()
-            .map(surface -> buildingQueryService.findBySurfaceId(surface.getSurfaceId()))
+            .map(surface -> buildingQueryService.findBySurfaceIdAndPlayerId(surface.getSurfaceId()))
             .filter(Optional::isPresent)
             .map(Optional::get)
             .collect(Collectors.toList());

@@ -22,6 +22,8 @@ public class Building {
     @NonNull
     private final UUID starId;
     @NonNull
+    private final UUID playerId;
+    @NonNull
     private final UUID surfaceId;
     @NonNull
     private Integer level;

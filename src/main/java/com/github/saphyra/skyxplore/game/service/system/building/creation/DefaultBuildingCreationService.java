@@ -7,7 +7,7 @@ import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class DefaultBuildingCreationService {
         new ExcavatorBuilding(SurfaceType.MOUNTAIN)
     );
 
-    private final BuildingDao buildingDao;
+    private final BuildingCommandService buildingCommandService;
     private final DistanceCalculator distanceCalculator;
     private final List<AbstractDataService<?, ? extends BuildingData>> buildingDataServices;
     private final BuildingFactory buildingFactory;
@@ -36,7 +36,7 @@ public class DefaultBuildingCreationService {
 
         List<Building> buildings = new ArrayList<>();
         defaultBuildings.forEach(buildingData -> place(buildingData, surfaces, buildings));
-        buildingDao.saveAll(buildings);
+        buildingCommandService.saveAll(buildings);
     }
 
     private List<BuildingData> getDefaultBuildings() {
@@ -59,7 +59,8 @@ public class DefaultBuildingCreationService {
             surface.getGameId(),
             surface.getUserId(),
             surface.getStarId(),
-            surface.getSurfaceId()
+            surface.getSurfaceId(),
+            surface.getPlayerId()
         ));
     }
 

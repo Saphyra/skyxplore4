@@ -8,7 +8,8 @@ import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceCommandService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.service.ResearchRequirementChecker;
@@ -28,7 +29,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class BuildNewBuildingService {
-    private final BuildingDao buildingDao;
+    private final BuildingCommandService buildingCommandService;
+    private final BuildingQueryService buildingQueryService;
     private final ConstructionQueryService constructionQueryService;
     private final ConstructionService constructionService;
     private final GameDataQueryService gameDataQueryService;
@@ -68,10 +70,11 @@ public class BuildNewBuildingService {
             .userId(surface.getUserId())
             .starId(surface.getStarId())
             .surfaceId(surfaceId)
+            .playerId(surface.getPlayerId())
             .level(0)
             .constructionId(constructionId)
             .build();
-        buildingDao.save(building);
+        buildingCommandService.save(building);
         surfaceCommandService.save(surface);
     }
 
@@ -80,7 +83,7 @@ public class BuildNewBuildingService {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
 
-        if (buildingDao.findBySurfaceId(surface.getSurfaceId()).isPresent()) {
+        if (buildingQueryService.findBySurfaceIdAndPlayerId(surface.getSurfaceId()).isPresent()) {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
 

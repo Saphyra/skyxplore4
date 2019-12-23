@@ -1,16 +1,9 @@
 package com.github.saphyra.skyxplore.game.service.system;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
@@ -22,12 +15,18 @@ import com.github.saphyra.skyxplore.game.service.system.storage.resource.Resourc
 import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class StorageStatusQueryService {
-    private final BuildingDao buildingDao;
+    private final BuildingQueryService buildingQueryService;
     private final ResourceAverageCalculator resourceAverageCalculator;
     private final ResourceDifferenceCalculator resourceDifferenceCalculator;
     private final ResourceQueryService resourceQueryService;
@@ -43,7 +42,7 @@ public class StorageStatusQueryService {
 
     private StorageTypeView summarize(StorageType storageType, UUID starId) {
         StorageBuilding storage = storageBuildingService.findByStorageType(storageType);
-        List<Building> buildings = buildingDao.getByStarIdAndDataId(starId, storage.getId());
+        List<Building> buildings = buildingQueryService.getByStarIdAndDataIdAndPlayerId(starId, storage.getId());
 
         List<Resource> resources = resourceQueryService.getActualsByStarIdAndStorageType(starId, storageType);
         List<String> dataIds = resources.stream()

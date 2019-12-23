@@ -10,31 +10,44 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-//TODO make package-private
-public class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> {
+class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> {
     private final UuidConverter uuidConverter;
 
-    public BuildingDao(Converter<BuildingEntity, Building> converter, BuildingRepository repository, UuidConverter uuidConverter) {
+    BuildingDao(Converter<BuildingEntity, Building> converter, BuildingRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
 
-    public void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
+    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
         repository.deleteByGameIdAndUserId(
-                uuidConverter.convertDomain(gameId),
-                uuidConverter.convertDomain(userId)
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(userId)
         );
     }
 
-    public Optional<Building> findBySurfaceId(UUID surfaceId) {
-        return converter.convertEntity(repository.findBySurfaceId(uuidConverter.convertDomain(surfaceId)));
+    Optional<Building> findByBuildingIdAndPlayerId(UUID buildingId, UUID playerId) {
+        return converter.convertEntity(repository.findByBuildingIdAndPlayerId(
+            uuidConverter.convertDomain(buildingId),
+            uuidConverter.convertDomain(playerId)
+        ));
     }
 
-    public List<Building> getByStarIdAndDataId(UUID starId, String dataId) {
-        return converter.convertEntity(repository.getByStarIdAndBuildingDataId(uuidConverter.convertDomain(starId), dataId));
+    Optional<Building> findBySurfaceIdAndPlayerId(UUID surfaceId, UUID playerId) {
+        return converter.convertEntity(repository.findBySurfaceIdAndPlayerId(
+            uuidConverter.convertDomain(surfaceId),
+            uuidConverter.convertDomain(playerId)
+        ));
     }
 
-    public void saveAll(List<Building> buildings) {
+    List<Building> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndBuildingDataIdAndPlayerId(
+            uuidConverter.convertDomain(starId),
+            dataId,
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
+    void saveAll(List<Building> buildings) {
         repository.saveAll(converter.convertDomain(buildings));
     }
 }

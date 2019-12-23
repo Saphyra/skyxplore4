@@ -1,15 +1,11 @@
 package com.github.saphyra.skyxplore.game.service.system.costruction;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.common.interfaces.Queueable;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionDao;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
@@ -17,16 +13,19 @@ import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocatio
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
 import com.github.saphyra.skyxplore.game.rest.request.UpdatePriorityRequest;
 import com.github.saphyra.skyxplore.game.service.queue.QueueItemDao;
-import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
 @Component
 public class ConstructionQueueDao implements QueueItemDao {
     private final AllocationDao allocationDao;
-    private final BuildingDao buildingDao;
+    private final BuildingCommandService buildingCommandService;
     private final BuildingQueryService buildingQueryService;
     private final ConstructionDao constructionDao;
     private final ConstructionQueryService constructionQueryService;
@@ -54,12 +53,12 @@ public class ConstructionQueueDao implements QueueItemDao {
     public void cancel(UUID starId, UUID queueItemId, QueueType queueType) {
         Construction construction = constructionQueryService.findByConstructionId(queueItemId);
         if (construction.getConstructionType() == ConstructionType.UPGRADE_BUILDING || construction.getConstructionType() == ConstructionType.BUILDING) {
-            Building building = buildingQueryService.findOneValidated(construction.getExternalId());
+            Building building = buildingQueryService.findByBuildingIdAndPlayerId(construction.getExternalId());
             if(building.getLevel() == 0){
-                buildingDao.delete(building);
+                buildingCommandService.delete(building);
             }else {
                 building.setConstructionId(null);
-                buildingDao.save(building);
+                buildingCommandService.save(building);
             }
         }
         constructionDao.deleteById(uuidConverter.convertDomain(queueItemId));

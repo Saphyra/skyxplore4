@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @UtilityClass
 public class ExceptionFactory {
-    private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with id %s";
+    private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with buildingId %s and playerId %s";
     private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
     private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with id %s";
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
@@ -36,8 +36,8 @@ public class ExceptionFactory {
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
     private static final String TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX = "Terraforming of surface %s is already in progress";
 
-    public static RestException buildingNotFound(UUID buildingId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId));
+    public static RestException buildingNotFound(UUID buildingId, UUID playerId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId, playerId));
     }
 
     public static RestException constructionInProgress(UUID surfaceId) {

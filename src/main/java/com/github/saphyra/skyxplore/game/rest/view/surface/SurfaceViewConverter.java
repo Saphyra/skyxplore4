@@ -6,7 +6,7 @@ import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionTyp
 import com.github.saphyra.skyxplore.game.rest.view.ConstructionStatusView;
 import com.github.saphyra.skyxplore.game.rest.view.building.BuildingViewForSurface;
 import com.github.saphyra.skyxplore.game.rest.view.building.BuildingViewForSurfaceConverter;
-import com.github.saphyra.skyxplore.game.service.system.building.BuildingQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionViewQueryService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class SurfaceViewConverter implements ViewConverter<Surface, SurfaceView>
     }
 
     private BuildingViewForSurface getBuilding(Surface surface) {
-        return buildingQueryService.findBySurfaceId(surface.getSurfaceId())
+        return buildingQueryService.findBySurfaceIdAndPlayerId(surface.getSurfaceId())
             .map(buildingViewForSurfaceConverter::convertDomain)
             .orElse(null);
     }

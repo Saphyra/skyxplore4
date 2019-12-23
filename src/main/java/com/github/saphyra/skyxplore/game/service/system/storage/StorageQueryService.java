@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.game.service.system.storage;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingDao;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
@@ -22,7 +22,7 @@ import java.util.UUID;
 @Slf4j
 public class StorageQueryService {
     private final AllocationDao allocationDao;
-    private final BuildingDao buildingDao;
+    private final BuildingQueryService buildingQueryService;
     private final ReservationDao reservationDao;
     private final ResourceDao resourceDao;
     private final StorageBuildingService storageBuildingService;
@@ -39,7 +39,7 @@ public class StorageQueryService {
 
     private int getCapacity(UUID starId, StorageType storageType) {
         StorageBuilding buildingData = storageBuildingService.findByStorageType(storageType);
-        return buildingDao.getByStarIdAndDataId(starId, buildingData.getId()).stream()
+        return buildingQueryService.getByStarIdAndDataIdAndPlayerId(starId, buildingData.getId()).stream()
             .mapToInt(building -> building.getLevel() * buildingData.getCapacity())
             .sum();
     }
