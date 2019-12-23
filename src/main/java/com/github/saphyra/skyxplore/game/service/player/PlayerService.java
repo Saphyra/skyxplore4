@@ -1,16 +1,14 @@
 package com.github.saphyra.skyxplore.game.service.player;
 
-import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
 import com.github.saphyra.skyxplore.data.gamedata.FirstNames;
 import com.github.saphyra.skyxplore.data.gamedata.LastNames;
 import com.github.saphyra.skyxplore.game.dao.player.Player;
-import com.github.saphyra.skyxplore.game.dao.player.PlayerDao;
+import com.github.saphyra.skyxplore.game.dao.player.PlayerCommandService;
 import com.github.saphyra.skyxplore.platform.auth.UserQueryService;
 import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,15 +21,10 @@ public class PlayerService {
     private final FirstNames firstNames;
     private final IdGenerator idGenerator;
     private final LastNames lastNames;
-    private final PlayerDao playerDao;
+    private final PlayerCommandService playerCommandService;
     private final Random random;
     private final UserQueryService userQueryService;
 
-    @EventListener
-    void gameDeletedEventListener(GameDeletedEvent event){
-        log.debug("Deleting players related to game {}", event);
-        playerDao.gameDeletedEventListener(event.getGameId(), event.getUserId());
-    }
 
     public Player create(UUID gameId, UUID userId, boolean isAi, List<String> usedPlayerNames) {
         Player player = Player.builder()
@@ -42,7 +35,7 @@ public class PlayerService {
             .playerName(isAi ? generateName(usedPlayerNames) : userQueryService.findByUserIdValidated(userId).getCredentials().getUserName())
             .build();
 
-        playerDao.save(player);
+        playerCommandService.save(player);
         log.debug("Player created: {}", player);
         return player;
     }

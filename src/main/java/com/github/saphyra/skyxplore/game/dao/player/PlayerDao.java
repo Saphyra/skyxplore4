@@ -8,23 +8,22 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-//TODO make package-private
-public class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerRepository> {
+class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerRepository> {
     private final UuidConverter uuidConverter;
 
-    public PlayerDao(PlayerConverter converter, PlayerRepository repository, UuidConverter uuidConverter) {
+    PlayerDao(PlayerConverter converter, PlayerRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
 
-    public void gameDeletedEventListener(UUID gameId, UUID userId){
+    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
         repository.deleteByGameIdAndUserId(
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
     }
 
-    public List<Player> getByUserIdAndGameId(UUID userId, UUID gameId) {
+    List<Player> getByUserIdAndGameId(UUID userId, UUID gameId) {
         return converter.convertEntity(repository.getByUserIdAndGameId(
             uuidConverter.convertDomain(userId),
             uuidConverter.convertDomain(gameId)

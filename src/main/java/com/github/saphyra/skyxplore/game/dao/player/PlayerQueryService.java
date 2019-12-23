@@ -1,10 +1,8 @@
-package com.github.saphyra.skyxplore.game.service.player;
+package com.github.saphyra.skyxplore.game.dao.player;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
-import com.github.saphyra.skyxplore.game.dao.player.Player;
-import com.github.saphyra.skyxplore.game.dao.player.PlayerDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

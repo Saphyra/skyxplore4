@@ -1,9 +1,7 @@
 package com.github.saphyra.skyxplore.common;
 
-import com.github.saphyra.skyxplore.common.context.RequestContext;
-import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.dao.game.GameQueryService;
-import com.github.saphyra.skyxplore.game.service.player.PlayerQueryService;
+import com.github.saphyra.skyxplore.game.dao.player.PlayerQueryService;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +26,6 @@ public class PageController {
     private final CookieUtil cookieUtil;
     private final GameQueryService gameQueryService;
     private final PlayerQueryService playerQueryService;
-    private final RequestContextHolder requestContextHolder;
 
     @GetMapping(GAME_MAPPING)
     String game() {
@@ -58,7 +55,6 @@ public class PageController {
         String redirection;
         if (gameQueryService.findByGameIdAndUserId(gameId).isPresent()) {
             redirection = PageController.GAME_MAPPING;
-            RequestContext context = requestContextHolder.get();
             cookieUtil.setCookie(response, RequestConstants.COOKIE_GAME_ID, gameId.toString());
             cookieUtil.setCookie(response, RequestConstants.COOKIE_PLAYER_ID, playerQueryService.findPlayerIdByUserIdAndGameId(gameId).toString());
         } else {
