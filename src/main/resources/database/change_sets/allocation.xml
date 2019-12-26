@@ -44,4 +44,15 @@
 
         <addPrimaryKey tableName="allocation" columnNames="allocation_id" constraintName="allocation-pk"/>
     </changeSet>
+
+    <changeSet id="add-column_player-id_to-allocation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="allocation" columnName="player_id"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="allocation">
+            <column name="player_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -1,21 +1,20 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
-import java.util.List;
-
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import java.util.List;
 
 @Repository
 interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
-    void deleteByExternalReference(String externalReference);
+    void deleteByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 
     void deleteByGameIdAndUserId(String gameId, String userId);
 
-    List<AllocationEntity> getByExternalReference(String externalReference);
+    List<AllocationEntity> getByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 
-    List<AllocationEntity> getByStarIdAndStorageType(String starId, StorageType storageType);
+    List<AllocationEntity> getByStarIdAndStorageTypeAndGameIdAndPlayerId(String starId, StorageType storageType, String gameId, String playerId);
 
-    List<AllocationEntity> getByStarIdAndDataId(String starId, String dataId);
+    List<AllocationEntity> getByStarIdAndDataIdAndGameIdAndPlayerId(String starId, String dataId, String gameId, String playerId);
 }

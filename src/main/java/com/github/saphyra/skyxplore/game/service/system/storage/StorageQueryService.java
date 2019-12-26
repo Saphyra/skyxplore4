@@ -4,7 +4,7 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.Storag
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
-import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class StorageQueryService {
-    private final AllocationDao allocationDao;
+    private final AllocationQueryService allocationQueryService;
     private final BuildingQueryService buildingQueryService;
     private final ReservationDao reservationDao;
     private final ResourceDao resourceDao;
@@ -63,13 +63,13 @@ public class StorageQueryService {
     }
 
     public Integer getAllocatedStorage(UUID starId, StorageType storageType) {
-        return allocationDao.getByStarIdAndStorageType(starId, storageType).stream()
+        return allocationQueryService.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType).stream()
             .mapToInt(Allocation::getAmount)
             .sum();
     }
 
     public List<Allocation> getAllocationsByExternalReference(UUID externalReference) {
-        return allocationDao.getByExternalReference(externalReference);
+        return allocationQueryService.getByExternalReferenceAndGameIdAndPlayerId(externalReference);
     }
 
     public Integer getReservationByStarIdAndDataId(UUID starId, String dataId) {
@@ -79,7 +79,7 @@ public class StorageQueryService {
     }
 
     public Integer getAllocationByStarIdAndDataId(UUID starId, String dataId) {
-        return allocationDao.getByStarIdAndDataId(starId, dataId).stream()
+        return allocationQueryService.getByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId).stream()
             .mapToInt(Allocation::getAmount)
             .sum();
     }

@@ -23,6 +23,9 @@ public class Allocation {
     @NonNull
     private final UUID starId;
 
+    @NonNull
+    private final UUID playerId;
+
     /**
      * Id of the order/construction the allocation belongs to
      */
