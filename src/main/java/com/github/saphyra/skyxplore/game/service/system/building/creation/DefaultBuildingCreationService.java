@@ -3,11 +3,11 @@ package com.github.saphyra.skyxplore.game.service.system.building.creation;
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
+import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,18 +25,28 @@ public class DefaultBuildingCreationService {
         new ExcavatorBuilding(SurfaceType.MOUNTAIN)
     );
 
-    private final BuildingCommandService buildingCommandService;
     private final DistanceCalculator distanceCalculator;
+    private final DomainSaverService domainSaverService;
     private final List<AbstractDataService<?, ? extends BuildingData>> buildingDataServices;
     private final BuildingFactory buildingFactory;
 
-    public void addDefaultBuildingsForSystem(List<Surface> surfaces) {
+    public void addDefaultBuildingsForSystem(List<Surface> allSurfaces) {
         List<BuildingData> defaultBuildings = getDefaultBuildings();
         log.debug("Default buildings to place: {}", defaultBuildings);
 
+        List<Building> buildings = allSurfaces.stream()
+            .collect(Collectors.groupingBy(Surface::getStarId))
+            .values()
+            .stream()
+            .flatMap(surfaces -> placeBuildings(surfaces, defaultBuildings))
+            .collect(Collectors.toList());
+        domainSaverService.addAll(buildings);
+    }
+
+    private Stream<Building> placeBuildings(List<Surface> surfaces, List<BuildingData> defaultBuildings) {
         List<Building> buildings = new ArrayList<>();
         defaultBuildings.forEach(buildingData -> place(buildingData, surfaces, buildings));
-        buildingCommandService.saveAll(buildings);
+        return buildings.stream();
     }
 
     private List<BuildingData> getDefaultBuildings() {

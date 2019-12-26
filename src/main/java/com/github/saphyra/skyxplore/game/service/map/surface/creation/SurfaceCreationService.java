@@ -1,9 +1,9 @@
 package com.github.saphyra.skyxplore.game.service.map.surface.creation;
 
+import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
-import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceCommandService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.service.system.building.creation.DefaultBuildingCreationService;
 import com.github.saphyra.util.IdGenerator;
@@ -12,7 +12,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,10 +28,10 @@ import static java.util.Objects.isNull;
 @Slf4j
 public class SurfaceCreationService {
     private final DefaultBuildingCreationService defaultBuildingCreationService;
+    private final DomainSaverService domainSaverService;
     private final IdGenerator idGenerator;
     private final Random random;
     private final SurfaceCreationProperties properties;
-    private final SurfaceCommandService surfaceCommandService;
 
     public void createSurfaces(List<Star> stars) {
         log.info("Creating surfaces...");
@@ -35,7 +40,8 @@ public class SurfaceCreationService {
             .flatMap(this::createSurfaces)
             .collect(Collectors.toList());
         log.info("Number of surfaces created: {}", surfaces.size());
-        surfaceCommandService.saveAll(surfaces);
+        defaultBuildingCreationService.addDefaultBuildingsForSystem(surfaces);
+        domainSaverService.addAll(surfaces);
     }
 
     private Stream<Surface> createSurfaces(Star star) {
@@ -43,7 +49,6 @@ public class SurfaceCreationService {
         SurfaceType[][] surfaceMap = createSurfaceMap();
         log.debug("Surfaces created for star {}", star.getStarId());
         List<Surface> surfaces = mapSurfaces(surfaceMap, star);
-        defaultBuildingCreationService.addDefaultBuildingsForSystem(surfaces);
         return surfaces.stream();
     }
 

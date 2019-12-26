@@ -4,6 +4,7 @@ import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
+import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepository> implements DeletableByGameId {
+class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepository> implements DeletableByGameId, SaveAllDao<Citizen> {
     private final UuidConverter uuidConverter;
 
     CitizenDao(Converter<CitizenEntity, Citizen> converter, CitizenRepository repository, UuidConverter uuidConverter) {
@@ -35,7 +36,8 @@ class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepo
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    void saveAll(List<Citizen> citizens) {
+    @Override
+    public void saveAll(List<Citizen> citizens) {
         repository.saveAll(converter.convertDomain(citizens));
     }
 }

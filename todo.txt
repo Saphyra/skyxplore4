@@ -1,4 +1,3 @@
-//TODO dao-proxy for bulk-saving
 //TODO remove userId from domains
 //TODO Squash liquibase scripts
 //TODO throw exception when playerId is ai player's id, or not belongs to userId and gameId

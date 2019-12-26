@@ -20,6 +20,6 @@ public class MetricsFilter extends OncePerRequestFilter {
         stopwatch.start();
         filterChain.doFilter(request, response);
         stopwatch.stop();
-        log.warn("{}: {}ms", stopwatch.getId(), stopwatch.getLastTaskTimeMillis());
+        log.warn("{}: {}ms", stopwatch.getId(), stopwatch.getTotalTimeMillis());
     }
 }

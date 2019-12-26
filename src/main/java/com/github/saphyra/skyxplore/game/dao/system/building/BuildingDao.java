@@ -4,6 +4,7 @@ import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
+import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> implements DeletableByGameId {
+class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> implements DeletableByGameId, SaveAllDao<Building> {
     private final UuidConverter uuidConverter;
 
     BuildingDao(Converter<BuildingEntity, Building> converter, BuildingRepository repository, UuidConverter uuidConverter) {
@@ -49,7 +50,8 @@ class BuildingDao extends AbstractDao<BuildingEntity, Building, String, Building
         ));
     }
 
-    void saveAll(List<Building> buildings) {
+    @Override
+    public void saveAll(List<Building> buildings) {
         repository.saveAll(converter.convertDomain(buildings));
     }
 }

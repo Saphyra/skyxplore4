@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.game.service.system.citizen.service.creation;
 
+import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.skyxplore.game.dao.system.citizen.Citizen;
-import com.github.saphyra.skyxplore.game.dao.system.citizen.CitizenCommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ import java.util.stream.Stream;
 @Slf4j
 public class CitizenCreationService {
     private final CitizenCreationProperties properties;
-    private final CitizenCommandService citizenCommandService;
     private final CitizenFactory citizenFactory;
+    private final DomainSaverService domainSaverService;
 
     public void createCitizens(List<Star> stars) {
         log.info("Creating citizens...");
-        List<Citizen> citizens = stars
-            .parallelStream()
+        List<Citizen> citizens = stars.stream()
+            .parallel()
             .flatMap(this::createCitizens)
             .collect(Collectors.toList());
         log.info("Number of citizens: {}", citizens.size());
-        citizenCommandService.saveAll(citizens);
+        domainSaverService.addAll(citizens);
     }
 
     private Stream<Citizen> createCitizens(Star star) {

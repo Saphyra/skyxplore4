@@ -1,13 +1,13 @@
 package com.github.saphyra.skyxplore.game.service.map.star.creation;
 
 import com.github.saphyra.skyxplore.data.gamedata.StarNames;
+import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.game.dao.map.star.StarCommandService;
-import com.github.saphyra.skyxplore.game.service.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.game.dao.player.Player;
+import com.github.saphyra.skyxplore.game.service.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.service.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.service.player.PlayerService;
-import com.github.saphyra.skyxplore.game.dao.player.Player;
 import com.github.saphyra.skyxplore.game.service.system.citizen.service.creation.CitizenCreationService;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +26,9 @@ public class StarCreationService {
     private final CitizenCreationService citizenCreationService;
     private final ConnectionCreationService connectionCreationService;
     private final CoordinateProvider coordinateProvider;
+    private final DomainSaverService domainSaverService;
     private final IdGenerator idGenerator;
     private final PlayerService playerService;
-    private final StarCommandService starCommandService;
     private final StarNames starNames;
     private final SurfaceCreationService surfaceCreationService;
 
@@ -56,9 +56,9 @@ public class StarCreationService {
             log.debug("Star created: {}", star);
             createdStars.add(star);
             usedPlayerNames.add(player.getPlayerName());
-            isAi= true;
+            isAi = true;
         }
-        starCommandService.saveAll(createdStars);
+        domainSaverService.addAll(createdStars);
         connectionCreationService.createConnections(createdStars);
         surfaceCreationService.createSurfaces(createdStars);
         citizenCreationService.createCitizens(createdStars);

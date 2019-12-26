@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.game.service.game.creation;
 
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.game.Game;
 import com.github.saphyra.skyxplore.game.dao.game.GameCommandService;
 import com.github.saphyra.skyxplore.game.service.map.star.creation.StarCreationService;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class GameCreationService {
+    private final DomainSaverService domainSaverService;
     private final GameCommandService gameCommandService;
     private final GameFactroy gameFactroy;
     private final RequestContextHolder requestContextHolder;
@@ -30,6 +32,7 @@ public class GameCreationService {
         gameCommandService.save(game);
         starCreationService.createStars(userId, game.getGameId());
         String gameId = game.getGameId().toString();
+        domainSaverService.save();
         stopWatch.stop();
         log.info("Game created with gameId {} in {} seconds", gameId, stopWatch.getTotalTimeSeconds());
         return gameId;
