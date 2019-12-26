@@ -33,11 +33,9 @@ public class GameController {
     @PutMapping(CREATE_GAME_MAPPING)
     @Transactional
     public String createGame(
-            @CookieValue(RequestConstants.COOKIE_USER_ID) UUID userId,
             @RequestBody OneStringParamRequest gameName
     ) {
-        log.info("{} wants to create a game.", userId);
-        return gameCreationService.createGame(userId, gameName.getValue());
+        return gameCreationService.createGame(gameName.getValue());
     }
 
     @DeleteMapping(DELETE_GAME_MAPPING)

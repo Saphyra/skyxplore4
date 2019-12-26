@@ -33,7 +33,7 @@ public class StarCreationService {
     private final SurfaceCreationService surfaceCreationService;
 
     public void createStars(UUID userId, UUID gameId) {
-        log.info("Creating stars...");
+        log.info("Creating stars for gameId {} and userId {}...", gameId, userId);
         List<Coordinate> coordinates = coordinateProvider.getRandomCoordinates();
         List<String> usedStarNames = new ArrayList<>();
         List<String> usedPlayerNames = new ArrayList<>();

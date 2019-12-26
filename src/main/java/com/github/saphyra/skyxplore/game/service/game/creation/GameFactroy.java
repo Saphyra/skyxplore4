@@ -19,7 +19,7 @@ class GameFactroy {
             .gameId(idGenerator.randomUUID())
             .userId(userId)
             .gameName(gameName)
-                .round(1)
+            .round(1)
             .build();
         log.debug("Game created: {}", game);
         return game;

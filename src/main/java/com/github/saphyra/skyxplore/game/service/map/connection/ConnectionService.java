@@ -16,7 +16,7 @@ public class ConnectionService {
 
     @EventListener
     void gameDeletedEventListener(GameDeletedEvent event) {
-        log.debug("Deleting connections related to game {}", event);
+        log.info("Deleting connections related to game {}", event);
         starConnectionCommandService.deleteByGameIdAndUserId(event.getGameId(), event.getUserId());
     }
 }

@@ -15,7 +15,7 @@ class StarService {
 
     @EventListener
     void gameDeletedEventListener(GameDeletedEvent event) {
-        log.debug("Deleting stars related to game {}", event);
+        log.info("Deleting stars related to game {}", event);
         starCommandService.deleteByGameIdAndUserId(event.getGameId(), event.getUserId());
     }
 }

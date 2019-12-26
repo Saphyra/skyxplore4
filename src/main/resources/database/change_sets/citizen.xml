@@ -70,4 +70,16 @@
 
         <addPrimaryKey tableName="skill" columnNames="skill_id" constraintName="skill-pk"/>
     </changeSet>
+
+    <changeSet id="add-column_owner-id_to-citizen" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="citizen" columnName="owner_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="citizen">
+            <column name="owner_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

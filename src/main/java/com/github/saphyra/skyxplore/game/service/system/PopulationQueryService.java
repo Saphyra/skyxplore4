@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.service.system;
 
 import com.github.saphyra.skyxplore.game.service.system.building.BuildingService;
-import com.github.saphyra.skyxplore.game.service.system.citizen.CitizenQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.citizen.CitizenQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.citizen.LocationType;
 import com.github.saphyra.skyxplore.game.rest.view.system.PopulationView;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class PopulationQueryService {
     public PopulationView getPopulationOfStar(UUID starId) {
         return PopulationView.builder()
                 .dwellingSpaceAmount(buildingService.getDwellingSpaceAmount(starId))
-                .citizenNum(citizenQueryService.countByLocation(LocationType.SYSTEM, starId))
+                .citizenNum(citizenQueryService.countByLocationAndGameIdAndOwnerId(LocationType.SYSTEM, starId))
                 .build();
     }
 }

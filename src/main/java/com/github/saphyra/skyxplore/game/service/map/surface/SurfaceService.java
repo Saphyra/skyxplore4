@@ -16,7 +16,7 @@ public class SurfaceService {
 
     @EventListener
     void gameDeletedEventListener(GameDeletedEvent event){
-        log.debug("Deleting surfaces related to game {}", event);
+        log.info("Deleting surfaces related to game {}", event);
         surfaceCommandService.deleteByGameIdAndUserId(event.getGameId(), event.getUserId());
     }
 }

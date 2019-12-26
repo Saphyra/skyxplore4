@@ -20,6 +20,7 @@ class CitizenEntity {
     private String citizenName;
     private String gameId;
     private String userId;
+    private String ownerId;
     @Enumerated(EnumType.STRING)
     private LocationType locationType;
     private String locationId;

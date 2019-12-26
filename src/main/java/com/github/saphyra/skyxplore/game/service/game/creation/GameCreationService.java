@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.service.game.creation;
 
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.dao.game.Game;
 import com.github.saphyra.skyxplore.game.dao.game.GameCommandService;
 import com.github.saphyra.skyxplore.game.service.map.star.creation.StarCreationService;
@@ -16,9 +17,12 @@ import java.util.UUID;
 public class GameCreationService {
     private final GameCommandService gameCommandService;
     private final GameFactroy gameFactroy;
+    private final RequestContextHolder requestContextHolder;
     private final StarCreationService starCreationService;
 
-    public String createGame(UUID userId, String gameName) {
+    public String createGame(String gameName) {
+        UUID userId = requestContextHolder.get()
+            .getUserId();
         StopWatch stopWatch = new StopWatch("GameCreation");
         stopWatch.start();
         log.debug("GameName: {}", gameName);

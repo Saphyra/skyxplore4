@@ -10,7 +10,8 @@
                     return JSON.parse(response.body);
                 }
                 request.processValidResponse = function(systemDetails){
-                    displayStarDetails(systemDetails, containerId)
+                    displayStarDetails(systemDetails, containerId);
+                    spinner.increment();
                 }
             dao.sendRequestAsync(request);
         }

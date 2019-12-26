@@ -27,21 +27,22 @@ public class CitizenFactory {
     public Citizen create(Star star) {
         UUID citizenId = idGenerator.randomUUID();
         return Citizen.builder()
-                .citizenId(citizenId)
-                .citizenName(generateName())
-                .gameId(star.getGameId())
-                .userId(star.getUserId())
-                .locationType(LocationType.SYSTEM)
-                .locationId(star.getStarId())
-                .morale(100)
-                .satiety(100)
-                .skills(generateSkills(citizenId))
-                .build();
+            .citizenId(citizenId)
+            .citizenName(generateName())
+            .gameId(star.getGameId())
+            .userId(star.getUserId())
+            .ownerId(star.getOwnerId())
+            .locationType(LocationType.SYSTEM)
+            .locationId(star.getStarId())
+            .morale(100)
+            .satiety(100)
+            .skills(generateSkills(citizenId))
+            .build();
     }
 
     private Map<SkillType, Skill> generateSkills(UUID citizenId) {
         return Arrays.stream(SkillType.values())
-                .collect(Collectors.toMap(skillType -> skillType, skillType -> skillFactory.create(skillType, citizenId)));
+            .collect(Collectors.toMap(skillType -> skillType, skillType -> skillFactory.create(skillType, citizenId)));
     }
 
     private String generateName() {

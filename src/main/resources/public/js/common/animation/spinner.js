@@ -1,10 +1,20 @@
 (function Spinner(){
     const SPINNER_ID = "spinner";
+    let maxCounter = 0;
+    let counter = 0;
 
     window.spinner = new function(){
-        this.open = function(){
+        this.open = function(c){
+           maxCounter = c == undefined || c == null ? 1 : c;
+           counter = 0;
            $(getOrCreateSpinner()).show();
-       };
+        };
+        this.increment = function(a){
+            counter += a == undefined || a == null ? 1 : a;
+            if(counter >= maxCounter){
+                this.close();
+            }
+        }
         this.close = function(){
             getSpinner().ifPresent(function(spinner){$(spinner).hide()});
         };

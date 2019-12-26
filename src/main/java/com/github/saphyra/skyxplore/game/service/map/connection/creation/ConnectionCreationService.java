@@ -25,11 +25,12 @@ public class ConnectionCreationService {
     private final IdGenerator idGenerator;
 
    public void createConnections(List<Star> stars) {
-        log.info("Creating StarConenctions...");
+        log.info("Creating StarConnections...");
         List<StarConnection> connections = new ArrayList<>();
         stars.forEach(star -> connections.addAll(connectCloseStars(star, stars)));
         connections.addAll(connectDistantStars(stars, connections));
         removeConnections(connections, stars);
+        log.info("Number of connections: {}", connections.size());
         starConnectionCommandService.saveAll(connections);
     }
 

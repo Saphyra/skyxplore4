@@ -15,6 +15,7 @@
                 }
                 request.processValidResponse = function(queue){
                     displayQueue(starId, queue, containerId);
+                    spinner.increment();
                 }
             dao.sendRequestAsync(request);
         }

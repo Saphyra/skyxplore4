@@ -11,6 +11,7 @@
                 }
                 surfaceRequest.processValidResponse = function(surfaces){
                     displaySurfaces(starId, surfaces, document.getElementById(surfaceTableId));
+                    spinner.increment();
                 }
             dao.sendRequestAsync(surfaceRequest);
         }

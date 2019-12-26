@@ -15,7 +15,7 @@ public class ResourceService {
 
     @EventListener
     void gameDeletedEventListener(GameDeletedEvent event) {
-        log.info("Deleting requiredResources based on {}", event);
+        log.info("Deleting resources based on {}", event);
         resourceDao.deleteByGameIdAndUserId(event.getGameId(), event.getUserId());
     }
 }

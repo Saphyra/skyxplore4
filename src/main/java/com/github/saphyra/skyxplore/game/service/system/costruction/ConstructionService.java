@@ -1,10 +1,5 @@
 package com.github.saphyra.skyxplore.game.service.system.costruction;
 
-import java.util.UUID;
-
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.common.DateTimeUtil;
 import com.github.saphyra.skyxplore.common.event.GameDeletedEvent;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
@@ -14,9 +9,15 @@ import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionSta
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ConstructionService {
     private static final int DEFAULT_PRIORITY = 5;
 
@@ -26,6 +27,7 @@ public class ConstructionService {
 
     @EventListener
     void gameDeletedEventListener(GameDeletedEvent gameDeletedEvent) {
+        log.info("Deleting constructions for event {}", gameDeletedEvent);
         constructionDao.deleteByGameIdAndUserId(gameDeletedEvent.getGameId(), gameDeletedEvent.getUserId());
     }
 
