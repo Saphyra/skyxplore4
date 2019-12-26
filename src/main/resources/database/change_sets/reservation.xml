@@ -44,4 +44,16 @@
 
         <addPrimaryKey tableName="reservation" columnNames="reservation_id" constraintName="reservation-pk"/>
     </changeSet>
+
+    <changeSet id="add-column_player-id_to-reservation" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="reservation" columnName="player_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="reservation">
+            <column name="player_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

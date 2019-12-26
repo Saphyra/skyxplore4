@@ -10,7 +10,7 @@ import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionCom
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationCommandService;
-import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationCommandService;
 import com.github.saphyra.skyxplore.game.rest.request.UpdatePriorityRequest;
 import com.github.saphyra.skyxplore.game.service.queue.QueueItemDao;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class ConstructionQueueDao implements QueueItemDao {
     private final BuildingQueryService buildingQueryService;
     private final ConstructionCommandService constructionCommandService;
     private final ConstructionQueryService constructionQueryService;
-    private final ReservationDao reservationDao;
+    private final ReservationCommandService reservationCommandService;
 
     @Override
     public boolean canHandle(QueueType queueType) {
@@ -62,6 +62,6 @@ public class ConstructionQueueDao implements QueueItemDao {
         }
         constructionCommandService.deleteByConstructionIdAndGameIdAndPlayerId(queueItemId);
         allocationCommandService.deleteByExternalReferenceAndGameIdAndPlayerId(construction.getConstructionId());
-        reservationDao.deleteByExternalReference(construction.getConstructionId());
+        reservationCommandService.deleteByExternalReferenceAndGameIdAndPlayerId(construction.getConstructionId());
     }
 }

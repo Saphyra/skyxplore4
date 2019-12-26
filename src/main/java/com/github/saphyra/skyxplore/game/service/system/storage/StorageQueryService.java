@@ -6,7 +6,7 @@ import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryServic
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
-import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
@@ -23,7 +23,7 @@ import java.util.UUID;
 public class StorageQueryService {
     private final AllocationQueryService allocationQueryService;
     private final BuildingQueryService buildingQueryService;
-    private final ReservationDao reservationDao;
+    private final ReservationQueryService reservationQueryService;
     private final ResourceDao resourceDao;
     private final StorageBuildingService storageBuildingService;
 
@@ -73,7 +73,7 @@ public class StorageQueryService {
     }
 
     public Integer getReservationByStarIdAndDataId(UUID starId, String dataId) {
-        return reservationDao.getByStarIdAndDataId(starId, dataId).stream()
+        return reservationQueryService.getByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId).stream()
             .mapToInt(Reservation::getAmount)
             .sum();
     }
@@ -85,6 +85,6 @@ public class StorageQueryService {
     }
 
     public List<Reservation> getReservationsByStarIdAndStorageType(UUID starId, StorageType storageType) {
-        return reservationDao.getByStarIdAndStorageType(starId, storageType);
+        return reservationQueryService.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType);
     }
 }

@@ -64,7 +64,8 @@ public class ResourceReservationService {
                 requiredResourceAmount,
                 resourceData.getStorageType(),
                 reservationType,
-                externalReference
+                externalReference,
+                surface.getPlayerId()
             );
         }
     }

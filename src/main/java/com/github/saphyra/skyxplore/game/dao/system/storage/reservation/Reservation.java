@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
-import java.util.UUID;
-
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.UUID;
 
 @Data
 @Builder
@@ -22,6 +22,9 @@ public class Reservation {
 
     @NonNull
     private final UUID starId;
+
+    @NonNull
+    private final UUID playerId;
 
     @NonNull
     private final UUID externalReference;

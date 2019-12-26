@@ -1,19 +1,18 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
-import java.util.List;
-
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import java.util.List;
 
 @Repository
 interface ReservationRepository extends JpaRepository<ReservationEntity, String> {
-    void deleteByExternalReference(String externalReference);
+    void deleteByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 
     void deleteByGameIdAndUserId(String gameId, String userId);
 
-    List<ReservationEntity> getByStarIdAndStorageType(String starId, StorageType storageType);
+    List<ReservationEntity> getByStarIdAndStorageTypeAndGameIdAndPlayerId(String starId, StorageType storageType, String gameId, String playerId);
 
-    List<ReservationEntity> getByStarIdAndDataId(String starId, String dataId);
+    List<ReservationEntity> getByStarIdAndDataIdAndGameIdAndPlayerId(String starId, String dataId, String gameId, String playerId);
 }

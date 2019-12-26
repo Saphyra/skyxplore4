@@ -9,37 +9,44 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-//TODO make package-private
-public class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String, ReservationRepository> {
+class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String, ReservationRepository> {
     private final UuidConverter uuidConverter;
 
-    public ReservationDao(ReservationConverter converter, ReservationRepository repository, UuidConverter uuidConverter) {
+    ReservationDao(ReservationConverter converter, ReservationRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
 
-    public void deleteByExternalReference(UUID externalReference) {
-        repository.deleteByExternalReference(uuidConverter.convertDomain(externalReference));
+    void deleteByExternalReferenceAndGameIdAndPlayerId(UUID externalReference, UUID gameId, UUID playerId) {
+        repository.deleteByExternalReferenceAndGameIdAndPlayerId(
+            uuidConverter.convertDomain(externalReference),
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+        );
     }
 
-    public void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
+    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
         repository.deleteByGameIdAndUserId(
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
     }
 
-    public List<Reservation> getByStarIdAndStorageType(UUID starId, StorageType storageType) {
-        return converter.convertEntity(repository.getByStarIdAndStorageType(
+    List<Reservation> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType, UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndGameIdAndPlayerId(
             uuidConverter.convertDomain(starId),
-            storageType
+            storageType,
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
         ));
     }
 
-    public List<Reservation> getByStarIdAndDataId(UUID starId, String dataId) {
-        return converter.convertEntity(repository.getByStarIdAndDataId(
+    List<Reservation> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId, UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndDataIdAndGameIdAndPlayerId(
             uuidConverter.convertDomain(starId),
-            dataId
+            dataId,
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
         ));
     }
 }
