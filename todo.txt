@@ -1,4 +1,6 @@
 //TODO Add gameId-playerId verification to endpoints
+//TODO simplify game deletion
+//TODO Squash liquibase scripts
 //TODO dao-proxy for bulk-saving
 //TODO throw exception when playerId is ai player's id, or not belongs to userId and gameId
 //TODO API tests

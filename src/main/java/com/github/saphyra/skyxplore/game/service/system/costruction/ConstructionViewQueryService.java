@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.game.service.system.costruction;
 
-import java.util.Map;
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
 import com.github.saphyra.skyxplore.game.rest.view.ConstructionStatusView;
 import com.github.saphyra.skyxplore.game.service.system.storage.StorageQueryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +18,7 @@ public class ConstructionViewQueryService {
     private final StorageQueryService storageQueryService;
 
     public ConstructionStatusView findByConstructionId(UUID constructionId) {
-        Construction construction = constructionQueryService.findByConstructionId(constructionId);
+        Construction construction = constructionQueryService.findByConstructionIdAndGameIdAndPlayerId(constructionId);
         return findByConstruction(construction);
     }
 

@@ -9,39 +9,65 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-//TODO make package-private
-public class ConstructionDao extends AbstractDao<ConstructionEntity, Construction, String, ConstructionRepository> {
+class ConstructionDao extends AbstractDao<ConstructionEntity, Construction, String, ConstructionRepository> {
     private final UuidConverter uuidConverter;
 
-    public ConstructionDao(ConstructionConverter converter, ConstructionRepository repository, UuidConverter uuidConverter) {
+    ConstructionDao(ConstructionConverter converter, ConstructionRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
 
-    public void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
+    void deleteByConstructionIdAndGameIdAndPlayerId(UUID constructionId, UUID gameId, UUID playerId) {
+        repository.deleteByConstructionIdAndGameIdAndPlayerId(
+            uuidConverter.convertDomain(constructionId),
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+        );
+    }
+
+    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
         repository.deleteByGameIdAndUserId(
             uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(userId)
         );
     }
 
-    public Optional<Construction> findByConstructionTypeAndExternalId(ConstructionType constructionType, UUID externalId) {
-        return converter.convertEntity(repository.findByConstructionTypeAndExternalId(
-            constructionType,
-            uuidConverter.convertDomain(externalId)
-        ));
-    }
-
-    public Optional<Construction> findByConstructionTypeAndSurfaceId(ConstructionType constructionType, UUID surfaceId) {
+    Optional<Construction> findByConstructionIdAndGameIdAndPlayerId(UUID constructionId, UUID gameId, UUID playerId) {
         return converter.convertEntity(
-            repository.findByConstructionTypeAndSurfaceId(
-                constructionType,
-                uuidConverter.convertDomain(surfaceId)
+            repository.findByConstructionIdAndGameIdAndPlayerId(
+                uuidConverter.convertDomain(constructionId),
+                uuidConverter.convertDomain(gameId),
+                uuidConverter.convertDomain(playerId)
             )
         );
     }
 
-    public List<Construction> getByStarId(UUID starId) {
-        return converter.convertEntity(repository.getByStarId(uuidConverter.convertDomain(starId)));
+    Optional<Construction> findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType constructionType, UUID externalId, UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(
+            constructionType,
+            uuidConverter.convertDomain(externalId),
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
+    Optional<Construction> findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType constructionType, UUID surfaceId, UUID gameId, UUID playerId) {
+        return converter.convertEntity(
+            repository.findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(
+                constructionType,
+                uuidConverter.convertDomain(surfaceId),
+                uuidConverter.convertDomain(gameId),
+                uuidConverter.convertDomain(playerId)
+            )
+        );
+    }
+
+    List<Construction> getByStarIdAndGameIdAndPlayerId(UUID starId, UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndGameIdAndPlayerId(
+            uuidConverter.convertDomain(starId),
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+            )
+        );
     }
 }

@@ -10,10 +10,10 @@ import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.service.ResearchRequirementChecker;
-import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
 import com.github.saphyra.util.IdGenerator;
@@ -59,7 +59,8 @@ public class BuildNewBuildingService {
             constructionRequirements,
             ConstructionType.BUILDING,
             buildingId,
-            buildingData.getId()
+            buildingData.getId(),
+            surface.getPlayerId()
         );
         resourceReservationService.reserveResources(surface, resources, ReservationType.CONSTRUCTION, constructionId);
 
@@ -87,7 +88,7 @@ public class BuildNewBuildingService {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
 
-        if (constructionQueryService.findByConstructionTypeAndExternalId(ConstructionType.TERRAFORMING, surface.getStarId()).isPresent()) {
+        if (constructionQueryService.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getStarId()).isPresent()) {
             throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
         }
     }

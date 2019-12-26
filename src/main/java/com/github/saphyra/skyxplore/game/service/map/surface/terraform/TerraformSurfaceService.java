@@ -6,10 +6,10 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.Terraformi
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.service.ResearchRequirementChecker;
-import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionService;
 import com.github.saphyra.skyxplore.game.service.system.storage.ResourceReservationService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +45,8 @@ public class TerraformSurfaceService {
             terraformingPossibility.getConstructionRequirements(),
             ConstructionType.TERRAFORMING,
             surfaceId,
-            surfaceType.name()
+            surfaceType.name(),
+            surface.getPlayerId()
         );
         resourceReservationService.reserveResources(surface, terraformingPossibility.getConstructionRequirements().getRequiredResources(), ReservationType.TERRAFORMING, constructionId);
     }
@@ -55,11 +56,11 @@ public class TerraformSurfaceService {
             .filter(terraformingPossibilities -> terraformingPossibilities.stream().anyMatch(terraformingPossibility -> terraformingPossibility.getSurfaceType().equals(surfaceType)))
             .orElseThrow(() -> ExceptionFactory.terraformingNotPossible(surface.getSurfaceId(), surfaceType));
 
-        if (constructionQueryService.findByConstructionTypeAndExternalId(ConstructionType.TERRAFORMING, surface.getSurfaceId()).isPresent()) {
+        if (constructionQueryService.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getSurfaceId()).isPresent()) {
             throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
         }
 
-        if(constructionQueryService.findByConstructionTypeAndSurfaceId(ConstructionType.BUILDING, surface.getSurfaceId()).isPresent()){
+        if(constructionQueryService.findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType.BUILDING, surface.getSurfaceId()).isPresent()){
             throw ExceptionFactory.constructionInProgress(surface.getSurfaceId());
         }
 

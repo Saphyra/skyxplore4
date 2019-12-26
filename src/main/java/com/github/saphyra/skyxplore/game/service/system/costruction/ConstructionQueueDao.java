@@ -1,13 +1,13 @@
 package com.github.saphyra.skyxplore.game.service.system.costruction;
 
-import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.common.interfaces.Queueable;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
-import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionDao;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionCommandService;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationDao;
@@ -27,10 +27,9 @@ public class ConstructionQueueDao implements QueueItemDao {
     private final AllocationDao allocationDao;
     private final BuildingCommandService buildingCommandService;
     private final BuildingQueryService buildingQueryService;
-    private final ConstructionDao constructionDao;
+    private final ConstructionCommandService constructionCommandService;
     private final ConstructionQueryService constructionQueryService;
     private final ReservationDao reservationDao;
-    private final UuidConverter uuidConverter;
 
     @Override
     public boolean canHandle(QueueType queueType) {
@@ -39,29 +38,29 @@ public class ConstructionQueueDao implements QueueItemDao {
 
     @Override
     public List<? extends Queueable> getQueueOfStar(UUID starId) {
-        return constructionDao.getByStarId(starId);
+        return constructionQueryService.getByStarIdAndGameIdAndPlayerId(starId);
     }
 
     @Override
     public void updatePriority(UUID starId, UUID queueItemId, UpdatePriorityRequest request) {
-        Construction construction = constructionQueryService.findByConstructionId(queueItemId);
+        Construction construction = constructionQueryService.findByConstructionIdAndGameIdAndPlayerId(queueItemId);
         construction.setPriority(request.getPriority());
-        constructionDao.save(construction);
+        constructionCommandService.save(construction);
     }
 
     @Override
     public void cancel(UUID starId, UUID queueItemId, QueueType queueType) {
-        Construction construction = constructionQueryService.findByConstructionId(queueItemId);
+        Construction construction = constructionQueryService.findByConstructionIdAndGameIdAndPlayerId(queueItemId);
         if (construction.getConstructionType() == ConstructionType.UPGRADE_BUILDING || construction.getConstructionType() == ConstructionType.BUILDING) {
             Building building = buildingQueryService.findByBuildingIdAndPlayerId(construction.getExternalId());
-            if(building.getLevel() == 0){
+            if (building.getLevel() == 0) {
                 buildingCommandService.delete(building);
-            }else {
+            } else {
                 building.setConstructionId(null);
                 buildingCommandService.save(building);
             }
         }
-        constructionDao.deleteById(uuidConverter.convertDomain(queueItemId));
+        constructionCommandService.deleteByConstructionIdAndGameIdAndPlayerId(queueItemId);
         allocationDao.deleteByExternalReference(construction.getConstructionId());
         reservationDao.deleteByExternalReference(construction.getConstructionId());
     }

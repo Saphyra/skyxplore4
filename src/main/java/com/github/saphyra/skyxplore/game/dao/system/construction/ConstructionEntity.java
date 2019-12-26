@@ -1,6 +1,9 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
-import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -12,11 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Map;
 
 @Builder
 @Data
@@ -30,6 +29,7 @@ class ConstructionEntity {
     private String gameId;
     private String userId;
     private String starId;
+    private String playerId;
 
     @ElementCollection
     @MapKeyColumn(name = "resource_id")

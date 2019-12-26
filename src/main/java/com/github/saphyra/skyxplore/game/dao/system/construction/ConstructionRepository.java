@@ -1,18 +1,22 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 interface ConstructionRepository extends JpaRepository<ConstructionEntity, String> {
     void deleteByGameIdAndUserId(String gameId, String userId);
 
-    Optional<ConstructionEntity> findByConstructionTypeAndExternalId(ConstructionType constructionType, String externalId);
+    Optional<ConstructionEntity> findByConstructionIdAndGameIdAndPlayerId(String constructionId, String gameId, String playerId);
 
-    Optional<ConstructionEntity> findByConstructionTypeAndSurfaceId(ConstructionType constructionType, String surfaceId);
+    Optional<ConstructionEntity> findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType constructionType, String externalId, String gameId, String playerId);
 
-    List<ConstructionEntity> getByStarId(String starId);
+    Optional<ConstructionEntity> findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType constructionType, String surfaceId, String gameId, String playerId);
+
+    List<ConstructionEntity> getByStarIdAndGameIdAndPlayerId(String starId, String gameId, String playerId);
+
+    void deleteByConstructionIdAndGameIdAndPlayerId(String constructionId, String gameId, String playerId);
 }

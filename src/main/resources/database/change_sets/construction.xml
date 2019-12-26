@@ -89,4 +89,16 @@
 
         <addPrimaryKey tableName="construction" columnNames="construction_id" constraintName="construction-pk"/>
     </changeSet>
+
+    <changeSet id="add-column_player-id_to-construction" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="construction" columnName="player_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="construction">
+            <column name="player_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

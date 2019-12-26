@@ -1,15 +1,14 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.common.DateTimeUtil;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Component
@@ -24,6 +23,7 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .gameId(uuidConverter.convertEntity(constructionEntity.getGameId()))
             .userId(uuidConverter.convertEntity(constructionEntity.getUserId()))
             .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
+            .playerId(uuidConverter.convertEntity(constructionEntity.getPlayerId()))
             .constructionRequirements(convertRequirements(
                 constructionEntity.getResourceRequirements(),
                 constructionEntity.getRequiredWorkPoints()
@@ -56,6 +56,7 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
             .userId(uuidConverter.convertDomain(domain.getUserId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
+            .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
             .resourceRequirements(domain.getConstructionRequirements().getRequiredResources())
             .currentWorkPoints(domain.getCurrentWorkPoints())
             .requiredWorkPoints(domain.getConstructionRequirements().getRequiredWorkPoints())

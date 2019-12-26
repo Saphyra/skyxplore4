@@ -3,7 +3,6 @@ package com.github.saphyra.skyxplore.common;
 import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
 import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
-import com.github.saphyra.exceptionhandling.exception.ForbiddenException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;
 import com.github.saphyra.exceptionhandling.exception.PreconditionFailedException;
 import com.github.saphyra.exceptionhandling.exception.RestException;
@@ -17,11 +16,10 @@ import java.util.UUID;
 public class ExceptionFactory {
     private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with buildingId %s and playerId %s";
     private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
-    private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with id %s";
+    private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with constructionId %s, gameId %s and playerId %s";
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s and userId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
-    private static final String INVALID_GAME_ACCESS_PREFIX = "%s has no access to game %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
     private static final String INVALID_STAR_ACCESS_PREFIX = "Player %s has no access to access to star %s";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
@@ -44,8 +42,8 @@ public class ExceptionFactory {
         return new ConflictException(createErrorMessage(ErrorCode.CONSTRUCTION_IN_PROGRESS), String.format(CONSTRUCTION_IN_PROGRESS_PREFIX, surfaceId));
     }
 
-    public static RestException constructionNotFound(UUID constructionId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.CONSTRUCTION_NOT_FOUND), String.format(CONSTRUCTION_NOT_FOUND_PREFIX, constructionId));
+    public static RestException constructionNotFound(UUID constructionId, UUID gameId, UUID playerId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.CONSTRUCTION_NOT_FOUND), String.format(CONSTRUCTION_NOT_FOUND_PREFIX, constructionId, gameId, playerId));
     }
 
     public static RestException dataNotFound(String dataId) {
@@ -62,10 +60,6 @@ public class ExceptionFactory {
 
     public static RestException invalidLocale(String locale) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_LOCALE), String.format(INVALID_LOCALE_PREFIX, locale));
-    }
-
-    public static RestException invalidStarAccess(UUID playerId, UUID starId) {
-        return new ForbiddenException(createErrorMessage(ErrorCode.INVALID_STAR_ACCESS), String.format(INVALID_STAR_ACCESS_PREFIX, playerId, starId));
     }
 
     public static RestException maxLevelReached(UUID buildingId) {

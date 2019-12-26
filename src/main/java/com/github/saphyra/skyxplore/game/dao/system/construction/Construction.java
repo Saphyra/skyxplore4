@@ -1,14 +1,14 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
-import java.time.OffsetDateTime;
-import java.util.UUID;
-
 import com.github.saphyra.skyxplore.game.common.interfaces.DisplayedQueueable;
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -24,6 +24,9 @@ public class Construction implements DisplayedQueueable {
 
     @NonNull
     private final UUID starId;
+
+    @NonNull
+    private final UUID playerId;
 
     @NonNull
     private final UUID surfaceId;
