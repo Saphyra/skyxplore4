@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore.game.dao.game;
 
-import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +16,9 @@ public class GameQueryService {
     private final RequestContextHolder requestContextHolder;
 
     public Optional<Game> findByGameIdAndUserId(UUID gameId) {
-        return gameDao.findByGameIdAndUserId(gameId, requestContextHolder.get().getUserId());
-    }
-
-    public Game findByGameIdAndUserIdValidated(UUID gameId) {
         RequestContext requestContext = requestContextHolder.get();
         UUID userId = requestContext.getUserId();
-        return gameDao.findByGameIdAndUserId(gameId, userId)
-                .orElseThrow(() -> ExceptionFactory.gameNotFound(gameId, userId));
+        return gameDao.findByGameIdAndUserId(gameId, userId);
     }
 
     public List<Game> getByUserId() {

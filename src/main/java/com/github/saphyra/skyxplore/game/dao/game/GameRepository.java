@@ -8,7 +8,9 @@ import java.util.Optional;
 
 @Repository
 interface GameRepository extends JpaRepository<GameEntity, String> {
-    List<GameEntity> getByUserId(String userId);
+    void deleteByGameId(String gameId);
 
     Optional<GameEntity> findByGameIdAndUserId(String gameId, String userId);
+
+    List<GameEntity> getByUserId(String userId);
 }

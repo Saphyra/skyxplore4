@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 interface StarRepository extends JpaRepository<StarEntity, String> {
-    void deleteByGameIdAndUserId(String gameId, String userId);
+    void deleteByGameId(String gameId);
 
     List<StarEntity> getByGameIdAndOwnerId(String gameId, String ownerId);
 

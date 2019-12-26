@@ -10,7 +10,7 @@ import java.util.List;
 interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
     void deleteByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 
-    void deleteByGameIdAndUserId(String gameId, String userId);
+    void deleteByGameId(String gameId);
 
     List<AllocationEntity> getByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 interface StarConnectionRepository extends JpaRepository<StarConnectionEntity, String> {
-    List<StarConnectionEntity> getByGameIdAndUserId(String gameId, String userId);
+    void deleteByGameId(String gameId);
 
-    void deleteByGameIdAndUserId(String gameId, String userId);
+    List<StarConnectionEntity> getByGameIdAndUserId(String gameId, String userId);
 }

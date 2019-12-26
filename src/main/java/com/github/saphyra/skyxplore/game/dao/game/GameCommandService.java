@@ -10,10 +10,6 @@ import org.springframework.stereotype.Service;
 public class GameCommandService {
     private final GameDao gameDao;
 
-    public void delete(Game game) {
-        gameDao.delete(game);
-    }
-
     public void save(Game game) {
         gameDao.save(game);
     }

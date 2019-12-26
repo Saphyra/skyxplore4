@@ -2,14 +2,17 @@ package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
-class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, AllocationRepository> {
+@Slf4j
+class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, AllocationRepository> implements DeletableByGameId {
     private final UuidConverter uuidConverter;
 
     AllocationDao(AllocationConverter converter, AllocationRepository repository, UuidConverter uuidConverter) {
@@ -25,13 +28,11 @@ class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, Al
         );
     }
 
-    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
-        repository.deleteByGameIdAndUserId(
-            uuidConverter.convertDomain(gameId),
-            uuidConverter.convertDomain(userId)
-        );
+    @Override
+    public void deleteByGameId(UUID gameId) {
+        log.info("Deleting allocations for gameId {}", gameId);
+        repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
-
 
     List<Allocation> getByExternalReferenceAndGameIdAndPlayerId(UUID externalReference, UUID gameId, UUID playerId) {
         return converter.convertEntity(repository.getByExternalReferenceAndGameIdAndPlayerId(

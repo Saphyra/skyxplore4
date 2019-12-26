@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 interface BuildingRepository extends JpaRepository<BuildingEntity, String> {
-    void deleteByGameIdAndUserId(String gameId, String userId);
+    void deleteByGameId(String gameId);
 
     Optional<BuildingEntity> findByBuildingIdAndPlayerId(String buildingId, String playerId);
 

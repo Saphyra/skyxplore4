@@ -3,6 +3,8 @@ package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,7 +12,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, ResourceRepository> {
+@Slf4j
+class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, ResourceRepository> implements DeletableByGameId {
     private final UuidConverter uuidConverter;
 
     ResourceDao(Converter<ResourceEntity, Resource> converter, ResourceRepository repository, UuidConverter uuidConverter) {
@@ -18,11 +21,10 @@ class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, Resource
         this.uuidConverter = uuidConverter;
     }
 
-    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
-        repository.deleteByGameIdAndUserId(
-            uuidConverter.convertDomain(gameId),
-            uuidConverter.convertDomain(userId)
-        );
+    @Override
+    public void deleteByGameId(UUID gameId) {
+        log.info("Deleting resources for gameId {}", gameId);
+        repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
     Optional<Resource> findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(UUID starId, String dataId, int round, UUID gameId, UUID playerId) {

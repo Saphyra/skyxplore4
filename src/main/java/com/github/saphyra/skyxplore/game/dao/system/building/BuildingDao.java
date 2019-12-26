@@ -3,6 +3,8 @@ package com.github.saphyra.skyxplore.game.dao.system.building;
 import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,7 +12,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> {
+@Slf4j
+class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> implements DeletableByGameId {
     private final UuidConverter uuidConverter;
 
     BuildingDao(Converter<BuildingEntity, Building> converter, BuildingRepository repository, UuidConverter uuidConverter) {
@@ -18,11 +21,10 @@ class BuildingDao extends AbstractDao<BuildingEntity, Building, String, Building
         this.uuidConverter = uuidConverter;
     }
 
-    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
-        repository.deleteByGameIdAndUserId(
-            uuidConverter.convertDomain(gameId),
-            uuidConverter.convertDomain(userId)
-        );
+    @Override
+    public void deleteByGameId(UUID gameId) {
+        log.info("Deleting buildings for gameId {}", gameId);
+        repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
     Optional<Building> findByBuildingIdAndPlayerId(UUID buildingId, UUID playerId) {

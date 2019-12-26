@@ -2,14 +2,17 @@ package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
-class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String, ReservationRepository> {
+@Slf4j
+class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String, ReservationRepository> implements DeletableByGameId {
     private final UuidConverter uuidConverter;
 
     ReservationDao(ReservationConverter converter, ReservationRepository repository, UuidConverter uuidConverter) {
@@ -25,11 +28,10 @@ class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String,
         );
     }
 
-    void deleteByGameIdAndUserId(UUID gameId, UUID userId) {
-        repository.deleteByGameIdAndUserId(
-            uuidConverter.convertDomain(gameId),
-            uuidConverter.convertDomain(userId)
-        );
+    @Override
+    public void deleteByGameId(UUID gameId) {
+        log.info("Deleting reservations for gameId {}", gameId);
+        repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
     List<Reservation> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType, UUID gameId, UUID playerId) {
