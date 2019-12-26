@@ -13,28 +13,30 @@ class ResourceConverter extends ConverterBase<ResourceEntity, Resource> {
     @Override
     protected Resource processEntityConversion(ResourceEntity entity) {
         return Resource.builder()
-                .resourceId(uuidConverter.convertEntity(entity.getResourceId()))
-                .gameId(uuidConverter.convertEntity(entity.getGameId()))
-                .userId(uuidConverter.convertEntity(entity.getUserId()))
-                .starId(uuidConverter.convertEntity(entity.getStarId()))
-                .storageType(entity.getStorageType())
-                .dataId(entity.getDataId())
-                .amount(entity.getAmount())
-                .round(entity.getRound())
-                .build();
+            .resourceId(uuidConverter.convertEntity(entity.getResourceId()))
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .userId(uuidConverter.convertEntity(entity.getUserId()))
+            .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
+            .starId(uuidConverter.convertEntity(entity.getStarId()))
+            .storageType(entity.getStorageType())
+            .dataId(entity.getDataId())
+            .amount(entity.getAmount())
+            .round(entity.getRound())
+            .build();
     }
 
     @Override
     protected ResourceEntity processDomainConversion(Resource domain) {
         return ResourceEntity.builder()
-                .resourceId(uuidConverter.convertDomain(domain.getResourceId()))
-                .gameId(uuidConverter.convertDomain(domain.getGameId()))
-                .userId(uuidConverter.convertDomain(domain.getUserId()))
-                .starId(uuidConverter.convertDomain(domain.getStarId()))
-                .storageType(domain.getStorageType())
-                .dataId(domain.getDataId())
-                .amount(domain.getAmount())
-                .round(domain.getRound())
-                .build();
+            .resourceId(uuidConverter.convertDomain(domain.getResourceId()))
+            .gameId(uuidConverter.convertDomain(domain.getGameId()))
+            .userId(uuidConverter.convertDomain(domain.getUserId()))
+            .starId(uuidConverter.convertDomain(domain.getStarId()))
+            .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
+            .storageType(domain.getStorageType())
+            .dataId(domain.getDataId())
+            .amount(domain.getAmount())
+            .round(domain.getRound())
+            .build();
     }
 }

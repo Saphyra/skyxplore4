@@ -8,7 +8,7 @@ import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocatio
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class StorageQueryService {
     private final AllocationQueryService allocationQueryService;
     private final BuildingQueryService buildingQueryService;
     private final ReservationQueryService reservationQueryService;
-    private final ResourceDao resourceDao;
+    private final ResourceQueryService resourceQueryService;
     private final StorageBuildingService storageBuildingService;
 
     int getAvailableStoragePlace(UUID starId, StorageType storageType) {
@@ -45,7 +45,7 @@ public class StorageQueryService {
     }
 
     private int getUsedStorage(UUID starId, StorageType storageType) {
-        return resourceDao.getLatestByStarIdAndStorageType(starId, storageType).stream()
+        return resourceQueryService.getLatestByStarIdAndStorageType(starId, storageType).stream()
             .mapToInt(Resource::getAmount)
             .sum();
     }
@@ -57,7 +57,7 @@ public class StorageQueryService {
     }
 
     int getAvailableResource(UUID starId, String resourceId) {
-        return resourceDao.findLatestByStarIdAndDataId(starId, resourceId)
+        return resourceQueryService.findLatestByStarIdAndDataIdAndGameIdAndPlayerId(starId, resourceId)
             .map(Resource::getAmount)
             .orElse(0);
     }

@@ -12,7 +12,7 @@ import com.github.saphyra.skyxplore.game.rest.view.system.StorageTypeView;
 import com.github.saphyra.skyxplore.game.service.system.storage.StorageQueryService;
 import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceAverageCalculator;
 import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceDifferenceCalculator;
-import com.github.saphyra.skyxplore.game.service.system.storage.resource.ResourceQueryService;
+import com.github.saphyra.skyxplore.game.service.system.storage.resource.ActualResourceQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class StorageStatusQueryService {
     private final BuildingQueryService buildingQueryService;
     private final ResourceAverageCalculator resourceAverageCalculator;
     private final ResourceDifferenceCalculator resourceDifferenceCalculator;
-    private final ResourceQueryService resourceQueryService;
+    private final ActualResourceQueryService resourceQueryService;
     private final StorageBuildingService storageBuildingService;
     private final StorageQueryService storageQueryService;
 

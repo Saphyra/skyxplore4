@@ -19,6 +19,9 @@ public class Resource {
     private final UUID userId;
 
     @NonNull
+    private final UUID playerId;
+
+    @NonNull
     private final StorageType storageType;
 
     @NonNull

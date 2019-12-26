@@ -15,6 +15,7 @@ class ResourceEntity {
     private String resourceId;
     private String gameId;
     private String userId;
+    private String playerId;
     @Enumerated(EnumType.STRING)
     private StorageType storageType;
     private String dataId;

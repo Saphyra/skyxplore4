@@ -6,23 +6,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
 import org.springframework.stereotype.Service;
 
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceDao;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ResourceQueryService {
-    private final ResourceDao resourceDao;
+public class ActualResourceQueryService {
+    private final ResourceQueryService resourceQueryService;
 
     public List<Resource> getActualsByStarIdAndStorageType(UUID starId, StorageType storageType) {
-        List<Resource> resources = resourceDao.getByStarIdAndStorageType(starId, storageType);
+        List<Resource> resources = resourceQueryService.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType);
         Map<String, List<Resource>> resourceMap = map(resources);
 
         List<Resource> result = new ArrayList<>();
@@ -52,13 +51,5 @@ public class ResourceQueryService {
             }
         }
         return result;
-    }
-
-    public Optional<Resource> findByStarIdDataIdAndRound(UUID starId, String dataId, int round) {
-        return resourceDao.findByStarIdAndDataIdAndRound(starId, dataId, round);
-    }
-
-    public List<Resource> getByStarIdAndDataId(UUID starId, String dataId) {
-        return resourceDao.getByStarIdAndDataId(starId, dataId);
     }
 }

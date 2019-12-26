@@ -1,4 +1,3 @@
-//TODO Add gameId-playerId verification to endpoints
 //TODO simplify game deletion
 //TODO Squash liquibase scripts
 //TODO dao-proxy for bulk-saving

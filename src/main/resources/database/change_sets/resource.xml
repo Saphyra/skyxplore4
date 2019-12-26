@@ -32,4 +32,16 @@
 
         <addPrimaryKey tableName="resource" columnNames="resource_id" constraintName="resource-pk"/>
     </changeSet>
+
+    <changeSet id="add-column_player-id_to-resource" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="resource" columnName="player_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="resource">
+            <column name="player_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
