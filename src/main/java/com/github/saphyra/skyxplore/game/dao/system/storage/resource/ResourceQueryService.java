@@ -52,10 +52,13 @@ public class ResourceQueryService {
             .collect(Collectors.groupingBy(Resource::getDataId))
             .values()
             .stream()
-            .map(resources -> resources.stream()
-                .max(Comparator.comparingInt(Resource::getRound))
-                .orElseThrow(() -> new IllegalStateException("Resource not found in resource list"))
-            )
+            .map(this::getLatest)
             .collect(Collectors.toList());
+    }
+
+    private Resource getLatest(List<Resource> resources) {
+        return resources.stream()
+            .max(Comparator.comparingInt(Resource::getRound))
+            .orElseThrow(() -> new IllegalStateException("Resource not found in resource list"));
     }
 }
