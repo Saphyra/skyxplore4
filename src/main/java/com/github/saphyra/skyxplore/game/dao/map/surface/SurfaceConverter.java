@@ -14,28 +14,30 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
 
 
     @Override
-    protected Surface processEntityConversion(SurfaceEntity surfaceEntity) {
+    protected Surface processEntityConversion(SurfaceEntity entity) {
         return Surface.builder()
-            .surfaceId(uuidConverter.convertEntity(surfaceEntity.getSurfaceId()))
-            .starId(uuidConverter.convertEntity(surfaceEntity.getStarId()))
-            .userId(uuidConverter.convertEntity(surfaceEntity.getUserId()))
-            .gameId(uuidConverter.convertEntity(surfaceEntity.getGameId()))
-            .playerId(uuidConverter.convertEntity(surfaceEntity.getPlayerId()))
-            .coordinate(coordinateConverter.convertEntity(surfaceEntity.getCoordinate(), surfaceEntity.getUserId()))
-            .surfaceType(surfaceEntity.getSurfaceType())
+            .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
+            .starId(uuidConverter.convertEntity(entity.getStarId()))
+            .userId(uuidConverter.convertEntity(entity.getUserId()))
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
+            .coordinate(coordinateConverter.convertEntity(entity.getCoordinate(), entity.getUserId()))
+            .surfaceType(entity.getSurfaceType())
+            .isNew(entity.isNew())
             .build();
     }
 
     @Override
-    protected SurfaceEntity processDomainConversion(Surface surface) {
+    protected SurfaceEntity processDomainConversion(Surface domain) {
         return SurfaceEntity.builder()
-            .surfaceId(uuidConverter.convertDomain(surface.getSurfaceId()))
-            .starId(uuidConverter.convertDomain(surface.getStarId()))
-            .userId(uuidConverter.convertDomain(surface.getUserId()))
-            .gameId(uuidConverter.convertDomain(surface.getGameId()))
-            .playerId(uuidConverter.convertDomain(surface.getPlayerId()))
-            .coordinate(coordinateConverter.convertDomain(surface.getCoordinate(), uuidConverter.convertDomain(surface.getUserId())))
-            .surfaceType(surface.getSurfaceType())
+            .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
+            .starId(uuidConverter.convertDomain(domain.getStarId()))
+            .userId(uuidConverter.convertDomain(domain.getUserId()))
+            .gameId(uuidConverter.convertDomain(domain.getGameId()))
+            .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
+            .coordinate(coordinateConverter.convertDomain(domain.getCoordinate(), uuidConverter.convertDomain(domain.getUserId())))
+            .surfaceType(domain.getSurfaceType())
+            .isNew(domain.isNew())
             .build();
     }
 }

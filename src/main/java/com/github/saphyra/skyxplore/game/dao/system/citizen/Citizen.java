@@ -35,4 +35,6 @@ public class Citizen {
 
     @NonNull
     private Integer satiety;
+
+    private final boolean isNew;
 }

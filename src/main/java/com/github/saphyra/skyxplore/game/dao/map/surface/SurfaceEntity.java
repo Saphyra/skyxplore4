@@ -5,8 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Persistable;
 
-import javax.persistence.*;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +22,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "surface")
-class SurfaceEntity {
+class SurfaceEntity  implements Persistable<String> {
     @Id
     private String surfaceId;
 
@@ -31,4 +39,17 @@ class SurfaceEntity {
 
     @Enumerated(EnumType.STRING)
     private SurfaceType surfaceType;
+
+    @Transient
+    private boolean isNew;
+
+    @Override
+    public String getId() {
+        return surfaceId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
 }

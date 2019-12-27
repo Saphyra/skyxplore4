@@ -33,6 +33,7 @@ public class PlayerService {
             .userId(userId)
             .ai(isAi)
             .playerName(isAi ? generateName(usedPlayerNames) : userQueryService.findByUserIdValidated(userId).getCredentials().getUserName())
+            .isNew(true)
             .build();
 
         domainSaverService.add(player);

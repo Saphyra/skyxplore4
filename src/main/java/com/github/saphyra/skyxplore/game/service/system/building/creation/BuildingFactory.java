@@ -22,6 +22,7 @@ class BuildingFactory {
             .playerId(playerId)
             .surfaceId(surfaceId)
             .level(1)
+            .isNew(true)
             .build();
     }
 }

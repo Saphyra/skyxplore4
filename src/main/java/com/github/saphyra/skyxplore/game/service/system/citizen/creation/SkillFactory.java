@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.service.system.citizen.service.creation;
+package com.github.saphyra.skyxplore.game.service.system.citizen.creation;
 
 import com.github.saphyra.skyxplore.game.common.GameProperties;
 import com.github.saphyra.skyxplore.game.dao.system.citizen.Skill;
@@ -24,6 +24,7 @@ class SkillFactory {
             .level(1)
             .experience(0)
             .nextLevel(gameProperties.getInitialNextLevel())
+            .isNew(true)
             .build();
     }
 }

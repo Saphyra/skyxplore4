@@ -13,26 +13,28 @@ public class SkillConverter extends ConverterBase<SkillEntity, Skill> {
     @Override
     protected Skill processEntityConversion(SkillEntity entity) {
         return Skill.builder()
-                .skillId(uuidConverter.convertEntity(entity.getSkillId()))
-                .citizenId(uuidConverter.convertEntity(entity.getCitizenId()))
-                .gameId(uuidConverter.convertEntity(entity.getGameId()))
-                .skillType(entity.getSkillType())
-                .level(entity.getLevel())
-                .experience(entity.getExperience())
-                .nextLevel(entity.getNextLevel())
-                .build();
+            .skillId(uuidConverter.convertEntity(entity.getSkillId()))
+            .citizenId(uuidConverter.convertEntity(entity.getCitizenId()))
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .skillType(entity.getSkillType())
+            .level(entity.getLevel())
+            .experience(entity.getExperience())
+            .nextLevel(entity.getNextLevel())
+            .isNew(entity.isNew())
+            .build();
     }
 
     @Override
     protected SkillEntity processDomainConversion(Skill domain) {
         return SkillEntity.builder()
-                .skillId(uuidConverter.convertDomain(domain.getSkillId()))
-                .citizenId(uuidConverter.convertDomain(domain.getCitizenId()))
-                .gameId(uuidConverter.convertDomain(domain.getGameId()))
-                .skillType(domain.getSkillType())
-                .level(domain.getLevel())
-                .experience(domain.getExperience())
-                .nextLevel(domain.getNextLevel())
-                .build();
+            .skillId(uuidConverter.convertDomain(domain.getSkillId()))
+            .citizenId(uuidConverter.convertDomain(domain.getCitizenId()))
+            .gameId(uuidConverter.convertDomain(domain.getGameId()))
+            .skillType(domain.getSkillType())
+            .level(domain.getLevel())
+            .experience(domain.getExperience())
+            .nextLevel(domain.getNextLevel())
+            .isNew(domain.isNew())
+            .build();
     }
 }

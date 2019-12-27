@@ -29,4 +29,6 @@ public class Surface {
 
     @NonNull
     private SurfaceType surfaceType;
+
+    private final boolean isNew;
 }

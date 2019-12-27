@@ -1,7 +1,7 @@
-//TODO avoid check for existing records when creating game
 //TODO remove userId from domains
 //TODO Squash liquibase scripts
 //TODO throw exception when playerId is ai player's id, or not belongs to userId and gameId
 //TODO log deletion times per domain
 //TODO API tests
 //TODO Add System defence details to system summary
+//TODO Store games in separate tables to reduce query times

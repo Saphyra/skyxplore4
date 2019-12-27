@@ -18,6 +18,7 @@ public class StarConnectionConverter extends ConverterBase<StarConnectionEntity,
             .userId(uuidConverter.convertEntity(entity.getUserId()))
             .star1(uuidConverter.convertEntity(entity.getStar1()))
             .star2(uuidConverter.convertEntity(entity.getStar2()))
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -29,6 +30,7 @@ public class StarConnectionConverter extends ConverterBase<StarConnectionEntity,
             .userId(uuidConverter.convertDomain(domain.getUserId()))
             .star1(uuidConverter.convertDomain(domain.getStar1()))
             .star2(uuidConverter.convertDomain(domain.getStar2()))
+            .isNew(domain.isNew())
             .build();
     }
 }

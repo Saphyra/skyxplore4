@@ -29,4 +29,6 @@ public class Skill {
 
     @NonNull
     private Integer nextLevel;
+
+    private final boolean isNew;
 }

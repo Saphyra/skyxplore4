@@ -22,6 +22,7 @@ class CitizenConverter extends ConverterBase<CitizenEntity, Citizen> {
             .locationId(uuidConverter.convertEntity(entity.getLocationId()))
             .morale(entity.getMorale())
             .satiety(entity.getSatiety())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -37,6 +38,7 @@ class CitizenConverter extends ConverterBase<CitizenEntity, Citizen> {
             .locationId(uuidConverter.convertDomain(domain.getLocationId()))
             .morale(domain.getMorale())
             .satiety(domain.getSatiety())
+            .isNew(domain.isNew())
             .build();
     }
 }

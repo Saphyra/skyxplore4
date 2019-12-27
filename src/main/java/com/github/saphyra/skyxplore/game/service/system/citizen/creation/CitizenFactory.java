@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.service.system.citizen.service.creation;
+package com.github.saphyra.skyxplore.game.service.system.citizen.creation;
 
 import com.github.saphyra.skyxplore.data.gamedata.FirstNames;
 import com.github.saphyra.skyxplore.data.gamedata.LastNames;
@@ -30,6 +30,7 @@ public class CitizenFactory {
             .locationId(star.getStarId())
             .morale(100)
             .satiety(100)
+            .isNew(true)
             .build();
     }
 

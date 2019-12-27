@@ -4,7 +4,6 @@ import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
 import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnection;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;
-import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,9 +21,9 @@ public class ConnectionCreationService {
     private final ConnectionCreationConfiguration configuration;
     private final DomainSaverService domainSaverService;
     private final DistanceCalculator distanceCalculator;
-    private final IdGenerator idGenerator;
+    private final StarConnectionFactory starConnectionFactory;
 
-   public void createConnections(List<Star> stars) {
+    public void createConnections(List<Star> stars) {
         log.info("Creating StarConnections...");
         List<StarConnection> connections = new ArrayList<>();
         stars.forEach(star -> connections.addAll(connectCloseStars(star, stars)));
@@ -38,14 +37,14 @@ public class ConnectionCreationService {
         return stars.stream()
             .filter(targetStar -> !star.equals(targetStar))
             .filter(targetStar -> distanceCalculator.getDistance(star.getCoordinate(), targetStar.getCoordinate()) < configuration.getMaxDistance())
-            .map(targetStar -> createConnection(star, targetStar))
+            .map(targetStar -> starConnectionFactory.createConnection(star, targetStar))
             .collect(Collectors.toList());
     }
 
     private List<StarConnection> connectDistantStars(List<Star> stars, List<StarConnection> connections) {
         return stars.stream()
             .filter(star -> !hasConnection(star, connections))
-            .map(star -> createConnection(star, getClosestStar(star, stars)))
+            .map(star -> starConnectionFactory.createConnection(star, getClosestStar(star, stars)))
             .collect(Collectors.toList());
     }
 
@@ -71,18 +70,6 @@ public class ConnectionCreationService {
         return result;
     }
 
-    private StarConnection createConnection(Star star, Star targetStar) {
-        log.debug("Creating connection between stars {}, {}", star, targetStar);
-        StarConnection starConnection = StarConnection.builder()
-            .connectionId(idGenerator.randomUUID())
-            .gameId(star.getGameId())
-            .userId(star.getUserId())
-            .star1(star.getStarId())
-            .star2(targetStar.getStarId())
-            .build();
-        log.debug("StarConnection created: {}", starConnection);
-        return starConnection;
-    }
 
     private void removeConnections(List<StarConnection> connections, List<Star> stars) {
         for (Star star : stars) {

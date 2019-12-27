@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.service.system.citizen.service.creation;
+package com.github.saphyra.skyxplore.game.service.system.citizen.creation;
 
 import com.github.saphyra.skyxplore.game.common.DomainSaverService;
 import com.github.saphyra.skyxplore.game.dao.map.star.Star;

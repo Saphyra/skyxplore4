@@ -8,7 +8,6 @@ import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,12 +15,10 @@ import java.util.UUID;
 @Component
 @Slf4j
 class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> implements DeletableByGameId, SaveAllDao<Surface> {
-    private final EntityManager entityManager;
     private final UuidConverter uuidConverter;
 
-    SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, EntityManager entityManager, UuidConverter uuidConverter) {
+    SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
-        this.entityManager = entityManager;
         this.uuidConverter = uuidConverter;
     }
 
@@ -33,9 +30,7 @@ class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepo
 
     @Override
     public void saveAll(List<Surface> surfaces) {
-        List<SurfaceEntity> entities = converter.convertDomain(surfaces);
-        entities.forEach(entityManager::persist);
-        entityManager.flush();
+        repository.saveAll(converter.convertDomain(surfaces));
     }
 
     List<Surface> getByStarIdAndGameIdAndPlayerId(UUID starId, UUID gameId, UUID playerId) {

@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.map.connection;
 
-import java.util.UUID;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.UUID;
 
 @Builder
 @Data
@@ -25,4 +25,6 @@ public class StarConnection {
 
     @NonNull
     private final UUID star2;
+
+    private final boolean isNew;
 }

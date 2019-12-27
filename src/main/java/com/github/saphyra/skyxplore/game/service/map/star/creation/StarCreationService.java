@@ -8,14 +8,12 @@ import com.github.saphyra.skyxplore.game.dao.player.Player;
 import com.github.saphyra.skyxplore.game.service.map.connection.creation.ConnectionCreationService;
 import com.github.saphyra.skyxplore.game.service.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.service.player.PlayerService;
-import com.github.saphyra.skyxplore.game.service.system.citizen.service.creation.CitizenCreationService;
-import com.github.saphyra.util.IdGenerator;
+import com.github.saphyra.skyxplore.game.service.system.citizen.creation.CitizenCreationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,8 +25,8 @@ public class StarCreationService {
     private final ConnectionCreationService connectionCreationService;
     private final CoordinateProvider coordinateProvider;
     private final DomainSaverService domainSaverService;
-    private final IdGenerator idGenerator;
     private final PlayerService playerService;
+    private final StarFactory starFactory;
     private final StarNames starNames;
     private final SurfaceCreationService surfaceCreationService;
 
@@ -44,15 +42,13 @@ public class StarCreationService {
             String starName = starNames.getRandomStarName(usedStarNames);
             usedStarNames.add(starName);
             Player player = playerService.create(gameId, userId, isAi, usedPlayerNames);
-            Star star = Star.builder()
-                .starId(idGenerator.randomUUID())
-                .gameId(gameId)
-                .userId(userId)
-                .starName(starName)
-                .coordinate(coordinate)
-                .ownerId(player.getPlayerId())
-                .researches(Collections.emptyList())
-                .build();
+            Star star = starFactory.create(
+                gameId,
+                userId,
+                starName,
+                coordinate,
+                player.getPlayerId()
+            );
             log.debug("Star created: {}", star);
             createdStars.add(star);
             usedPlayerNames.add(player.getPlayerName());

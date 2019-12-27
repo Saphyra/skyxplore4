@@ -28,4 +28,6 @@ public class Building {
     @NonNull
     private Integer level;
     private UUID constructionId;
+
+    private final boolean isNew;
 }

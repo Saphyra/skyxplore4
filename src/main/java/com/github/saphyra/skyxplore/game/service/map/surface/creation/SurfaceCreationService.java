@@ -6,7 +6,6 @@ import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.service.system.building.creation.DefaultBuildingCreationService;
-import com.github.saphyra.util.IdGenerator;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +28,8 @@ import static java.util.Objects.isNull;
 public class SurfaceCreationService {
     private final DefaultBuildingCreationService defaultBuildingCreationService;
     private final DomainSaverService domainSaverService;
-    private final IdGenerator idGenerator;
     private final Random random;
+    private final SurfaceFactory surfaceFactory;
     private final SurfaceCreationProperties properties;
 
     public void createSurfaces(List<Star> stars) {
@@ -177,15 +176,14 @@ public class SurfaceCreationService {
         for (int x = 0; x < surfaceMap.length; x++) {
             SurfaceType[] surfaceTypes = surfaceMap[x];
             for (int y = 0; y < surfaceTypes.length; y++) {
-                Surface surface = Surface.builder()
-                    .surfaceId(idGenerator.randomUUID())
-                    .starId(star.getStarId())
-                    .userId(star.getUserId())
-                    .gameId(star.getGameId())
-                    .playerId(star.getOwnerId())
-                    .coordinate(new Coordinate(x, y))
-                    .surfaceType(surfaceMap[x][y])
-                    .build();
+                Surface surface = surfaceFactory.create(
+                    star.getStarId(),
+                    star.getUserId(),
+                    star.getGameId(),
+                    star.getOwnerId(),
+                    new Coordinate(x, y),
+                    surfaceMap[x][y]
+                );
                 result.add(surface);
             }
         }

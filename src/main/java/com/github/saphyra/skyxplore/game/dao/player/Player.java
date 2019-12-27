@@ -1,12 +1,12 @@
 package com.github.saphyra.skyxplore.game.dao.player;
 
-import java.util.UUID;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -25,4 +25,6 @@ public class Player {
     private final String playerName;
 
     private final boolean ai;
+
+    private final boolean isNew;
 }

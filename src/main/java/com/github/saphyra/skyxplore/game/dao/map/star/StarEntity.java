@@ -1,6 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.map.star;
 
-import java.util.List;
+import com.github.saphyra.skyxplore.game.dao.common.coordinate.CoordinateEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
@@ -9,12 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.github.saphyra.skyxplore.game.dao.common.coordinate.CoordinateEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.persistence.Transient;
+import java.util.List;
 
 @AllArgsConstructor
 @Data
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "star")
 @NoArgsConstructor
-class StarEntity {
+class StarEntity implements Persistable<String> {
     @Id
     private String starId;
     private String gameId;
@@ -36,4 +37,16 @@ class StarEntity {
     @JoinColumn(name = "star_id")
     private List<ResearchEntity> researches;
 
+    @Transient
+    private boolean isNew;
+
+    @Override
+    public String getId() {
+        return starId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
 }

@@ -13,30 +13,32 @@ public class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
     @Override
     protected Building processEntityConversion(BuildingEntity entity) {
         return Building.builder()
-                .buildingId(uuidConverter.convertEntity(entity.getBuildingId()))
-                .buildingDataId(entity.getBuildingDataId())
-                .gameId(uuidConverter.convertEntity(entity.getGameId()))
-                .userId(uuidConverter.convertEntity(entity.getUserId()))
-                .starId(uuidConverter.convertEntity(entity.getStarId()))
-                .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
-                .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
-                .level(entity.getLevel())
-                .constructionId(uuidConverter.convertEntity(entity.getConstructionId()))
-                .build();
+            .buildingId(uuidConverter.convertEntity(entity.getBuildingId()))
+            .buildingDataId(entity.getBuildingDataId())
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .userId(uuidConverter.convertEntity(entity.getUserId()))
+            .starId(uuidConverter.convertEntity(entity.getStarId()))
+            .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
+            .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
+            .level(entity.getLevel())
+            .constructionId(uuidConverter.convertEntity(entity.getConstructionId()))
+            .isNew(entity.isNew())
+            .build();
     }
 
     @Override
     protected BuildingEntity processDomainConversion(Building domain) {
         return BuildingEntity.builder()
-                .buildingId(uuidConverter.convertDomain(domain.getBuildingId()))
-                .buildingDataId(domain.getBuildingDataId())
-                .gameId(uuidConverter.convertDomain(domain.getGameId()))
-                .userId(uuidConverter.convertDomain(domain.getUserId()))
-                .starId(uuidConverter.convertDomain(domain.getStarId()))
-                .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
-                .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
-                .level(domain.getLevel())
-                .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
-                .build();
+            .buildingId(uuidConverter.convertDomain(domain.getBuildingId()))
+            .buildingDataId(domain.getBuildingDataId())
+            .gameId(uuidConverter.convertDomain(domain.getGameId()))
+            .userId(uuidConverter.convertDomain(domain.getUserId()))
+            .starId(uuidConverter.convertDomain(domain.getStarId()))
+            .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
+            .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
+            .level(domain.getLevel())
+            .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
+            .isNew(domain.isNew())
+            .build();
     }
 }
