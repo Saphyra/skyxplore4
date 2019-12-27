@@ -6,13 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
 @Data
 @Builder
-public class Star  {
+public class Star {
     @NonNull
     private final UUID starId;
 
@@ -27,9 +26,6 @@ public class Star  {
 
     @NonNull
     private UUID ownerId;
-
-    @NonNull
-    private List<Research> researches;
 
     private final boolean isNew;
 }

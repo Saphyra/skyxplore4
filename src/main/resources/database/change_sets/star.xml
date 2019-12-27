@@ -13,49 +13,13 @@
 
         <createTable tableName="star">
             <column name="star_id" type="varchar(37)"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="owner_id" type="varchar(37)"/>
             <column name="star_name" type="text"/>
-            <column name="x_coord" type="text"/>
-            <column name="y_coord" type="text"/>
+            <column name="x_coord" type="integer"/>
+            <column name="y_coord" type="integer"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="add-column-owner_id-to-star" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="star" columnName="owner_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="star">
-            <column name="owner_id" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_star" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="star" primaryKeyName="star-pk"/>
-            </not>
-        </preConditions>
 
         <addPrimaryKey tableName="star" columnNames="star_id" constraintName="star-pk"/>
-    </changeSet>
-
-    <changeSet id="create-table-research" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="research"/>
-            </not>
-        </preConditions>
-
-        <createTable tableName="research">
-            <column name="research_id" type="varchar(37)"/>
-            <column name="star_id" type="varchar(37)"/>
-            <column name="data_id" type="text"/>
-        </createTable>
-
-        <addPrimaryKey tableName="research" columnNames="research_id" constraintName="research-pk"/>
     </changeSet>
 </databaseChangeLog>

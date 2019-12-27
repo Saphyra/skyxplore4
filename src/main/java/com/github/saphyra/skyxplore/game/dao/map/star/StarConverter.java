@@ -22,7 +22,6 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .starName(entity.getStarName())
             .coordinate(coordinateConverter.convertEntity(entity.getCoordinates()))
             .ownerId(uuidConverter.convertEntity(entity.getOwnerId()))
-            .researches(researchConverter.convertEntity(entity.getResearches()))
             .isNew(entity.isNew())
             .build();
     }
@@ -35,7 +34,6 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .starName(domain.getStarName())
             .coordinates(coordinateConverter.convertDomain(domain.getCoordinate()))
             .ownerId(uuidConverter.convertDomain(domain.getOwnerId()))
-            .researches(researchConverter.convertDomain(domain.getResearches()))
             .isNew(domain.isNew())
             .build();
     }

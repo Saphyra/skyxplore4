@@ -13,19 +13,10 @@
 
         <createTable tableName="star_connection">
             <column name="connection_id" type="varchar(37)"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
-            <column name="star1" type="text"/>
-            <column name="star2" type="text"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="star1" type="varchar(37)"/>
+            <column name="star2" type="varchar(37)"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_star-connection" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="star_connection" primaryKeyName="star_connection-pk"/>
-            </not>
-        </preConditions>
 
         <addPrimaryKey tableName="star_connection" columnNames="connection_id" constraintName="star_connection-pk"/>
     </changeSet>

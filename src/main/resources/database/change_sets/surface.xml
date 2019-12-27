@@ -13,43 +13,14 @@
 
         <createTable tableName="surface">
             <column name="surface_id" type="varchar(37)"/>
-            <column name="star_id" type="text"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
-            <column name="x_coord" type="text"/>
-            <column name="y_coord" type="text"/>
+            <column name="star_id" type="varchar(37)"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
+            <column name="x_coord" type="integer"/>
+            <column name="y_coord" type="integer"/>
             <column name="surface_type" type="text"/>
-            <column name="building_id" type="text"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="drop-column-building_id-from-surface" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <columnExists tableName="surface" columnName="building_id"/>
-        </preConditions>
-
-        <dropColumn tableName="surface" columnName="building_id"/>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_surface" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="surface" primaryKeyName="surface-pk"/>
-            </not>
-        </preConditions>
 
         <addPrimaryKey tableName="surface" columnNames="surface_id" constraintName="surface-pk"/>
-    </changeSet>
-
-    <changeSet id="add-column_player-id_to-surface" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="surface" columnName="player_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="surface">
-            <column name="player_id" type="text"/>
-        </addColumn>
     </changeSet>
 </databaseChangeLog>

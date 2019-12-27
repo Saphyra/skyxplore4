@@ -13,92 +13,20 @@
 
         <createTable tableName="construction">
             <column name="construction_id" type="varchar(37)"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
-            <column name="star_id" type="text"/>
-            <column name="surface_id" type="text"/>
-            <column name="work_points" type="integer"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
+            <column name="star_id" type="varchar(37)"/>
+            <column name="surface_id" type="varchar(37)"/>
+            <column name="required_work_points" type="integer"/>
             <column name="current_work_points" type="integer"/>
             <column name="construction_type" type="text"/>
-            <column name="external_id" type="text"/>
+            <column name="external_id" type="varchar(37)"/>
             <column name="construction_status" type="text"/>
             <column name="priority" type="integer"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="create-table-construction_resource_requirements" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="construction_resource_requirements"/>
-            </not>
-        </preConditions>
-
-        <createTable tableName="construction_resource_requirements">
-            <column name="construction_id" type="text"/>
-            <column name="resource_id" type="text"/>
-            <column name="required_amount" type="integer"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="rename-column_work-points_to_required-work-points" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <columnExists tableName="construction" columnName="work_points"/>
-        </preConditions>
-
-        <renameColumn tableName="construction" oldColumnName="work_points" newColumnName="required_work_points" columnDataType="integer"/>
-    </changeSet>
-
-    <changeSet id="add-column_data-id_to-construction" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="construction" columnName="data_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="construction">
-            <column name="data_id" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="rename-column_data-id_to_additional-data" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <columnExists tableName="construction" columnName="data_id"/>
-        </preConditions>
-
-        <renameColumn tableName="construction" oldColumnName="data_id" newColumnName="additional_data" columnDataType="text"/>
-    </changeSet>
-
-    <changeSet id="add-column_dadded-at_to-construction" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="construction" columnName="added_at"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="construction">
+            <column name="additional_data" type="text"/>
             <column name="added_at" type="bigint"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_construction" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="construction" primaryKeyName="construction-pk"/>
-            </not>
-        </preConditions>
+        </createTable>
 
         <addPrimaryKey tableName="construction" columnNames="construction_id" constraintName="construction-pk"/>
-    </changeSet>
-
-    <changeSet id="add-column_player-id_to-construction" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="construction" columnName="player_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="construction">
-            <column name="player_id" type="text"/>
-        </addColumn>
     </changeSet>
 </databaseChangeLog>

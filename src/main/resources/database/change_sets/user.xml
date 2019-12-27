@@ -16,14 +16,6 @@
             <column name="user_name" type="text"/>
             <column name="password" type="text"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_user" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="user" primaryKeyName="user-pk"/>
-            </not>
-        </preConditions>
 
         <addPrimaryKey tableName="user" columnNames="user_id" constraintName="user-pk"/>
     </changeSet>

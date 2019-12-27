@@ -7,7 +7,7 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.Terraformi
 import com.github.saphyra.skyxplore.data.gamedata.domain.terraforming.TerraformingPossibility;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore.game.dao.map.star.Research;
-import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
+import com.github.saphyra.skyxplore.game.dao.map.star.ResearchQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.surface.BuildableBuildingView;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EditSurfaceQueryService {
     private final GameDataQueryService gameDataQueryService;
-    private final StarQueryService starQueryService;
+    private final ResearchQueryService researchQueryService;
     private final SurfaceQueryService surfaceQueryService;
     private final TerraformingPossibilitiesService terraformingPossibilitiesService;
 
@@ -52,8 +52,7 @@ public class EditSurfaceQueryService {
     }
 
     private List<String> getResearches(Surface surface) {
-        return starQueryService.findByStarIdAndGameIdAndOwnerId(surface.getStarId())
-            .getResearches()
+        return researchQueryService.getByStarIdAndGameIdAndPlayerId(surface.getStarId())
             .stream()
             .map(Research::getDataId)
             .collect(Collectors.toList());

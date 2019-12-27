@@ -13,12 +13,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ConstructionCommandService {
     private final ConstructionDao constructionDao;
+    private final ConstructionResourceRequirementDao constructionResourceRequirementDao;
     private final RequestContextHolder requestContextHolder;
 
     public void deleteByConstructionIdAndGameIdAndPlayerId(UUID constructionId) {
         RequestContext context = requestContextHolder.get();
         UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
+        constructionResourceRequirementDao.deleteByConstructionId(constructionId);
         constructionDao.deleteByConstructionIdAndGameIdAndPlayerId(constructionId, gameId, playerId);
     }
 

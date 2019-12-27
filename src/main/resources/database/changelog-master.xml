@@ -5,17 +5,20 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="database/change_sets/access_token.xml"/>
-    <include file="database/change_sets/storage.xml"/>
-    <include file="database/change_sets/user.xml"/>
-    <include file="database/change_sets/game.xml"/>
-    <include file="database/change_sets/star.xml"/>
-    <include file="database/change_sets/star_connection.xml"/>
-    <include file="database/change_sets/player.xml"/>
-    <include file="database/change_sets/surface.xml"/>
+    <include file="database/change_sets/allocation.xml"/>
     <include file="database/change_sets/building.xml"/>
-    <include file="database/change_sets/resource.xml"/>
     <include file="database/change_sets/citizen.xml"/>
     <include file="database/change_sets/construction.xml"/>
-    <include file="database/change_sets/allocation.xml"/>
+    <include file="database/change_sets/construction_resource_requirement.xml"/>
+    <include file="database/change_sets/game.xml"/>
+    <include file="database/change_sets/player.xml"/>
+    <include file="database/change_sets/research.xml"/>
     <include file="database/change_sets/reservation.xml"/>
+    <include file="database/change_sets/resource.xml"/>
+    <include file="database/change_sets/skill.xml"/>
+    <include file="database/change_sets/star.xml"/>
+    <include file="database/change_sets/star_connection.xml"/>
+    <include file="database/change_sets/storage.xml"/>
+    <include file="database/change_sets/surface.xml"/>
+    <include file="database/change_sets/user.xml"/>
 </databaseChangeLog>

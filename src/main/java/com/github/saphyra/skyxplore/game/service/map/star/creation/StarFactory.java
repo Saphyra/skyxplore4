@@ -6,7 +6,6 @@ import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.UUID;
 
 @Component
@@ -21,7 +20,6 @@ class StarFactory {
             .starName(starName)
             .coordinate(coordinate)
             .ownerId(playerId)
-            .researches(Collections.emptyList())
             .isNew(true)
             .build();
     }

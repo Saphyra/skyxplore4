@@ -13,57 +13,15 @@
 
         <createTable tableName="building">
             <column name="building_id" type="varchar(37)"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
+            <column name="star_id" type="varchar(37)"/>
+            <column name="surface_id" type="varchar(37)"/>
             <column name="building_data_id" type="text"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
             <column name="level" type="number"/>
-            <column name="construction_id" type="text"/>
+            <column name="construction_id" type="varchar(37)"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="add-column-star-id_to-building" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="building" columnName="star_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="building">
-            <column name="star_id" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-column-surface_id_to-building" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="building" columnName="surface_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="building">
-            <column name="surface_id" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_building" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="building" primaryKeyName="building-pk"/>
-            </not>
-        </preConditions>
 
         <addPrimaryKey tableName="building" columnNames="building_id" constraintName="building-pk"/>
-    </changeSet>
-
-    <changeSet id="add-column_player-id_to-building" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="building" columnName="player_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="building">
-            <column name="player_id" type="text"/>
-        </addColumn>
     </changeSet>
 </databaseChangeLog>

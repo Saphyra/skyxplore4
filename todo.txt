@@ -1,5 +1,3 @@
-//TODO separate Research repository
-//TODO Squash liquibase scripts
 //TODO throw exception when playerId is ai player's id, or not belongs to userId and gameId
 //TODO log deletion times per domain
 //TODO API tests

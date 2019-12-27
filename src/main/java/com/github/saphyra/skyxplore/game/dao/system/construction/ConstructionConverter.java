@@ -9,22 +9,25 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Component
 public class ConstructionConverter extends ConverterBase<ConstructionEntity, Construction> {
+    private final ConstructionResourceRequirementDao constructionResourceRequirementDao;
     private final DateTimeUtil dateTimeUtil;
     private final UuidConverter uuidConverter;
 
     @Override
     protected Construction processEntityConversion(ConstructionEntity constructionEntity) {
+        UUID constructionId = uuidConverter.convertEntity(constructionEntity.getConstructionId());
         return Construction.builder()
-            .constructionId(uuidConverter.convertEntity(constructionEntity.getConstructionId()))
+            .constructionId(constructionId)
             .gameId(uuidConverter.convertEntity(constructionEntity.getGameId()))
             .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
             .playerId(uuidConverter.convertEntity(constructionEntity.getPlayerId()))
             .constructionRequirements(convertRequirements(
-                constructionEntity.getResourceRequirements(),
+                constructionResourceRequirementDao.getByConstructionId(constructionId),
                 constructionEntity.getRequiredWorkPoints()
             ))
             .constructionType(constructionEntity.getConstructionType())
@@ -55,7 +58,6 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
             .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
-            .resourceRequirements(domain.getConstructionRequirements().getRequiredResources())
             .currentWorkPoints(domain.getCurrentWorkPoints())
             .requiredWorkPoints(domain.getConstructionRequirements().getRequiredWorkPoints())
             .constructionStatus(domain.getConstructionStatus())

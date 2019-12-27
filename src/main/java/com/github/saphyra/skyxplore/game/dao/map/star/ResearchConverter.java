@@ -16,6 +16,8 @@ public class ResearchConverter extends ConverterBase<ResearchEntity, Research> {
         return Research.builder()
             .researchId(uuidConverter.convertEntity(entity.getResearchId()))
             .starId(uuidConverter.convertEntity(entity.getStarId()))
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
             .dataId(entity.getDataId())
             .build();
     }
@@ -25,6 +27,8 @@ public class ResearchConverter extends ConverterBase<ResearchEntity, Research> {
         return ResearchEntity.builder()
             .researchId(uuidConverter.convertDomain(domain.getResearchId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
+            .gameId(uuidConverter.convertDomain(domain.getGameId()))
+            .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
             .dataId(domain.getDataId())
             .build();
     }

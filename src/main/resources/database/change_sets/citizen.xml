@@ -13,85 +13,16 @@
 
         <createTable tableName="citizen">
             <column name="citizen_id" type="varchar(37)"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="owner_id" type="varchar(37)"/>
             <column name="location_type" type="text"/>
             <column name="location_id" type="text"/>
             <column name="morale" type="number"/>
             <column name="satiety" type="number"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="create-table-skill" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="skill"/>
-            </not>
-        </preConditions>
-
-        <createTable tableName="skill">
-            <column name="skill_id" type="varchar(37)"/>
-            <column name="citizen_id" type="text"/>
-            <column name="skill_type" type="text"/>
-            <column name="level" type="number"/>
-            <column name="experience" type="number"/>
-            <column name="next_level" type="number"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="add-column-citizen_name-to-citizen" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="citizen" columnName="citizen_name"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="citizen">
             <column name="citizen_name" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_citizen" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="citizen" primaryKeyName="citizen-pk"/>
-            </not>
-        </preConditions>
+        </createTable>
 
         <addPrimaryKey tableName="citizen" columnNames="citizen_id" constraintName="citizen-pk"/>
     </changeSet>
 
-    <changeSet id="add-primary-key-to_skill" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="skill" primaryKeyName="skill-pk"/>
-            </not>
-        </preConditions>
-
-        <addPrimaryKey tableName="skill" columnNames="skill_id" constraintName="skill-pk"/>
-    </changeSet>
-
-    <changeSet id="add-column_owner-id_to-citizen" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="citizen" columnName="owner_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="citizen">
-            <column name="owner_id" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-column_game-id_to-skill" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="skill" columnName="game_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="skill">
-            <column name="game_id" type="text"/>
-        </addColumn>
-    </changeSet>
 </databaseChangeLog>

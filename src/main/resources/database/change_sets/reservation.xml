@@ -13,47 +13,16 @@
 
         <createTable tableName="reservation">
             <column name="reservation_id" type="varchar(37)"/>
-            <column name="game_id" type="text"/>
-            <column name="user_id" type="text"/>
-            <column name="star_id" type="text"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="star_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
             <column name="data_id" type="text"/>
             <column name="amount" type="number"/>
             <column name="storage_type" type="text"/>
             <column name="reservation_type" type="text"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="add-column-external_reference-to-reservation" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="reservation" columnName="external_reference"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="reservation">
             <column name="external_reference" type="text"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="add-primary-key-to_reservation" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <primaryKeyExists tableName="reservation" primaryKeyName="reservation-pk"/>
-            </not>
-        </preConditions>
+        </createTable>
 
         <addPrimaryKey tableName="reservation" columnNames="reservation_id" constraintName="reservation-pk"/>
-    </changeSet>
-
-    <changeSet id="add-column_player-id_to-reservation" author="Bernat Bonda">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="reservation" columnName="player_id"/>
-            </not>
-        </preConditions>
-
-        <addColumn tableName="reservation">
-            <column name="player_id" type="text"/>
-        </addColumn>
     </changeSet>
 </databaseChangeLog>

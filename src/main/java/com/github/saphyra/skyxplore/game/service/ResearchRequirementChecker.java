@@ -2,8 +2,7 @@ package com.github.saphyra.skyxplore.game.service;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.game.dao.map.star.Research;
-import com.github.saphyra.skyxplore.game.dao.map.star.Star;
-import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
+import com.github.saphyra.skyxplore.game.dao.map.star.ResearchQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,11 +15,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class ResearchRequirementChecker {
-    private final StarQueryService starQueryService;
+    private final ResearchQueryService researchQueryService;
 
     public void checkResearchRequirements(UUID starId, List<String> researchRequirements) {
-        Star star = starQueryService.findByStarIdAndGameIdAndOwnerId(starId);
-        List<String> existingResearches = star.getResearches().stream()
+        List<String> existingResearches = researchQueryService.getByStarIdAndGameIdAndPlayerId(starId).stream()
             .map(Research::getDataId)
             .collect(Collectors.toList());
 
