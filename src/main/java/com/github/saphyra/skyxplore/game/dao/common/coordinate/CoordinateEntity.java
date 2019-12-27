@@ -13,9 +13,9 @@ import javax.persistence.Embeddable;
 public class CoordinateEntity {
     @NonNull
     @Column(name = "x_coord")
-    private String x;
+    private Integer x;
 
     @NonNull
     @Column(name = "y_coord")
-    private String y;
+    private Integer y;
 }

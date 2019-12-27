@@ -16,9 +16,6 @@ public class Surface {
     private final UUID starId;
 
     @NonNull
-    private final UUID userId;
-
-    @NonNull
     private final UUID gameId;
 
     @NonNull

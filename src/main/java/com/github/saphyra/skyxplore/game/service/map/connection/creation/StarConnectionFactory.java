@@ -18,7 +18,6 @@ class StarConnectionFactory {
         StarConnection starConnection = StarConnection.builder()
             .connectionId(idGenerator.randomUUID())
             .gameId(star.getGameId())
-            .userId(star.getUserId())
             .star1(star.getStarId())
             .star2(targetStar.getStarId())
             .isNew(true)

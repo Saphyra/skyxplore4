@@ -14,5 +14,5 @@ interface StarConnectionRepository extends JpaRepository<StarConnectionEntity, S
     @Query("DELETE FROM StarConnectionEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    List<StarConnectionEntity> getByGameIdAndUserId(String gameId, String userId);
+    List<StarConnectionEntity> getByGameId(String gameId);
 }

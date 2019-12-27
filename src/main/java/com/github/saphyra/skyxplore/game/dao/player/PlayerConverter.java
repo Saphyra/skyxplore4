@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.player;
 
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.converter.ConverterBase;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PlayerConverter extends ConverterBase<PlayerEntity, Player> {
     private final UuidConverter uuidConverter;
+    private final RequestContextHolder requestContextHolder;
     private final StringEncryptor stringEncryptor;
 
     @Override
@@ -18,9 +20,8 @@ public class PlayerConverter extends ConverterBase<PlayerEntity, Player> {
         return Player.builder()
             .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
             .gameId(uuidConverter.convertEntity(entity.getGameId()))
-            .userId(uuidConverter.convertEntity(entity.getUserId()))
             .ai(entity.isAi())
-            .playerName(stringEncryptor.decryptEntity(entity.getPlayerName(), entity.getUserId()))
+            .playerName(stringEncryptor.decryptEntity(entity.getPlayerName(), uuidConverter.convertDomain(requestContextHolder.get().getUserId())))
             .isNew(entity.isNew())
             .build();
     }
@@ -30,9 +31,8 @@ public class PlayerConverter extends ConverterBase<PlayerEntity, Player> {
         return PlayerEntity.builder()
             .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
-            .userId(uuidConverter.convertDomain(domain.getUserId()))
             .ai(domain.isAi())
-            .playerName(stringEncryptor.encryptEntity(domain.getPlayerName(), uuidConverter.convertDomain(domain.getUserId())))
+            .playerName(stringEncryptor.encryptEntity(domain.getPlayerName(), uuidConverter.convertDomain(requestContextHolder.get().getUserId())))
             .isNew(domain.isNew())
             .build();
     }

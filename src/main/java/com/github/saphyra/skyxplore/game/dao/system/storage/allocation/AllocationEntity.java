@@ -18,7 +18,6 @@ class AllocationEntity {
     @Id
     private String allocationId;
     private String gameId;
-    private String userId;
     private String starId;
     private String playerId;
     private String externalReference;

@@ -24,7 +24,6 @@ public class CitizenFactory {
             .citizenId(citizenId)
             .citizenName(generateName())
             .gameId(star.getGameId())
-            .userId(star.getUserId())
             .ownerId(star.getOwnerId())
             .locationType(LocationType.SYSTEM)
             .locationId(star.getStarId())

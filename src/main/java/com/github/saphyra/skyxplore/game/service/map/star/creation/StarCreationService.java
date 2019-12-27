@@ -44,7 +44,6 @@ public class StarCreationService {
             Player player = playerService.create(gameId, userId, isAi, usedPlayerNames);
             Star star = starFactory.create(
                 gameId,
-                userId,
                 starName,
                 coordinate,
                 player.getPlayerId()

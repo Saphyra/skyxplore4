@@ -18,12 +18,11 @@ public class ReservationService {
     private final ReservationCommandService reservationCommandService;
     private final IdGenerator idGenerator;
 
-    public void reserve(UUID gameId, UUID userId, UUID starId, String dataId, int amount, StorageType storageType, ReservationType reservationType, UUID externalReference, UUID playerId) {
+    public void reserve(UUID gameId, UUID starId, String dataId, int amount, StorageType storageType, ReservationType reservationType, UUID externalReference, UUID playerId) {
         reservationCommandService.save(
             Reservation.builder()
                 .reservationId(idGenerator.randomUUID())
                 .gameId(gameId)
-                .userId(userId)
                 .starId(starId)
                 .playerId(playerId)
                 .dataId(dataId)

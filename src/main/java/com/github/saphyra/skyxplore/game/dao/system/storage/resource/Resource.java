@@ -16,9 +16,6 @@ public class Resource {
     private final UUID gameId;
 
     @NonNull
-    private final UUID userId;
-
-    @NonNull
     private final UUID playerId;
 
     @NonNull

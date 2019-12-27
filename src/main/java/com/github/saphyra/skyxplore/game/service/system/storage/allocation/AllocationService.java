@@ -18,11 +18,10 @@ public class AllocationService {
     private final AllocationCommandService allocationCommandService;
     private final IdGenerator idGenerator;
 
-    public void allocate(UUID gameId, UUID userId, UUID starId, UUID externalReference, ResourceData resourceData, int amount, AllocationType allocationType, UUID playerId) {
+    public void allocate(UUID gameId, UUID starId, UUID externalReference, ResourceData resourceData, int amount, AllocationType allocationType, UUID playerId) {
         allocationCommandService.save(Allocation.builder()
             .allocationId(idGenerator.randomUUID())
             .gameId(gameId)
-            .userId(userId)
             .starId(starId)
             .playerId(playerId)
             .externalReference(externalReference)

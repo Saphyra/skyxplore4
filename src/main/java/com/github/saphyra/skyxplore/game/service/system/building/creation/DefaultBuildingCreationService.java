@@ -67,7 +67,6 @@ public class DefaultBuildingCreationService {
         buildings.add(buildingFactory.create(
             buildingData.getId(),
             surface.getGameId(),
-            surface.getUserId(),
             surface.getStarId(),
             surface.getSurfaceId(),
             surface.getPlayerId()

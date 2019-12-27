@@ -18,10 +18,9 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
         return Surface.builder()
             .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
             .starId(uuidConverter.convertEntity(entity.getStarId()))
-            .userId(uuidConverter.convertEntity(entity.getUserId()))
             .gameId(uuidConverter.convertEntity(entity.getGameId()))
             .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
-            .coordinate(coordinateConverter.convertEntity(entity.getCoordinate(), entity.getUserId()))
+            .coordinate(coordinateConverter.convertEntity(entity.getCoordinate()))
             .surfaceType(entity.getSurfaceType())
             .isNew(entity.isNew())
             .build();
@@ -32,10 +31,9 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
         return SurfaceEntity.builder()
             .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
-            .userId(uuidConverter.convertDomain(domain.getUserId()))
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
             .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
-            .coordinate(coordinateConverter.convertDomain(domain.getCoordinate(), uuidConverter.convertDomain(domain.getUserId())))
+            .coordinate(coordinateConverter.convertDomain(domain.getCoordinate()))
             .surfaceType(domain.getSurfaceType())
             .isNew(domain.isNew())
             .build();

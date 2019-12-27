@@ -31,11 +31,10 @@ class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarConnection
         repository.saveAll(converter.convertDomain(connections));
     }
 
-    List<StarConnection> getByGameIdAndUserId(UUID gameId, UUID userId) {
+    List<StarConnection> getByGameIdAndUserId(UUID gameId) {
         return converter.convertEntity(
-            repository.getByGameIdAndUserId(
-                uuidConverter.convertDomain(gameId),
-                uuidConverter.convertDomain(userId)
+            repository.getByGameId(
+                uuidConverter.convertDomain(gameId)
             )
         );
     }

@@ -14,5 +14,5 @@ interface PlayerRepository extends JpaRepository<PlayerEntity, String> {
     @Query("DELETE FROM PlayerEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    List<PlayerEntity> getByUserIdAndGameId(String userId, String gameId);
+    List<PlayerEntity> getByGameId(String gameId);
 }

@@ -43,7 +43,6 @@ public class UpgradeBuildingService {
 
         UUID constructionId = constructionService.create(
             gameId,
-            building.getUserId(),
             building.getStarId(),
             building.getSurfaceId(),
             constructionRequirements,

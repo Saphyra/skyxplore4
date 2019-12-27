@@ -1,25 +1,22 @@
 package com.github.saphyra.skyxplore.game.dao.common.coordinate;
 
-import com.github.saphyra.encryption.impl.IntegerEncryptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class CoordinateConverter {
-    private final IntegerEncryptor integerEncryptor;
-
-    public Coordinate convertEntity(CoordinateEntity coordinateEntity, String userId) {
+    public Coordinate convertEntity(CoordinateEntity entity) {
         return Coordinate.builder()
-            .x(integerEncryptor.decryptEntity(coordinateEntity.getX(), userId))
-            .y(integerEncryptor.decryptEntity(coordinateEntity.getY(), userId))
+            .x(entity.getX())
+            .y(entity.getY())
             .build();
     }
 
-    public CoordinateEntity convertDomain(Coordinate coordinate, String userId) {
+    public CoordinateEntity convertDomain(Coordinate domain) {
         return CoordinateEntity.builder()
-            .x(integerEncryptor.encryptEntity(coordinate.getX(), userId))
-            .y(integerEncryptor.encryptEntity(coordinate.getY(), userId))
+            .x(domain.getX())
+            .y(domain.getY())
             .build();
     }
 }

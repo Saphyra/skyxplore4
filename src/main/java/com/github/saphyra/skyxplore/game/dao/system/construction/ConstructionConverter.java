@@ -21,7 +21,6 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
         return Construction.builder()
             .constructionId(uuidConverter.convertEntity(constructionEntity.getConstructionId()))
             .gameId(uuidConverter.convertEntity(constructionEntity.getGameId()))
-            .userId(uuidConverter.convertEntity(constructionEntity.getUserId()))
             .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
             .playerId(uuidConverter.convertEntity(constructionEntity.getPlayerId()))
             .constructionRequirements(convertRequirements(
@@ -54,7 +53,6 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
         return ConstructionEntity.builder()
             .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
-            .userId(uuidConverter.convertDomain(domain.getUserId()))
             .starId(uuidConverter.convertDomain(domain.getStarId()))
             .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
             .resourceRequirements(domain.getConstructionRequirements().getRequiredResources())

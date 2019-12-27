@@ -178,7 +178,6 @@ public class SurfaceCreationService {
             for (int y = 0; y < surfaceTypes.length; y++) {
                 Surface surface = surfaceFactory.create(
                     star.getStarId(),
-                    star.getUserId(),
                     star.getGameId(),
                     star.getOwnerId(),
                     new Coordinate(x, y),

@@ -21,7 +21,6 @@ class PlayerEntity implements Persistable<String> {
     @Id
     private String playerId;
     private String gameId;
-    private String userId;
     private String playerName;
     private boolean ai;
 

@@ -39,7 +39,6 @@ public class TerraformSurfaceService {
 
         UUID constructionId = constructionService.create(
             gameId,
-            surface.getUserId(),
             surface.getStarId(),
             surfaceId,
             terraformingPossibility.getConstructionRequirements(),

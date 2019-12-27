@@ -28,8 +28,6 @@ class SurfaceEntity  implements Persistable<String> {
 
     private String starId;
 
-    private String userId;
-
     private String gameId;
 
     private String playerId;

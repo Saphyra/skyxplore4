@@ -24,7 +24,6 @@ class CitizenEntity implements Persistable<String> {
     private String citizenId;
     private String citizenName;
     private String gameId;
-    private String userId;
     private String ownerId;
     @Enumerated(EnumType.STRING)
     private LocationType locationType;

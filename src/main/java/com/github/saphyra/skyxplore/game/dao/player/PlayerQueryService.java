@@ -17,7 +17,7 @@ public class PlayerQueryService {
     public UUID findPlayerIdByUserIdAndGameId(UUID gameId) {
         RequestContext context = requestContextHolder.get();
         UUID userId = context.getUserId();
-        return playerDao.getByUserIdAndGameId(userId, gameId).stream()
+        return playerDao.getByUserIdAndGameId(gameId).stream()
                 .filter(player -> !player.isAi())
                 .map(Player::getPlayerId)
                 .findFirst()

@@ -14,11 +14,10 @@ import java.util.UUID;
 class SurfaceFactory {
     private final IdGenerator idGenerator;
 
-    Surface create(UUID starId, UUID userId, UUID gameId, UUID playerId, Coordinate coordinate, SurfaceType surfaceType) {
+    Surface create(UUID starId, UUID gameId, UUID playerId, Coordinate coordinate, SurfaceType surfaceType) {
         return Surface.builder()
             .surfaceId(idGenerator.randomUUID())
             .starId(starId)
-            .userId(userId)
             .gameId(gameId)
             .playerId(playerId)
             .coordinate(coordinate)

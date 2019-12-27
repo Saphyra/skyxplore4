@@ -22,7 +22,6 @@ class BuildingEntity implements Persistable<String> {
     private String buildingId;
     private String buildingDataId;
     private String gameId;
-    private String userId;
     private String starId;
     private String playerId;
     private String surfaceId;

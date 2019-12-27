@@ -18,9 +18,6 @@ public class StarConnection {
     private final UUID gameId;
 
     @NonNull
-    private final UUID userId;
-
-    @NonNull
     private final UUID star1;
 
     @NonNull

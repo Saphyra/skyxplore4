@@ -27,7 +27,6 @@ class StarEntity implements Persistable<String> {
     @Id
     private String starId;
     private String gameId;
-    private String userId;
     private String starName;
     @Embedded
     private CoordinateEntity coordinates;

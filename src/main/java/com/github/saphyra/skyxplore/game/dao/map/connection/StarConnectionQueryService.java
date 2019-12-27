@@ -18,6 +18,6 @@ public class StarConnectionQueryService {
         RequestContext context = requestContextHolder.get();
         UUID gameId = context.getGameId();
         UUID userId = context.getUserId();
-        return starConnectionDao.getByGameIdAndUserId(gameId, userId);
+        return starConnectionDao.getByGameIdAndUserId(gameId);
     }
 }

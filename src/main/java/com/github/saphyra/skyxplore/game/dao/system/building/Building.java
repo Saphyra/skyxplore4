@@ -18,8 +18,6 @@ public class Building {
     @NonNull
     private final UUID gameId;
     @NonNull
-    private final UUID userId;
-    @NonNull
     private final UUID starId;
     @NonNull
     private final UUID playerId;

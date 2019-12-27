@@ -30,7 +30,6 @@ public class PlayerService {
         Player player = Player.builder()
             .playerId(idGenerator.randomUUID())
             .gameId(gameId)
-            .userId(userId)
             .ai(isAi)
             .playerName(isAi ? generateName(usedPlayerNames) : userQueryService.findByUserIdValidated(userId).getCredentials().getUserName())
             .isNew(true)

@@ -53,7 +53,6 @@ public class BuildNewBuildingService {
         UUID buildingId = idGenerator.randomUUID();
         UUID constructionId = constructionService.create(
             gameId,
-            surface.getUserId(),
             surface.getStarId(),
             surfaceId,
             constructionRequirements,
@@ -68,7 +67,6 @@ public class BuildNewBuildingService {
             .buildingId(buildingId)
             .buildingDataId(dataId)
             .gameId(gameId)
-            .userId(surface.getUserId())
             .starId(surface.getStarId())
             .surfaceId(surfaceId)
             .playerId(surface.getPlayerId())

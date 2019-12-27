@@ -25,7 +25,6 @@ public class ConstructionService {
 
     public UUID create(
         UUID gameId,
-        UUID userId,
         UUID starId,
         UUID surfaceId,
         ConstructionRequirements constructionRequirements,
@@ -37,7 +36,6 @@ public class ConstructionService {
         Construction construction = Construction.builder()
             .constructionId(idGenerator.randomUUID())
             .gameId(gameId)
-            .userId(userId)
             .starId(starId)
             .playerId(playerId)
             .surfaceId(surfaceId)

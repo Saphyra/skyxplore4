@@ -14,11 +14,10 @@ import java.util.UUID;
 class StarFactory {
     private final IdGenerator idGenerator;
 
-    Star create(UUID gameId, UUID userId, String starName, Coordinate coordinate, UUID playerId) {
+    Star create(UUID gameId, String starName, Coordinate coordinate, UUID playerId) {
         return Star.builder()
             .starId(idGenerator.randomUUID())
             .gameId(gameId)
-            .userId(userId)
             .starName(starName)
             .coordinate(coordinate)
             .ownerId(playerId)

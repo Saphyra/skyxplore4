@@ -21,7 +21,6 @@ class StarConnectionEntity implements Persistable<String> {
     @Id
     private String connectionId;
     private String gameId;
-    private String userId;
     private String star1;
     private String star2;
 

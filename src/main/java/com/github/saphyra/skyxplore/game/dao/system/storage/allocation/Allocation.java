@@ -18,9 +18,6 @@ public class Allocation {
     private final UUID gameId;
 
     @NonNull
-    private final UUID userId;
-
-    @NonNull
     private final UUID starId;
 
     @NonNull

@@ -19,9 +19,6 @@ public class Player {
     private final UUID gameId;
 
     @NonNull
-    private final UUID userId;
-
-    @NonNull
     private final String playerName;
 
     private final boolean ai;

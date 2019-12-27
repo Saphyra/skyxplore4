@@ -20,9 +20,6 @@ public class Star  {
     private final UUID gameId;
 
     @NonNull
-    private final UUID userId;
-
-    @NonNull
     private final String starName;
 
     @NonNull

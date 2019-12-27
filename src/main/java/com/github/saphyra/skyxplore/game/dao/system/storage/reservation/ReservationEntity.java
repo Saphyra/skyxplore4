@@ -22,7 +22,6 @@ class ReservationEntity {
     @Id
     private String reservationId;
     private String gameId;
-    private String userId;
     private String starId;
     private String playerId;
     private String externalReference;
