@@ -34,6 +34,6 @@ class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository> impl
     @Override
     public void deleteByGameId(UUID gameId) {
         log.info("Deleting games with gameId {}", gameId);
-        repository.deleteByGameId(uuidConverter.convertDomain(gameId));
+        repository.deleteById(uuidConverter.convertDomain(gameId));
     }
 }

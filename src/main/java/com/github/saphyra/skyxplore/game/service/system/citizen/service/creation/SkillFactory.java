@@ -15,14 +15,15 @@ class SkillFactory {
     private final GameProperties gameProperties;
     private final IdGenerator idGenerator;
 
-    Skill create(SkillType skillType, UUID citizenId) {
+    Skill create(SkillType skillType, UUID citizenId, UUID gameId) {
         return Skill.builder()
-                .skillId(idGenerator.randomUUID())
-                .citizenId(citizenId)
-                .skillType(skillType)
-                .level(1)
-                .experience(0)
-                .nextLevel(gameProperties.getInitialNextLevel())
-                .build();
+            .skillId(idGenerator.randomUUID())
+            .citizenId(citizenId)
+            .gameId(gameId)
+            .skillType(skillType)
+            .level(1)
+            .experience(0)
+            .nextLevel(gameProperties.getInitialNextLevel())
+            .build();
     }
 }

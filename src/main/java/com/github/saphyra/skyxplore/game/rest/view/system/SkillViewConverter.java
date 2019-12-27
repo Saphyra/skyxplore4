@@ -9,10 +9,10 @@ public class SkillViewConverter implements ViewConverter<Skill, SkillView> {
     @Override
     public SkillView convertDomain(Skill domain) {
         return SkillView.builder()
-                .skillType(domain.getSkillType())
-                .level(domain.getLevel())
-                .experience(domain.getExperience())
-                .nextLevel(domain.getNextLevel())
-                .build();
+            .skillType(domain.getSkillType())
+            .level(domain.getLevel())
+            .experience(domain.getExperience())
+            .nextLevel(domain.getNextLevel())
+            .build();
     }
 }

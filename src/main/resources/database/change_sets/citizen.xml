@@ -82,4 +82,16 @@
             <column name="owner_id" type="text"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="add-column_game-id_to-skill" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="skill" columnName="game_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="skill">
+            <column name="game_id" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

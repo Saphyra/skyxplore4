@@ -18,6 +18,7 @@ class SkillEntity {
     private String skillId;
     @Column(name = "citizen_id")
     private String  citizenId;
+    private String  gameId;
     @Enumerated(EnumType.STRING)
     private SkillType skillType;
     private Integer level;

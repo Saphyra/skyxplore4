@@ -16,6 +16,9 @@ public class Skill {
     private final UUID citizenId;
 
     @NonNull
+    private final UUID gameId;
+
+    @NonNull
     private final SkillType skillType;
 
     @NonNull
