@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 interface PlayerRepository extends JpaRepository<PlayerEntity, String> {
@@ -15,4 +16,6 @@ interface PlayerRepository extends JpaRepository<PlayerEntity, String> {
     void deleteByGameId(@Param("gameId") String gameId);
 
     List<PlayerEntity> getByGameId(String gameId);
+
+    Optional<PlayerEntity> findByGameIdAndPlayerId(String gameId, String playerId);
 }

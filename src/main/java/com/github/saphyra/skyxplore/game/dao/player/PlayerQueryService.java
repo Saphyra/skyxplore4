@@ -6,6 +6,7 @@ import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -13,6 +14,13 @@ import java.util.UUID;
 public class PlayerQueryService {
     private final PlayerDao playerDao;
     private final RequestContextHolder requestContextHolder;
+
+    public Optional<Player> findPlayerByGameIdAndPlayerId(){
+        RequestContext context = requestContextHolder.get();
+        UUID gameId = context.getGameId();
+        UUID playerId = context.getPlayerId();
+        return playerDao.findPlayerByGameIdAndPlayerId(gameId, playerId);
+    }
 
     public UUID findPlayerIdByUserIdAndGameId(UUID gameId) {
         RequestContext context = requestContextHolder.get();

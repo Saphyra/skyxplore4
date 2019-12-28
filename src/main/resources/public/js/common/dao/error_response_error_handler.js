@@ -32,6 +32,9 @@
                 sessionStorage.errorMessage = "session-expired";
                 eventProcessor.processEvent(new Event(events.LOGOUT));
             break;
+            case "INVALID_REQUEST_CONTEXT":
+                eventProcessor.processEvent(new Event(events.LOGOUT));
+            break;
             default:
                 notificationService.showError(errorResponse.localizedMessage);
         }

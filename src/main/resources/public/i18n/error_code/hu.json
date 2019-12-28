@@ -8,6 +8,7 @@
   "GENERAL_ERROR": "Hiba - ${generalErrorKey}",
   "INVALID_BUILD_LOCATION": "Ezt ide nem építheted.",
   "INVALID_LOCALE": "Érvénytelen nyelv.",
+  "INVALID_REQUEST_CONTEXT": "Érvénytelen kérelem.",
   "INVALID_STAR_ACCESS": "A csillagrendszer nem megtekinthető.",
   "MAX_LEVEL_REACHED": "A maximális szint elérve.",
   "PLAYER_NOT_FOUND": "Játékos nem található",

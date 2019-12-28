@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -35,5 +36,12 @@ class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerReposito
     @Override
     public void saveAll(List<Player> players) {
         repository.saveAll(converter.convertDomain(players));
+    }
+
+    Optional<Player> findPlayerByGameIdAndPlayerId(UUID gameId, UUID playerId) {
+        return converter.convertEntity(repository.findByGameIdAndPlayerId(
+            uuidConverter.convertDomain(gameId),
+            uuidConverter.convertDomain(playerId)
+        ));
     }
 }
