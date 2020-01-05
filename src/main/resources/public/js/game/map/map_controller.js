@@ -1,6 +1,11 @@
 (function MapController(){
     scriptLoader.loadScript("/js/common/animation/move_controller.js");
 
+    const X_OFFSET = 70;
+    const Y_OFFSET = 70;
+    const STAR_NAME_OFFSET = 30;
+    const STAR_SIZE = 20;
+
     window.mapController = new function(){
         this.createMapController = createMapController;
     }
@@ -48,10 +53,10 @@
 
             function createConnectionElement(connection){
                 const element = createSvgElement("line");
-                    element.setAttribute("x1", connection.coordinate1.x + 70);
-                    element.setAttribute("y1", connection.coordinate1.y + 70);
-                    element.setAttribute("x2", connection.coordinate2.x + 70);
-                    element.setAttribute("y2", connection.coordinate2.y + 70);
+                    element.setAttribute("x1", connection.coordinate1.x + X_OFFSET);
+                    element.setAttribute("y1", connection.coordinate1.y + Y_OFFSET);
+                    element.setAttribute("x2", connection.coordinate2.x + X_OFFSET);
+                    element.setAttribute("y2", connection.coordinate2.y + Y_OFFSET);
                     element.setAttribute("stroke", "white");
                     element.setAttribute("stroke-width", 1);
                 return element;
@@ -60,9 +65,9 @@
             function createStarElements(star){
                 const starElement = createSvgElement("circle");
                     starElement.classList.add("star-element");
-                    starElement.setAttribute("r", 20);
-                    starElement.setAttribute("cx", star.coordinate.x + 70);
-                    starElement.setAttribute("cy", star.coordinate.y + 70);
+                    starElement.setAttribute("r", STAR_SIZE);
+                    starElement.setAttribute("cx", star.coordinate.x + X_OFFSET);
+                    starElement.setAttribute("cy", star.coordinate.y + Y_OFFSET);
                     starElement.setAttribute("stroke", "blue");
                     starElement.setAttribute("stroke-width", 0);
                     if(star.ownerId == PLAYER_ID){
@@ -78,8 +83,8 @@
 
                 const starNameElement = createSvgElement("text");
                     starNameElement.classList.add("star-name-element");
-                    starNameElement.setAttribute("x", star.coordinate.x + 70);
-                    starNameElement.setAttribute("y", star.coordinate.y - 30 + 70);
+                    starNameElement.setAttribute("x", star.coordinate.x + X_OFFSET);
+                    starNameElement.setAttribute("y", star.coordinate.y - STAR_NAME_OFFSET + Y_OFFSET);
                     starNameElement.setAttribute("text-anchor", "middle");
                     starNameElement.setAttribute("pointer-events", "none");
                     starNameElement.innerHTML = star.starName;

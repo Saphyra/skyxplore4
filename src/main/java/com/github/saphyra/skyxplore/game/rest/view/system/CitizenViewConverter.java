@@ -16,6 +16,7 @@ public class CitizenViewConverter implements ViewConverter<Citizen, CitizenView>
     public CitizenView convertDomain(Citizen domain) {
         return CitizenView.builder()
             .citizenId(domain.getCitizenId())
+            .name(domain.getCitizenName())
             .morale(domain.getMorale())
             .satiety(domain.getSatiety())
             .skills(skillViewConverter.convertDomain(skillQueryService.getByCitizenId(domain.getCitizenId())))

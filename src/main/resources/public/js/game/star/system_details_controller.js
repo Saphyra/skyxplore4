@@ -10,18 +10,18 @@
                     return JSON.parse(response.body);
                 }
                 request.processValidResponse = function(systemDetails){
-                    displayStarDetails(systemDetails, containerId);
+                    displayStarDetails(starId, systemDetails, containerId);
                     spinner.increment();
                 }
             dao.sendRequestAsync(request);
         }
     }
 
-    function displayStarDetails(systemDetails, containerId){
+    function displayStarDetails(starId, systemDetails, containerId){
         const container = document.getElementById(containerId);
             container.innerHTML = "";
             container.appendChild(storageDetailsController.createStorageDetails(systemDetails.storage));
-            container.appendChild(populationDetailsController.createPopulationDetails(systemDetails.population));
+            container.appendChild(populationDetailsController.createPopulationDetails(starId, systemDetails.population));
             container.appendChild(surfaceBuildingDetailsController.createSurfaceBuildingDetails(systemDetails.surfaceBuildings));
     }
 })();

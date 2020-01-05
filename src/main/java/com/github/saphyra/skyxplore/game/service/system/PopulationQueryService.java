@@ -18,7 +18,7 @@ public class PopulationQueryService {
     public PopulationView getPopulationOfStar(UUID starId) {
         return PopulationView.builder()
                 .dwellingSpaceAmount(buildingService.getDwellingSpaceAmount(starId))
-                .citizenNum(citizenQueryService.countByLocationAndGameIdAndOwnerId(LocationType.SYSTEM, starId))
+                .citizenNum(citizenQueryService.countByLocationAndOwnerId(LocationType.SYSTEM, starId))
                 .build();
     }
 }

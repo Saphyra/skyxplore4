@@ -46,5 +46,6 @@ const WindowType = {
     ALL: "ALL",
     EDIT_SURFACE: "EDIT_SURFACE",
     MAP: "MAP",
+    POPULATION_OVERVIEW: "POPULATION_OVERVIEW",
     STAR: "STAR"
 }

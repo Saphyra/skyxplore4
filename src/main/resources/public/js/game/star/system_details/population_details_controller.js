@@ -3,7 +3,7 @@
         this.createPopulationDetails = createPopulationDetails;
     }
 
-    function createPopulationDetails(populationDetails){
+    function createPopulationDetails(starId, populationDetails){
         const container = document.createElement("div");
             container.classList.add("bar-container");
 
@@ -37,7 +37,7 @@
                 citizenOverviewButton.classList.add("button");
                 citizenOverviewButton.innerHTML = Localization.getAdditionalContent("citizen-overview");
                 citizenOverviewButton.onclick = function(){
-                    //todo implement
+                    eventProcessor.processEvent(new Event(events.OPEN_POPULATION_OVERVIEW, starId));
                 }
         container.appendChild(citizenOverviewButton);
         return container;

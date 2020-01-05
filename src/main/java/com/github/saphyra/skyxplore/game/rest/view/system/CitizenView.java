@@ -14,6 +14,9 @@ public class CitizenView {
     private final UUID citizenId;
 
     @NonNull
+    private final String name;
+
+    @NonNull
     private final Integer morale;
 
     @NonNull

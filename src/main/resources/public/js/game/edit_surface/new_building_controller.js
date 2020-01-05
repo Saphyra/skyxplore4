@@ -12,7 +12,14 @@
         const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_BUILDABLE_BUILDINGS, surfaceId));
             request.convertResponse = function(response){
                 return new Stream(JSON.parse(response.body))
-                    .sorted(function(a, b){return buildingLocalization.get(a.dataId).localeCompare(buildingLocalization.get(b.dataId))})
+                    .sorted(function(a, b){
+                        const aHasResearchRequirements = a.constructionRequirements.researchRequirements.length == 0;
+                        const bHasResearchRequirements = b.constructionRequirements.researchRequirements.length == 0;
+                        return aHasResearchRequirements == bHasResearchRequirements
+                            ? buildingLocalization.get(a.dataId).localeCompare(buildingLocalization.get(b.dataId))
+                            : aHasResearchRequirements ? -1 : 1
+                        }
+                    )
                     .toList();
             }
             request.processValidResponse = function(buildings){

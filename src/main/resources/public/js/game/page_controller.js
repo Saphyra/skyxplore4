@@ -1,10 +1,11 @@
 (function PageController(){
     scriptLoader.loadScript("/js/game/localizations.js");
+    scriptLoader.loadScript("/js/common/animation/spinner.js");
     scriptLoader.loadScript("/js/game/window_controller.js");
     scriptLoader.loadScript("/js/game/map/map_controller.js");
     scriptLoader.loadScript("/js/game/star/star_controller.js");
     scriptLoader.loadScript("/js/game/edit_surface/edit_surface_controller.js");
-    scriptLoader.loadScript("/js/common/animation/spinner.js");
+    scriptLoader.loadScript("/js/game/population_overview/population_overview_controller.js");
 
     events.REFRESH_WINDOWS = "refresh-windows";
 

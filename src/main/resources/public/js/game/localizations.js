@@ -6,6 +6,7 @@
         this.buildingLocalization = new CustomLocalization("building");
         this.researchLocalization = new CustomLocalization("research");
         this.resourceLocalization = new CustomLocalization("resource");
+        this.skillTypeLocalization = new CustomLocalization("skill_type");
         this.storageTypeLocalization = new CustomLocalization("storage_type");
         this.surfaceTypeLocalization = new CustomLocalization("surface_type");
         this.queueTypeLocalization = new CustomLocalization("queue_type");

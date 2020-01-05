@@ -7,6 +7,7 @@ window.Mapping = {
     GET_GAMES: "/api/game",
     GET_MAP: "/api/game/map",
     GET_PLAYER_ID: "/api/game/player/id",
+    GET_POPULATION_OVERVIEW: "/api/game/star/*/population/overview",
     GET_QUEUE: "/api/game/star/*/queue",
     GET_STAR: "/api/game/star/*",
     GET_SYSTEM_DETAILS: "/api/game/star/*/system/details",

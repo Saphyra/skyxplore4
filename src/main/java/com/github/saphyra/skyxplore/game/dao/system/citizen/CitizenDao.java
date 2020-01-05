@@ -21,11 +21,10 @@ class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepo
         this.uuidConverter = uuidConverter;
     }
 
-    Integer countByLocationAndGameIdAndOwnerId(LocationType locationType, UUID locationId, UUID gameId, UUID playerId) {
-        return repository.countByLocationTypeAndLocationIdAndGameIdAndOwnerId(
+    Integer countByLocationAndAndOwnerId(LocationType locationType, UUID locationId, UUID playerId) {
+        return repository.countByLocationTypeAndLocationIdAndOwnerId(
             locationType,
             uuidConverter.convertDomain(locationId),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         );
     }
@@ -34,6 +33,13 @@ class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepo
     public void deleteByGameId(UUID gameId) {
         log.info("Deleting citizens for gameId {}", gameId);
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
+    }
+
+    List<Citizen> getByLocationIdAndOwnerId(UUID locationId, UUID playerId) {
+        return converter.convertEntity(repository.getByLocationIdAndOwnerId(
+            uuidConverter.convertDomain(locationId),
+            uuidConverter.convertDomain(playerId)
+        ));
     }
 
     @Override

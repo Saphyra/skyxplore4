@@ -6,11 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CitizenRepository extends JpaRepository<CitizenEntity, String> {
-    Integer countByLocationTypeAndLocationIdAndGameIdAndOwnerId(LocationType locationType, String locationId, String gameId, String ownerId);
+    Integer countByLocationTypeAndLocationIdAndOwnerId(LocationType locationType, String locationId, String ownerId);
 
     @Modifying
     @Query("DELETE FROM CitizenEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
+
+    List<CitizenEntity> getByLocationIdAndOwnerId(String locationId, String ownerId);
 }

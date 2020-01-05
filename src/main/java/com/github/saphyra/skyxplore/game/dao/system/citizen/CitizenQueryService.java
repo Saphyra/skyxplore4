@@ -5,6 +5,7 @@ import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -13,10 +14,15 @@ public class CitizenQueryService {
     private final CitizenDao citizenDao;
     private final RequestContextHolder requestContextHolder;
 
-    public Integer countByLocationAndGameIdAndOwnerId(LocationType locationType, UUID locationId) {
+    public Integer countByLocationAndOwnerId(LocationType locationType, UUID locationId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return citizenDao.countByLocationAndGameIdAndOwnerId(locationType, locationId, gameId, playerId);
+        return citizenDao.countByLocationAndAndOwnerId(locationType, locationId, playerId);
+    }
+
+    public List<Citizen> getByLocationIdAndOwnerId(UUID locationId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return citizenDao.getByLocationIdAndOwnerId(locationId, playerId);
     }
 }

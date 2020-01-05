@@ -123,7 +123,7 @@
     function refreshFunction(starId){
         return function(){
             spinner.open(3);
-            systemDetailsController.showSystemDetails(starId, createLeftBarId(starId))
+            systemDetailsController.showSystemDetails(starId, createLeftBarId(starId));
             surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
             queueController.showQueue(starId, createRightBarId(starId));
         }
