@@ -191,6 +191,10 @@ input:disabled, button:disabled, textarea:disabled, .disabled{
     text-align: center;
 }
 
+.relative{
+    position: relative;
+}
+
 .spinner{
     position: fixed;
     top: 0;

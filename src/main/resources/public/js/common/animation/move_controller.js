@@ -19,7 +19,7 @@ function addRightClickMove(containerId, panelId, blockWheel){
             if(clicked && clickedButton == 2){
                 const diffX = lastX - event.clientX;
                 const diffY = lastY - event.clientY;
-                panel.scrollBy(diffX * 1.5, diffY * 2.5);
+                panel.scrollBy(diffX * 1.5, diffY * 2);
                 lastX = event.clientX;
                 lastY = event.clientY;
             }

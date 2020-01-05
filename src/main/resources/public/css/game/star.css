@@ -225,11 +225,19 @@
                 margin-left: 0.5rem;
             }
 
-.population-details-content{
-    text-align: center;
-    margin: 0.125rem;
-    font-size: 1.25rem;
+.population-details-bar-container{
+    position: relative;
+    height: 1.5rem;
+    margin: 0.25rem;
+    border: 1px solid white;
+    border-radius: 3px;
 }
+
+    .population-details-content{
+        text-align: center;
+        margin: 0.125rem;
+        font-size: 1.25rem;
+    }
 
 .building-summary-table{
     display: none;
