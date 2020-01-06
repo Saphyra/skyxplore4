@@ -82,6 +82,45 @@ function Stream(a){
 
         return result;
     }
+
+    this.toMapStream = function(keyMapper, valueMapper){
+        return new MapStream(this.toMap(keyMapper, valueMapper));
+    }
+}
+
+function MapStream(i){
+    const items = i || {};
+
+    this.applyOnAllValues = function(consumer){
+        consumer(items);
+        return this;
+    }
+
+    this.forEach = function(consumer){
+        for(let key in items){
+            consumer(key, items[key]);
+        }
+    }
+
+    this.map = function(valueMapper){
+        const values = {};
+        this.forEach(function(key, value){values[key] = valueMapper(key, value)});
+        return new MapStream(values);
+    }
+
+    this.toListStream = function(mapper){
+        if(mapper){
+            const arr = [];
+            this.forEach(function(key, value){arr.push(mapper(key, value))});
+            return new Stream(arr);
+        }else{
+            return new Stream(Object.values(items));
+        }
+    }
+
+    this.toMap = function(){
+        return items;
+    }
 }
 
 function entryList(map){

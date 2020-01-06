@@ -1,5 +1,4 @@
-//TODO population overview - Checkbox for hiding skills
-//TODO population overview - Order by skill / stat
-//TODO Add System defence details to system summary
-//TODO Store games in separate tables to reduce query times
-//TODO API tests
+TODO population overview - Order by skill / stat
+TODO Add System defence details to system summary
+TODO Store games in separate tables to reduce query times
+TODO API tests

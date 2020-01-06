@@ -1,50 +1,103 @@
-.population-overview-item{
-    float: left;
-    width: calc(33.33% - 1rem);
-    min-width: 15rem;
-    margin: 0.5rem;
-    border: 3px ridge white;
-    border-radius: 5px;
+:root{
+    --population-overview-filter-container-height: 3rem;
 }
 
-    .population-overview-item-header{
-        text-align: center;
-        border-bottom: 1px solid white;
-        text-align: center;
+.population-overview-filter-container{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--page-header-height);
+    height: var(--population-overview-filter-container-height);
+
+    padding: 1.125rem 0.5rem;
+    border-bottom: 3px ridge white;
+}
+
+    .population-overview-filter-list-container{
+        display: inline-block;
     }
 
-        .population-overview-item-stat-container{
-            text-align: center;
+        .population-overview-filter-label{
+            display: inline;
         }
 
-            .population-overview-item-stat{
-                margin: 0.25rem;
-                padding: 0.125rem;
-                display: inline-block;
-                width: 10rem;
-                position: relative;
-                border: 1px solid white;
-                border-radius: 3px;
-                height: 1rem;
-                text-align: center;
-            }
-
-        .population-overview-item-skill-container{
-            text-align: center;
-            margin: 0.25rem;
-            margin-top: 0;
-            border: 2px solid white;
+        .population-overview-filter-list-item-container{
+            display: none;
+            background: black;
+            border: 3px ridge white;
+            border-top: none;
             border-radius: 5px;
+            padding-top: 0.5rem;
         }
 
-            .population-overview-item-skill{
-                margin: 0.125rem;
-                padding: 0.25rem 0;
-                display: inline-block;
-                width: 11rem;
-                position: relative;
-                border: 1px solid white;
-                border-radius: 3px;
-                height: 1rem;
+        .population-overview-filter-list-container label{
+            display: block;
+            border: 3px outset white;
+            border-radius: 5px;
+            margin: 0.25rem;
+        }
+
+            .population-overview-filter-list-container label:hover{
+                border-color: red;
+            }
+
+            .population-overview-filter-list-container label:active{
+                border-style: inset;
+            }
+
+
+
+.population-overview-content{
+    top: calc(var(--population-overview-filter-container-height) + var(--page-header-height));
+}
+
+    .population-overview-item{
+        float: left;
+        width: calc(33.33% - 1rem);
+        min-width: 15rem;
+        margin: 0.5rem;
+        border: 3px ridge white;
+        border-radius: 5px;
+    }
+
+        .population-overview-item-header{
+            text-align: center;
+            border-bottom: 1px solid white;
+            text-align: center;
+        }
+
+            .population-overview-item-stat-container{
                 text-align: center;
             }
+
+                .population-overview-item-stat{
+                    margin: 0.25rem;
+                    padding: 0.125rem;
+                    display: inline-block;
+                    width: 10rem;
+                    position: relative;
+                    border: 1px solid white;
+                    border-radius: 3px;
+                    height: 1rem;
+                    text-align: center;
+                }
+
+            .population-overview-item-skill-container{
+                text-align: center;
+                margin: 0.25rem;
+                margin-top: 0;
+                border: 2px solid white;
+                border-radius: 5px;
+            }
+
+                .population-overview-item-skill{
+                    margin: 0.125rem;
+                    padding: 0.25rem 0;
+                    display: inline-block;
+                    width: 11rem;
+                    position: relative;
+                    border: 1px solid white;
+                    border-radius: 3px;
+                    height: 1rem;
+                    text-align: center;
+                }

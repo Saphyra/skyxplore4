@@ -1,7 +1,11 @@
 (function PopulationOverviewController(){
     events.OPEN_POPULATION_OVERVIEW = "open_population_overview";
+    events.POPULATION_OVERVIEW_FILTER_CHANGED = "POPULATION_OVERVIEW_FILTER_CHANGED";
 
     const skillTypeLocalization = localizations.skillTypeLocalization;
+
+    const filters = {};
+    const citizenMap = {};
 
     eventProcessor.registerProcessor(new EventProcessor(
         function(eventType){return eventType == events.OPEN_POPULATION_OVERVIEW},
@@ -15,12 +19,20 @@
         }
     ));
 
+    eventProcessor.registerProcessor(new EventProcessor(
+        function(eventType){return eventType == events.POPULATION_OVERVIEW_FILTER_CHANGED},
+        function(event){
+            const starId = event.getPayload();
+            displayCitizens(starId, citizenMap[starId]);
+        }
+    ));
+
     function createFunction(starId, controller){
         return function(){
             const container = createContainer(starId);
                 container.appendChild(createHeader(controller));
                 container.appendChild(createBody(starId));
-
+                container.appendChild(createFilters(starId));
             document.getElementById("pages").appendChild(container);
             this.refresh();
         }
@@ -58,12 +70,72 @@
                 body.classList.add("population-overview-content");
             return body;
         }
+
+        function createFilters(starId){
+            const filterContainer = document.createElement("div");
+                filterContainer.classList.add("population-overview-filter-container");
+
+                filterContainer.appendChild(createSkillHideFilter(starId));
+            return filterContainer;
+
+            function createSkillHideFilter(starId){
+                const filterListContainer = document.createElement("div");
+                    filterListContainer.classList.add("population-overview-filter-list-container");
+
+                    const labelButton = document.createElement("div");
+                        labelButton.classList.add("button")
+                        labelButton.classList.add("population-overview-filter-label")
+                        labelButton.innerHTML = Localization.getAdditionalContent("hide-and-show-skills");
+                filterListContainer.appendChild(labelButton);
+
+                    const skillListContainer = document.createElement("div");
+                        skillListContainer.classList.add("population-overview-filter-list-item-container");
+                        //TODO add select / deselect all buttons
+                        new Stream(skillTypeLocalization.getKeys())
+                            .sorted(function(a, b){return skillTypeLocalization.get(a).localeCompare(skillTypeLocalization.get(b))})
+                            .toMapStream(
+                                function(skillType){return skillType},
+                                function(skillType){return createInputField(skillType, starId)}
+                            )
+                            .applyOnAllValues(function(map){
+                                filters[starId] = map;
+                            })
+                            .map(function(skillType, inputField){return createFilterElement(skillType, inputField)})
+                            .toListStream()
+                            .forEach(function(filterElement){skillListContainer.appendChild(filterElement)});
+
+                filterListContainer.appendChild(skillListContainer);
+
+                labelButton.onclick = function(){
+                    $(skillListContainer).toggle();
+                }
+                return filterListContainer;
+
+                function createInputField(skillType, starId){
+                    const inputField = document.createElement("input");
+                        inputField.type = "checkbox";
+                        inputField.checked = true;
+
+                        inputField.onchange = function(){
+                            eventProcessor.processEvent(new Event(events.POPULATION_OVERVIEW_FILTER_CHANGED, starId));
+                        }
+                    return inputField;
+                }
+
+                function createFilterElement(skillType, inputField){
+                    const filterElement = document.createElement("label");
+                        filterElement.appendChild(inputField);
+                        const label = document.createElement("span");
+                            label.innerHTML = skillTypeLocalization.get(skillType);
+                    filterElement.appendChild(label);
+                    return filterElement;
+                }
+            }
+        }
     }
 
     function refreshFunction(starId){
         return function(){
-            const contentContainer = document.getElementById(createContentId(starId));
-                contentContainer.innerHTML = "";
             spinner.open();
             const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_POPULATION_OVERVIEW, starId));
                 request.convertResponse = function(response){
@@ -72,7 +144,8 @@
                         .toList();
                 }
                 request.processValidResponse = function(citizens){
-                    displayCitizens(contentContainer, citizens);
+                    citizenMap[starId] = citizens;
+                    displayCitizens(starId, citizens);
                     spinner.increment();
                 }
 
@@ -84,10 +157,15 @@
         return function(){
             document.getElementById("pages").removeChild(document.getElementById(createContainerId(starId)));
             pageController.removeFromList(controllerId);
+            delete filters[starId];
+            delete citizenMap[starId];
         }
     }
 
-    function displayCitizens(container, citizens){
+    function displayCitizens(starId, citizens){
+        const container = document.getElementById(createContentId(starId));
+            container.innerHTML = "";
+
         new Stream(citizens)
             .map(createCitizen)
             .forEach(function(item){container.appendChild(item)});
@@ -99,7 +177,7 @@
             item.appendChild(createHeader(citizen));
             item.appendChild(createStats(citizen));
 
-            item.appendChild(createSkills(citizen.skills))
+            item.appendChild(createSkills(citizen.skills, getFilters(starId)))
             return item;
 
             function createHeader(citizen){
@@ -134,11 +212,18 @@
                 }
             }
 
-            function createSkills(skills){
+            function getFilters(starId){
+                return new MapStream(filters[starId])
+                    .map(function(skillType, inputField){return inputField.checked})
+                    .toMap();
+            }
+
+            function createSkills(skills, filterInputs){
                 const skillContainer = document.createElement("div");
                     skillContainer.classList.add("population-overview-item-skill-container");
 
                     new Stream(skills)
+                        .filter(function(skill){return filterInputs[skill.skillType]})
                         .sorted(function(a, b){return skillTypeLocalization.get(a.skillType).localeCompare(skillTypeLocalization.get(b.skillType))})
                         .map(createSkill)
                         .forEach(function(item){skillContainer.appendChild(item)});
