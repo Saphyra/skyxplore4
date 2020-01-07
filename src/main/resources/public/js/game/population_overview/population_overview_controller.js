@@ -90,17 +90,20 @@
 
                     const skillListContainer = document.createElement("div");
                         skillListContainer.classList.add("population-overview-filter-list-item-container");
-                        //TODO add select / deselect all buttons
+
+                        skillListContainer.appendChild(createSelectButton(starId, "select-all", true));
+                        skillListContainer.appendChild(createSelectButton(starId, "deselect-all", false));
+
                         new Stream(skillTypeLocalization.getKeys())
                             .sorted(function(a, b){return skillTypeLocalization.get(a).localeCompare(skillTypeLocalization.get(b))})
                             .toMapStream(
                                 function(skillType){return skillType},
-                                function(skillType){return createInputField(skillType, starId)}
+                                function(skillType){return createInputField(starId)}
                             )
                             .applyOnAllValues(function(map){
                                 filters[starId] = map;
                             })
-                            .map(function(skillType, inputField){return createFilterElement(skillType, inputField)})
+                            .map(function(skillType, inputField){return createFilterElement(skillTypeLocalization.get(skillType), inputField)})
                             .toListStream()
                             .forEach(function(filterElement){skillListContainer.appendChild(filterElement)});
 
@@ -111,7 +114,19 @@
                 }
                 return filterListContainer;
 
-                function createInputField(skillType, starId){
+                function createSelectButton(starId, additionalContent, inputFieldValue){
+                    const filterElement = createFilterElement(Localization.getAdditionalContent(additionalContent));
+                        filterElement.onclick = function(){
+                            new MapStream(filters[starId])
+                                .toListStream()
+                                .forEach(function(inputField){inputField.checked = inputFieldValue});
+
+                            eventProcessor.processEvent(new Event(events.POPULATION_OVERVIEW_FILTER_CHANGED, starId));
+                        }
+                    return filterElement;
+                }
+
+                function createInputField(starId){
                     const inputField = document.createElement("input");
                         inputField.type = "checkbox";
                         inputField.checked = true;
@@ -122,11 +137,13 @@
                     return inputField;
                 }
 
-                function createFilterElement(skillType, inputField){
+                function createFilterElement(labelText, inputField){
                     const filterElement = document.createElement("label");
-                        filterElement.appendChild(inputField);
+                        if(inputField){
+                            filterElement.appendChild(inputField);
+                        }
                         const label = document.createElement("span");
-                            label.innerHTML = skillTypeLocalization.get(skillType);
+                            label.innerHTML = labelText;
                     filterElement.appendChild(label);
                     return filterElement;
                 }
