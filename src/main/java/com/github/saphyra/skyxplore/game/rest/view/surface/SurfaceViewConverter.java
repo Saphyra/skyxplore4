@@ -38,7 +38,7 @@ public class SurfaceViewConverter implements ViewConverter<Surface, SurfaceView>
     }
 
     private ConstructionStatusView getTerraformStatus(Surface surface) {
-        return constructionQueryService.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getSurfaceId())
+        return constructionQueryService.findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getSurfaceId())
             .map(constructionViewQueryService::findByConstruction)
             .orElse(null);
     }

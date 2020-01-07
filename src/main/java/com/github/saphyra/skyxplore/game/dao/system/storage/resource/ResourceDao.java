@@ -37,7 +37,7 @@ class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, Resource
 
     Optional<Resource> findLatestByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
         return converter.convertEntity(
-            repository.findLatestByStarIdAndDataIdAndPlayerId(
+            repository.findLatestByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(
                 uuidConverter.convertDomain(starId),
                 dataId,
                 uuidConverter.convertDomain(playerId)

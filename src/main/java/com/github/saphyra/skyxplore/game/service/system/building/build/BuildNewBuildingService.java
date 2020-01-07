@@ -86,7 +86,7 @@ public class BuildNewBuildingService {
             throw ExceptionFactory.invalidBuildLocation(buildingData.getId(), surface.getSurfaceId());
         }
 
-        if (constructionQueryService.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getStarId()).isPresent()) {
+        if (constructionQueryService.findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getStarId()).isPresent()) {
             throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
         }
     }

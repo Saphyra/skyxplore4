@@ -16,7 +16,7 @@
             <column name="game_id" type="varchar(37)"/>
             <column name="owner_id" type="varchar(37)"/>
             <column name="location_type" type="text"/>
-            <column name="location_id" type="text"/>
+            <column name="location_id" type="varchar(37)"/>
             <column name="morale" type="number"/>
             <column name="satiety" type="number"/>
             <column name="citizen_name" type="text"/>
@@ -25,4 +25,16 @@
         <addPrimaryKey tableName="citizen" columnNames="citizen_id" constraintName="citizen-pk"/>
     </changeSet>
 
+    <changeSet id="create-index_location-id_and_owner-id_citizen" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="citizen" indexName="citizen-location_id-owner_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="citizen" indexName="citizen-location_id-owner_id">
+            <column name="location_id"/>
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>

@@ -16,32 +16,29 @@ public class ConstructionQueryService {
     private final ConstructionDao constructionDao;
     private final RequestContextHolder requestContextHolder;
 
-    public Construction findByConstructionIdAndGameIdAndPlayerId(UUID constructionId) {
+    public Construction findByConstructionIdAndPlayerId(UUID constructionId) {
         RequestContext context = requestContextHolder.get();
         UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return constructionDao.findByConstructionIdAndGameIdAndPlayerId(constructionId, gameId, playerId)
+        return constructionDao.findByConstructionIdAndPlayerId(constructionId, playerId)
             .orElseThrow(() -> ExceptionFactory.constructionNotFound(constructionId, gameId, playerId));
     }
 
-    public Optional<Construction> findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType constructionType, UUID externalId) {
+    public Optional<Construction> findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType constructionType, UUID externalId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return constructionDao.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(constructionType, externalId, gameId, playerId);
+        return constructionDao.findByConstructionTypeAndExternalIdAndPlayerId(constructionType, externalId, playerId);
     }
 
     public Optional<Construction> findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType constructionType, UUID surfaceId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return constructionDao.findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(constructionType, surfaceId, gameId, playerId);
+        return constructionDao.findByConstructionTypeAndSurfaceIdAndPlayerId(constructionType, surfaceId, playerId);
     }
 
     public List<Construction> getByStarIdAndGameIdAndPlayerId(UUID starId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return constructionDao.getByStarIdAndGameIdAndPlayerId(starId, gameId, playerId);
+        return constructionDao.getByStarIdAndPlayerId(starId, playerId);
     }
 }

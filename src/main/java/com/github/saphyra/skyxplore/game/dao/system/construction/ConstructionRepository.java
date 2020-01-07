@@ -10,19 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-//TODO create index
 interface ConstructionRepository extends JpaRepository<ConstructionEntity, String> {
     @Modifying
     @Query("DELETE FROM ConstructionEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    Optional<ConstructionEntity> findByConstructionIdAndGameIdAndPlayerId(String constructionId, String gameId, String playerId);
+    Optional<ConstructionEntity> findByConstructionIdAndPlayerId(String constructionId, String playerId);
 
-    Optional<ConstructionEntity> findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType constructionType, String externalId, String gameId, String playerId);
+    Optional<ConstructionEntity> findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType constructionType, String externalId, String playerId);
 
-    Optional<ConstructionEntity> findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType constructionType, String surfaceId, String gameId, String playerId);
+    Optional<ConstructionEntity> findByConstructionTypeAndSurfaceIdAndPlayerId(ConstructionType constructionType, String surfaceId, String playerId);
 
-    List<ConstructionEntity> getByStarIdAndGameIdAndPlayerId(String starId, String gameId, String playerId);
+    List<ConstructionEntity> getByStarIdAndPlayerId(String starId, String playerId);
 
-    void deleteByConstructionIdAndGameIdAndPlayerId(String constructionId, String gameId, String playerId);
+    void deleteByConstructionIdAndPlayerId(String constructionId, String playerId);
 }

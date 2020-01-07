@@ -16,10 +16,9 @@ public class ResearchQueryService {
     private final RequestContextHolder requestContextHolder;
     private final ResearchDao researchDao;
 
-    public List<Research> getByStarIdAndGameIdAndPlayerId(UUID starId) {
+    public List<Research> getByStarIdAndPlayerId(UUID starId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return researchDao.getByStarIdAndGameIdAndPlayerId(starId, gameId, playerId);
+        return researchDao.getByStarIdAndPlayerId(starId, playerId);
     }
 }

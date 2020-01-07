@@ -9,11 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-//TODO create index
 public interface ResearchRepository extends JpaRepository<ResearchEntity, String> {
     @Modifying
     @Query("DELETE FROM ResearchEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    List<ResearchEntity> getByStarIdAndGameIdAndPlayerId(String starId, String gameId, String playerId);
+    List<ResearchEntity> getByStarIdAndPlayerId(String starId, String playerId);
 }

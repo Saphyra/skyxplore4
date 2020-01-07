@@ -34,29 +34,26 @@ class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, Al
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    List<Allocation> getByExternalReferenceAndGameIdAndPlayerId(UUID externalReference, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByExternalReferenceAndGameIdAndPlayerId(
+    List<Allocation> getByExternalReferenceAndPlayerId(UUID externalReference, UUID playerId) {
+        return converter.convertEntity(repository.getByExternalReferenceAndPlayerId(
             uuidConverter.convertDomain(externalReference),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }
 
-    List<Allocation> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndGameIdAndPlayerId(
+    List<Allocation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndPlayerId(
             uuidConverter.convertDomain(starId),
             storageType,
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }
 
-    List<Allocation> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId, UUID gameId, UUID playerId) {
+    List<Allocation> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
         return converter.convertEntity(
-            repository.getByStarIdAndDataIdAndGameIdAndPlayerId(
+            repository.getByStarIdAndDataIdAndPlayerId(
                 uuidConverter.convertDomain(starId),
                 dataId,
-                uuidConverter.convertDomain(gameId),
                 uuidConverter.convertDomain(playerId)
             )
         );

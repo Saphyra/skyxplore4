@@ -2,7 +2,7 @@ metrics:
   rest:
     enabled: true
   repository:
-    enabled: true
+    enabled: false
 
 server:
   tomcat:

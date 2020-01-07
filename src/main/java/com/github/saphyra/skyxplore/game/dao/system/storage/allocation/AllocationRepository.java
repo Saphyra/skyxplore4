@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-//TODO create index
 interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
     void deleteByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 
@@ -18,9 +17,9 @@ interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
     @Query("DELETE FROM AllocationEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    List<AllocationEntity> getByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
+    List<AllocationEntity> getByExternalReferenceAndPlayerId(String externalReference, String playerId);
 
-    List<AllocationEntity> getByStarIdAndStorageTypeAndGameIdAndPlayerId(String starId, StorageType storageType, String gameId, String playerId);
+    List<AllocationEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId);
 
-    List<AllocationEntity> getByStarIdAndDataIdAndGameIdAndPlayerId(String starId, String dataId, String gameId, String playerId);
+    List<AllocationEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
 }

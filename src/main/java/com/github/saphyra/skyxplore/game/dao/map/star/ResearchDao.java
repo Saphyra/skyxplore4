@@ -25,10 +25,9 @@ public class ResearchDao extends AbstractDao<ResearchEntity, Research, String, R
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    public List<Research> getByStarIdAndGameIdAndPlayerId(UUID starId, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndGameIdAndPlayerId(
+    List<Research> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndPlayerId(
             uuidConverter.convertDomain(starId),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }

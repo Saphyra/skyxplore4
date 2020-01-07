@@ -19,15 +19,13 @@ public class ReservationQueryService {
 
     public List<Reservation> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return reservationDao.getByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId, gameId, playerId);
+        return reservationDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
 
-    public List<Reservation> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType) {
+    public List<Reservation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return reservationDao.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType, gameId, playerId);
+        return reservationDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
     }
 }

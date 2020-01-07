@@ -17,24 +17,21 @@ public class AllocationQueryService {
     private final AllocationDao allocationDao;
     private final RequestContextHolder requestContextHolder;
 
-    public List<Allocation> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType) {
+    public List<Allocation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return allocationDao.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType, gameId, playerId);
+        return allocationDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
     }
 
-    public List<Allocation> getByExternalReferenceAndGameIdAndPlayerId(UUID externalReference) {
+    public List<Allocation> getByExternalReferenceAndPlayerId(UUID externalReference) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return allocationDao.getByExternalReferenceAndGameIdAndPlayerId(externalReference, gameId, playerId);
+        return allocationDao.getByExternalReferenceAndPlayerId(externalReference, playerId);
     }
 
-    public List<Allocation> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
+    public List<Allocation> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return allocationDao.getByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId, gameId, playerId);
+        return allocationDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
 }

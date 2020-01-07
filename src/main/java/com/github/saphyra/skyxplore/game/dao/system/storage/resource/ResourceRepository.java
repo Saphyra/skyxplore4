@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-//TODO create index
 interface ResourceRepository extends JpaRepository<ResourceEntity, String> {
     @Modifying
     @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId")
@@ -18,7 +17,7 @@ interface ResourceRepository extends JpaRepository<ResourceEntity, String> {
 
     Optional<ResourceEntity> findByStarIdAndDataIdAndRoundAndPlayerId(String starId, String dataId, int round, String playerId);
 
-    Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
+    Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId);
 
     List<ResourceEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId);
 

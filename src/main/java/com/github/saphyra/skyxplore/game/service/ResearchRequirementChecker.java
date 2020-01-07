@@ -18,7 +18,7 @@ public class ResearchRequirementChecker {
     private final ResearchQueryService researchQueryService;
 
     public void checkResearchRequirements(UUID starId, List<String> researchRequirements) {
-        List<String> existingResearches = researchQueryService.getByStarIdAndGameIdAndPlayerId(starId).stream()
+        List<String> existingResearches = researchQueryService.getByStarIdAndPlayerId(starId).stream()
             .map(Research::getDataId)
             .collect(Collectors.toList());
 

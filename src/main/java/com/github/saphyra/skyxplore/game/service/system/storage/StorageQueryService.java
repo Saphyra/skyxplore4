@@ -63,13 +63,13 @@ public class StorageQueryService {
     }
 
     public Integer getAllocatedStorage(UUID starId, StorageType storageType) {
-        return allocationQueryService.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType).stream()
+        return allocationQueryService.getByStarIdAndStorageTypeAndPlayerId(starId, storageType).stream()
             .mapToInt(Allocation::getAmount)
             .sum();
     }
 
     public List<Allocation> getAllocationsByExternalReference(UUID externalReference) {
-        return allocationQueryService.getByExternalReferenceAndGameIdAndPlayerId(externalReference);
+        return allocationQueryService.getByExternalReferenceAndPlayerId(externalReference);
     }
 
     public Integer getReservationByStarIdAndDataId(UUID starId, String dataId) {
@@ -79,12 +79,12 @@ public class StorageQueryService {
     }
 
     public Integer getAllocationByStarIdAndDataId(UUID starId, String dataId) {
-        return allocationQueryService.getByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId).stream()
+        return allocationQueryService.getByStarIdAndDataIdAndPlayerId(starId, dataId).stream()
             .mapToInt(Allocation::getAmount)
             .sum();
     }
 
     public List<Reservation> getReservationsByStarIdAndStorageType(UUID starId, StorageType storageType) {
-        return reservationQueryService.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType);
+        return reservationQueryService.getByStarIdAndStorageTypeAndPlayerId(starId, storageType);
     }
 }

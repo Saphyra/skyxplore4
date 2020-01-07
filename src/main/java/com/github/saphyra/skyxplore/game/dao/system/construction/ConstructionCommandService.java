@@ -18,10 +18,9 @@ public class ConstructionCommandService {
 
     public void deleteByConstructionIdAndGameIdAndPlayerId(UUID constructionId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
         constructionResourceRequirementDao.deleteByConstructionId(constructionId);
-        constructionDao.deleteByConstructionIdAndGameIdAndPlayerId(constructionId, gameId, playerId);
+        constructionDao.deleteByConstructionIdAndPlayerId(constructionId, playerId);
     }
 
     public void save(Construction construction) {

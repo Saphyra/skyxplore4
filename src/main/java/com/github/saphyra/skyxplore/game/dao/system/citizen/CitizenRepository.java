@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-//TODO create index
 public interface CitizenRepository extends JpaRepository<CitizenEntity, String> {
     Integer countByLocationTypeAndLocationIdAndOwnerId(LocationType locationType, String locationId, String ownerId);
 

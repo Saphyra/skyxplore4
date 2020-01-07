@@ -55,7 +55,7 @@ public class TerraformSurfaceService {
             .filter(terraformingPossibilities -> terraformingPossibilities.stream().anyMatch(terraformingPossibility -> terraformingPossibility.getSurfaceType().equals(surfaceType)))
             .orElseThrow(() -> ExceptionFactory.terraformingNotPossible(surface.getSurfaceId(), surfaceType));
 
-        if (constructionQueryService.findByConstructionTypeAndExternalIdAndGameIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getSurfaceId()).isPresent()) {
+        if (constructionQueryService.findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType.TERRAFORMING, surface.getSurfaceId()).isPresent()) {
             throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
         }
 

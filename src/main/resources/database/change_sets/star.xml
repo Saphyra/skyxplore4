@@ -22,4 +22,29 @@
 
         <addPrimaryKey tableName="star" columnNames="star_id" constraintName="star-pk"/>
     </changeSet>
+
+    <changeSet id="create-index_owner-id_star" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="star" indexName="star-owner_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="star" indexName="star-owner_id">
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-index_star-id_and_owner-id_star" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="star" indexName="star-star_id-owner_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="star" indexName="star-star_id-owner_id">
+            <column name="star_id"/>
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>

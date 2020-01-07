@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-//TODO create index
 public interface SkillRepository extends JpaRepository<SkillEntity, String> {
     @Modifying
     @Query("DELETE FROM SkillEntity e WHERE e.gameId = :gameId")

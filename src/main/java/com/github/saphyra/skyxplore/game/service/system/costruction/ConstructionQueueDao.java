@@ -43,14 +43,14 @@ public class ConstructionQueueDao implements QueueItemDao {
 
     @Override
     public void updatePriority(UUID starId, UUID queueItemId, UpdatePriorityRequest request) {
-        Construction construction = constructionQueryService.findByConstructionIdAndGameIdAndPlayerId(queueItemId);
+        Construction construction = constructionQueryService.findByConstructionIdAndPlayerId(queueItemId);
         construction.setPriority(request.getPriority());
         constructionCommandService.save(construction);
     }
 
     @Override
     public void cancel(UUID starId, UUID queueItemId, QueueType queueType) {
-        Construction construction = constructionQueryService.findByConstructionIdAndGameIdAndPlayerId(queueItemId);
+        Construction construction = constructionQueryService.findByConstructionIdAndPlayerId(queueItemId);
         if (construction.getConstructionType() == ConstructionType.UPGRADE_BUILDING || construction.getConstructionType() == ConstructionType.BUILDING) {
             Building building = buildingQueryService.findByBuildingIdAndPlayerId(construction.getExternalId());
             if (building.getLevel() == 0) {

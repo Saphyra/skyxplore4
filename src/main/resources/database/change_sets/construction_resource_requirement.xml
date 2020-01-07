@@ -22,5 +22,15 @@
         <addPrimaryKey tableName="construction_resource_requirement" columnNames="construction_resource_requirement_id" constraintName="construction_resource_requirement-pk"/>
     </changeSet>
 
+    <changeSet id="create-index_construction-id_construction-resource-requirement" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="construction_resource_requirement" indexName="construction_resource_requirement-construction_id"/>
+            </not>
+        </preConditions>
 
+        <createIndex tableName="construction_resource_requirement" indexName="construction_resource_requirement-construction_id">
+            <column name="construction_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>

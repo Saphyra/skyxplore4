@@ -27,17 +27,15 @@ class StarDao extends AbstractDao<StarEntity, Star, String, StarRepository> impl
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    Optional<Star> findByStarIdAndGameIdAndOwnerId(UUID starId, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.findByStarIdAndGameIdAndOwnerId(
+    Optional<Star> findByStarIdAndOwnerId(UUID starId, UUID playerId) {
+        return converter.convertEntity(repository.findByStarIdAndOwnerId(
             uuidConverter.convertDomain(starId),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }
 
-    List<Star> getByGameIdAndPlayerId(UUID gameId, UUID ownerId) {
-        return converter.convertEntity(repository.getByGameIdAndOwnerId(
-            uuidConverter.convertDomain(gameId),
+    List<Star> getByOwnerId(UUID ownerId) {
+        return converter.convertEntity(repository.getByOwnerId(
             uuidConverter.convertDomain(ownerId)
         ));
     }

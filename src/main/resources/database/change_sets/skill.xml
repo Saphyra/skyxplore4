@@ -23,4 +23,16 @@
 
         <addPrimaryKey tableName="skill" columnNames="skill_id" constraintName="skill-pk"/>
     </changeSet>
+
+    <changeSet id="create-index_citizen-id_skill" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="skill" indexName="skill-citizen_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="skill" indexName="skill-citizen_id">
+            <column name="citizen_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>

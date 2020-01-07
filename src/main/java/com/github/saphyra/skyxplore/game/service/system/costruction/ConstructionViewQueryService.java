@@ -18,7 +18,7 @@ public class ConstructionViewQueryService {
     private final StorageQueryService storageQueryService;
 
     public ConstructionStatusView findByConstructionId(UUID constructionId) {
-        Construction construction = constructionQueryService.findByConstructionIdAndGameIdAndPlayerId(constructionId);
+        Construction construction = constructionQueryService.findByConstructionIdAndPlayerId(constructionId);
         return findByConstruction(construction);
     }
 

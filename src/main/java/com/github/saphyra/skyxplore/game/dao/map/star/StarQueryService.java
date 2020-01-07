@@ -18,19 +18,17 @@ public class StarQueryService {
     private final StarDao starDao;
     private final UuidConverter uuidConverter;
 
-    public Star findByStarIdAndGameIdAndOwnerId(UUID starId) {
+    public Star findByStarIdAndOwnerId(UUID starId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return starDao.findByStarIdAndGameIdAndOwnerId(starId, gameId, playerId)
+        return starDao.findByStarIdAndOwnerId(starId, playerId)
             .orElseThrow(() -> ExceptionFactory.starNotFound(starId));
     }
 
-    public List<Star> getByGameIdAndOwnerId() {
+    public List<Star> getByOwnerId() {
         RequestContext requestContext = requestContextHolder.get();
         UUID playerId = requestContext.getPlayerId();
-        UUID gameId = requestContext.getGameId();
-        return starDao.getByGameIdAndPlayerId(gameId, playerId);
+        return starDao.getByOwnerId(playerId);
     }
 
     public Coordinate getCoordinateOfStar(UUID starId) {

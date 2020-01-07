@@ -21,4 +21,17 @@
 
         <addPrimaryKey tableName="research" columnNames="research_id" constraintName="research-pk"/>
     </changeSet>
+
+    <changeSet id="create-star-id_and_player-id_research" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="research" indexName="research-star_id-player_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="research" indexName="research-star_id-player_id">
+            <column name="star_id"/>
+            <column name="player_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>

@@ -40,7 +40,7 @@ public class StarViewController {
     StarMapView getStar(
         @PathVariable("starId") UUID starId
     ) {
-        return starMapViewConverter.convertDomain(starQueryService.findByStarIdAndGameIdAndOwnerId(starId));
+        return starMapViewConverter.convertDomain(starQueryService.findByStarIdAndOwnerId(starId));
     }
 
     @GetMapping(GET_STAR_SYSTEM_DETAILS_MAPPING)

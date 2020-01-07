@@ -20,7 +20,7 @@ public class VisibleStarQueryService {
 
     public List<Star> getVisibleStars() {
         UUID playerId = requestContextHolder.get().getPlayerId();
-        return starQueryService.getByGameIdAndOwnerId().stream()
+        return starQueryService.getByOwnerId().stream()
             .filter(star -> isVisible(star, playerId))
             .collect(Collectors.toList());
 

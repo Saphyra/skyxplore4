@@ -52,7 +52,7 @@ public class EditSurfaceQueryService {
     }
 
     private List<String> getResearches(Surface surface) {
-        return researchQueryService.getByStarIdAndGameIdAndPlayerId(surface.getStarId())
+        return researchQueryService.getByStarIdAndPlayerId(surface.getStarId())
             .stream()
             .map(Research::getDataId)
             .collect(Collectors.toList());

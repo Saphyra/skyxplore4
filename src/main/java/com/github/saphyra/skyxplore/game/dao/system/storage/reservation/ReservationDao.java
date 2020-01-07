@@ -34,20 +34,18 @@ class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String,
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    List<Reservation> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndGameIdAndPlayerId(
+    List<Reservation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndPlayerId(
             uuidConverter.convertDomain(starId),
             storageType,
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }
 
-    List<Reservation> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndDataIdAndGameIdAndPlayerId(
+    List<Reservation> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndDataIdAndPlayerId(
             uuidConverter.convertDomain(starId),
             dataId,
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }

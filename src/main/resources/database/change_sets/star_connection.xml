@@ -20,4 +20,16 @@
 
         <addPrimaryKey tableName="star_connection" columnNames="connection_id" constraintName="star_connection-pk"/>
     </changeSet>
+
+    <changeSet id="create-index_game-id_star-connection" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="star_connection" indexName="star_connection-game_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="star_connection" indexName="star_connection-game_id">
+            <column name="game_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
