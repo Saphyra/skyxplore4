@@ -9,19 +9,19 @@ import org.springframework.context.annotation.Configuration;
 import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
 @Configuration
-@ConditionalOnProperty(value = "metrics.enabled", havingValue = "true")
+@ConditionalOnProperty(value = "metrics.rest.enabled", havingValue = "true")
 @Slf4j
-public class MetricsConfig {
+public class RestMetricsConfig {
     @Bean
-    public MetricsFilter metricsFilter(){
-        return new MetricsFilter();
+    public RestMetricsFilter metricsFilter() {
+        return new RestMetricsFilter();
     }
 
     @Bean
-    public FilterRegistrationBean<MetricsFilter> metricsFilterFilterRegistrationBean(MetricsFilter metricsFilter) {
+    public FilterRegistrationBean<RestMetricsFilter> metricsFilterFilterRegistrationBean(RestMetricsFilter restMetricsFilter) {
         log.info("MetricsFilter order: {}", Integer.MIN_VALUE);
-        FilterRegistrationBean<MetricsFilter> filterRegistrationBean = new FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter(metricsFilter);
+        FilterRegistrationBean<RestMetricsFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(restMetricsFilter);
         filterRegistrationBean.setOrder(Integer.MIN_VALUE);
         filterRegistrationBean.addUrlPatterns(API_PREFIX + "/*");
         return filterRegistrationBean;

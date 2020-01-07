@@ -13,13 +13,13 @@ import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
-public class MetricsFilter extends OncePerRequestFilter {
+public class RestMetricsFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         StopWatch stopwatch = new StopWatch(String.format("%s: %s", request.getMethod(), request.getRequestURI()));
         stopwatch.start();
         filterChain.doFilter(request, response);
         stopwatch.stop();
-        log.warn("{}: {}ms", stopwatch.getId(), stopwatch.getTotalTimeMillis());
+        log.info("{}: {}ms", stopwatch.getId(), stopwatch.getTotalTimeMillis());
     }
 }
