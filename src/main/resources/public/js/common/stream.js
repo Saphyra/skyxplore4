@@ -11,6 +11,10 @@ function Stream(a){
         return true;
     }
 
+    this.findFirst = function(){
+        return array[0];
+    }
+
     this.flatMap = function(mappingFunction){
         const newArray = [];
 

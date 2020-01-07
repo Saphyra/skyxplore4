@@ -5,6 +5,7 @@
     const skillTypeLocalization = localizations.skillTypeLocalization;
 
     const filters = {};
+    const orderRules = {};
     const citizenMap = {};
 
     eventProcessor.registerProcessor(new EventProcessor(
@@ -34,6 +35,7 @@
                 container.appendChild(createBody(starId));
                 container.appendChild(createFilters(starId));
             document.getElementById("pages").appendChild(container);
+            orderRules[starId] = new OrderRule();
             this.refresh();
         }
 
@@ -76,6 +78,7 @@
                 filterContainer.classList.add("population-overview-filter-container");
 
                 filterContainer.appendChild(createSkillHideFilter(starId));
+                filterContainer.appendChild(createOrderByFilter(starId));
             return filterContainer;
 
             function createSkillHideFilter(starId){
@@ -138,7 +141,8 @@
                 }
 
                 function createFilterElement(labelText, inputField){
-                    const filterElement = document.createElement("label");
+                    const filterElement = document.createElement(inputField && inputField.type == "checkbox" ? "label" : "div");
+                        filterElement.classList.add("population-overview-filter-list-item");
                         if(inputField){
                             filterElement.appendChild(inputField);
                         }
@@ -146,6 +150,132 @@
                             label.innerHTML = labelText;
                     filterElement.appendChild(label);
                     return filterElement;
+                }
+            }
+
+            function createOrderByFilter(starId){
+                const filterListContainer = document.createElement("div");
+                    filterListContainer.classList.add("population-overview-filter-list-container");
+
+                    const labelButton = document.createElement("div");
+                        labelButton.classList.add("button")
+                        labelButton.classList.add("population-overview-filter-label")
+                        labelButton.innerHTML = Localization.getAdditionalContent("order-by");
+                filterListContainer.appendChild(labelButton);
+
+                    const listContainer = document.createElement("div");
+                        listContainer.classList.add("population-overview-filter-list-item-container");
+
+                        listContainer.appendChild(createOrderByNameAscFilter(starId));
+                        listContainer.appendChild(createOrderByNameDescFilter(starId));
+                        listContainer.appendChild(createOrderBySkillFilter(starId));
+
+                filterListContainer.appendChild(listContainer);
+
+                labelButton.onclick = function(){
+                    $(listContainer).toggle();
+                }
+
+                return filterListContainer;
+
+                function createOrderByNameAscFilter(starId){
+                    const button = document.createElement("div");
+                        button.classList.add("population-overview-filter-list-item");
+                        button.innerHTML = Localization.getAdditionalContent("order-by-name-asc");
+
+                        button.onclick = function(){
+                            const rule = orderRules[starId];
+                                rule.setRuleType(OrderRuleType.NAME);
+                                rule.setByNameOrderMethod(OrderMethod.ASC);
+                            eventProcessor.processEvent(new Event(events.POPULATION_OVERVIEW_FILTER_CHANGED, starId));
+                        }
+                    return button;
+                }
+
+                function createOrderByNameDescFilter(starId){
+                    const button = document.createElement("div");
+                        button.classList.add("population-overview-filter-list-item");
+                        button.innerHTML = Localization.getAdditionalContent("order-by-name-desc");
+
+                        button.onclick = function(){
+                            const rule = orderRules[starId];
+                                rule.setRuleType(OrderRuleType.NAME);
+                                rule.setByNameOrderMethod(OrderMethod.DESC);
+                            eventProcessor.processEvent(new Event(events.POPULATION_OVERVIEW_FILTER_CHANGED, starId));
+                        }
+                    return button;
+                }
+
+                function createOrderBySkillFilter(starId){
+                    const filterContainer = document.createElement("div");
+                        filterContainer.classList.add("centered");
+
+                        const label = document.createElement("div");
+                            label.classList.add("button");
+                            label.innerHTML = Localization.getAdditionalContent("order-by-skill");
+                            label.onclick = updateRule;
+                    filterContainer.appendChild(label);
+
+                    const skillSelectMenu = createSkillSelectMenu(starId);
+                        skillSelectMenu.onchange = updateRule;
+                    const ascOrDesc = createAscOrDesc(starId);
+                        ascOrDesc.ascInput.onchange = updateRule;
+                        ascOrDesc.descInput.onchange = updateRule;
+
+                    filterContainer.appendChild(skillSelectMenu);
+                    filterContainer.appendChild(ascOrDesc.container);
+
+                    function updateRule(){
+                        const rule = orderRules[starId];
+                            rule.setRuleType(OrderRuleType.SKILL);
+                            rule.setBySkillOrderMethod(ascOrDesc.ascInput.checked ? OrderMethod.ASC : OrderMethod.DESC);
+                            rule.setSelectedSkillType(skillSelectMenu.value);
+                        eventProcessor.processEvent(new Event(events.POPULATION_OVERVIEW_FILTER_CHANGED, starId));
+                    }
+
+                    return filterContainer;
+
+                    function createSkillSelectMenu(starId){
+                        const selectMenu = document.createElement("select");
+                            new Stream(skillTypeLocalization.getKeys())
+                                .sorted(function(a, b){return skillTypeLocalization.get(a).localeCompare(skillTypeLocalization.get(b))})
+                                .map(createOption)
+                                .forEach(function(option){selectMenu.appendChild(option)});
+                        return selectMenu;
+
+                        function createOption(skillType){
+                            const option = document.createElement("option");
+                                option.innerHTML = skillTypeLocalization.get(skillType);
+                                option.value = skillType;
+                            return option;
+                        }
+                    }
+
+                    function createAscOrDesc(starId){
+                        const ascDescContainer = document.createElement("div");
+                            const ascLabel = document.createElement("label");
+                                const ascRadio = document.createElement("input");
+                                    ascRadio.type = "radio";
+                                    ascRadio.name = "asc-desc-" + starId;
+                                    ascRadio.checked = true;
+                            ascLabel.appendChild(ascRadio);
+                            ascLabel.appendChild(document.createTextNode(Localization.getAdditionalContent("asc")));
+                        ascDescContainer.appendChild(ascLabel);
+
+                            const descLabel = document.createElement("label");
+                                const descRadio = document.createElement("input");
+                                    descRadio.type = "radio";
+                                    descRadio.name = "asc-desc-" + starId;
+                            descLabel.appendChild(descRadio);
+                            descLabel.appendChild(document.createTextNode(Localization.getAdditionalContent("desc")));
+                        ascDescContainer.appendChild(descLabel);
+
+                        return {
+                            ascInput: ascRadio,
+                            descInput: descRadio,
+                            container: ascDescContainer
+                        };
+                    }
                 }
             }
         }
@@ -156,9 +286,7 @@
             spinner.open();
             const request = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_POPULATION_OVERVIEW, starId));
                 request.convertResponse = function(response){
-                    return new Stream(JSON.parse(response.body))
-                        .sorted(function(a, b){return a.name.localeCompare(b.name)})
-                        .toList();
+                    return JSON.parse(response.body);
                 }
                 request.processValidResponse = function(citizens){
                     citizenMap[starId] = citizens;
@@ -176,6 +304,7 @@
             pageController.removeFromList(controllerId);
             delete filters[starId];
             delete citizenMap[starId];
+            delete orderRules[starId];
         }
     }
 
@@ -184,6 +313,7 @@
             container.innerHTML = "";
 
         new Stream(citizens)
+            .sorted(orderRules[starId].getComparator())
             .map(createCitizen)
             .forEach(function(item){container.appendChild(item)});
 
@@ -273,5 +403,64 @@
 
     function createContentId(starId){
         return "population-overview-content-" + starId;
+    }
+
+    const OrderRuleType = {
+        NAME: "name",
+        SKILL: "skill"
+    }
+
+    const OrderMethod = {
+        ASC: "asc",
+        DESC: "desc"
+    }
+
+    function OrderRule(){
+        let ruleType = OrderRuleType.NAME;
+        let byNameOrderMethod = OrderMethod.ASC;
+        let bySkillOrderMethod = OrderMethod.ASC;
+        let selectedSkillType = null;
+
+        this.getComparator = function(){
+            logService.logToConsole({
+                ruleType: ruleType,
+                byNameOrderMethod, byNameOrderMethod,
+                bySkillOrderMethod: bySkillOrderMethod,
+                selectedSkillType: selectedSkillType
+            });
+            return function(a, b){
+                switch(ruleType){
+                    case OrderRuleType.NAME:
+                        return (byNameOrderMethod == OrderMethod.DESC ? -1 : 1) * (a.name.localeCompare(b.name));
+                    break;
+                    case OrderRuleType.SKILL:
+                        return (bySkillOrderMethod == OrderMethod.DESC ? -1 : 1) * (getSkillLevel(a, selectedSkillType) - getSkillLevel(b, selectedSkillType));
+                    break;
+                }
+            }
+        }
+
+        this.setRuleType = function(r){
+            ruleType = r;
+        }
+
+        this.setByNameOrderMethod = function(b){
+            byNameOrderMethod = b;
+        }
+
+        this.setBySkillOrderMethod = function(b){
+            bySkillOrderMethod = b;
+        }
+
+        this.setSelectedSkillType = function(s){
+            selectedSkillType = s;
+        }
+    }
+
+    function getSkillLevel(citizen, skillType){
+        return new Stream(citizen.skills)
+            .filter(function(skill){return skill.skillType == skillType})
+            .map(function(skill){return skill.level})
+            .findFirst();
     }
 })();
