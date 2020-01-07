@@ -33,9 +33,13 @@ public class DomainSaverService {
     }
 
     private Class<?> getType(SaveAllDao abstractDao) {
-        return (Class) ((ParameterizedType) abstractDao.getClass()
-            .getGenericSuperclass())
-            .getActualTypeArguments()[1];
+        try {
+            return (Class) ((ParameterizedType) abstractDao.getClass()
+                .getGenericSuperclass())
+                .getActualTypeArguments()[1];
+        } catch (ClassCastException e) {
+            throw new RuntimeException(abstractDao.getClass().getName() + " could not be casted.", e);
+        }
     }
 
     public void add(@NonNull Object o) {

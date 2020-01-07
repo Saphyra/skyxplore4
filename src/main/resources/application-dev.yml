@@ -1,5 +1,12 @@
 metrics:
-  enabled: true
+  rest:
+    enabled: true
+  repository:
+    enabled: true
+
+server:
+  tomcat:
+    max-threads: 1
 
 spring:
   datasource:

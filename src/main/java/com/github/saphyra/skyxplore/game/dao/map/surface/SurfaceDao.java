@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore.game.dao.map.surface;
 
-import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
@@ -17,7 +16,7 @@ import java.util.UUID;
 class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> implements DeletableByGameId, SaveAllDao<Surface> {
     private final UuidConverter uuidConverter;
 
-    SurfaceDao(Converter<SurfaceEntity, Surface> converter, SurfaceRepository repository, UuidConverter uuidConverter) {
+    SurfaceDao(SurfaceConverter converter, SurfaceRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
