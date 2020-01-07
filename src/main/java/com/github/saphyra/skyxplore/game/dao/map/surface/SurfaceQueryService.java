@@ -23,10 +23,9 @@ public class SurfaceQueryService {
             .orElseThrow(() -> ExceptionFactory.surfaceNotFound(surfaceId));
     }
 
-    public List<Surface> getByStarIdAndGameIdAndPlayerId(UUID starId) {
+    public List<Surface> getByStarIdAndPlayerId(UUID starId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return surfaceDao.getByStarIdAndGameIdAndPlayerId(starId, gameId, playerId);
+        return surfaceDao.getByStarIdAndPlayerId(starId, playerId);
     }
 }

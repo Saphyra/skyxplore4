@@ -33,10 +33,9 @@ class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepo
         repository.saveAll(converter.convertDomain(surfaces));
     }
 
-    List<Surface> getByStarIdAndGameIdAndPlayerId(UUID starId, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndGameIdAndPlayerId(
+    List<Surface> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndPlayerId(
             uuidConverter.convertDomain(starId),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }

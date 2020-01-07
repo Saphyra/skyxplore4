@@ -23,7 +23,7 @@ public class SurfaceBuildingSummaryQueryService {
     private final SurfaceQueryService surfaceQueryService;
 
     public List<SurfaceBuildingView> getSummary(UUID starId) {
-        return surfaceQueryService.getByStarIdAndGameIdAndPlayerId(starId).stream()
+        return surfaceQueryService.getByStarIdAndPlayerId(starId).stream()
             .collect(Collectors.groupingBy(Surface::getSurfaceType))
             .entrySet()
             .stream()

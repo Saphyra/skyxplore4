@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+//TODO create index
 interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
     void deleteByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+//TODO create index
 interface ConstructionResourceRequirementRepository extends JpaRepository<ConstructionResourceRequirementEntity, String> {
     @Query("DELETE FROM ConstructionResourceRequirementEntity e WHERE e.gameId = :gameId")
     @Modifying

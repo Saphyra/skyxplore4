@@ -21,34 +21,30 @@ public class ResourceQueryService {
 
     public Optional<Resource> findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(UUID starId, String dataId, int round) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return resourceDao.findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(starId, dataId, round, gameId, playerId);
+        return resourceDao.findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId, round, playerId);
     }
 
     public Optional<Resource> findLatestByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return resourceDao.findLatestByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId, gameId, playerId);
+        return resourceDao.findLatestByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
 
     public List<Resource> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return resourceDao.getByStarIdAndDataIdAndGameIdAndPlayerId(starId, dataId, gameId, playerId);
+        return resourceDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
 
-    public List<Resource> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType) {
+    public List<Resource> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return resourceDao.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType, gameId, playerId);
+        return resourceDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
     }
 
     public List<Resource> getLatestByStarIdAndStorageType(UUID starId, StorageType storageType) {
-        return getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType).stream()
+        return getByStarIdAndStorageTypeAndPlayerId(starId, storageType).stream()
             .collect(Collectors.groupingBy(Resource::getDataId))
             .values()
             .stream()

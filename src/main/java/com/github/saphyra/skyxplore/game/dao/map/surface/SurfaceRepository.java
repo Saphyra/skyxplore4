@@ -15,7 +15,7 @@ public interface SurfaceRepository  extends JpaRepository<SurfaceEntity, String>
     @Query("DELETE FROM SurfaceEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    List<SurfaceEntity> getByStarIdAndGameIdAndPlayerId(String starId, String gameId, String playerId);
+    List<SurfaceEntity> getByStarIdAndPlayerId(String starId, String playerId);
 
     Optional<SurfaceEntity> findBySurfaceIdAndGameIdAndPlayerId(String surfaceId, String gameId, String playerId);
 }

@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 
-import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
@@ -16,7 +15,7 @@ import java.util.UUID;
 class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, ResourceRepository> implements DeletableByGameId {
     private final UuidConverter uuidConverter;
 
-    ResourceDao(Converter<ResourceEntity, Resource> converter, ResourceRepository repository, UuidConverter uuidConverter) {
+    ResourceDao(ResourceConverter converter, ResourceRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
@@ -27,41 +26,37 @@ class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, Resource
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    Optional<Resource> findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(UUID starId, String dataId, int round, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(
+    Optional<Resource> findByStarIdAndDataIdAndRoundAndPlayerId(UUID starId, String dataId, int round, UUID playerId) {
+        return converter.convertEntity(repository.findByStarIdAndDataIdAndRoundAndPlayerId(
             uuidConverter.convertDomain(starId),
             dataId,
             round,
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }
 
-    Optional<Resource> findLatestByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId, UUID gameId, UUID playerId) {
+    Optional<Resource> findLatestByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
         return converter.convertEntity(
-            repository.findLatestByStarIdAndDataIdAndGameIdAndPlayerId(
+            repository.findLatestByStarIdAndDataIdAndPlayerId(
                 uuidConverter.convertDomain(starId),
                 dataId,
-                uuidConverter.convertDomain(gameId),
                 uuidConverter.convertDomain(playerId)
             )
         );
     }
 
-    List<Resource> getByStarIdAndStorageTypeAndGameIdAndPlayerId(UUID starId, StorageType storageType, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndGameIdAndPlayerId(
+    List<Resource> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndStorageTypeAndPlayerId(
             uuidConverter.convertDomain(starId),
             storageType,
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }
 
-    List<Resource> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.getByStarIdAndDataIdAndGameIdAndPlayerId(
+    List<Resource> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndDataIdAndPlayerId(
             uuidConverter.convertDomain(starId),
             dataId,
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }

@@ -58,6 +58,6 @@ public class StarViewController {
         @PathVariable("starId") UUID starId
     ) {
         log.info("Player {} wants to know the surfaces of star {}", playerId, starId);
-        return surfaceViewConverter.convertDomain(surfaceQueryService.getByStarIdAndGameIdAndPlayerId(starId));
+        return surfaceViewConverter.convertDomain(surfaceQueryService.getByStarIdAndPlayerId(starId));
     }
 }

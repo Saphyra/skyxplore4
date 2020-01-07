@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+//TODO create index
 interface PlayerRepository extends JpaRepository<PlayerEntity, String> {
     @Modifying
     @Query("DELETE FROM PlayerEntity e WHERE e.gameId = :gameId")

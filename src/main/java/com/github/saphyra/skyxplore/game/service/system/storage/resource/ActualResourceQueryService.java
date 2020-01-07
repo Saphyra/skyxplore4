@@ -21,7 +21,7 @@ public class ActualResourceQueryService {
     private final ResourceQueryService resourceQueryService;
 
     public List<Resource> getActualsByStarIdAndStorageType(UUID starId, StorageType storageType) {
-        List<Resource> resources = resourceQueryService.getByStarIdAndStorageTypeAndGameIdAndPlayerId(starId, storageType);
+        List<Resource> resources = resourceQueryService.getByStarIdAndStorageTypeAndPlayerId(starId, storageType);
         Map<String, List<Resource>> resourceMap = map(resources);
 
         List<Resource> result = new ArrayList<>();

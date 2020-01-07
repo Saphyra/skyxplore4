@@ -10,16 +10,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+//TODO create index
 interface ResourceRepository extends JpaRepository<ResourceEntity, String> {
     @Modifying
     @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId")
     void deleteByGameId(@Param("gameId") String gameId);
 
-    Optional<ResourceEntity> findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(String starId, String dataId, int round, String gameId, String playerId);
+    Optional<ResourceEntity> findByStarIdAndDataIdAndRoundAndPlayerId(String starId, String dataId, int round, String playerId);
 
-    Optional<ResourceEntity> findLatestByStarIdAndDataIdAndGameIdAndPlayerId(String starId, String dataId, String gameId, String playerId);
+    Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
 
-    List<ResourceEntity> getByStarIdAndStorageTypeAndGameIdAndPlayerId(String starId, StorageType storageType, String gameId, String playerId);
+    List<ResourceEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId);
 
-    List<ResourceEntity> getByStarIdAndDataIdAndGameIdAndPlayerId(String starId, String dataId, String gameId, String playerId);
+    List<ResourceEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
 }
