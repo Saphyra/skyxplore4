@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
+class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
     private final UuidConverter uuidConverter;
 
     @Override
