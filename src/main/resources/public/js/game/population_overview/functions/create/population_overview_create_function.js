@@ -1,4 +1,7 @@
+//TODO split
 (function PopulationOverviewCreateFunction(){
+    scriptLoader.loadScript("/js/game/population_overview/functions/population_overview_order_rule.js");
+
     const skillTypeLocalization = localizations.skillTypeLocalization;
 
     window.populationOverviewCreateFunction = new function(){
