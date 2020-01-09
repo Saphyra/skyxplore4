@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -15,6 +16,7 @@ interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
 
     @Modifying
     @Query("DELETE FROM AllocationEntity e WHERE e.gameId = :gameId")
+    @Transactional
     void deleteByGameId(@Param("gameId") String gameId);
 
     List<AllocationEntity> getByExternalReferenceAndPlayerId(String externalReference, String playerId);

@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.common;
 
 import com.github.saphyra.skyxplore.common.OptionalHashMap;
 import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
+import com.github.saphyra.skyxplore.game.dao.common.cache.CacheSyncHandler;
 import com.github.saphyra.util.OptionalMap;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 import javax.transaction.Transactional;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,21 +25,13 @@ import static java.util.Objects.isNull;
 public class DomainSaverService {
     private final ThreadLocal<Map<Class<?>, List<Object>>> tempStorage = new ThreadLocal<>();
     private final OptionalMap<Class<?>, SaveAllDao> daoMap;
+    private final CacheSyncHandler cacheSyncHandler;
 
-    public DomainSaverService(List<SaveAllDao> daos) {
+    public DomainSaverService(List<SaveAllDao<?>> daos, CacheSyncHandler cacheSyncHandler) {
         daoMap = new OptionalHashMap<>(daos.stream()
-            .collect(Collectors.toMap(this::getType, Function.identity())));
+            .collect(Collectors.toMap(SaveAllDao::getType, Function.identity())));
+        this.cacheSyncHandler = cacheSyncHandler;
         log.info("SaveAllDaos mapped. Found types: {}", daoMap.keySet());
-    }
-
-    private Class<?> getType(SaveAllDao abstractDao) {
-        try {
-            return (Class) ((ParameterizedType) abstractDao.getClass()
-                .getGenericSuperclass())
-                .getActualTypeArguments()[1];
-        } catch (ClassCastException e) {
-            throw new RuntimeException(abstractDao.getClass().getName() + " could not be casted.", e);
-        }
     }
 
     public void add(@NonNull Object o) {
@@ -69,6 +61,7 @@ public class DomainSaverService {
             tempStorage.get()
                 .forEach(this::save);
             log.info("Save process successfully finished.");
+            cacheSyncHandler.syncChanges();
         } finally {
             log.info("Clearing cache...");
             clear();

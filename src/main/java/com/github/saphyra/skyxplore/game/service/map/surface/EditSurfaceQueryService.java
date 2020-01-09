@@ -28,7 +28,7 @@ public class EditSurfaceQueryService {
     private final TerraformingPossibilitiesService terraformingPossibilitiesService;
 
     public List<TerraformingPossibilityView> getTerraformingPossibilities(UUID surfaceId) {
-        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
+        Surface surface = surfaceQueryService.findBySurfaceIdAndPlayerId(surfaceId);
         List<String> researches = getResearches(surface);
         return terraformingPossibilitiesService.getOrDefault(surface.getSurfaceType(), new TerraformingPossibilities()).stream()
             .map(terraformingPossibility -> convert(terraformingPossibility, researches))
@@ -44,7 +44,7 @@ public class EditSurfaceQueryService {
     }
 
     public List<BuildableBuildingView> getBuildableBuildings(UUID surfaceId) {
-        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
+        Surface surface = surfaceQueryService.findBySurfaceIdAndPlayerId(surfaceId);
         List<String> researches = getResearches(surface);
         return gameDataQueryService.getBuildingsBuildableAtSurfaceType(surface.getSurfaceType()).stream()
             .map(buildingData -> convert(buildingData, researches))

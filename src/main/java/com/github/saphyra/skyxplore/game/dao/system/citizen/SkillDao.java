@@ -2,8 +2,6 @@ package com.github.saphyra.skyxplore.game.dao.system.citizen;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
-import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +10,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-public class SkillDao extends AbstractDao<SkillEntity, Skill, String, SkillRepository> implements SaveAllDao<Skill>, DeletableByGameId {
+public class SkillDao extends AbstractDao<SkillEntity, Skill, String, SkillRepository> {
     private final UuidConverter uuidConverter;
 
     public SkillDao(SkillConverter converter, SkillRepository repository, UuidConverter uuidConverter) {
@@ -20,7 +18,6 @@ public class SkillDao extends AbstractDao<SkillEntity, Skill, String, SkillRepos
         this.uuidConverter = uuidConverter;
     }
 
-    @Override
     public void deleteByGameId(UUID gameId) {
         log.info("Deleting skill for gameId {}", gameId);
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));

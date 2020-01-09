@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 interface ResourceRepository extends JpaRepository<ResourceEntity, String> {
     @Modifying
     @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId")
+    @Transactional
     void deleteByGameId(@Param("gameId") String gameId);
 
     Optional<ResourceEntity> findByStarIdAndDataIdAndRoundAndPlayerId(String starId, String dataId, int round, String playerId);

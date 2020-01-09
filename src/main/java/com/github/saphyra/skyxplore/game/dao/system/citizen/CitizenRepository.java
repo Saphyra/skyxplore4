@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -14,6 +15,7 @@ public interface CitizenRepository extends JpaRepository<CitizenEntity, String> 
 
     @Modifying
     @Query("DELETE FROM CitizenEntity e WHERE e.gameId = :gameId")
+    @Transactional
     void deleteByGameId(@Param("gameId") String gameId);
 
     List<CitizenEntity> getByLocationIdAndOwnerId(String locationId, String ownerId);

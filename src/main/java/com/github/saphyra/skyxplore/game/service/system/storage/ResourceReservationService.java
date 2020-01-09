@@ -26,7 +26,7 @@ public class ResourceReservationService {
 
     public void reserveResources(UUID surfaceId, Map<String, Integer> resources, ReservationType reservationType, UUID externalReference) {
         reserveResources(
-            surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId),
+            surfaceQueryService.findBySurfaceIdAndPlayerId(surfaceId),
             resources,
             reservationType,
             externalReference

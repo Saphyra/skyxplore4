@@ -52,6 +52,7 @@ public class ConstructionService {
             .externalId(externalId)
             .additionalData(additionalData)
             .addedAt(dateTimeUtil.now())
+            .isNew(true)
             .build();
         saveRequirements(gameId, constructionId, constructionRequirements);
         constructionCommandService.save(construction);
