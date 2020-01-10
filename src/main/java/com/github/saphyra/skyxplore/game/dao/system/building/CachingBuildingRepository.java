@@ -32,13 +32,13 @@ public class CachingBuildingRepository extends CacheRepository<String, BuildingE
     }
 
     @Override
-    protected void deleteById(List<String> buildingIds) {
+    protected void deleteByIds(List<String> buildingIds) {
         repository.deleteByBuildingIdIn(buildingIds);
     }
 
     @Override
     public void deleteByBuildingIdIn(List<String> buildingIds) {
-        repository.deleteByBuildingIdIn(buildingIds);
+        buildingIds.forEach(this::deleteById);
     }
 
     @Override

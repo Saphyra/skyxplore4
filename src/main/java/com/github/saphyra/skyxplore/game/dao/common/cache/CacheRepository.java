@@ -35,7 +35,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     protected abstract List<ENTITY> getByKey(KEY key);
 
-    protected abstract void deleteById(List<ID> ids);
+    protected abstract void deleteByIds(List<ID> ids);
 
     protected ConcurrentHashMap<ID, ENTITY> getMap(KEY key) {
         if (!cacheMap.containsKey(key)) {
@@ -85,7 +85,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         log.info("Processing deletions for entity {}...", entityName);
         synchronized (deleteQueue) {
             ArrayList<ID> ids = new ArrayList<>(deleteQueue);
-            chunks(ids, MAX_CHUNK_SIZE).forEach(this::deleteById);
+            chunks(ids, MAX_CHUNK_SIZE).forEach(this::deleteByIds);
             deleteQueue.clear();
         }
         log.info("Deletion finished for entity {}", entityName);

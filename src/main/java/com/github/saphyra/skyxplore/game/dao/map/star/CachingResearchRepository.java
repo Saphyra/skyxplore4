@@ -32,7 +32,7 @@ public class CachingResearchRepository extends CacheRepository<String, ResearchE
     }
 
     @Override
-    protected void deleteById(List<String> researchIds) {
+    protected void deleteByIds(List<String> researchIds) {
         repository.deleteByResearchIdIn(researchIds);
     }
 
@@ -45,7 +45,7 @@ public class CachingResearchRepository extends CacheRepository<String, ResearchE
 
     @Override
     public void deleteByResearchIdIn(List<String> researchIds) {
-        repository.deleteByResearchIdIn(researchIds);
+        researchIds.forEach(this::deleteById);
     }
 
     @Override

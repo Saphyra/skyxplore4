@@ -26,13 +26,13 @@ public class CachingStarConnectionRepository extends CacheRepository<String, Sta
     }
 
     @Override
-    protected void deleteById(List<String> connectionIds) {
+    protected void deleteByIds(List<String> connectionIds) {
         repository.deleteByConnectionIdIn(connectionIds);
     }
 
     @Override
     public void deleteByConnectionIdIn(List<String> connectionIds) {
-        repository.deleteByConnectionIdIn(connectionIds);
+        connectionIds.forEach(this::deleteById);
     }
 
     @Override

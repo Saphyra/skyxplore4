@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-//TODO cacheRepository
 interface StarRepository extends CrudRepository<StarEntity, String> {
     @Modifying
     @Query("DELETE FROM StarEntity e WHERE e.gameId = :gameId")

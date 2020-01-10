@@ -32,7 +32,7 @@ public class CachingStarRepository extends CacheRepository<String, StarEntity, S
     }
 
     @Override
-    protected void deleteById(List<String> starIds) {
+    protected void deleteByIds(List<String> starIds) {
         repository.deleteByStarIdIn(starIds);
     }
 
@@ -45,7 +45,7 @@ public class CachingStarRepository extends CacheRepository<String, StarEntity, S
 
     @Override
     public void deleteByStarIdIn(List<String> starIds) {
-        repository.deleteByStarIdIn(starIds);
+        starIds.forEach(this::deleteById);
     }
 
     @Override

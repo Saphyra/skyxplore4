@@ -32,13 +32,13 @@ public class CachingSurfaceRepository extends CacheRepository<String, SurfaceEnt
     }
 
     @Override
-    protected void deleteById(List<String> surfaceIds) {
+    protected void deleteByIds(List<String> surfaceIds) {
         repository.deleteBySurfaceIdIn(surfaceIds);
     }
 
     @Override
     public void deleteBySurfaceIdIn(List<String> surfaceIds) {
-        repository.deleteBySurfaceIdIn(surfaceIds);
+        surfaceIds.forEach(this::deleteById);
     }
 
     @Override

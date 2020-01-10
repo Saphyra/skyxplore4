@@ -32,7 +32,7 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
     }
 
     @Override
-    protected void deleteById(List<String> constructionIds) {
+    protected void deleteByIds(List<String> constructionIds) {
         repository.deleteByConstructionIdIn(constructionIds);
     }
 
@@ -87,7 +87,7 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
 
     @Override
     public void deleteByConstructionIdIn(List<String> constructionIds) {
-        repository.deleteByConstructionIdIn(constructionIds);
+        constructionIds.forEach(this::deleteById);
     }
 
     @Override
