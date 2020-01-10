@@ -1,6 +1,7 @@
 TODO Increase DB access performance
 TODO try other databases
 TODO Decrease load on DB synchs
+TODO add proper logging to CacheReository
 TODO clear old records from cache periodically
 TODO refactor population_overview_controller.js - split
 TODO Add System defence details to system summary
