@@ -7,15 +7,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
 @Primary
 @Slf4j
 public class CachingPlayerRepository extends CacheRepository<String, PlayerEntity, String, PlayerRepository> implements PlayerRepository {
-    protected CachingPlayerRepository(PlayerRepository repository, Function<PlayerEntity, String> keyMapper) {
-        super(repository, keyMapper);
+    protected CachingPlayerRepository(PlayerRepository repository) {
+        super(repository, PlayerEntity::getGameId);
     }
 
     @Override
