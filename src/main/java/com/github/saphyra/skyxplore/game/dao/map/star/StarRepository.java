@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.game.dao.map.star;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -12,13 +12,18 @@ import java.util.Optional;
 
 @Repository
 //TODO cacheRepository
-interface StarRepository extends JpaRepository<StarEntity, String> {
+interface StarRepository extends CrudRepository<StarEntity, String> {
     @Modifying
     @Query("DELETE FROM StarEntity e WHERE e.gameId = :gameId")
     @Transactional
     void deleteByGameId(@Param("gameId") String gameId);
 
-    List<StarEntity> getByOwnerId(String ownerId);
+    @Transactional
+    void deleteByStarIdIn(List<String> starIds);
 
     Optional<StarEntity> findByStarIdAndOwnerId(String starId, String ownerId);
+
+    List<StarEntity> getByGameId(String gameId);
+
+    List<StarEntity> getByOwnerId(String ownerId);
 }
