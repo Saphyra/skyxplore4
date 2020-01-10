@@ -72,6 +72,7 @@ public class ConstructionService {
             .gameId(gameId)
             .resourceId(entry.getKey())
             .requiredAmount(entry.getValue())
+            .isNew(true)
             .build();
     }
 }

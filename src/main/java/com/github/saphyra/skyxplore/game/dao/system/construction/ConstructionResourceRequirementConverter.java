@@ -18,6 +18,7 @@ class ConstructionResourceRequirementConverter extends ConverterBase<Constructio
             .constructionId(uuidConverter.convertEntity(entity.getConstructionId()))
             .resourceId(entity.getResourceId())
             .requiredAmount(entity.getRequiredAmount())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -29,6 +30,7 @@ class ConstructionResourceRequirementConverter extends ConverterBase<Constructio
             .constructionId(uuidConverter.convertDomain(domain.getConstructionId()))
             .resourceId(domain.getResourceId())
             .requiredAmount(domain.getRequiredAmount())
+            .isNew(domain.isNew())
             .build();
     }
 }

@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-//TODO cacheRepository
-interface ConstructionResourceRequirementRepository extends JpaRepository<ConstructionResourceRequirementEntity, String> {
+interface ConstructionResourceRequirementRepository extends CrudRepository<ConstructionResourceRequirementEntity, String> {
+    @Transactional
+    void deleteByConstructionId(String constructionId);
+
+    @Transactional
+    void deleteByConstructionResourceRequirementIdIn(List<String> ids);
+
     @Query("DELETE FROM ConstructionResourceRequirementEntity e WHERE e.gameId = :gameId")
     @Modifying
     @Transactional
@@ -19,5 +24,5 @@ interface ConstructionResourceRequirementRepository extends JpaRepository<Constr
 
     List<ConstructionResourceRequirementEntity> getByConstructionId(String constructionId);
 
-    void deleteByConstructionId(String constructionId);
+    List<ConstructionResourceRequirementEntity> getByGameId(String gameId);
 }

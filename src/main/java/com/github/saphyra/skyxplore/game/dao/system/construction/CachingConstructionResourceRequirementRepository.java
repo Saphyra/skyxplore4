@@ -1,0 +1,76 @@
+package com.github.saphyra.skyxplore.game.dao.system.construction;
+
+import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Component
+@Primary
+@Slf4j
+public class CachingConstructionResourceRequirementRepository extends CacheRepository<String, ConstructionResourceRequirementEntity, String, ConstructionResourceRequirementRepository> implements ConstructionResourceRequirementRepository {
+    private final RequestContextHolder requestContextHolder;
+    private final UuidConverter uuidConverter;
+
+    protected CachingConstructionResourceRequirementRepository(ConstructionResourceRequirementRepository repository, RequestContextHolder requestContextHolder, UuidConverter uuidConverter) {
+        super(repository, ConstructionResourceRequirementEntity::getGameId);
+        this.requestContextHolder = requestContextHolder;
+        this.uuidConverter = uuidConverter;
+    }
+
+    @Override
+    protected List<ConstructionResourceRequirementEntity> getByKey(String gameId) {
+        List<ConstructionResourceRequirementEntity> entities = repository.getByGameId(gameId);
+        log.info("BuildingEntities loaded by gameId {}: {}", gameId, entities.size());
+        return entities;
+    }
+
+    @Override
+    protected void deleteByIds(List<String> ids) {
+        repository.deleteByConstructionResourceRequirementIdIn(ids);
+    }
+
+    @Override
+    public void deleteByGameId(String gameId) {
+        processDeletions();
+        cacheMap.remove(gameId);
+        repository.deleteByGameId(gameId);
+    }
+
+    @Override
+    public List<ConstructionResourceRequirementEntity> getByConstructionId(String constructionId) {
+        return getMap(getGameId())
+            .values()
+            .stream()
+            .filter(entity -> entity.getConstructionId().equals(constructionId))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ConstructionResourceRequirementEntity> getByGameId(String gameId) {
+        //noinspection SimplifyStreamApiCallChains
+        return Optional.ofNullable(cacheMap.get(gameId))
+            .map(map -> map.values().stream().collect(Collectors.toList()))
+            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+    }
+
+    @Override
+    public void deleteByConstructionId(String constructionId) {
+        getByConstructionId(constructionId).forEach(this::delete);
+    }
+
+    @Override
+    public void deleteByConstructionResourceRequirementIdIn(List<String> ids) {
+        ids.forEach(this::deleteById);
+    }
+
+    private String getGameId() {
+        return uuidConverter.convertDomain(requestContextHolder.get().getGameId());
+    }
+}
