@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+//TODO cacheRepository
 interface AllocationRepository extends JpaRepository<AllocationEntity, String> {
     void deleteByExternalReferenceAndGameIdAndPlayerId(String externalReference, String gameId, String playerId);
 

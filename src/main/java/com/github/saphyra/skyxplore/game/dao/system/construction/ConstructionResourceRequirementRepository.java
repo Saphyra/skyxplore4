@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+//TODO cacheRepository
 interface ConstructionResourceRequirementRepository extends JpaRepository<ConstructionResourceRequirementEntity, String> {
     @Query("DELETE FROM ConstructionResourceRequirementEntity e WHERE e.gameId = :gameId")
     @Modifying

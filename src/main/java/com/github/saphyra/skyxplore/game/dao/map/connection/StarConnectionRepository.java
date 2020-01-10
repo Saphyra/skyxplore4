@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+//TODO cacheRepository
 interface StarConnectionRepository extends JpaRepository<StarConnectionEntity, String> {
     @Modifying
     @Query("DELETE FROM StarConnectionEntity e WHERE e.gameId = :gameId")

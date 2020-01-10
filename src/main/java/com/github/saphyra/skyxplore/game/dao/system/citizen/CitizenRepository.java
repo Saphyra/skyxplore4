@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+//TODO cacheRepository
 public interface CitizenRepository extends JpaRepository<CitizenEntity, String> {
     Integer countByLocationTypeAndLocationIdAndOwnerId(LocationType locationType, String locationId, String ownerId);
 

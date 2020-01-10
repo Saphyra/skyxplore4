@@ -74,6 +74,9 @@ public class CachingSurfaceRepository extends CacheRepository<String, SurfaceEnt
 
     @Override
     public List<SurfaceEntity> getByGameId(String gameId) {
-        return addToCache(gameId, getByKey(gameId));
+        //noinspection SimplifyStreamApiCallChains
+        return Optional.ofNullable(cacheMap.get(gameId))
+            .map(map -> map.values().stream().collect(Collectors.toList()))
+            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
     }
 }

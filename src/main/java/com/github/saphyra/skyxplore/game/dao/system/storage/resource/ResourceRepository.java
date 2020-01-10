@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+//TODO cacheRepository
 interface ResourceRepository extends JpaRepository<ResourceEntity, String> {
     @Modifying
     @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId")

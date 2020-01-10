@@ -86,6 +86,9 @@ public class CachingBuildingRepository extends CacheRepository<String, BuildingE
 
     @Override
     public List<BuildingEntity> getByGameId(String gameId) {
-        return addToCache(gameId, getByKey(gameId));
+        //noinspection SimplifyStreamApiCallChains
+        return Optional.ofNullable(cacheMap.get(gameId))
+            .map(map -> map.values().stream().collect(Collectors.toList()))
+            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
     }
 }

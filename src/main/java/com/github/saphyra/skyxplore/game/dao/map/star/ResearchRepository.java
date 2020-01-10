@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+//TODO cacheRepository
 public interface ResearchRepository extends JpaRepository<ResearchEntity, String> {
     @Modifying
     @Query("DELETE FROM ResearchEntity e WHERE e.gameId = :gameId")
