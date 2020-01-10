@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.dao.system.construction;
 
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -19,8 +20,8 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
     private final UuidConverter uuidConverter;
     private final RequestContextHolder requestContextHolder;
 
-    public CachingConstructionRepository(ConstructionRepository repository, UuidConverter uuidConverter, RequestContextHolder requestContextHolder) {
-        super(repository, ConstructionEntity::getGameId);
+    public CachingConstructionRepository(ConstructionRepository repository, UuidConverter uuidConverter, RequestContextHolder requestContextHolder, CacheContext cacheContext) {
+        super(repository, ConstructionEntity::getGameId, cacheContext);
         this.uuidConverter = uuidConverter;
         this.requestContextHolder = requestContextHolder;
     }

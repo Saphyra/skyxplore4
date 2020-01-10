@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.dao.system.citizen;
 
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -18,8 +19,8 @@ public class CachingSkillRepository extends CacheRepository<String, SkillEntity,
     private final RequestContextHolder requestContextHolder;
     private final UuidConverter uuidConverter;
 
-    protected CachingSkillRepository(SkillRepository repository, RequestContextHolder requestContextHolder, UuidConverter uuidConverter) {
-        super(repository, SkillEntity::getGameId);
+    protected CachingSkillRepository(SkillRepository repository, RequestContextHolder requestContextHolder, UuidConverter uuidConverter, CacheContext cacheContext) {
+        super(repository, SkillEntity::getGameId, cacheContext);
         this.requestContextHolder = requestContextHolder;
         this.uuidConverter = uuidConverter;
     }

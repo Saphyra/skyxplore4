@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.map.connection;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -13,8 +14,8 @@ import java.util.List;
 @Slf4j
 public class CachingStarConnectionRepository extends CacheRepository<String, StarConnectionEntity, String, StarConnectionRepository> implements StarConnectionRepository {
 
-    protected CachingStarConnectionRepository(StarConnectionRepository repository) {
-        super(repository, StarConnectionEntity::getGameId);
+    protected CachingStarConnectionRepository(StarConnectionRepository repository, CacheContext cacheContext) {
+        super(repository, StarConnectionEntity::getGameId, cacheContext);
     }
 
     @Override

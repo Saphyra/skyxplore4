@@ -18,6 +18,9 @@ com:
   github:
     saphyra:
       skyxplore:
+        cacheRepository:
+          fullSyncExecutionIntervalInMilliseconds: 600000 #1 minute
+          expirationSeconds: 600 #10 minutes
         game:
           map:
             dimensions:

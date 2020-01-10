@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.player;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -13,8 +14,8 @@ import java.util.Optional;
 @Primary
 @Slf4j
 public class CachingPlayerRepository extends CacheRepository<String, PlayerEntity, String, PlayerRepository> implements PlayerRepository {
-    protected CachingPlayerRepository(PlayerRepository repository) {
-        super(repository, PlayerEntity::getGameId);
+    protected CachingPlayerRepository(PlayerRepository repository, CacheContext cacheContext) {
+        super(repository, PlayerEntity::getGameId, cacheContext);
     }
 
     @Override

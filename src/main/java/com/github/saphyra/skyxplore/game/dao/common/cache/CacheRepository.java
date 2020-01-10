@@ -20,16 +20,18 @@ import java.util.stream.Collectors;
 public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 
-    private final ConcurrentHashMap<KEY, ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> cacheMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<KEY, ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>>> cacheMap = new ConcurrentHashMap<>();
     private final Set<ID> deleteQueue = ConcurrentHashMap.newKeySet();
 
     private final String entityName;
     protected final REPOSITORY repository;
     private final Function<ENTITY, KEY> keyMapper;
+    private final CacheContext cacheContext;
 
-    protected CacheRepository(REPOSITORY repository, Function<ENTITY, KEY> keyMapper) {
+    protected CacheRepository(REPOSITORY repository, Function<ENTITY, KEY> keyMapper, CacheContext cacheContext) {
         this.repository = repository;
         this.keyMapper = keyMapper;
+        this.cacheContext = cacheContext;
         this.entityName = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1].getTypeName();
     }
 
@@ -37,7 +39,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     protected abstract void deleteByIds(List<ID> ids);
 
-    protected void deleteByKey(KEY key){
+    protected void deleteByKey(KEY key) {
         deleteAll(getByKey(key));
     }
 
@@ -62,6 +64,13 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         log.info("Executing full-sync for entity {}...", entityName);
         processDeletions();
         syncChanges();
+        evictExpiredEntities();
+    }
+
+    public void evictExpiredEntities() {
+        log.info("Evicting expired entities for entity {}...", entityName);
+        cacheMap.entrySet().removeIf(expirableMapEntry -> expirableMapEntry.getValue().isExpired());
+        log.info("Evicting expired entities finished for entity {}", entityName);
     }
 
     public void syncChanges() {
@@ -69,7 +78,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         cacheMap.values().forEach(map -> {
             //noinspection SynchronizationOnLocalVariableOrMethodParameter
             synchronized (map) {
-                repository.saveAll(filterModified(map));
+                repository.saveAll(filterModified(map.getEntity()));
             }
         });
         log.info("Synchronization finished for entity {}", entityName);
@@ -104,17 +113,17 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     }
 
     @Override
-    public <S extends ENTITY> S save(S s) {
-        getMap(keyMapper.apply(s)).put(Objects.requireNonNull(s.getId()), new ModifiableEntity<>(s, true));
-        deleteQueue.remove(s.getId());
-        return s;
+    public <S extends ENTITY> S save(S entity) {
+        getMap(keyMapper.apply(entity)).put(Objects.requireNonNull(entity.getId()), new ModifiableEntity<>(entity, true));
+        deleteQueue.remove(entity.getId());
+        return entity;
     }
 
     private ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> getMap(KEY key) {
         if (!cacheMap.containsKey(key)) {
             loadByKey(key);
         }
-        return cacheMap.get(key);
+        return cacheMap.get(key).updateLastAccessAndGetEntity();
 
     }
 
@@ -131,9 +140,12 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         }
         Optional<ENTITY> cachedEntity = cacheMap.values()
             .stream()
+            .map(ExpirableEntity::getEntity)
             .flatMap(map -> map.values().stream().map(ModifiableEntity::getEntity))
             .filter(entity -> Objects.equals(entity.getId(), id))
             .findAny();
+
+        cachedEntity.ifPresent(entity -> cacheMap.get(keyMapper.apply(entity)).updateLastAccess());
         return cachedEntity.isPresent() ? cachedEntity : searchInRepository(id);
     }
 
@@ -171,7 +183,8 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     private void addToCache(KEY key, List<ENTITY> entities) {
         Map<ID, ENTITY> map = mapEntities(filterDeleted(entities));
-        cacheMap.put(key, new ConcurrentHashMap<>(wrapEntities(map)));
+        ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> wrappedEntities = wrapEntities(map);
+        cacheMap.put(key, wrappedEntities);
     }
 
     private Map<ID, ENTITY> mapEntities(List<ENTITY> values) {
@@ -179,10 +192,11 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
             .collect(Collectors.toMap(Persistable::getId, Function.identity()));
     }
 
-    private Map<ID, ModifiableEntity<ENTITY>> wrapEntities(Map<ID, ENTITY> map) {
-        return map.entrySet()
+    private ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> wrapEntities(Map<ID, ENTITY> map) {
+        Map<ID, ModifiableEntity<ENTITY>> entities = map.entrySet()
             .stream()
             .collect(Collectors.toMap(Map.Entry::getKey, identityEntry -> new ModifiableEntity<>(identityEntry.getValue(), false)));
+        return new ExpirableEntity<>(new ConcurrentHashMap<>(entities), cacheContext);
     }
 
     @Override
@@ -205,7 +219,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     }
 
     private void removeFromCache(ID id) {
-        cacheMap.values().forEach(map -> map.remove(id));
+        cacheMap.values().forEach(map -> map.getEntity().remove(id));
     }
 
     @Override
@@ -221,7 +235,12 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
             .collect(Collectors.toList());
 
         cacheMap.values()
-            .forEach(map -> map.entrySet().removeIf(entry -> ids.contains(entry.getKey())));
+            .forEach(expirableMap -> {
+                boolean elementWasRemoved = expirableMap.getEntity().entrySet().removeIf(entry -> ids.contains(entry.getKey()));
+                if (elementWasRemoved) {
+                    expirableMap.updateLastAccess();
+                }
+            });
         deleteQueue.addAll(ids);
     }
 
