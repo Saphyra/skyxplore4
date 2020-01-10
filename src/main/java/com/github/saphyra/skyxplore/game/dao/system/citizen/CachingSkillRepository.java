@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -38,9 +38,7 @@ public class CachingSkillRepository extends CacheRepository<String, SkillEntity,
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
@@ -50,7 +48,7 @@ public class CachingSkillRepository extends CacheRepository<String, SkillEntity,
 
     @Override
     public List<SkillEntity> getByCitizenId(String citizenId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(skillEntity -> skillEntity.getCitizenId().equals(citizenId))
@@ -59,10 +57,7 @@ public class CachingSkillRepository extends CacheRepository<String, SkillEntity,
 
     @Override
     public List<SkillEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     private String getGameId() {

@@ -5,9 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 @Primary
@@ -37,16 +36,11 @@ public class CachingStarConnectionRepository extends CacheRepository<String, Sta
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
     public List<StarConnectionEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 }

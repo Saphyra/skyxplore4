@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,9 +40,7 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
 
     @Override
     public Optional<ResourceEntity> findByStarIdAndDataIdAndRoundAndPlayerId(String starId, String dataId, int round, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(resourceEntity -> resourceEntity.getStarId().equals(starId))
@@ -63,7 +62,7 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
 
     @Override
     public Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(resourceEntity -> resourceEntity.getStarId().equals(starId))
@@ -75,15 +74,12 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
 
     @Override
     public List<ResourceEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     @Override
     public List<ResourceEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(resourceEntity -> resourceEntity.getStarId().equals(starId))
@@ -94,7 +90,7 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
 
     @Override
     public List<ResourceEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(resourceEntity -> resourceEntity.getStarId().equals(starId))

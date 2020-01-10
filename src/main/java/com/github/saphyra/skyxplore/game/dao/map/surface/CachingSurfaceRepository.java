@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,14 +44,12 @@ public class CachingSurfaceRepository extends CacheRepository<String, SurfaceEnt
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
     public Optional<SurfaceEntity> findBySurfaceIdAndPlayerId(String surfaceId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(surfaceEntity -> surfaceEntity.getSurfaceId().equals(surfaceId))
@@ -60,7 +59,7 @@ public class CachingSurfaceRepository extends CacheRepository<String, SurfaceEnt
 
     @Override
     public List<SurfaceEntity> getByStarIdAndPlayerId(String starId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(surfaceEntity -> surfaceEntity.getStarId().equals(starId))
@@ -74,9 +73,6 @@ public class CachingSurfaceRepository extends CacheRepository<String, SurfaceEnt
 
     @Override
     public List<SurfaceEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 }

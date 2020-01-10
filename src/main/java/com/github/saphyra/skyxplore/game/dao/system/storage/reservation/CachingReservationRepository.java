@@ -8,8 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,7 +39,7 @@ public class CachingReservationRepository extends CacheRepository<String, Reserv
 
     @Override
     public void deleteByExternalReferenceAndPlayerId(String externalReference, String playerId) {
-        getMap(getGameId())
+        getMapByKey(getGameId())
             .values()
             .stream()
             .filter(reservationEntity -> reservationEntity.getExternalReference().equals(externalReference))
@@ -49,9 +49,7 @@ public class CachingReservationRepository extends CacheRepository<String, Reserv
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
@@ -61,15 +59,12 @@ public class CachingReservationRepository extends CacheRepository<String, Reserv
 
     @Override
     public List<ReservationEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     @Override
     public List<ReservationEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(reservationEntity -> reservationEntity.getStarId().equals(starId))
@@ -80,7 +75,7 @@ public class CachingReservationRepository extends CacheRepository<String, Reserv
 
     @Override
     public List<ReservationEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(reservationEntity -> reservationEntity.getStarId().equals(starId))

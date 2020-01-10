@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,9 +39,7 @@ public class CachingStarRepository extends CacheRepository<String, StarEntity, S
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class CachingStarRepository extends CacheRepository<String, StarEntity, S
 
     @Override
     public List<StarEntity> getByOwnerId(String ownerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getOwnerId().equals(ownerId))
@@ -59,7 +58,7 @@ public class CachingStarRepository extends CacheRepository<String, StarEntity, S
 
     @Override
     public Optional<StarEntity> findByStarIdAndOwnerId(String starId, String ownerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getStarId().equals(starId))
@@ -69,10 +68,7 @@ public class CachingStarRepository extends CacheRepository<String, StarEntity, S
 
     @Override
     public List<StarEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     private String getGameId() {

@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -38,14 +38,12 @@ public class CachingConstructionResourceRequirementRepository extends CacheRepos
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
     public List<ConstructionResourceRequirementEntity> getByConstructionId(String constructionId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(entity -> entity.getConstructionId().equals(constructionId))
@@ -54,10 +52,7 @@ public class CachingConstructionResourceRequirementRepository extends CacheRepos
 
     @Override
     public List<ConstructionResourceRequirementEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     @Override

@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -38,7 +38,7 @@ public class CachingCitizenRepository extends CacheRepository<String, CitizenEnt
 
     @Override
     public Integer countByLocationTypeAndLocationIdAndOwnerId(LocationType locationType, String locationId, String ownerId) {
-        long count = getMap(getGameId())
+        long count = getMapByKey(getGameId())
             .values()
             .stream()
             .filter(citizenEntity -> citizenEntity.getLocationType().equals(locationType))
@@ -55,22 +55,17 @@ public class CachingCitizenRepository extends CacheRepository<String, CitizenEnt
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
     public List<CitizenEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     @Override
     public List<CitizenEntity> getByLocationIdAndOwnerId(String locationId, String ownerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(citizenEntity -> citizenEntity.getLocationId().equals(locationId))

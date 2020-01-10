@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 
-    protected final ConcurrentHashMap<KEY, ConcurrentHashMap<ID, ENTITY>> cacheMap = new ConcurrentHashMap<>();
-    protected final Set<ID> deleteQueue = ConcurrentHashMap.newKeySet();
+    private final ConcurrentHashMap<KEY, ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> cacheMap = new ConcurrentHashMap<>();
+    private final Set<ID> deleteQueue = ConcurrentHashMap.newKeySet();
 
     private final String entityName;
     protected final REPOSITORY repository;
-    protected final Function<ENTITY, KEY> keyMapper;
+    private final Function<ENTITY, KEY> keyMapper;
 
     protected CacheRepository(REPOSITORY repository, Function<ENTITY, KEY> keyMapper) {
         this.repository = repository;
@@ -37,26 +37,19 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     protected abstract void deleteByIds(List<ID> ids);
 
-    protected ConcurrentHashMap<ID, ENTITY> getMap(KEY key) {
-        if (!cacheMap.containsKey(key)) {
-            loadByKey(key);
-        }
-        return cacheMap.getOrDefault(key, new ConcurrentHashMap<>());
+    protected void deleteByKey(KEY key){
+        deleteAll(getByKey(key));
     }
 
-    private synchronized void loadByKey(KEY key) {
-        List<ENTITY> entities = getByKey(key);
-        addToCache(key, entities);
+    protected Map<ID, ENTITY> getMapByKey(KEY key) {
+        return extractEntities(getMap(key));
     }
 
-    protected List<ENTITY> addToCache(KEY key, List<ENTITY> entities) {
-        Map<ID, ENTITY> map = mapEntities(filterDeleted(entities));
-        cacheMap.put(key, new ConcurrentHashMap<>(map));
-        return entities;
-    }
-
-    private Map<ID, ENTITY> mapEntities(List<ENTITY> values) {
-        return values.stream().collect(Collectors.toMap(Persistable::getId, Function.identity()));
+    private ConcurrentHashMap<ID, ENTITY> extractEntities(ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> map) {
+        Map<ID, ENTITY> mapping = map.entrySet()
+            .stream()
+            .collect(Collectors.toMap(Map.Entry::getKey, idModifiableEntityEntry -> idModifiableEntityEntry.getValue().getEntity()));
+        return new ConcurrentHashMap<>(mapping);
     }
 
     private List<ENTITY> filterDeleted(List<ENTITY> entities) {
@@ -74,28 +67,36 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     public void syncChanges() {
         log.info("Synchronizing modifications for entity {}...", entityName);
         cacheMap.values().forEach(map -> {
+            //noinspection SynchronizationOnLocalVariableOrMethodParameter
             synchronized (map) {
-                repository.saveAll(map.values());
+                repository.saveAll(filterModified(map));
             }
         });
         log.info("Synchronization finished for entity {}", entityName);
+    }
+
+    private List<ENTITY> filterModified(ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> map) {
+        return map.values()
+            .stream()
+            .map(ModifiableEntity::getEntity)
+            .collect(Collectors.toList());
     }
 
     public void processDeletions() {
         log.info("Processing deletions for entity {}...", entityName);
         synchronized (deleteQueue) {
             ArrayList<ID> ids = new ArrayList<>(deleteQueue);
-            chunks(ids, MAX_CHUNK_SIZE).forEach(this::deleteByIds);
+            chunks(ids).forEach(this::deleteByIds);
             deleteQueue.clear();
         }
         log.info("Deletion finished for entity {}", entityName);
     }
 
-    public static <T> List<List<T>> chunks(List<T> bigList, int chunkSize) {
+    private static <T> List<List<T>> chunks(List<T> bigList) {
         List<List<T>> chunks = new ArrayList<>();
 
-        for (int i = 0; i < bigList.size(); i += chunkSize) {
-            List<T> chunk = bigList.subList(i, Math.min(bigList.size(), i + chunkSize));
+        for (int i = 0; i < bigList.size(); i += CacheRepository.MAX_CHUNK_SIZE) {
+            List<T> chunk = bigList.subList(i, Math.min(bigList.size(), i + CacheRepository.MAX_CHUNK_SIZE));
             chunks.add(chunk);
         }
 
@@ -104,9 +105,17 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     @Override
     public <S extends ENTITY> S save(S s) {
-        getMap(keyMapper.apply(s)).put(Objects.requireNonNull(s.getId()), s);
+        getMap(keyMapper.apply(s)).put(Objects.requireNonNull(s.getId()), new ModifiableEntity<>(s, true));
         deleteQueue.remove(s.getId());
         return s;
+    }
+
+    private ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> getMap(KEY key) {
+        if (!cacheMap.containsKey(key)) {
+            loadByKey(key);
+        }
+        return cacheMap.get(key);
+
     }
 
     @Override
@@ -122,7 +131,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         }
         Optional<ENTITY> cachedEntity = cacheMap.values()
             .stream()
-            .flatMap(map -> map.values().stream())
+            .flatMap(map -> map.values().stream().map(ModifiableEntity::getEntity))
             .filter(entity -> Objects.equals(entity.getId(), id))
             .findAny();
         return cachedEntity.isPresent() ? cachedEntity : searchInRepository(id);
@@ -153,6 +162,27 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
             .peek(entry -> addToCache(entry.getKey(), entry.getValue()))
             .flatMap(entry -> entry.getValue().stream())
             .collect(Collectors.toList());
+    }
+
+    private synchronized void loadByKey(KEY key) {
+        List<ENTITY> entities = getByKey(key);
+        addToCache(key, entities);
+    }
+
+    private void addToCache(KEY key, List<ENTITY> entities) {
+        Map<ID, ENTITY> map = mapEntities(filterDeleted(entities));
+        cacheMap.put(key, new ConcurrentHashMap<>(wrapEntities(map)));
+    }
+
+    private Map<ID, ENTITY> mapEntities(List<ENTITY> values) {
+        return values.stream()
+            .collect(Collectors.toMap(Persistable::getId, Function.identity()));
+    }
+
+    private Map<ID, ModifiableEntity<ENTITY>> wrapEntities(Map<ID, ENTITY> map) {
+        return map.entrySet()
+            .stream()
+            .collect(Collectors.toMap(Map.Entry::getKey, identityEntry -> new ModifiableEntity<>(identityEntry.getValue(), false)));
     }
 
     @Override

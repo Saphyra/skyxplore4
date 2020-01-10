@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,14 +39,12 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
     public Optional<ConstructionEntity> findByConstructionIdAndPlayerId(String constructionId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getConstructionId().equals(constructionId))
@@ -55,7 +54,7 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
 
     @Override
     public Optional<ConstructionEntity> findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType constructionType, String externalId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getExternalId().equals(externalId))
@@ -66,7 +65,7 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
 
     @Override
     public Optional<ConstructionEntity> findByConstructionTypeAndSurfaceIdAndPlayerId(ConstructionType constructionType, String surfaceId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getSurfaceId().equals(surfaceId))
@@ -77,7 +76,7 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
 
     @Override
     public List<ConstructionEntity> getByStarIdAndPlayerId(String starId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getStarId().equals(starId))
@@ -101,9 +100,6 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
 
     @Override
     public List<ConstructionEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 }

@@ -8,8 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -50,13 +50,13 @@ public class CachingAllocationRepository extends CacheRepository<String, Allocat
     @Override
     public void deleteByGameId(String gameId) {
         processDeletions();
-        cacheMap.remove(gameId);
+        deleteByKey(gameId);
         repository.deleteByGameId(gameId);
     }
 
     @Override
     public List<AllocationEntity> getByExternalReferenceAndPlayerId(String externalReference, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(allocationEntity -> allocationEntity.getExternalReference().equals(externalReference))
@@ -66,15 +66,12 @@ public class CachingAllocationRepository extends CacheRepository<String, Allocat
 
     @Override
     public List<AllocationEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     @Override
     public List<AllocationEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(allocationEntity -> allocationEntity.getStarId().equals(starId))
@@ -85,7 +82,7 @@ public class CachingAllocationRepository extends CacheRepository<String, Allocat
 
     @Override
     public List<AllocationEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId) {
-        return getMap(getGameId())
+        return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(allocationEntity -> allocationEntity.getStarId().equals(starId))

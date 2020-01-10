@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -27,7 +27,7 @@ public class CachingResearchRepository extends CacheRepository<String, ResearchE
     @Override
     protected List<ResearchEntity> getByKey(String gameId) {
         List<ResearchEntity> entities = repository.getByGameId(gameId);
-        log.info("StarConnectionEntities loaded by gameId {}: {}", gameId, entities.size());
+        log.info("ResearchEntities loaded by gameId {}: {}", gameId, entities.size());
         return entities;
     }
 
@@ -38,9 +38,7 @@ public class CachingResearchRepository extends CacheRepository<String, ResearchE
 
     @Override
     public void deleteByGameId(String gameId) {
-        processDeletions();
-        cacheMap.remove(gameId);
-        repository.deleteByGameId(gameId);
+        deleteByKey(gameId);
     }
 
     @Override
@@ -50,15 +48,12 @@ public class CachingResearchRepository extends CacheRepository<String, ResearchE
 
     @Override
     public List<ResearchEntity> getByGameId(String gameId) {
-        //noinspection SimplifyStreamApiCallChains
-        return Optional.ofNullable(cacheMap.get(gameId))
-            .map(map -> map.values().stream().collect(Collectors.toList()))
-            .orElseGet(() -> addToCache(gameId, getByKey(gameId)));
+        return new ArrayList<>(getMapByKey(gameId).values());
     }
 
     @Override
     public List<ResearchEntity> getByStarIdAndPlayerId(String starId, String playerId) {
-        return getMap(getGameId()).values()
+        return getMapByKey(getGameId()).values()
             .stream()
             .parallel()
             .filter(constructionEntity -> constructionEntity.getStarId().equals(starId))
