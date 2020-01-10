@@ -43,7 +43,9 @@ public class CachingSurfaceRepository extends CacheRepository<String, SurfaceEnt
 
     @Override
     public void deleteByGameId(String gameId) {
-        deleteAll(getByGameId(gameId));
+        processDeletions();
+        cacheMap.remove(gameId);
+        repository.deleteByGameId(gameId);
     }
 
     @Override

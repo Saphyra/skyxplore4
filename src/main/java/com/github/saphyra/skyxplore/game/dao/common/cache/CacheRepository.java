@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
+    private static final int MAX_CHUNK_SIZE = 10000;
+
     protected final ConcurrentHashMap<KEY, ConcurrentHashMap<ID, ENTITY>> cacheMap = new ConcurrentHashMap<>();
     protected final Set<ID> deleteQueue = ConcurrentHashMap.newKeySet();
 
@@ -83,8 +85,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         log.info("Processing deletions for entity {}...", entityName);
         synchronized (deleteQueue) {
             ArrayList<ID> ids = new ArrayList<>(deleteQueue);
-            int chunkSize = 10000; //TODO move to config
-            chunks(ids, chunkSize).forEach(this::deleteById);
+            chunks(ids, MAX_CHUNK_SIZE).forEach(this::deleteById);
             deleteQueue.clear();
         }
         log.info("Deletion finished for entity {}", entityName);

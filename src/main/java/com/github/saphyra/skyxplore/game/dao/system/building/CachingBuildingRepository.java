@@ -43,7 +43,9 @@ public class CachingBuildingRepository extends CacheRepository<String, BuildingE
 
     @Override
     public void deleteByGameId(String gameId) {
-        deleteAll(getByGameId(gameId));
+        processDeletions();
+        cacheMap.remove(gameId);
+        repository.deleteByGameId(gameId);
     }
 
     @Override
