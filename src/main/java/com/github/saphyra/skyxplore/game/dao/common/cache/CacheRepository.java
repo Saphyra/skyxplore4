@@ -44,7 +44,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         return cacheMap.getOrDefault(key, new ConcurrentHashMap<>());
     }
 
-    private void loadByKey(KEY key) {
+    private synchronized void loadByKey(KEY key) {
         List<ENTITY> entities = getByKey(key);
         addToCache(key, entities);
     }
