@@ -19,10 +19,9 @@ class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, Al
         this.uuidConverter = uuidConverter;
     }
 
-    void deleteByExternalReferenceAndGameIdAndPlayerId(UUID constructionId, UUID gameId, UUID playerId) {
-        repository.deleteByExternalReferenceAndGameIdAndPlayerId(
+    void deleteByExternalReferenceAndPlayerId(UUID constructionId, UUID playerId) {
+        repository.deleteByExternalReferenceAndPlayerId(
             uuidConverter.convertDomain(constructionId),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         );
     }

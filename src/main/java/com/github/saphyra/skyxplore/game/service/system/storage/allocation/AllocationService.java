@@ -29,6 +29,7 @@ public class AllocationService {
             .storageType(resourceData.getStorageType())
             .amount(amount)
             .allocationType(allocationType)
+            .isNew(true)
             .build()
         );
     }

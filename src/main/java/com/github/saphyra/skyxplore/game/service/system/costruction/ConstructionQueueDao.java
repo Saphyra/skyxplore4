@@ -61,7 +61,7 @@ public class ConstructionQueueDao implements QueueItemDao {
             }
         }
         constructionCommandService.deleteByConstructionIdAndGameIdAndPlayerId(queueItemId);
-        allocationCommandService.deleteByExternalReferenceAndGameIdAndPlayerId(construction.getConstructionId());
+        allocationCommandService.deleteByExternalReferenceAndPlayerId(construction.getConstructionId());
         reservationCommandService.deleteByExternalReferenceAndGameIdAndPlayerId(construction.getConstructionId());
     }
 }

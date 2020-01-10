@@ -32,11 +32,10 @@ public class AllocationCommandService implements CommandService<Allocation> {
         allocationDao.save(allocation);
     }
 
-    public void deleteByExternalReferenceAndGameIdAndPlayerId(UUID externalReference) {
+    public void deleteByExternalReferenceAndPlayerId(UUID externalReference) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        allocationDao.deleteByExternalReferenceAndGameIdAndPlayerId(externalReference, gameId, playerId);
+        allocationDao.deleteByExternalReferenceAndPlayerId(externalReference, playerId);
     }
 
     @Override
