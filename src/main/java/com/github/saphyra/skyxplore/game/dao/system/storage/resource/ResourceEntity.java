@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 
 import lombok.*;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-class ResourceEntity {
+class ResourceEntity implements Persistable<String> {
     @Id
     private String resourceId;
     private String gameId;
@@ -21,4 +22,17 @@ class ResourceEntity {
     private String starId;
     private Integer amount;
     private Integer round;
+
+    @Transient
+    private boolean isNew;
+
+    @Override
+    public String getId() {
+        return resourceId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
 }

@@ -19,19 +19,19 @@ public class ResourceQueryService {
     private final RequestContextHolder requestContextHolder;
     private final ResourceDao resourceDao;
 
-    public Optional<Resource> findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(UUID starId, String dataId, int round) {
+    public Optional<Resource> findByStarIdAndDataIdAndRoundAndPlayerId(UUID starId, String dataId, int round) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return resourceDao.findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId, round, playerId);
     }
 
-    public Optional<Resource> findLatestByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
+    public Optional<Resource> findLatestByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return resourceDao.findLatestByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
 
-    public List<Resource> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
+    public List<Resource> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return resourceDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);

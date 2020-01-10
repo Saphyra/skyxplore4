@@ -57,7 +57,7 @@ public class StorageQueryService {
     }
 
     int getAvailableResource(UUID starId, String resourceId) {
-        return resourceQueryService.findLatestByStarIdAndDataIdAndGameIdAndPlayerId(starId, resourceId)
+        return resourceQueryService.findLatestByStarIdAndDataIdAndPlayerId(starId, resourceId)
             .map(Resource::getAmount)
             .orElse(0);
     }

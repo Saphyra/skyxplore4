@@ -32,4 +32,6 @@ public class Resource {
 
     @NonNull
     private final Integer round;
+
+    private final boolean isNew;
 }
