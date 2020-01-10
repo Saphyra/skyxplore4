@@ -32,11 +32,10 @@ public class ReservationCommandService implements CommandService<Reservation> {
         reservationDao.save(reservation);
     }
 
-    public void deleteByExternalReferenceAndGameIdAndPlayerId(UUID externalReference) {
+    public void deleteByExternalReferenceAndPlayerId(UUID externalReference) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        reservationDao.deleteByExternalReferenceAndGameIdAndPlayerId(externalReference, gameId, playerId);
+        reservationDao.deleteByExternalReferenceAndPlayerId(externalReference, playerId);
     }
 
     @Override

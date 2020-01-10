@@ -19,10 +19,9 @@ class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String,
         this.uuidConverter = uuidConverter;
     }
 
-    void deleteByExternalReferenceAndGameIdAndPlayerId(UUID externalReference, UUID gameId, UUID playerId) {
-        repository.deleteByExternalReferenceAndGameIdAndPlayerId(
+    void deleteByExternalReferenceAndPlayerId(UUID externalReference, UUID playerId) {
+        repository.deleteByExternalReferenceAndPlayerId(
             uuidConverter.convertDomain(externalReference),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         );
     }

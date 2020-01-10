@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Builder
 @Data
@@ -18,7 +20,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "reservation")
-class ReservationEntity {
+class ReservationEntity implements Persistable<String> {
     @Id
     private String reservationId;
     private String gameId;
@@ -33,4 +35,17 @@ class ReservationEntity {
 
     @Enumerated(EnumType.STRING)
     private ReservationType reservationType;
+
+    @Transient
+    private boolean isNew;
+
+    @Override
+    public String getId() {
+        return reservationId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
 }

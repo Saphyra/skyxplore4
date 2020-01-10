@@ -23,6 +23,7 @@ public class ReservationConverter extends ConverterBase<ReservationEntity, Reser
             .amount(entity.getAmount())
             .storageType(entity.getStorageType())
             .reservationType(entity.getReservationType())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -38,6 +39,7 @@ public class ReservationConverter extends ConverterBase<ReservationEntity, Reser
             .amount(domain.getAmount())
             .storageType(domain.getStorageType())
             .reservationType(domain.getReservationType())
+            .isNew(domain.isNew())
             .build();
     }
 }
