@@ -8,10 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.UUID;
 
-import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Component
 @RequiredArgsConstructor
@@ -29,7 +28,7 @@ class RequestContextFactory {
 
     private UUID fetch(HttpServletRequest request, String name) {
         return cookieUtil.getCookie(request, name)
-            .filter(s -> !isNullOrEmpty(s))
+            .filter(s -> !isEmpty(s))
             .map(UUID::fromString)
             .orElseGet(() -> {
                 log.debug("Cookie is empty with name {}", name);
