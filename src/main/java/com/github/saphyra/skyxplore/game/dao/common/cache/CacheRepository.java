@@ -40,10 +40,14 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     protected abstract void deleteByIds(List<ID> ids);
 
     protected void deleteByKey(KEY key) {
-        deleteAll(getByKey(key));
+        log.debug("Deleting {}(s) for key {}", entityName, key);
+        List<ENTITY> entities = getByKey(key);
+        log.debug("Number of {}(s) to delete: {}", entities, entities.size());
+        deleteAll(entities);
     }
 
     protected Map<ID, ENTITY> getMapByKey(KEY key) {
+        log.debug("Querying {}(s) by key {}", entityName, key);
         return extractEntities(getMap(key));
     }
 
@@ -54,12 +58,6 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
         return new ConcurrentHashMap<>(mapping);
     }
 
-    private List<ENTITY> filterDeleted(List<ENTITY> entities) {
-        return entities.stream()
-            .filter(entity -> !deleteQueue.contains(entity.getId()))
-            .collect(Collectors.toList());
-    }
-
     public void fullSync() {
         log.info("Executing full-sync for entity {}...", entityName);
         processDeletions();
@@ -68,20 +66,33 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     }
 
     public void evictExpiredEntities() {
-        log.info("Evicting expired entities for entity {}...", entityName);
-        cacheMap.entrySet().removeIf(expirableMapEntry -> expirableMapEntry.getValue().isExpired());
-        log.info("Evicting expired entities finished for entity {}", entityName);
+        synchronized (cacheMap) {
+            log.info("Evicting expired entities for entity {}...", entityName);
+            List<KEY> expiredKeys = cacheMap.entrySet()
+                .stream()
+                .filter(expirableEntityEntry -> expirableEntityEntry.getValue().isExpired())
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+            expiredKeys.forEach(cacheMap::remove);
+            log.info("Evicting expired entities finished for entity {}. Number of expired keys: {}", entityName, expiredKeys.size());
+        }
     }
 
     public void syncChanges() {
         log.info("Synchronizing modifications for entity {}...", entityName);
-        cacheMap.values().forEach(map -> {
-            //noinspection SynchronizationOnLocalVariableOrMethodParameter
-            synchronized (map) {
-                repository.saveAll(filterModified(map.getEntity()));
-            }
-        });
-        log.info("Synchronization finished for entity {}", entityName);
+        int synchedEntitiesAmount = cacheMap.values()
+            .stream()
+            .map(map -> {
+                //noinspection SynchronizationOnLocalVariableOrMethodParameter
+                synchronized (map) {
+                    List<ENTITY> entities = filterModified(map.getEntity());
+                    repository.saveAll(entities);
+                    return entities.size();
+                }
+            })
+            .mapToInt(Integer::intValue)
+            .sum();
+        log.info("Synchronization finished for entity {}. Updated entities: {}", entityName, synchedEntitiesAmount);
     }
 
     private List<ENTITY> filterModified(ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> map) {
@@ -92,13 +103,13 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     }
 
     public void processDeletions() {
-        log.info("Processing deletions for entity {}...", entityName);
         synchronized (deleteQueue) {
+            log.info("Processing deletions for entity {}...", entityName);
             ArrayList<ID> ids = new ArrayList<>(deleteQueue);
             chunks(ids).forEach(this::deleteByIds);
             deleteQueue.clear();
+            log.info("Deletion finished for entity {}. Number of deleted entities: {}", entityName, ids.size());
         }
-        log.info("Deletion finished for entity {}", entityName);
     }
 
     private static <T> List<List<T>> chunks(List<T> bigList) {
@@ -108,12 +119,13 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
             List<T> chunk = bigList.subList(i, Math.min(bigList.size(), i + CacheRepository.MAX_CHUNK_SIZE));
             chunks.add(chunk);
         }
-
+        log.debug("Number of entities {} was chunked to {} parts.", bigList.size(), chunks.size());
         return chunks;
     }
 
     @Override
     public <S extends ENTITY> S save(S entity) {
+        log.debug("Saving entity {}", entity);
         getMap(keyMapper.apply(entity)).put(Objects.requireNonNull(entity.getId()), new ModifiableEntity<>(entity, true));
         deleteQueue.remove(entity.getId());
         return entity;
@@ -121,6 +133,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     private ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> getMap(KEY key) {
         if (!cacheMap.containsKey(key)) {
+            log.debug("Cache does not contain key {}. Loading entities...", key);
             loadByKey(key);
         }
         return cacheMap.get(key).updateLastAccessAndGetEntity();
@@ -136,12 +149,13 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     @Override
     public Optional<ENTITY> findById(ID id) {
         if (deleteQueue.contains(id)) {
+            log.debug("Entity {} with id {} is already deleted.", entityName, id);
             return Optional.empty();
         }
         Optional<ENTITY> cachedEntity = cacheMap.values()
             .stream()
             .map(ExpirableEntity::getEntity)
-            .flatMap(map -> map.values().stream().map(ModifiableEntity::getEntity))
+            .flatMap(map -> extractEntities(map).values().stream())
             .filter(entity -> Objects.equals(entity.getId(), id))
             .findAny();
 
@@ -150,14 +164,19 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     }
 
     private Optional<ENTITY> searchInRepository(ID id) {
+        log.debug("Entity {} is not found in cache with id {}. Searching in repository...", entityName, id);
         Optional<ENTITY> entityOptional = repository.findById(id);
-        entityOptional.ifPresent(entity -> loadByKey(keyMapper.apply(entity)));
+        entityOptional.ifPresent(entity -> {
+            log.debug("Entity {} is found in repository with id {}. Loading to cache...", entityName, id);
+            loadByKey(keyMapper.apply(entity));
+        });
         return entityOptional;
     }
 
     @Override
     public boolean existsById(ID id) {
         if (deleteQueue.contains(id)) {
+            log.debug("Entity {} with id {} is deleted.", entityName, id);
             return false;
         }
         return repository.existsById(id);
@@ -178,13 +197,22 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     private synchronized void loadByKey(KEY key) {
         List<ENTITY> entities = getByKey(key);
+        log.info("Entities {} loaded by key {}: {}", entityName, key, entities.size());
         addToCache(key, entities);
     }
 
     private void addToCache(KEY key, List<ENTITY> entities) {
-        Map<ID, ENTITY> map = mapEntities(filterDeleted(entities));
+        log.debug("Adding to cache entities with key {}: {}", key, entities);
+        List<ENTITY> filteredList = filterDeleted(entities);
+        Map<ID, ENTITY> map = mapEntities(filteredList);
         ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> wrappedEntities = wrapEntities(map);
         cacheMap.put(key, wrappedEntities);
+    }
+
+    private List<ENTITY> filterDeleted(List<ENTITY> entities) {
+        return entities.stream()
+            .filter(entity -> !deleteQueue.contains(entity.getId()))
+            .collect(Collectors.toList());
     }
 
     private Map<ID, ENTITY> mapEntities(List<ENTITY> values) {
@@ -214,6 +242,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     @Override
     public void deleteById(ID id) {
+        log.debug("Deleting entity {} with id {}", entityName, id);
         deleteQueue.add(id);
         removeFromCache(id);
     }
@@ -234,6 +263,8 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
             .map(Persistable::getId)
             .collect(Collectors.toList());
 
+        log.debug("Deleting entities {} with id {}", entityName, ids);
+
         cacheMap.values()
             .forEach(expirableMap -> {
                 boolean elementWasRemoved = expirableMap.getEntity().entrySet().removeIf(entry -> ids.contains(entry.getKey()));
@@ -246,6 +277,9 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
 
     @Override
     public void deleteAll() {
-        deleteAll(findAll());
+        log.warn("Deleting all entities: {}", entityName);
+        cacheMap.clear();
+        deleteQueue.clear();
+        repository.deleteAll();
     }
 }

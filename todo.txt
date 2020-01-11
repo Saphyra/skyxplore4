@@ -1,4 +1,3 @@
-TODO add proper logging to CacheReository
 TODO try other databases
 TODO refactor population_overview_controller.js - split
 TODO Add System defence details to system summary

@@ -30,7 +30,7 @@ public class GameDeletionService {
         if (gameOptional.isPresent()) {
             executorServiceBean.execute(() -> {
                     deletables.stream()
-                        //.parallel()
+                        .parallel()
                         .forEach(deletableByGameId -> deletableByGameId.deleteByGameId(gameId));
                     log.info("Game with id {} is deleted.", gameId);
                     cacheSyncHandler.processDeletions();
