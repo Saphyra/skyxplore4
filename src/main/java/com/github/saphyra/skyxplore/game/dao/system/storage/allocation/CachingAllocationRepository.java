@@ -6,6 +6,7 @@ import com.github.saphyra.skyxplore.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Component
 @Primary
 @Slf4j
+@ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
 public class CachingAllocationRepository extends CacheRepository<String, AllocationEntity, String, AllocationRepository> implements AllocationRepository {
     private final RequestContextHolder requestContextHolder;
     private final UuidConverter uuidConverter;

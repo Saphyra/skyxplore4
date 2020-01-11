@@ -1,11 +1,12 @@
 package com.github.saphyra.skyxplore.game.common;
 
 import com.github.saphyra.skyxplore.common.OptionalHashMap;
+import com.github.saphyra.skyxplore.game.common.event.EntitiesSavedEvent;
 import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
-import com.github.saphyra.skyxplore.game.dao.common.cache.CacheSyncHandler;
 import com.github.saphyra.util.OptionalMap;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
@@ -24,13 +25,14 @@ import static java.util.Objects.isNull;
 @Slf4j
 public class DomainSaverService {
     private final ThreadLocal<Map<Class<?>, List<Object>>> tempStorage = new ThreadLocal<>();
-    private final OptionalMap<Class<?>, SaveAllDao> daoMap;
-    private final CacheSyncHandler cacheSyncHandler;
 
-    public DomainSaverService(List<SaveAllDao<?>> daos, CacheSyncHandler cacheSyncHandler) {
+    private final ApplicationEventPublisher applicationEventPublisher;
+    private final OptionalMap<Class<?>, SaveAllDao> daoMap;
+
+    public DomainSaverService(ApplicationEventPublisher applicationEventPublisher, List<SaveAllDao<?>> daos) {
+        this.applicationEventPublisher = applicationEventPublisher;
         daoMap = new OptionalHashMap<>(daos.stream()
             .collect(Collectors.toMap(SaveAllDao::getType, Function.identity())));
-        this.cacheSyncHandler = cacheSyncHandler;
         log.info("SaveAllDaos mapped. Found types: {}", daoMap.keySet());
     }
 
@@ -61,7 +63,7 @@ public class DomainSaverService {
             tempStorage.get()
                 .forEach(this::save);
             log.info("Save process successfully finished.");
-            cacheSyncHandler.syncChanges();
+            applicationEventPublisher.publishEvent(new EntitiesSavedEvent());
         } finally {
             log.info("Clearing cache...");
             clear();

@@ -1,8 +1,13 @@
 package com.github.saphyra.skyxplore.game.dao.common.cache;
 
 import com.github.saphyra.skyxplore.common.ExecutorServiceBean;
+import com.github.saphyra.skyxplore.game.dao.common.cache.trigger.FullSyncTrigger;
+import com.github.saphyra.skyxplore.game.dao.common.cache.trigger.ProcessDeletionsTrigger;
+import com.github.saphyra.skyxplore.game.dao.common.cache.trigger.SynchChangesTrigger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -13,11 +18,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @EnableScheduling
 @Slf4j
+@ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
 public class CacheSyncHandler {
     private final List<CacheRepository<?, ?, ?, ?>> repositories;
     private final ExecutorServiceBean executorServiceBean;
 
     @Scheduled(fixedRateString = "${com.github.saphyra.skyxplore.cacheRepository.fullSyncExecutionIntervalInMilliseconds}")
+    @EventListener(classes = FullSyncTrigger.class)
     public void fullSync() {
         executorServiceBean.execute(
             () -> {
@@ -30,6 +37,7 @@ public class CacheSyncHandler {
         );
     }
 
+    @EventListener(classes = SynchChangesTrigger.class)
     public void syncChanges() {
         executorServiceBean.execute(
             () -> repositories.stream()
@@ -38,6 +46,7 @@ public class CacheSyncHandler {
         );
     }
 
+    @EventListener(classes = ProcessDeletionsTrigger.class)
     public void processDeletions() {
         executorServiceBean.execute(() -> repositories
             .stream()
