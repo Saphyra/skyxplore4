@@ -23,4 +23,6 @@ public class ConstructionResourceRequirement {
 
     @NonNull
     private final Integer requiredAmount;
+
+    private final boolean isNew;
 }

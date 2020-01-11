@@ -30,6 +30,7 @@ public class ReservationService {
                 .storageType(storageType)
                 .reservationType(reservationType)
                 .externalReference(externalReference)
+                .isNew(true)
                 .build()
         );
     }

@@ -1,4 +1,4 @@
-TODO Increase DB access performance
+TODO refactor population_overview_controller.js - split
 TODO rename citizens
 TODO Add System defence details to system summary
 TODO API tests

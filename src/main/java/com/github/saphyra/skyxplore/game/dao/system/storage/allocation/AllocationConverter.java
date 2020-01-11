@@ -23,6 +23,7 @@ class AllocationConverter extends ConverterBase<AllocationEntity, Allocation> {
             .storageType(entity.getStorageType())
             .amount(entity.getAmount())
             .allocationType(entity.getAllocationType())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -38,6 +39,7 @@ class AllocationConverter extends ConverterBase<AllocationEntity, Allocation> {
             .storageType(domain.getStorageType())
             .amount(domain.getAmount())
             .allocationType(domain.getAllocationType())
+            .isNew(domain.isNew())
             .build();
     }
 }

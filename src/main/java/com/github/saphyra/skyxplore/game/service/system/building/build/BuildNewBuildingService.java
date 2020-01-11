@@ -43,7 +43,7 @@ public class BuildNewBuildingService {
     @Transactional
     public void buildNewBuilding(UUID gameId, UUID surfaceId, String dataId) {
         BuildingData buildingData = gameDataQueryService.findBuildingData(dataId);
-        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
+        Surface surface = surfaceQueryService.findBySurfaceIdAndPlayerId(surfaceId);
         validateBuildingLocation(buildingData, surface);
 
         ConstructionRequirements constructionRequirements = buildingData.getConstructionRequirements().get(1);

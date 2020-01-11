@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "allocation")
-class AllocationEntity {
+class AllocationEntity implements Persistable<String> {
     @Id
     private String allocationId;
     private String gameId;
@@ -30,4 +31,17 @@ class AllocationEntity {
 
     @Enumerated(EnumType.STRING)
     private AllocationType allocationType;
+
+    @Transient
+    private boolean isNew;
+
+    @Override
+    public String getId() {
+        return allocationId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
 }

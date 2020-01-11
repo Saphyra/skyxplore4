@@ -33,7 +33,7 @@ public class TerraformSurfaceService {
 
     @Transactional
     public void terraform(UUID gameId, UUID surfaceId, SurfaceType surfaceType) {
-        Surface surface = surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId);
+        Surface surface = surfaceQueryService.findBySurfaceIdAndPlayerId(surfaceId);
         TerraformingPossibility terraformingPossibility = getTerraformingPossibility(surface.getSurfaceType(), surfaceType);
         verifyTerraformAvailable(surface, surfaceType, terraformingPossibility.getConstructionRequirements().getResearchRequirements());
 

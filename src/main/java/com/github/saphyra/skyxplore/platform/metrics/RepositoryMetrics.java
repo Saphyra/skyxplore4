@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StopWatch;
@@ -14,15 +13,6 @@ import org.springframework.util.StopWatch;
 @Slf4j
 @ConditionalOnProperty(value = "metrics.repository.enabled", havingValue = "true")
 public class RepositoryMetrics {
-    @Pointcut("within(org.springframework.data.jpa.repository.support.SimpleJpaRepository)")
-    public void repository() {
-    }
-
-    @Pointcut("execution(* * (..))")
-    public void anyMethod(){
-
-    }
-
     @Around("execution(* com.github.saphyra.skyxplore.game.dao..*QueryService.*(..)) || execution(* com.github.saphyra.skyxplore.game.dao..*CommandService.*(..))")
     public Object logQueryTime(ProceedingJoinPoint joinPoint) throws Throwable {
         StopWatch stopWatch = new StopWatch(joinPoint.getSignature().toShortString());

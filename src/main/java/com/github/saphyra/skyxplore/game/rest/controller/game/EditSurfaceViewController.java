@@ -40,7 +40,7 @@ public class EditSurfaceViewController {
     @GetMapping(GET_SURFACE_DETAILS_MAPPING)
     SurfaceView getSurfaceDetails(@PathVariable("surfaceId") UUID surfaceId) {
         log.info("Querying surface with surfaceId {}", surfaceId);
-        return surfaceViewConverter.convertDomain(surfaceQueryService.findBySurfaceIdAndGameIdAndPlayerId(surfaceId));
+        return surfaceViewConverter.convertDomain(surfaceQueryService.findBySurfaceIdAndPlayerId(surfaceId));
     }
 
     @GetMapping(GET_TERRAFORMING_POSSIBILITIES)

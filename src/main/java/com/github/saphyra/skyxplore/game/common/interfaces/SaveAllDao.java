@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface SaveAllDao<T> {
     void saveAll(List<T> domains);
+
+    Class<T> getType();
 }

@@ -12,7 +12,7 @@ public class ResourceDifferenceCalculator {
     private final ResourceQueryService resourceQueryService;
 
     public Integer getDifference(Resource resource) {
-        int earlierAmount = resourceQueryService.findByStarIdAndDataIdAndRoundAndGameIdAndPlayerId(resource.getStarId(), resource.getDataId(), resource.getRound() - 1)
+        int earlierAmount = resourceQueryService.findByStarIdAndDataIdAndRoundAndPlayerId(resource.getStarId(), resource.getDataId(), resource.getRound() - 1)
             .map(Resource::getAmount)
             .orElse(0);
 

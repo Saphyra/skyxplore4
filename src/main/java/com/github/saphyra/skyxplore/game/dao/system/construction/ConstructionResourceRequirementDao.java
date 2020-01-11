@@ -3,7 +3,6 @@ package com.github.saphyra.skyxplore.game.dao.system.construction;
 import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-class ConstructionResourceRequirementDao extends AbstractDao<ConstructionResourceRequirementEntity, ConstructionResourceRequirement, String, ConstructionResourceRequirementRepository> implements DeletableByGameId {
+class ConstructionResourceRequirementDao extends AbstractDao<ConstructionResourceRequirementEntity, ConstructionResourceRequirement, String, ConstructionResourceRequirementRepository> {
     private final UuidConverter uuidConverter;
 
     public ConstructionResourceRequirementDao(Converter<ConstructionResourceRequirementEntity, ConstructionResourceRequirement> converter, ConstructionResourceRequirementRepository repository, UuidConverter uuidConverter) {
@@ -25,7 +24,6 @@ class ConstructionResourceRequirementDao extends AbstractDao<ConstructionResourc
         repository.deleteByConstructionId(uuidConverter.convertDomain(constructionId));
     }
 
-    @Override
     public void deleteByGameId(UUID gameId) {
         log.info("Deleting ConstructionResourceRequirements for gameId {}", gameId);
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));

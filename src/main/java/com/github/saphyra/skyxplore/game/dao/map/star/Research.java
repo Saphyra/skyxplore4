@@ -25,4 +25,6 @@ public class Research {
 
     @NonNull
     private final String dataId;
+
+    private final boolean isNew;
 }

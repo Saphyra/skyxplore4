@@ -50,6 +50,8 @@ public class Construction implements DisplayedQueueable {
     @NonNull
     private final OffsetDateTime addedAt;
 
+    private final boolean isNew;
+
     @Override
     public QueueType getQueueType() {
         switch (constructionType) {

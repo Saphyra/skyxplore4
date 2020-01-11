@@ -43,4 +43,6 @@ public class Allocation {
 
     @NonNull
     private final AllocationType allocationType;
+
+    private final boolean isNew;
 }

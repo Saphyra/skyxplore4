@@ -37,4 +37,6 @@ public class Reservation {
 
     @NonNull
     private final ReservationType reservationType;
+
+    private final boolean isNew;
 }

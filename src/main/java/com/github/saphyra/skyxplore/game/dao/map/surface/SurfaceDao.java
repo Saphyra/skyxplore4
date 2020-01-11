@@ -2,8 +2,6 @@ package com.github.saphyra.skyxplore.game.dao.map.surface;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
-import com.github.saphyra.skyxplore.game.common.interfaces.SaveAllDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +11,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> implements DeletableByGameId, SaveAllDao<Surface> {
+class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> {
     private final UuidConverter uuidConverter;
 
     SurfaceDao(SurfaceConverter converter, SurfaceRepository repository, UuidConverter uuidConverter) {
@@ -21,7 +19,6 @@ class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepo
         this.uuidConverter = uuidConverter;
     }
 
-    @Override
     public void deleteByGameId(UUID gameId) {
         log.info("Deleting surfaces for gameId {}", gameId);
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
@@ -39,10 +36,9 @@ class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepo
         ));
     }
 
-    Optional<Surface> findBySurfaceIdAndGameIdAndPlayerId(UUID surfaceId, UUID gameId, UUID playerId) {
-        return converter.convertEntity(repository.findBySurfaceIdAndGameIdAndPlayerId(
+    Optional<Surface> findBySurfaceIdAndPlayerId(UUID surfaceId, UUID playerId) {
+        return converter.convertEntity(repository.findBySurfaceIdAndPlayerId(
             uuidConverter.convertDomain(surfaceId),
-            uuidConverter.convertDomain(gameId),
             uuidConverter.convertDomain(playerId)
         ));
     }

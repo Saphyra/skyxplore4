@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Builder
 @Data
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "construction")
-class ConstructionEntity {
+class ConstructionEntity implements Persistable<String> {
     @Id
     private String constructionId;
     private String gameId;
@@ -36,4 +38,17 @@ class ConstructionEntity {
     private String surfaceId;
     private String additionalData;
     private Long addedAt;
+
+    @Transient
+    private boolean isNew;
+
+    @Override
+    public String getId() {
+        return constructionId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
 }

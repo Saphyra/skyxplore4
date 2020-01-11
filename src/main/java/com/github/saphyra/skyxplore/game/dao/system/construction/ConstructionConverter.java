@@ -19,25 +19,26 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
     private final UuidConverter uuidConverter;
 
     @Override
-    protected Construction processEntityConversion(ConstructionEntity constructionEntity) {
-        UUID constructionId = uuidConverter.convertEntity(constructionEntity.getConstructionId());
+    protected Construction processEntityConversion(ConstructionEntity entity) {
+        UUID constructionId = uuidConverter.convertEntity(entity.getConstructionId());
         return Construction.builder()
             .constructionId(constructionId)
-            .gameId(uuidConverter.convertEntity(constructionEntity.getGameId()))
-            .starId(uuidConverter.convertEntity(constructionEntity.getStarId()))
-            .playerId(uuidConverter.convertEntity(constructionEntity.getPlayerId()))
+            .gameId(uuidConverter.convertEntity(entity.getGameId()))
+            .starId(uuidConverter.convertEntity(entity.getStarId()))
+            .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
             .constructionRequirements(convertRequirements(
                 constructionResourceRequirementDao.getByConstructionId(constructionId),
-                constructionEntity.getRequiredWorkPoints()
+                entity.getRequiredWorkPoints()
             ))
-            .constructionType(constructionEntity.getConstructionType())
-            .constructionStatus(constructionEntity.getConstructionStatus())
-            .currentWorkPoints(constructionEntity.getCurrentWorkPoints())
-            .priority(constructionEntity.getPriority())
-            .externalId(uuidConverter.convertEntity(constructionEntity.getExternalId()))
-            .surfaceId(uuidConverter.convertEntity(constructionEntity.getSurfaceId()))
-            .additionalData(constructionEntity.getAdditionalData())
-            .addedAt(dateTimeUtil.convertEntity(constructionEntity.getAddedAt()))
+            .constructionType(entity.getConstructionType())
+            .constructionStatus(entity.getConstructionStatus())
+            .currentWorkPoints(entity.getCurrentWorkPoints())
+            .priority(entity.getPriority())
+            .externalId(uuidConverter.convertEntity(entity.getExternalId()))
+            .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
+            .additionalData(entity.getAdditionalData())
+            .addedAt(dateTimeUtil.convertEntity(entity.getAddedAt()))
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -68,6 +69,7 @@ public class ConstructionConverter extends ConverterBase<ConstructionEntity, Con
             .surfaceId(uuidConverter.convertDomain(domain.getSurfaceId()))
             .additionalData(domain.getAdditionalData())
             .addedAt(dateTimeUtil.convertDomain(domain.getAddedAt()))
+            .isNew(domain.isNew())
             .build();
     }
 }

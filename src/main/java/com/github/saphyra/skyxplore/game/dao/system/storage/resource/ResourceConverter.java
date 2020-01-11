@@ -21,6 +21,7 @@ class ResourceConverter extends ConverterBase<ResourceEntity, Resource> {
             .dataId(entity.getDataId())
             .amount(entity.getAmount())
             .round(entity.getRound())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -35,6 +36,7 @@ class ResourceConverter extends ConverterBase<ResourceEntity, Resource> {
             .dataId(domain.getDataId())
             .amount(domain.getAmount())
             .round(domain.getRound())
+            .isNew(domain.isNew())
             .build();
     }
 }

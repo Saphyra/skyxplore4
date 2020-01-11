@@ -15,11 +15,10 @@ public class SurfaceQueryService {
     private final RequestContextHolder requestContextHolder;
     private final SurfaceDao surfaceDao;
 
-    public Surface findBySurfaceIdAndGameIdAndPlayerId(UUID surfaceId) {
+    public Surface findBySurfaceIdAndPlayerId(UUID surfaceId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
-        return surfaceDao.findBySurfaceIdAndGameIdAndPlayerId(surfaceId, gameId, playerId)
+        return surfaceDao.findBySurfaceIdAndPlayerId(surfaceId, playerId)
             .orElseThrow(() -> ExceptionFactory.surfaceNotFound(surfaceId));
     }
 

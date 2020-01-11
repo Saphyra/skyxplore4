@@ -11,7 +11,7 @@ public class ResourceAverageCalculator {
     private final ResourceQueryService resourceQueryService;
 
     public int getAverage(Resource resource) {
-        double average = resourceQueryService.getByStarIdAndDataIdAndGameIdAndPlayerId(resource.getStarId(), resource.getDataId()).stream()
+        double average = resourceQueryService.getByStarIdAndDataIdAndPlayerId(resource.getStarId(), resource.getDataId()).stream()
                 .sorted((o1, o2) -> -o1.getRound().compareTo(o2.getRound()))
                 .limit(10)
                 .mapToInt(Resource::getAmount)

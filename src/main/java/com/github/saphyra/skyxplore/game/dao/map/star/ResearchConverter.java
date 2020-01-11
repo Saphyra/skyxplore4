@@ -19,6 +19,7 @@ public class ResearchConverter extends ConverterBase<ResearchEntity, Research> {
             .gameId(uuidConverter.convertEntity(entity.getGameId()))
             .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
             .dataId(entity.getDataId())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -30,6 +31,7 @@ public class ResearchConverter extends ConverterBase<ResearchEntity, Research> {
             .gameId(uuidConverter.convertDomain(domain.getGameId()))
             .playerId(uuidConverter.convertDomain(domain.getPlayerId()))
             .dataId(domain.getDataId())
+            .isNew(domain.isNew())
             .build();
     }
 }

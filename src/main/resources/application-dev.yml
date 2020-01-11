@@ -3,6 +3,8 @@ metrics:
     enabled: true
   repository:
     enabled: false
+  cacheRepository:
+    enabled: false
 
 server:
   tomcat:

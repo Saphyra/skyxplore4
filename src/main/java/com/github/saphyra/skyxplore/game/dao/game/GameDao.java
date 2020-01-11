@@ -2,7 +2,6 @@ package com.github.saphyra.skyxplore.game.dao.game;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
-import com.github.saphyra.skyxplore.game.common.interfaces.DeletableByGameId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository> implements DeletableByGameId {
+class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository>  {
     private final UuidConverter uuidConverter;
 
     public GameDao(GameConverter converter, GameRepository repository, UuidConverter uuidConverter) {
@@ -31,7 +30,6 @@ class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository> impl
         ));
     }
 
-    @Override
     public void deleteByGameId(UUID gameId) {
         log.info("Deleting games with gameId {}", gameId);
         repository.deleteById(uuidConverter.convertDomain(gameId));
