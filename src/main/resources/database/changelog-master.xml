@@ -4,6 +4,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <changeSet id="initial-tag" author="Bernat Bonda">
+        <tagDatabase tag="initial"/>
+    </changeSet>
+
     <include file="database/change_sets/access_token.xml"/>
     <include file="database/change_sets/allocation.xml"/>
     <include file="database/change_sets/building.xml"/>
