@@ -101,6 +101,7 @@ public class DefaultBuildingCreationService {
 
     private Surface getRandomEmptySurface(List<Surface> surfaces, List<Building> buildings) {
         return surfaces.stream()
+            .filter(surface -> surface.getSurfaceType().equals(SurfaceType.DESERT))
             .filter(surface -> isEmpty(surface.getSurfaceId(), buildings))
             .findAny()
             .orElseThrow(() -> new IllegalStateException("There are no empty surfaces left."));

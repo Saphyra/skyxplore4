@@ -6,7 +6,7 @@
         this.createStorageDetails = createStorageDetails;
     }
 
-    function createStorageDetails(storages){
+    function createStorageDetails(starId, storages){
         storages.sort(function(a, b){
             return storageTypeLocalization.get(a.storageType).localeCompare(storageTypeLocalization.get(b.storageType));
         });
@@ -22,7 +22,7 @@
             new Stream(storages)
                 .map(createStorageItem)
                 .forEach(function(storageItem){container.appendChild(storageItem)});
-
+        container.appendChild(createOpenStorageSettingsButton(starId));
         return container;
 
         function createStorageItem(storage){
@@ -118,6 +118,16 @@
                 summaryContainer.appendChild(extendButton);
                 return summaryContainer;
             }
+        }
+
+        function createOpenStorageSettingsButton(starId){
+            const button = document.createElement("div");
+                button.classList.add("button");
+                button.innerHTML = Localization.getAdditionalContent("open-storage-settings-button");
+                button.onclick = function(){
+                    eventProcessor.processEvent(new Event(events.OPEN_STORAGE_SETTINGS, starId));
+                }
+            return button;
         }
     }
 })();

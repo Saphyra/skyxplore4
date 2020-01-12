@@ -6,7 +6,7 @@
     window.populationOverviewCreateFunction = new function(){
         this.createFunction = function(starId, controller, containerId, contentId){
             return function(){
-                const container = createContainer(starId, containerId);
+                const container = createContainer(containerId);
                     container.appendChild(createHeader(controller));
                     container.appendChild(createBody(starId, contentId));
                     container.appendChild(populationOverviewCreateFiltersService.createFilters(starId));
@@ -15,11 +15,10 @@
                 this.refresh();
             }
 
-            function createContainer(starId, containerId){
+            function createContainer(containerId){
                 const container = document.createElement("div");
                     container.id = containerId;
                     container.classList.add("page");
-                    container.classList.add("population-overview-container");
                 return container;
             }
 

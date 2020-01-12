@@ -1,0 +1,23 @@
+:root{
+    --storage-settings-left-bar-width: 20vw;
+    --storage-settings-left-bar-min-width: 15rem;
+}
+
+.storage-settings-create-setting-container{
+    position: absolute;
+    top: var(--page-header-height);
+    left: 0;
+    bottom: 0;
+    width: var(--storage-settings-left-bar-width);
+    min-width: var(--storage-settings-left-bar-min-width);
+    border-right: 3px ridge white;
+}
+
+.storage-settings-settings--list-container{
+    position: absolute;
+    top: var(--page-header-height);
+    right: 0;
+    bottom: 0;
+    width: calc(100% - var(--storage-settings-left-bar-width));
+    max-width: calc(100% - var(--storage-settings-left-bar-min-width));
+}
