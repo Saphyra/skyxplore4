@@ -98,6 +98,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
     private List<ENTITY> filterModified(ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> map) {
         return map.values()
             .stream()
+            .filter(ModifiableEntity::isModified)
             .map(ModifiableEntity::getEntity)
             .collect(Collectors.toList());
     }
