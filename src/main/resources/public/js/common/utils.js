@@ -83,3 +83,23 @@ function generateRandomId() {
     };
     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 }
+
+function selectElementText(el, win) {
+     win = win || window;
+     const doc = win.document;
+     if (win.getSelection && doc.createRange) {
+         const sel = win.getSelection();
+         const range = doc.createRange();
+         range.selectNodeContents(el);
+         sel.removeAllRanges();
+         sel.addRange(range);
+     } else if (doc.body.createTextRange) {
+         const range = doc.body.createTextRange();
+         range.moveToElementText(el);
+         range.select();
+     }
+ }
+
+function clearSelection() {
+    document.execCommand('selectAll', false, null);
+}

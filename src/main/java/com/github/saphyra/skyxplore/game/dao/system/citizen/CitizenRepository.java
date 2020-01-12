@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CitizenRepository extends CrudRepository<CitizenEntity, String> {
@@ -20,6 +21,8 @@ public interface CitizenRepository extends CrudRepository<CitizenEntity, String>
     @Query("DELETE FROM CitizenEntity e WHERE e.gameId = :gameId")
     @Transactional
     void deleteByGameId(@Param("gameId") String gameId);
+
+    Optional<CitizenEntity> findByCitizenIdAndOwnerId(String citizenId, String ownerId);
 
     List<CitizenEntity> getByGameId(String gameId);
 

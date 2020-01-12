@@ -66,40 +66,48 @@
             text-align: center;
             border-bottom: 1px solid white;
             text-align: center;
+            margin: 0.25rem;
+            border: 3px inset transparent;
+            cursor: pointer;
         }
 
-            .population-overview-item-stat-container{
-                text-align: center;
+            .population-overview-item-header[contenteditable=true]{
+                border-color: white;
+                cursor: text;
             }
 
-                .population-overview-item-stat{
-                    margin: 0.25rem;
-                    padding: 0.125rem;
-                    display: inline-block;
-                    width: 10rem;
-                    position: relative;
-                    border: 1px solid white;
-                    border-radius: 3px;
-                    height: 1rem;
-                    text-align: center;
-                }
+        .population-overview-item-stat-container{
+            text-align: center;
+        }
 
-            .population-overview-item-skill-container{
-                text-align: center;
+            .population-overview-item-stat{
                 margin: 0.25rem;
-                margin-top: 0;
-                border: 2px solid white;
-                border-radius: 5px;
+                padding: 0.125rem;
+                display: inline-block;
+                width: 10rem;
+                position: relative;
+                border: 1px solid white;
+                border-radius: 3px;
+                height: 1rem;
+                text-align: center;
             }
 
-                .population-overview-item-skill{
-                    margin: 0.125rem;
-                    padding: 0.25rem 0;
-                    display: inline-block;
-                    width: 13rem;
-                    position: relative;
-                    border: 1px solid white;
-                    border-radius: 3px;
-                    height: 1rem;
-                    text-align: center;
-                }
+        .population-overview-item-skill-container{
+            text-align: center;
+            margin: 0.25rem;
+            margin-top: 0;
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+
+            .population-overview-item-skill{
+                margin: 0.125rem;
+                padding: 0.25rem 0;
+                display: inline-block;
+                width: 13rem;
+                position: relative;
+                border: 1px solid white;
+                border-radius: 3px;
+                height: 1rem;
+                text-align: center;
+            }

@@ -15,13 +15,14 @@ import java.util.UUID;
 @UtilityClass
 public class ExceptionFactory {
     private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with buildingId %s and playerId %s";
+    private static final String CITIZEN_NOT_FOUND_PREFIX = "Citizen not found with citizenId %s and playerId %s";
     private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
     private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with constructionId %s, gameId %s and playerId %s";
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s and userId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
+    private static final String INVALID_CITIZEN_NAME_PREFIX = "Invalid citizen name: %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
-    private static final String INVALID_STAR_ACCESS_PREFIX = "Player %s has no access to access to star %s";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
     private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
     private static final String RESEARCH_NOT_PRESENT_PREFIX = "Research not present.";
@@ -36,6 +37,10 @@ public class ExceptionFactory {
 
     public static RestException buildingNotFound(UUID buildingId, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId, playerId));
+    }
+
+    public static RestException citizenNotFound(UUID citizenId, UUID playerId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.CITIZEN_NOT_FOUND), String.format(CITIZEN_NOT_FOUND_PREFIX, citizenId, playerId));
     }
 
     public static RestException constructionInProgress(UUID surfaceId) {
@@ -56,6 +61,10 @@ public class ExceptionFactory {
 
     public static RestException invalidBuildLocation(String dataId, UUID surfaceId) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_BUILD_LOCATION), String.format(INVALID_BUILD_LOCATION_PREFIX, dataId, surfaceId));
+    }
+
+    public static RestException invalidCitizenName(String newName) {
+        return new BadRequestException(createErrorMessage(ErrorCode.INVALID_CITIZEN_NAME), String.format(INVALID_CITIZEN_NAME_PREFIX, newName));
     }
 
     public static RestException invalidLocale(String locale) {

@@ -22,10 +22,59 @@
                  return item;
 
                  function createHeader(citizen){
+                    let originalName = citizen.name;
+
                      const header = document.createElement("h3");
                          header.classList.add("population-overview-item-header");
-                         header.innerHTML = citizen.name;
+                         header.innerHTML = originalName;
+
+                         header.onclick = function(){
+                            header.contentEditable = true;
+                            header.focus();
+                         }
+                         $(header).on("focusin", function(){selectElementText(header);});
+                         $(header).on("focusout", function(){
+                            const newName = header.innerHTML;
+                            if(originalName != newName){
+                                const validationResult = validateCitizenName(newName);
+                                if(validationResult.valid){
+                                    renameCitizen(citizen.citizenId, newName);
+                                    originalName = newName;
+                                    citizen.name = newName;
+                                }else{
+                                    header.innerHTML = originalName;
+                                    notificationService.showError(Localization.getAdditionalContent(validationResult.errorCode));
+                                }
+                            }
+                            header.contentEditable = false;
+                            clearSelection();
+                            header.style.borderColor = null;
+                         });
+                         header.onkeyup = function(){
+                            if(validateCitizenName(header.innerHTML).valid){
+                                header.style.borderColor = "green";
+                            }else{
+                                header.style.borderColor = "red";
+                            }
+                         }
                      return header;
+
+                     function validateCitizenName(characterName){
+                        let valid = true;
+                        let errorCode = null;
+                        if(characterName.length < 3){
+                            valid = false;
+                            errorCode = "citizen-name-too-short";
+                        }else if(characterName.length > 30){
+                            valid = false;
+                            errorCode = "citizen-name-too-long";
+                        }
+
+                        return {
+                            valid: valid,
+                            errorCode: errorCode
+                        };
+                     }
                  }
 
                  function createStats(citizen){
@@ -90,5 +139,13 @@
                  }
              }
          }
+    }
+
+    function renameCitizen(citizenId, newName){
+        const request = new Request(HttpMethod.POST, Mapping.concat(Mapping.RENAME_CITIZEN, citizenId), {value: newName});
+            request.processValidResponse = function(){
+                notificationService.showSuccess(Localization.getAdditionalContent("citizen-renamed"));
+            }
+        dao.sendRequestAsync(request);
     }
 })();

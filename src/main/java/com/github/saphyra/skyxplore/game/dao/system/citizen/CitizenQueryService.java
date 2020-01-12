@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.citizen;
 
+import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,13 @@ public class CitizenQueryService {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return citizenDao.countByLocationAndAndOwnerId(locationType, locationId, playerId);
+    }
+
+    public Citizen findByCitizenIdAndOwnerId(UUID citizenId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return citizenDao.findByCitizenIdAndOwnerId(citizenId, playerId)
+            .orElseThrow(() -> ExceptionFactory.citizenNotFound(citizenId, playerId));
     }
 
     public List<Citizen> getByLocationIdAndOwnerId(UUID locationId) {

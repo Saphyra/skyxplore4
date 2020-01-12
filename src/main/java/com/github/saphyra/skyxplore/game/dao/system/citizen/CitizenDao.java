@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -42,5 +43,12 @@ class CitizenDao extends AbstractDao<CitizenEntity, Citizen, String, CitizenRepo
     @Override
     public void saveAll(List<Citizen> citizens) {
         repository.saveAll(converter.convertDomain(citizens));
+    }
+
+    public Optional<Citizen> findByCitizenIdAndOwnerId(UUID citizenId, UUID ownerId) {
+        return converter.convertEntity(repository.findByCitizenIdAndOwnerId(
+            uuidConverter.convertDomain(citizenId),
+            uuidConverter.convertDomain(ownerId)
+        ));
     }
 }

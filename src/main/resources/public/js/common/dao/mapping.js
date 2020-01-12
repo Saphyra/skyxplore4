@@ -17,6 +17,7 @@ window.Mapping = {
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
     REGISTER: "/api/user",
+    RENAME_CITIZEN: "/api/game/star/citizen/*",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
     UPDATE_PRIORITY: "/api/game/star/{starId}/queue/{queueItemId}",
     UPGRADE_BUILDING: "/api/game/building/*/upgrade",

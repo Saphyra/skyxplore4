@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -59,6 +60,16 @@ public class CachingCitizenRepository extends CacheRepository<String, CitizenEnt
     @Override
     public void deleteByGameId(String gameId) {
         deleteByKey(gameId);
+    }
+
+    @Override
+    public Optional<CitizenEntity> findByCitizenIdAndOwnerId(String citizenId, String ownerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(citizenEntity -> citizenEntity.getCitizenId().equals(citizenId))
+            .filter(citizenEntity -> citizenEntity.getOwnerId().equals(ownerId))
+            .findAny();
     }
 
     @Override
