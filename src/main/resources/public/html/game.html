@@ -19,7 +19,7 @@
         <DIV id="pages"></DIV>
 
         <footer>
-            <button id="next-round"></button>
+            <button id="next-round" onclick="eventProcessor.processEvent(new Event(events.NEW_ROUND))"></button>
             <button id="exit" class="right-button" onclick="window.location.href = Mapping.MAIN_MENU_PAGE"></button>
         </footer>
     </DIV>

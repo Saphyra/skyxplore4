@@ -16,6 +16,7 @@ window.Mapping = {
     GET_TERRAFORMING_POSSIBILITIES: "/api/game/surface/{surfaceId}/terraform",
     LOGIN: "/api/login",
     LOGOUT: "/api/logout",
+    NEW_ROUND: "/api/game",
     REGISTER: "/api/user",
     RENAME_CITIZEN: "/api/game/star/citizen/*",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
