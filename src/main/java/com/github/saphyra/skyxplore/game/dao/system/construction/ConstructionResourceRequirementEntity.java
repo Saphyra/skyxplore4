@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.game.dao.system.construction;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 @NoArgsConstructor
 @Entity
 @Table(name = "construction_resource_requirement")
-class ConstructionResourceRequirementEntity implements Persistable<String> {
+class ConstructionResourceRequirementEntity implements SettablePersistable<String> {
     @Id
     private String constructionResourceRequirementId;
     private String gameId;

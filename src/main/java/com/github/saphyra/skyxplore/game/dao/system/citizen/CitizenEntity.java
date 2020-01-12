@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.game.dao.system.citizen;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 @NoArgsConstructor
 @Entity
 @Table(name = "citizen")
-class CitizenEntity implements Persistable<String> {
+class CitizenEntity implements SettablePersistable<String> {
     @Id
     private String citizenId;
     private String citizenName;

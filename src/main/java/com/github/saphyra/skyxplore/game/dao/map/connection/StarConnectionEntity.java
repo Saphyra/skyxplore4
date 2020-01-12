@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.game.dao.map.connection;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 @NoArgsConstructor
 @Entity
 @Table(name = "star_connection")
-class StarConnectionEntity implements Persistable<String> {
+class StarConnectionEntity implements SettablePersistable<String> {
     @Id
     private String connectionId;
     private String gameId;

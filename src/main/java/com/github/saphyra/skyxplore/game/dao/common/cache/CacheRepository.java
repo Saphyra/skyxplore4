@@ -17,7 +17,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Slf4j
-public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
+public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 
     private final ConcurrentHashMap<KEY, ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>>> cacheMap = new ConcurrentHashMap<>();
@@ -87,6 +87,7 @@ public abstract class CacheRepository<KEY, ENTITY extends Persistable<ID>, ID, R
                 synchronized (map) {
                     List<ENTITY> entities = filterModified(map.getEntity());
                     repository.saveAll(entities);
+                    entities.forEach(entity -> entity.setNew(false));
                     return entities.size();
                 }
             })

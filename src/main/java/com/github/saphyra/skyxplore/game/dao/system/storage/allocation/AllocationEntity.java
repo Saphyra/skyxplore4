@@ -1,13 +1,18 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Builder
 @Data
@@ -15,7 +20,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "allocation")
-class AllocationEntity implements Persistable<String> {
+class AllocationEntity implements SettablePersistable<String> {
     @Id
     private String allocationId;
     private String gameId;

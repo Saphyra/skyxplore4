@@ -8,10 +8,10 @@
 
              new Stream(citizens)
                  .sorted(window.populationOverviewController.orderRules[starId].getComparator())
-                 .map(createCitizen)
+                 .map(function(citizen){return createCitizen(citizen, starId, citizens, contentId)})
                  .forEach(function(item){container.appendChild(item)});
 
-             function createCitizen(citizen){
+             function createCitizen(citizen, starId, citizens, contentId){
                  const item = document.createElement("div");
                      item.classList.add("population-overview-item");
 
@@ -41,6 +41,7 @@
                                     renameCitizen(citizen.citizenId, newName);
                                     originalName = newName;
                                     citizen.name = newName;
+                                    populationOverviewCitizenDisplayService.displayCitizens(starId, citizens, contentId);
                                 }else{
                                     header.innerHTML = originalName;
                                     notificationService.showError(Localization.getAdditionalContent(validationResult.errorCode));

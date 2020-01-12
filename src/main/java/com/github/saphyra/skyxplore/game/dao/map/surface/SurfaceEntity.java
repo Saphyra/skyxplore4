@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.map.surface;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import javax.persistence.Transient;
 @Data
 @Entity
 @Table(name = "surface")
-class SurfaceEntity  implements Persistable<String> {
+class SurfaceEntity  implements SettablePersistable<String> {
     @Id
     private String surfaceId;
 

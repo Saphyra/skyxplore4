@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.map.star;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "star")
 @NoArgsConstructor
-class StarEntity implements Persistable<String> {
+class StarEntity implements SettablePersistable<String> {
     @Id
     private String starId;
     private String gameId;

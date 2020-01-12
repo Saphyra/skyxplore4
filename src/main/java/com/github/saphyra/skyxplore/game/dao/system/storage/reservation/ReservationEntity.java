@@ -1,11 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 @NoArgsConstructor
 @Entity
 @Table(name = "reservation")
-class ReservationEntity implements Persistable<String> {
+class ReservationEntity implements SettablePersistable<String> {
     @Id
     private String reservationId;
     private String gameId;

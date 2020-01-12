@@ -1,12 +1,18 @@
 package com.github.saphyra.skyxplore.game.dao.system.citizen;
 
+import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Persistable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Builder
 @Data
@@ -14,7 +20,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "skill")
-class SkillEntity implements Persistable<String> {
+class SkillEntity implements SettablePersistable<String> {
     @Id
     private String skillId;
     @Column(name = "citizen_id")
