@@ -37,4 +37,11 @@ public class StorageSettingDao extends AbstractDao<StorageSettingEntity, Storage
             uuidConverter.convertDomain(playerId)
         ));
     }
+
+    public Optional<StorageSetting> getByStorageSettingIdAndPlayerId(UUID storageSettingId, UUID playerId) {
+        return converter.convertEntity(repository.getByStorageSettingIdAndPlayerId(
+            uuidConverter.convertDomain(storageSettingId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
 }

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -42,6 +43,14 @@ class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String,
     List<Reservation> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId, UUID playerId) {
         return converter.convertEntity(repository.getByStarIdAndDataIdAndPlayerId(
             uuidConverter.convertDomain(starId),
+            dataId,
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
+    public Optional<Reservation> findByExternalReferenceAndDataIdAndPlayerId(UUID externalReference, String dataId, UUID playerId) {
+        return converter.convertEntity(repository.findByExternalReferenceAndDataIdAndPlayerId(
+            uuidConverter.convertDomain(externalReference),
             dataId,
             uuidConverter.convertDomain(playerId)
         ));

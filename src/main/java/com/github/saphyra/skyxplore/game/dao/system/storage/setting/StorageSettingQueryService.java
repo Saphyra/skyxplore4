@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.setting;
 
+import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +28,12 @@ public class StorageSettingQueryService {
         RequestContext requestContext = requestContextHolder.get();
         UUID playerId = requestContext.getPlayerId();
         return storageSettingDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
+    }
+
+    public StorageSetting getByStorageSettingIdAndPlayerIdValidated(UUID storageSettingId) {
+        RequestContext requestContext = requestContextHolder.get();
+        UUID playerId = requestContext.getPlayerId();
+        return storageSettingDao.getByStorageSettingIdAndPlayerId(storageSettingId, playerId)
+            .orElseThrow(() -> ExceptionFactory.storageSettingNotFound(storageSettingId, playerId));
     }
 }

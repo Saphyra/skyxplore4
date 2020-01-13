@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -85,6 +86,17 @@ public class CachingReservationRepository extends CacheRepository<String, Reserv
             .filter(reservationEntity -> reservationEntity.getDataId().equals(dataId))
             .filter(reservationEntity -> reservationEntity.getPlayerId().equals(playerId))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<ReservationEntity> findByExternalReferenceAndDataIdAndPlayerId(String externalReference, String dataId, String playerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(reservationEntity -> reservationEntity.getExternalReference().equals(externalReference))
+            .filter(reservationEntity -> reservationEntity.getDataId().equals(dataId))
+            .filter(reservationEntity -> reservationEntity.getPlayerId().equals(playerId))
+            .findAny();
     }
 
     private String getGameId() {

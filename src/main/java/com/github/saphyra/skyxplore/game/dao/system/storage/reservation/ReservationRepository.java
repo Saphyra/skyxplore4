@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 interface ReservationRepository extends CrudRepository<ReservationEntity, String> {
@@ -27,4 +28,6 @@ interface ReservationRepository extends CrudRepository<ReservationEntity, String
     List<ReservationEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId);
 
     List<ReservationEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
+
+    Optional<ReservationEntity> findByExternalReferenceAndDataIdAndPlayerId(String externalReference, String dataId, String playerId);
 }

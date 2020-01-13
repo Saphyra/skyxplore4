@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
+import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
@@ -27,5 +28,12 @@ public class ReservationQueryService {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return reservationDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
+    }
+
+    public Reservation findByExternalReferenceAndDataIdAndPlayerIdValidated(UUID externalReference, String dataId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return reservationDao.findByExternalReferenceAndDataIdAndPlayerId(externalReference, dataId, playerId)
+            .orElseThrow(() -> ExceptionFactory.reservationNotFoundByExternalReferenceAndDataId(externalReference, dataId, playerId));
     }
 }

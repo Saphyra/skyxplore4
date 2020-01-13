@@ -76,6 +76,16 @@ public class CachingStorageSettingRepository extends CacheRepository<String, Sto
             .findAny();
     }
 
+    @Override
+    public Optional<StorageSettingEntity> getByStorageSettingIdAndPlayerId(String storageSettingId, String playerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(entity -> entity.getStorageSettingId().equals(storageSettingId))
+            .filter(entity -> entity.getPlayerId().endsWith(playerId))
+            .findAny();
+    }
+
     private String getGameId() {
         return uuidConverter.convertDomain(requestContextHolder.get().getGameId());
     }

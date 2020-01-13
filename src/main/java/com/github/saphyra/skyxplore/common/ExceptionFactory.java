@@ -26,9 +26,11 @@ public class ExceptionFactory {
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
     private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
     private static final String RESEARCH_NOT_PRESENT_PREFIX = "Research not present.";
+    private static final String RESERVATION_NOT_FOUND_BY_EXTERNAL_REFERENCE_AND_DATA_ID = "Reservation not found by externalReference %s and dataId %s for player %s";
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String STORAGE_FULL_PREFIX = "Storage for type %s is full at system %s";
     private static final String STORAGE_SETTING_ALREADY_EXISTS_PREFIX = "StorageSetting already exists for starId %s and dataId %s";
+    private static final String STORAGE_SETTING_NOT_FOUND = "StorageSetting not found by storageSettingId %s and playerId %s";
     private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
     private static final String TERRAFORMING_NOT_POSSIBLE_PREFIX = "Surface %s cannot be terraformed to %s";
     private static final String UPGRADE_ALREADY_IN_PROGRESS_PREFIX = "Upgrade already in progress for building %s";
@@ -84,6 +86,10 @@ public class ExceptionFactory {
         return new PreconditionFailedException(createErrorMessage(ErrorCode.RESEARCH_NOT_PRESENT), RESEARCH_NOT_PRESENT_PREFIX);
     }
 
+    public static RestException reservationNotFoundByExternalReferenceAndDataId(UUID externalReference, String dataId, UUID playerId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.RESERVATION_NOT_FOUND), String.format(RESERVATION_NOT_FOUND_BY_EXTERNAL_REFERENCE_AND_DATA_ID, externalReference, dataId, playerId));
+    }
+
     public static RestException starNotFound(UUID starId) {
         return new NotFoundException(createErrorMessage(ErrorCode.STAR_NOT_FOUND), String.format(STAR_NOT_FOUND_PREFIX, starId.toString()));
     }
@@ -94,6 +100,10 @@ public class ExceptionFactory {
 
     public static RestException storageSettingAlreadyExists(UUID starId, String dataId) {
         return new ConflictException(createErrorMessage(ErrorCode.STORAGE_SETTING_ALREADY_EXISTS), String.format(STORAGE_SETTING_ALREADY_EXISTS_PREFIX, starId, dataId));
+    }
+
+    public static RestException storageSettingNotFound(UUID storageSettingId, UUID playerId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.STORAGE_SETTING_NOT_FOUND), String.format(STORAGE_SETTING_NOT_FOUND, storageSettingId, playerId));
     }
 
     public static NotFoundException surfaceNotFound(UUID surfaceId) {

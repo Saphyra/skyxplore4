@@ -25,4 +25,6 @@ public interface StorageSettingRepository extends CrudRepository<StorageSettingE
     List<StorageSettingEntity> getByStarIdAndPlayerId(String starId, String playerId);
 
     Optional<StorageSettingEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
+
+    Optional<StorageSettingEntity> getByStorageSettingIdAndPlayerId(String storageSettingId, String playerId);
 }
