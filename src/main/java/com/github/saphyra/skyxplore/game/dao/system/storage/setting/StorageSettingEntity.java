@@ -21,6 +21,7 @@ public class StorageSettingEntity implements SettablePersistable<String> {
     @Id
     private String storageSettingId;
     private String gameId;
+    private String starId;
     private String playerId;
     private String dataId;
     private Integer targetAmount;

@@ -4,6 +4,7 @@ import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -17,5 +18,14 @@ public class StorageSettingDao extends AbstractDao<StorageSettingEntity, Storage
 
     public void deleteByGameId(UUID gameId) {
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
+    }
+
+    public List<StorageSetting> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
+        return converter.convertEntity(
+            repository.getByStarIdAndPlayerId(
+                uuidConverter.convertDomain(starId),
+                uuidConverter.convertDomain(playerId)
+            )
+        );
     }
 }

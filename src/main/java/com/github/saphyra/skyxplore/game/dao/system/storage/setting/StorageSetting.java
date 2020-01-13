@@ -16,6 +16,9 @@ public class StorageSetting {
     private final UUID gameId;
 
     @NonNull
+    private final UUID starId;
+
+    @NonNull
     private final UUID playerId;
 
     @NonNull

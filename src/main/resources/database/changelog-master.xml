@@ -23,6 +23,7 @@
     <include file="database/change_sets/star.xml"/>
     <include file="database/change_sets/star_connection.xml"/>
     <include file="database/change_sets/storage.xml"/>
+    <include file="database/change_sets/storage_setting.xml"/>
     <include file="database/change_sets/surface.xml"/>
     <include file="database/change_sets/user.xml"/>
 </databaseChangeLog>

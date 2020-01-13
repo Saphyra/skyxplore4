@@ -1,5 +1,7 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.setting;
 
+import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore.game.dao.common.cache.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -9,14 +11,20 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
 public class CachingStorageSettingRepository extends CacheRepository<String, StorageSettingEntity, String, StorageSettingRepository> implements StorageSettingRepository {
-    protected CachingStorageSettingRepository(StorageSettingRepository repository, CacheContext cacheContext) {
+    private final RequestContextHolder requestContextHolder;
+    private final UuidConverter uuidConverter;
+
+    protected CachingStorageSettingRepository(StorageSettingRepository repository, CacheContext cacheContext, RequestContextHolder requestContextHolder, UuidConverter uuidConverter) {
         super(repository, StorageSettingEntity::getGameId, cacheContext);
+        this.requestContextHolder = requestContextHolder;
+        this.uuidConverter = uuidConverter;
     }
 
     @Override
@@ -44,5 +52,19 @@ public class CachingStorageSettingRepository extends CacheRepository<String, Sto
     @Override
     public List<StorageSettingEntity> getByGameId(String gameId) {
         return new ArrayList<>(getMapByKey(gameId).values());
+    }
+
+    @Override
+    public List<StorageSettingEntity> getByStarIdAndPlayerId(String starId, String playerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(entity -> entity.getStarId().equals(starId))
+            .filter(entity -> entity.getPlayerId().endsWith(playerId))
+            .collect(Collectors.toList());
+    }
+
+    private String getGameId() {
+        return uuidConverter.convertDomain(requestContextHolder.get().getGameId());
     }
 }

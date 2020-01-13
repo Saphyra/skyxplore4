@@ -14,6 +14,7 @@
         <createTable tableName="storage_setting">
             <column name="storage_setting_id" type="varchar(37)"/>
             <column name="game_id" type="varchar(37)"/>
+            <column name="star_id" type="varchar(37)"/>
             <column name="player_id" type="varchar(37)"/>
             <column name="data_id" type="varchar(255)"/>
             <column name="target_amount" type="integer"/>
