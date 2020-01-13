@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.service.system.storage.setting.creation;
+package com.github.saphyra.skyxplore.game.service.system.storage.setting.create;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.context.RequestContext;

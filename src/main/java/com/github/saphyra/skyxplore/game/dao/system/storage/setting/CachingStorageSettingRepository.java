@@ -77,7 +77,7 @@ public class CachingStorageSettingRepository extends CacheRepository<String, Sto
     }
 
     @Override
-    public Optional<StorageSettingEntity> getByStorageSettingIdAndPlayerId(String storageSettingId, String playerId) {
+    public Optional<StorageSettingEntity> findByStorageSettingIdAndPlayerId(String storageSettingId, String playerId) {
         return getMapByKey(getGameId())
             .values()
             .stream()

@@ -31,7 +31,7 @@ public class StorageSettingUpdateService {
     private final StorageSettingQueryService storageSettingQueryService;
 
     public void create(UUID storageSettingId, UpdateStorageSettingsRequest request) {
-        StorageSetting storageSetting = storageSettingQueryService.getByStorageSettingIdAndPlayerIdValidated(storageSettingId);
+        StorageSetting storageSetting = storageSettingQueryService.findByStorageSettingIdAndPlayerIdValidated(storageSettingId);
         Reservation reservation = reservationQueryService.findByExternalReferenceAndDataIdAndPlayerIdValidated(storageSettingId, storageSetting.getDataId());
 
         StorageBuilding storageBuilding = storageBuildingService.getOptional(storageSetting.getDataId())

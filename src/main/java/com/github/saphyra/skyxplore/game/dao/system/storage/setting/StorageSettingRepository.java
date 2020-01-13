@@ -20,11 +20,11 @@ public interface StorageSettingRepository extends CrudRepository<StorageSettingE
     @Transactional
     void deleteByStorageSettingIdIn(List<String> ids);
 
+    Optional<StorageSettingEntity> findByStorageSettingIdAndPlayerId(String storageSettingId, String playerId);
+
     List<StorageSettingEntity> getByGameId(String gameId);
 
     List<StorageSettingEntity> getByStarIdAndPlayerId(String starId, String playerId);
 
     Optional<StorageSettingEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
-
-    Optional<StorageSettingEntity> getByStorageSettingIdAndPlayerId(String storageSettingId, String playerId);
 }

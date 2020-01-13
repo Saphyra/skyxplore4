@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.service.system.storage.setting.creation;
+package com.github.saphyra.skyxplore.game.service.system.storage.setting.create;
 
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetting;
 import com.github.saphyra.util.IdGenerator;

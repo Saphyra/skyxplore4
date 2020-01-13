@@ -30,10 +30,10 @@ public class StorageSettingQueryService {
         return storageSettingDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
 
-    public StorageSetting getByStorageSettingIdAndPlayerIdValidated(UUID storageSettingId) {
+    public StorageSetting findByStorageSettingIdAndPlayerIdValidated(UUID storageSettingId) {
         RequestContext requestContext = requestContextHolder.get();
         UUID playerId = requestContext.getPlayerId();
-        return storageSettingDao.getByStorageSettingIdAndPlayerId(storageSettingId, playerId)
+        return storageSettingDao.findByStorageSettingIdAndPlayerId(storageSettingId, playerId)
             .orElseThrow(() -> ExceptionFactory.storageSettingNotFound(storageSettingId, playerId));
     }
 }

@@ -21,6 +21,13 @@ public class StorageSettingDao extends AbstractDao<StorageSettingEntity, Storage
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
+    Optional<StorageSetting> findByStorageSettingIdAndPlayerId(UUID storageSettingId, UUID playerId) {
+        return converter.convertEntity(repository.findByStorageSettingIdAndPlayerId(
+            uuidConverter.convertDomain(storageSettingId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
     public List<StorageSetting> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
         return converter.convertEntity(
             repository.getByStarIdAndPlayerId(
@@ -34,13 +41,6 @@ public class StorageSettingDao extends AbstractDao<StorageSettingEntity, Storage
         return converter.convertEntity(repository.getByStarIdAndDataIdAndPlayerId(
             uuidConverter.convertDomain(starId),
             dataId,
-            uuidConverter.convertDomain(playerId)
-        ));
-    }
-
-    public Optional<StorageSetting> getByStorageSettingIdAndPlayerId(UUID storageSettingId, UUID playerId) {
-        return converter.convertEntity(repository.getByStorageSettingIdAndPlayerId(
-            uuidConverter.convertDomain(storageSettingId),
             uuidConverter.convertDomain(playerId)
         ));
     }
