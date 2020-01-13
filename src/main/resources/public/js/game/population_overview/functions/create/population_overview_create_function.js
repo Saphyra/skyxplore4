@@ -1,4 +1,3 @@
-//TODO split
 (function PopulationOverviewCreateFunction(){
     scriptLoader.loadScript("/js/game/population_overview/functions/population_overview_order_rule.js");
     scriptLoader.loadScript("/js/game/population_overview/functions/create/population_overview_create_filters_service.js");
