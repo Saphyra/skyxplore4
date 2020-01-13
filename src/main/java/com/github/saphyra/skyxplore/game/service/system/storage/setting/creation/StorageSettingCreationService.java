@@ -5,6 +5,8 @@ import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceDataService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetting;
@@ -25,6 +27,7 @@ import java.util.UUID;
 public class StorageSettingCreationService {
     private final RequestContextHolder requestContextHolder;
     private final ReservationService reservationService;
+    private final ResourceDataService resourceDataService;
     private final ResourceQueryService resourceQueryService;
     private final StorageBuildingService storageBuildingService;
     private final StorageSettingFactory storageSettingFactory;
@@ -37,8 +40,10 @@ public class StorageSettingCreationService {
             throw ExceptionFactory.storageSettingAlreadyExists(starId, request.getDataId());
         }
 
-        StorageBuilding storageBuilding = storageBuildingService.getOptional(request.getDataId())
+        ResourceData resourceData = resourceDataService.getOptional(request.getDataId())
             .orElseThrow(() -> ExceptionFactory.dataNotFound(request.getDataId()));
+        StorageBuilding storageBuilding = storageBuildingService.findByStorageType(resourceData.getStorageType());
+
         int availableStoragePlace = storageQueryService.getAvailableStoragePlace(starId, storageBuilding.getStores());
         int actualAmount = resourceQueryService.findLatestAmountByStarIdAndDataIdAndPlayerId(starId, request.getDataId());
         int reserve = request.getTargetAmount() - actualAmount;

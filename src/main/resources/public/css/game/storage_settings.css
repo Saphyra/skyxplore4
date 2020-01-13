@@ -1,6 +1,6 @@
 :root{
-    --storage-settings-left-bar-width: 20vw;
-    --storage-settings-left-bar-min-width: 15rem;
+    --storage-settings-left-bar-width: 25vw;
+    --storage-settings-left-bar-min-width: 20rem;
 }
 
 .storage-settings-create-setting-container{
@@ -11,7 +11,18 @@
     width: var(--storage-settings-left-bar-width);
     min-width: var(--storage-settings-left-bar-min-width);
     border-right: 3px ridge white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 1rem;
 }
+
+    .storage-settings-create-setting-container label{
+        display: block;
+    }
+
+        .storage-settings-create-setting-container input[type=range]{
+            vertical-align: middle;
+        }
 
 .storage-settings-settings--list-container{
     position: absolute;

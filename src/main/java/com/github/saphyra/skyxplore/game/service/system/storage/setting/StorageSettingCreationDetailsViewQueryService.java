@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.service.system.storage.setting;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.GameDataItem;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceDataService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetting;
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSettingQueryService;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class StorageSettingCreationDetailsViewQueryService {
+    private final ResourceDataService resourceDataService;
     private final StorageBuildingService storageBuildingService;
     private final StorageSettingQueryService storageSettingQueryService;
     private final StorageQueryService storageQueryService;
@@ -31,10 +33,12 @@ public class StorageSettingCreationDetailsViewQueryService {
 
         Map<StorageType, Integer> availableStoragePlaces = getAvailableStoragePlaces(starId);
 
-        return storageBuildingService.values()
+        StorageSettingCreationDetailsView result = resourceDataService.values()
             .stream()
             .filter(storageBuilding -> !existingSettings.contains(storageBuilding.getId()))
-            .collect(Collectors.toMap(GameDataItem::getId, storageBuilding -> availableStoragePlaces.get(storageBuilding.getStores()), (integer, integer2) -> integer, StorageSettingCreationDetailsView::new));
+            .collect(Collectors.toMap(GameDataItem::getId, resourceData -> availableStoragePlaces.get(resourceData.getStorageType()), (integer, integer2) -> integer, StorageSettingCreationDetailsView::new));
+        log.debug("StorageSettingCreationDetailsView: {}", result);
+        return result;
     }
 
     private List<String> getExistingSettings(UUID starId) {

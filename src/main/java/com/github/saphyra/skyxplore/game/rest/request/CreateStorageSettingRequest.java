@@ -2,8 +2,9 @@ package com.github.saphyra.skyxplore.game.rest.request;
 
 import lombok.Data;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Data
 public class CreateStorageSettingRequest {
@@ -11,10 +12,11 @@ public class CreateStorageSettingRequest {
     private String dataId;
 
     @NotNull
-    @Size(min = 1)
+    @Min(1)
     private Integer targetAmount;
 
     @NotNull
-    @Size(min = 1, max = 10)
+    @Min(1)
+    @Max(10)
     private Integer priority;
 }

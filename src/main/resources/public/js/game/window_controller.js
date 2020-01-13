@@ -34,7 +34,7 @@ function WindowController(windowType){
 
     this.close = function(){
         logService.warn("WindowController.close is not overridden.");
-        return this;
+        return this;opo
     }
 
     this.toString = function(){

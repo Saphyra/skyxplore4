@@ -1,4 +1,7 @@
 function Stream(a){
+    if(a == null || a == undefined){
+        throwException("IllegalArgument", "Input must not be null or undefined.");
+    }
     const array = a;
 
     this.allMatch = function(predicate){
@@ -93,6 +96,9 @@ function Stream(a){
 }
 
 function MapStream(i){
+    if(i == null || i == undefined){
+        throwException("IllegalArgument", "Input must not be null or undefined.");
+    }
     const items = i || {};
 
     this.applyOnAllValues = function(consumer){
@@ -110,6 +116,19 @@ function MapStream(i){
         const values = {};
         this.forEach(function(key, value){values[key] = valueMapper(key, value)});
         return new MapStream(values);
+    }
+
+    this.sorted = function(comparator){
+        return new Stream(entryList(items))
+            .sorted(comparator)
+            .toMapStream(
+                function(entry){return entry.getKey()},
+                function(entry){return entry.getValue()}
+            );
+    }
+
+    this.toEntryListStream = function(){
+        return new Stream(entryList(items));
     }
 
     this.toListStream = function(mapper){

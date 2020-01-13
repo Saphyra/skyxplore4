@@ -1,10 +1,21 @@
 {
+  "coal": "Szén",
   "energy": "Energia",
+  "food": "Étel",
+  "fuel": "Üzemanyag",
+  "glass": "Üveg",
   "iron": "Vas",
+  "leather": "Bőr",
+  "oil": "Olaj",
+  "ore": "Érc",
+  "plank": "Deszka",
+  "plastic": "Műanyag",
+  "raw_food": "Nyers étel",
   "sand": "Homok",
   "silicon": "Szilokon",
   "steel": "Acél",
   "stone": "Kő",
   "water": "Víz",
+  "wheat": "Gabona",
   "wood": "Fa"
 }
