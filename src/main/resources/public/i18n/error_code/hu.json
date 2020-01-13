@@ -18,6 +18,7 @@
   "SESSION_EXPIRED": "A bejelentkezés lejárt.",
   "STAR_NOT_FOUND": "A csillag nem található.",
   "STORAGE_FULL": "A raktár tele van.",
+  "STORAGE_SETTING_ALREADY_EXISTS": "Már van ilyen raktár beállítás.",
   "SURFACE_NOT_FOUND": "Felszín nem található.",
   "TERRAFORMING_ALREADY_IN_PROGRESS": "Az átalakítás már folyamatban van.",
   "TERRAFORMING_NOT_POSSIBLE": "Átalakítás nem lehetséges.",

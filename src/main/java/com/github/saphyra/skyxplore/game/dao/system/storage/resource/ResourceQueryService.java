@@ -25,10 +25,12 @@ public class ResourceQueryService {
         return resourceDao.findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId, round, playerId);
     }
 
-    public Optional<Resource> findLatestByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
+    public int findLatestAmountByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
-        return resourceDao.findLatestByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
+        return resourceDao.findLatestByStarIdAndDataIdAndPlayerId(starId, dataId, playerId)
+            .map(Resource::getAmount)
+            .orElse(0);
     }
 
     public List<Resource> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {

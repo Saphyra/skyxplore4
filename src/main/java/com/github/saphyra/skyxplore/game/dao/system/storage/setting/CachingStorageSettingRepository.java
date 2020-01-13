@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -62,6 +63,17 @@ public class CachingStorageSettingRepository extends CacheRepository<String, Sto
             .filter(entity -> entity.getStarId().equals(starId))
             .filter(entity -> entity.getPlayerId().endsWith(playerId))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<StorageSettingEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(entity -> entity.getStarId().equals(starId))
+            .filter(entity -> entity.getDataId().equals(dataId))
+            .filter(entity -> entity.getPlayerId().endsWith(playerId))
+            .findAny();
     }
 
     private String getGameId() {

@@ -20,6 +20,7 @@ public class StorageSettingConverter extends ConverterBase<StorageSettingEntity,
             .dataId(entity.getDataId())
             .targetAmount(entity.getTargetAmount())
             .priority(entity.getPriority())
+            .isNew(entity.isNew())
             .build();
     }
 
@@ -33,6 +34,7 @@ public class StorageSettingConverter extends ConverterBase<StorageSettingEntity,
             .dataId(domain.getDataId())
             .targetAmount(domain.getTargetAmount())
             .priority(domain.getPriority())
+            .isNew(domain.isNew())
             .build();
     }
 }

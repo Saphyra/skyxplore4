@@ -28,6 +28,7 @@ public class ExceptionFactory {
     private static final String RESEARCH_NOT_PRESENT_PREFIX = "Research not present.";
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String STORAGE_FULL_PREFIX = "Storage for type %s is full at system %s";
+    private static final String STORAGE_SETTING_ALREADY_EXISTS_PREFIX = "StorageSetting already exists for starId %s and dataId %s";
     private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
     private static final String TERRAFORMING_NOT_POSSIBLE_PREFIX = "Surface %s cannot be terraformed to %s";
     private static final String UPGRADE_ALREADY_IN_PROGRESS_PREFIX = "Upgrade already in progress for building %s";
@@ -87,8 +88,12 @@ public class ExceptionFactory {
         return new NotFoundException(createErrorMessage(ErrorCode.STAR_NOT_FOUND), String.format(STAR_NOT_FOUND_PREFIX, starId.toString()));
     }
 
-    public static RestException storageFull(UUID surfaceId, StorageType storageType) {
-        return new BadRequestException(createErrorMessage(ErrorCode.STORAGE_FULL), String.format(STORAGE_FULL_PREFIX, storageType, surfaceId));
+    public static RestException storageFull(UUID starId, StorageType storageType) {
+        return new BadRequestException(createErrorMessage(ErrorCode.STORAGE_FULL), String.format(STORAGE_FULL_PREFIX, storageType, starId));
+    }
+
+    public static RestException storageSettingAlreadyExists(UUID starId, String dataId) {
+        return new ConflictException(createErrorMessage(ErrorCode.STORAGE_SETTING_ALREADY_EXISTS), String.format(STORAGE_SETTING_ALREADY_EXISTS_PREFIX, starId, dataId));
     }
 
     public static NotFoundException surfaceNotFound(UUID surfaceId) {

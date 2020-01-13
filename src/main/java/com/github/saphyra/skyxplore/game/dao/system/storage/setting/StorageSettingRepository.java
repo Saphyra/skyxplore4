@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface StorageSettingRepository extends CrudRepository<StorageSettingEntity, String> {
@@ -22,4 +23,6 @@ public interface StorageSettingRepository extends CrudRepository<StorageSettingE
     List<StorageSettingEntity> getByGameId(String gameId);
 
     List<StorageSettingEntity> getByStarIdAndPlayerId(String starId, String playerId);
+
+    Optional<StorageSettingEntity> getByStarIdAndDataIdAndPlayerId(String starId, String dataId, String playerId);
 }

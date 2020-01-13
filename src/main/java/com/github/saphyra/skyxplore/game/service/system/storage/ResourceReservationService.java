@@ -40,31 +40,42 @@ public class ResourceReservationService {
     }
 
     private void reserveResource(Surface surface, Map.Entry<String, Integer> resourceEntry, ReservationType reservationType, UUID externalReference) {
-        ResourceData resourceData = gameDataQueryService.getResourceData(resourceEntry.getKey());
-        int availableStoragePlace = storageQueryService.getAvailableStoragePlace(surface.getStarId(), resourceData.getStorageType());
-        int available = storageQueryService.getAvailableResource(surface.getStarId(), resourceEntry.getKey());
+        reserveResource(surface.getGameId(), surface.getStarId(), surface.getPlayerId(), resourceEntry.getKey(), resourceEntry.getValue(), reservationType, externalReference);
+    }
 
-        int requiredResourceAmount = resourceEntry.getValue();
+    private void reserveResource(UUID gameId, UUID starId, UUID playerId, String dataId, Integer amount, ReservationType reservationType, UUID externalReference) {
+        ResourceData resourceData = gameDataQueryService.getResourceData(dataId);
+        int availableStoragePlace = storageQueryService.getAvailableStoragePlace(starId, resourceData.getStorageType());
+        int available = storageQueryService.getAvailableResource(starId, dataId);
+
         if (available > 0) {
-            int toAllocate = Math.min(available, requiredResourceAmount);
-            allocationService.allocate(surface.getGameId(), surface.getStarId(), externalReference, resourceData, toAllocate, AllocationType.CONSTRUCTION, surface.getPlayerId());
-            requiredResourceAmount -= toAllocate;
+            int toAllocate = Math.min(available, amount);
+            allocationService.allocate(
+                gameId,
+                starId,
+                externalReference,
+                resourceData,
+                toAllocate,
+                AllocationType.CONSTRUCTION,
+                playerId
+            );
+            amount -= toAllocate;
         }
 
-        if (availableStoragePlace < requiredResourceAmount) {
-            throw ExceptionFactory.storageFull(surface.getSurfaceId(), resourceData.getStorageType());
+        if (availableStoragePlace < amount) {
+            throw ExceptionFactory.storageFull(starId, resourceData.getStorageType());
         }
 
-        if (requiredResourceAmount > 0) {
+        if (amount > 0) {
             reservationService.reserve(
-                surface.getGameId(),
-                surface.getStarId(),
-                resourceEntry.getKey(),
-                requiredResourceAmount,
+                gameId,
+                starId,
+                dataId,
+                amount,
                 resourceData.getStorageType(),
                 reservationType,
                 externalReference,
-                surface.getPlayerId()
+                playerId
             );
         }
     }

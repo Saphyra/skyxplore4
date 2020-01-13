@@ -29,4 +29,6 @@ public class StorageSetting {
 
     @NonNull
     private Integer priority;
+
+    private final boolean isNew;
 }

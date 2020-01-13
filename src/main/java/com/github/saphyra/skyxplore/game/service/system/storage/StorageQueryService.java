@@ -27,7 +27,7 @@ public class StorageQueryService {
     private final ResourceQueryService resourceQueryService;
     private final StorageBuildingService storageBuildingService;
 
-    int getAvailableStoragePlace(UUID starId, StorageType storageType) {
+    public int getAvailableStoragePlace(UUID starId, StorageType storageType) {
         int capacity = getCapacity(starId, storageType);
         int usedStorage = getUsedStorage(starId, storageType);
         int reservedStorage = getReservedStorage(starId, storageType);
@@ -57,9 +57,7 @@ public class StorageQueryService {
     }
 
     int getAvailableResource(UUID starId, String resourceId) {
-        return resourceQueryService.findLatestByStarIdAndDataIdAndPlayerId(starId, resourceId)
-            .map(Resource::getAmount)
-            .orElse(0);
+        return resourceQueryService.findLatestAmountByStarIdAndDataIdAndPlayerId(starId, resourceId);
     }
 
     public Integer getAllocatedStorage(UUID starId, StorageType storageType) {
