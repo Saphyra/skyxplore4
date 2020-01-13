@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-storage_setting" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="storage_setting"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="storage_setting">
+            <column name="storage_setting_id" type="varchar(37)"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
+            <column name="data_id" type="varchar(255)"/>
+            <column name="target_amount" type="integer"/>
+            <column name="priority" type="integer"/>
+        </createTable>
+
+        <addPrimaryKey tableName="storage_setting" columnNames="storage_setting_id" constraintName="storage_setting-pk"/>
+    </changeSet>
+
+    <changeSet id="create-index_game-id_storage-setting" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="storage_setting" indexName="storage_setting-game_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="storage_setting" indexName="storage_setting-game_id">
+            <column name="game_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
