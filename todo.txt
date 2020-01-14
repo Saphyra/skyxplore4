@@ -1,4 +1,3 @@
-TODO feature: Automatic resource production for pre-set limit
 TODO feature: rename stars
 TODO check for unused error code localizations
 TODO remove unnecessary indexes

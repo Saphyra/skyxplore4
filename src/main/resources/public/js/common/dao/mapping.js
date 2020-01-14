@@ -4,6 +4,7 @@ window.Mapping = {
     CREATE_GAME: "/api/game",
     CREATE_STORAGE_SETTING: "/api/game/star/*/system/storage-settings",
     DELETE_GAME: "/api/game/*",
+    DELETE_STORAGE_SETTING: "/api/game/star/system/storage-settings/*",
     GET_BUILDABLE_BUILDINGS: "/api/data/building/*",
     GET_GAMES: "/api/game",
     GET_MAP: "/api/game/map",
@@ -11,6 +12,7 @@ window.Mapping = {
     GET_POPULATION_OVERVIEW: "/api/game/star/*/population/overview",
     GET_QUEUE: "/api/game/star/*/queue",
     GET_STAR: "/api/game/star/*",
+    GET_STORAGE_SETTINGS: "/api/game/star/*/system/storage-settings",
     GET_STORAGE_SETTINGS_CREATION_DETAILS: "/api/game/star/*/system/storage-settings/creation-details",
     GET_SURFACE_DETAILS: "/api/game/surface/*",
     GET_SURFACES_OF_STAR: "/api/game/star/*/surface",
@@ -23,6 +25,7 @@ window.Mapping = {
     RENAME_CITIZEN: "/api/game/star/citizen/*",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
     UPDATE_PRIORITY: "/api/game/star/{starId}/queue/{queueItemId}",
+    UPDATE_STORAGE_SETTING: "/api/game/star/system/storage-settings/*",
     UPGRADE_BUILDING: "/api/game/building/*/upgrade",
 
     ACCOUNT_PAGE: "/web/account",

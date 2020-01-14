@@ -1,8 +1,9 @@
 package com.github.saphyra.skyxplore.game.service.system.storage.setting.update;
 
 import com.github.saphyra.skyxplore.common.ExceptionFactory;
-import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuilding;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.storage.StorageBuildingService;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceData;
+import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceDataService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.Reservation;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationCommandService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationQueryService;
@@ -24,6 +25,7 @@ import java.util.UUID;
 public class StorageSettingUpdateService {
     private final ReservationCommandService reservationCommandService;
     private final ReservationQueryService reservationQueryService;
+    private final ResourceDataService resourceDataService;
     private final ResourceQueryService resourceQueryService;
     private final StorageBuildingService storageBuildingService;
     private final StorageQueryService storageQueryService;
@@ -34,14 +36,14 @@ public class StorageSettingUpdateService {
         StorageSetting storageSetting = storageSettingQueryService.findByStorageSettingIdAndPlayerIdValidated(storageSettingId);
         Reservation reservation = reservationQueryService.findByExternalReferenceAndDataIdAndPlayerIdValidated(storageSettingId, storageSetting.getDataId());
 
-        StorageBuilding storageBuilding = storageBuildingService.getOptional(storageSetting.getDataId())
+        ResourceData resourceData = resourceDataService.getOptional(storageSetting.getDataId())
             .orElseThrow(() -> ExceptionFactory.dataNotFound(storageSetting.getDataId()));
-        int availableStoragePlace = storageQueryService.getAvailableStoragePlace(storageSetting.getStarId(), storageBuilding.getStores()) + reservation.getAmount();
+        int availableStoragePlace = storageQueryService.getAvailableStoragePlace(storageSetting.getStarId(), resourceData.getStorageType()) + reservation.getAmount();
         int actualAmount = resourceQueryService.findLatestAmountByStarIdAndDataIdAndPlayerId(storageSetting.getStarId(), storageSetting.getDataId());
         int reserve = request.getTargetAmount() - actualAmount;
 
         if (availableStoragePlace < reserve) {
-            throw ExceptionFactory.storageFull(storageSetting.getStarId(), storageBuilding.getStores());
+            throw ExceptionFactory.storageFull(storageSetting.getStarId(), resourceData.getStorageType());
         }
 
         reservation.setAmount(reserve);

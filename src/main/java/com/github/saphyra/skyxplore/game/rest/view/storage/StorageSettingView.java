@@ -20,4 +20,7 @@ public class StorageSettingView {
 
     @NonNull
     private final Integer priority;
+
+    @NonNull
+    private final Integer maxAmount;
 }

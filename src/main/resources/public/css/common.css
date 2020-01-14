@@ -145,6 +145,10 @@ input[type='checkbox']:disabled{
     opacity: 0.5;
 }
 
+input[type=range]{
+    vertical-align: middle;
+}
+
 input:disabled, button:disabled, textarea:disabled, .disabled{
     border-color: rgb(100,100,100) !important;
     cursor: no-drop

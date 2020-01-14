@@ -20,7 +20,7 @@
         display: block;
     }
 
-        .storage-settings-create-setting-container input[type=range]{
+        .storage-settings-create-setting-container {
             vertical-align: middle;
         }
 
@@ -31,4 +31,17 @@
     bottom: 0;
     width: calc(100% - var(--storage-settings-left-bar-width));
     max-width: calc(100% - var(--storage-settings-left-bar-min-width));
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 0.25rem;
 }
+
+    .storage-setting{
+        margin: 0.25rem;
+        border: 2px ridge white;
+        border-radius: 5px;
+    }
+
+        .storage-setting h3{
+            border-bottom: 2px ridge white;
+        }
