@@ -1,4 +1,5 @@
 TODO feature: rename stars
+TODO encrypt citizen and star names
 TODO check for unused error code localizations
 TODO remove unnecessary indexes
 TODO encrypt data with userId, encryption service use RequestContext for encrypting/decrypting
