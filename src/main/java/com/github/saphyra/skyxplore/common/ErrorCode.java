@@ -1,5 +1,8 @@
 package com.github.saphyra.skyxplore.common;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum ErrorCode {
     BAD_CREDENTIALS,
     BUILDING_NOT_FOUND,
@@ -28,5 +31,11 @@ public enum ErrorCode {
     TERRAFORMING_NOT_POSSIBLE,
     UPGRADE_ALREADY_IN_PROGRESS,
     USER_NAME_ALREADY_EXISTS,
-    USER_NOT_FOUND
+    USER_NOT_FOUND;
+
+    public static Optional<ErrorCode> fromValue(String value) {
+        return Arrays.stream(values())
+            .filter(errorCode -> errorCode.name().equalsIgnoreCase(value))
+            .findAny();
+    }
 }

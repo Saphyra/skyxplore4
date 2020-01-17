@@ -25,9 +25,18 @@ public class ErrorCodeValidator implements DataValidator<Map<String, ErrorCodeLo
             }
 
             Arrays.stream(ErrorCode.values())
-                    .forEach(errorCode -> validate(errorCode, errorCodeLocalization));
+                .forEach(errorCode -> validate(errorCode, errorCodeLocalization));
+
+            errorCodeLocalization.keySet()
+                .forEach(this::validate);
         } catch (Exception e) {
             throw new IllegalStateException("ErrorCodaLocalization validation failed for locale " + locale, e);
+        }
+    }
+
+    private void validate(String errorCode) {
+        if (!ErrorCode.fromValue(errorCode).isPresent()) {
+            throw new IllegalStateException(errorCode + " is not present in enum ErrorCode. Can be removed from localization.");
         }
     }
 
