@@ -12,7 +12,6 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
     private final CoordinateConverter coordinateConverter;
     private final UuidConverter uuidConverter;
 
-
     @Override
     protected Surface processEntityConversion(SurfaceEntity entity) {
         return Surface.builder()
