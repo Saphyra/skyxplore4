@@ -5,6 +5,20 @@
     --min-surface-table-cell-size: 6rem;
 }
 
+.star-view-star-name{
+    display: inline-block;
+    margin: 0.125rem;
+    padding: 0.125rem;
+    border: 3px inset transparent;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+    .star-view-star-name[contenteditable=true]{
+        border-color: white;
+        cursor: text;
+    }
+
 .star-view-container .left-bar{
     width: var(--star-view-left-bar-width);
 }

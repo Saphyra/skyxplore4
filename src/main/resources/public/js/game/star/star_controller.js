@@ -31,7 +31,6 @@
             container.appendChild(contentContainer);
             document.getElementById("pages").appendChild(container);
             addRightClickMove(createSurfaceTableId(starId), createSurfaceTableContainerId(starId), false);
-            loadStarName(starId);
             this.refresh();
         };
 
@@ -48,7 +47,10 @@
                 header.classList.add("page-header");
 
                 const starName = document.createElement("h2");
-                    starName.id = createStarNameId(starId);
+                    const nameSpan = document.createElement("span");
+                        nameSpan.classList.add("star-view-star-name");
+                        nameSpan.id = createStarNameId(starId);
+                starName.appendChild(nameSpan);
             header.appendChild(starName);
 
                 const closeButton = document.createElement("BUTTON");
@@ -107,6 +109,16 @@
             surfaceTableContainer.appendChild(surfaceTable);
             return surfaceTableContainer;
         }
+    }
+
+    function refreshFunction(starId){
+        return function(){
+            spinner.open(4);
+            loadStarName(starId);
+            systemDetailsController.showSystemDetails(starId, createLeftBarId(starId));
+            surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
+            queueController.showQueue(starId, createRightBarId(starId));
+        }
 
         function loadStarName(starId){
             const starDetailsRequest = new Request(HttpMethod.GET, Mapping.concat(Mapping.GET_STAR, starId));
@@ -114,18 +126,69 @@
                     return JSON.parse(response.body);
                 }
                 starDetailsRequest.processValidResponse = function(star){
-                    document.getElementById(createStarNameId(star.starId)).innerHTML = star.starName;
+                    spinner.increment();
+
+                    let originalName = star.starName;
+                    const starName = document.getElementById(createStarNameId(star.starId));
+                        starName.innerHTML = originalName;
+
+                        starName.onclick = function(){
+                            starName.contentEditable = true;
+                            starName.focus();
+                        }
+                        $(starName).on("focusin", function(){selectElementText(starName);});
+                        $(starName).on("focusout", function(){
+                            const newName = starName.innerHTML;
+                            if(originalName != newName){
+                                const validationResult = validateStarName(newName);
+                                if(validationResult.valid){
+                                    renameStar(starId, newName);
+                                    originalName = newName;
+                                }else{
+                                    starName.innerHTML = originalName;
+                                    notificationService.showError(Localization.getAdditionalContent(validationResult.errorCode));
+                                }
+                            }
+                            starName.contentEditable = false;
+                            clearSelection();
+                            starName.style.borderColor = null;
+                        })
+
+                        starName.onkeyup = function(){
+                            if(validateStarName(starName.innerHTML).valid){
+                                starName.style.borderColor = "green";
+                            }else{
+                                starName.style.borderColor = "red";
+                            }
+                         }
                 }
             dao.sendRequestAsync(starDetailsRequest);
         }
-    }
 
-    function refreshFunction(starId){
-        return function(){
-            spinner.open(3);
-            systemDetailsController.showSystemDetails(starId, createLeftBarId(starId));
-            surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
-            queueController.showQueue(starId, createRightBarId(starId));
+        function validateStarName(starName){
+            let valid = true;
+            let errorCode = null;
+            if(starName.length < 3){
+                valid = false;
+                errorCode = "star-name-too-short";
+            }else if(starName.length > 30){
+                valid = false;
+                errorCode = "star-name-too-long";
+            }
+
+            return {
+                valid: valid,
+                errorCode: errorCode
+            };
+        }
+
+        function renameStar(starId, starName){
+            const request = new Request(HttpMethod.POST, Mapping.concat(Mapping.RENAME_STAR, starId), {value: starName});
+                request.processValidResponse = function(){
+                    notificationService.showSuccess(Localization.getAdditionalContent("star-renamed"));
+                    eventProcessor.processEvent(new Event(events.REFRESH_WINDOWS, WindowType.MAP));
+                }
+            dao.sendRequestAsync(request);
         }
     }
 

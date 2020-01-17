@@ -19,7 +19,7 @@ public class Star {
     private final UUID gameId;
 
     @NonNull
-    private final String starName;
+    private String starName;
 
     @NonNull
     private Coordinate coordinate;

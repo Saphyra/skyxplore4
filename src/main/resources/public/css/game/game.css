@@ -33,6 +33,7 @@
     top: 0;
     overflow: auto;
     border-bottom: 3px ridge white;
+    overflow: hidden;
 }
 
     .page-header h2{

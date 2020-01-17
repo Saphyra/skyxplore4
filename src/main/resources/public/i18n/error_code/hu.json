@@ -11,7 +11,7 @@
   "INVALID_CITIZEN_NAME": "Érvénytelen név.",
   "INVALID_LOCALE": "Érvénytelen nyelv.",
   "INVALID_REQUEST_CONTEXT": "Érvénytelen kérelem.",
-  "INVALID_STAR_ACCESS": "A csillagrendszer nem megtekinthető.",
+  "INVALID_STAR_NAME": "Érvénytelen csillag név.",
   "MAX_LEVEL_REACHED": "A maximális szint elérve.",
   "PLAYER_NOT_FOUND": "Játékos nem található",
   "RESEARCH_NOT_PRESENT": "Nincs kifejlesztve az összes, építéshez szükséges kutatás.",

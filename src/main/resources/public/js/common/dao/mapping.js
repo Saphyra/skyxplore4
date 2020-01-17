@@ -23,6 +23,7 @@ window.Mapping = {
     NEW_ROUND: "/api/game",
     REGISTER: "/api/user",
     RENAME_CITIZEN: "/api/game/star/citizen/*",
+    RENAME_STAR: "/api/game/star/*",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
     UPDATE_PRIORITY: "/api/game/star/{starId}/queue/{queueItemId}",
     UPDATE_STORAGE_SETTING: "/api/game/star/system/storage-settings/*",
