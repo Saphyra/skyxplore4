@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 @Component
@@ -29,9 +28,6 @@ public class ResourceValidator implements DataValidator<Map<String, ResourceData
             log.debug("Validating Resource with key {}", key);
             gameDataItemValidator.validate(resource);
 
-            requireNull(resource.getBuildable(), "Buildable must be null.");
-            requireNull(resource.getConstructionRequirements(), "ConstructionRequirements must be null.");
-
             requireNonNull(resource.getStorageType(), "StorageType must not be null.");
 
             if (!hasProducer(resource)) {
@@ -44,11 +40,5 @@ public class ResourceValidator implements DataValidator<Map<String, ResourceData
 
     private boolean hasProducer(ResourceData resource) {
         return productionBuildingService.values().stream().flatMap(productionBuilding -> productionBuilding.getGives().keySet().stream()).anyMatch(s -> s.equals(resource.getId()));
-    }
-
-    private void requireNull(Object o, String message) {
-        if (!isNull(o)) {
-            throw new IllegalArgumentException(message);
-        }
     }
 }

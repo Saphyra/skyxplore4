@@ -1,17 +1,17 @@
 package com.github.saphyra.skyxplore.game.service.queue;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
+import com.github.saphyra.skyxplore.game.common.interfaces.DisplayedQueueable;
 import com.github.saphyra.skyxplore.game.common.interfaces.Queueable;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
 import com.github.saphyra.skyxplore.game.rest.view.queue.QueueView;
 import com.github.saphyra.skyxplore.game.service.system.storage.StorageQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class QueueQueryService {
             .collect(Collectors.toList());
     }
 
-    private QueueView convert(Queueable queueItem) {
+    private QueueView convert(DisplayedQueueable queueItem) {
         return QueueView.builder()
             .status(queueItem.getConstructionStatus())
             .currentWorkPoints(queueItem.getCurrentWorkPoints())
@@ -43,7 +43,7 @@ public class QueueQueryService {
     }
 
 
-    private int getRequiredResourcesAmount(Queueable queueItem) {
+    private int getRequiredResourcesAmount(DisplayedQueueable queueItem) {
         return queueItem.getConstructionRequirements()
             .getRequiredResources()
             .values()

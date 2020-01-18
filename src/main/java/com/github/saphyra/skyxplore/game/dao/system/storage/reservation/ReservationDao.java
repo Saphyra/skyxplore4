@@ -32,6 +32,12 @@ class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String,
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
+    public List<Reservation> getByGameId(UUID gameId) {
+        return converter.convertEntity(repository.getByGameId(
+            uuidConverter.convertDomain(gameId)
+        ));
+    }
+
     List<Reservation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType, UUID playerId) {
         return converter.convertEntity(repository.getByStarIdAndStorageTypeAndPlayerId(
             uuidConverter.convertDomain(starId),
@@ -48,7 +54,7 @@ class ReservationDao extends AbstractDao<ReservationEntity, Reservation, String,
         ));
     }
 
-    public Optional<Reservation> findByExternalReferenceAndDataIdAndPlayerId(UUID externalReference, String dataId, UUID playerId) {
+    Optional<Reservation> findByExternalReferenceAndDataIdAndPlayerId(UUID externalReference, String dataId, UUID playerId) {
         return converter.convertEntity(repository.findByExternalReferenceAndDataIdAndPlayerId(
             uuidConverter.convertDomain(externalReference),
             dataId,

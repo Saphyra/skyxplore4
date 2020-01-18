@@ -1,14 +1,18 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.setting;
 
+import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
+import com.github.saphyra.skyxplore.game.common.interfaces.Queueable;
+import com.github.saphyra.skyxplore.game.dao.system.priority.PriorityType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
 @Builder
-public class StorageSetting {
+public class StorageSetting implements Queueable {
     @NonNull
     private final UUID storageSettingId;
 
@@ -30,5 +34,28 @@ public class StorageSetting {
     @NonNull
     private Integer priority;
 
+    @NonNull
+    private final Boolean buildable;
+
     private final boolean isNew;
+
+    @Override
+    public QueueType getQueueType() {
+        return QueueType.PRODUCTION;
+    }
+
+    @Override
+    public UUID getId() {
+        return storageSettingId;
+    }
+
+    @Override
+    public OffsetDateTime addedAt() {
+        return OffsetDateTime.now();
+    }
+
+    @Override
+    public PriorityType getPriorityType() {
+        return buildable ? PriorityType.PRODUCTION : PriorityType.MINING;
+    }
 }

@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +28,6 @@ public class GameController {
     private static final String CREATE_GAME_MAPPING = API_PREFIX + "/game";
     private static final String DELETE_GAME_MAPPING = API_PREFIX + "/game/{gameId}";
     private static final String GET_GAMES_MAPPING = API_PREFIX + "/game";
-    private static final String NEW_ROUND_MAPPING = API_PREFIX + "/game";
 
     private final GameCreationService gameCreationService;
     private final GameQueryService gameQueryService;
@@ -55,10 +53,5 @@ public class GameController {
     @GetMapping(GET_GAMES_MAPPING)
     List<GameView> getGames() {
         return gameViewConverter.convertDomain(gameQueryService.getByUserId());
-    }
-
-    @PostMapping(NEW_ROUND_MAPPING)
-    void newRound() {
-        //TODO implement
     }
 }

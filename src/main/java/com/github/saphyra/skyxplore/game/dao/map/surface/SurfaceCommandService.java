@@ -18,6 +18,11 @@ public class SurfaceCommandService implements CommandService<Surface> {
     }
 
     @Override
+    public void deleteAll(List<Surface> domains) {
+        surfaceDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         surfaceDao.deleteByGameId(gameId);
     }

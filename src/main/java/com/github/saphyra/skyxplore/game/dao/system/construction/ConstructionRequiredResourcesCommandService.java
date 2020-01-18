@@ -20,6 +20,11 @@ public class ConstructionRequiredResourcesCommandService implements CommandServi
     }
 
     @Override
+    public void deleteAll(List<ConstructionResourceRequirement> domains) {
+        constructionResourceRequirementDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         constructionResourceRequirementDao.deleteByGameId(gameId);
     }

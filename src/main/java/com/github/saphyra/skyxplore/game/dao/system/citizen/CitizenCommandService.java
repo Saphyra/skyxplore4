@@ -18,6 +18,11 @@ public class CitizenCommandService implements CommandService<Citizen> {
     }
 
     @Override
+    public void deleteAll(List<Citizen> domains) {
+        citizenDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         citizenDao.deleteByGameId(gameId);
     }

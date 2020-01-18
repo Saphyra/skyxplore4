@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.service.system.costruction;
 
+import com.github.saphyra.skyxplore.game.common.interfaces.DisplayedQueueable;
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
-import com.github.saphyra.skyxplore.game.common.interfaces.Queueable;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingCommandService;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
@@ -37,7 +37,7 @@ public class ConstructionQueueDao implements QueueItemDao {
     }
 
     @Override
-    public List<? extends Queueable> getQueueOfStar(UUID starId) {
+    public List<? extends DisplayedQueueable> getQueueOfStar(UUID starId) {
         return constructionQueryService.getByStarIdAndGameIdAndPlayerId(starId);
     }
 

@@ -3,6 +3,7 @@ package com.github.saphyra.skyxplore.game.dao.system.construction;
 import com.github.saphyra.skyxplore.game.common.interfaces.DisplayedQueueable;
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
+import com.github.saphyra.skyxplore.game.dao.system.priority.PriorityType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -73,5 +74,10 @@ public class Construction implements DisplayedQueueable {
     @Override
     public OffsetDateTime addedAt() {
         return addedAt;
+    }
+
+    @Override
+    public PriorityType getPriorityType() {
+        return PriorityType.CONSTRUCTION;
     }
 }

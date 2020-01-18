@@ -24,4 +24,8 @@ public class Game{
 
     @NonNull
     private Integer round;
+
+    public void incrementRound() {
+        round++;
+    }
 }

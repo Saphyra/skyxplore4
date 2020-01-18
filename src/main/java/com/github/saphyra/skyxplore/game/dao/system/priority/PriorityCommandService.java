@@ -20,6 +20,11 @@ public class PriorityCommandService implements CommandService<Priority> {
     }
 
     @Override
+    public void deleteAll(List<Priority> domains) {
+        priorityDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         priorityDao.deleteByGameId(gameId);
     }

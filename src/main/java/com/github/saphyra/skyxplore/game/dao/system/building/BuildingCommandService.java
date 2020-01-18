@@ -30,6 +30,11 @@ public class BuildingCommandService implements CommandService<Building> {
     }
 
     @Override
+    public void deleteAll(List<Building> domains) {
+        buildingDao.deleteAll(domains);
+    }
+
+    @Override
     public void saveAll(List<Building> domains) {
         buildingDao.saveAll(domains);
     }

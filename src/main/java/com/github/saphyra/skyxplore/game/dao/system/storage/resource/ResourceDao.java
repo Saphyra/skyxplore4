@@ -24,6 +24,13 @@ class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, Resource
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
+    void deleteExpiredByGameId(UUID gameId, int expiration) {
+        repository.deleteByGameIdAndRoundBefore(
+            uuidConverter.convertDomain(gameId),
+            expiration
+        );
+    }
+
     Optional<Resource> findByStarIdAndDataIdAndRoundAndPlayerId(UUID starId, String dataId, int round, UUID playerId) {
         return converter.convertEntity(repository.findByStarIdAndDataIdAndRoundAndPlayerId(
             uuidConverter.convertDomain(starId),
@@ -41,6 +48,13 @@ class ResourceDao extends AbstractDao<ResourceEntity, Resource, String, Resource
                 uuidConverter.convertDomain(playerId)
             )
         );
+    }
+
+    List<Resource> getByGameIdAndRound(UUID gameId, Integer round) {
+        return converter.convertEntity(repository.getByGameIdAndRound(
+            uuidConverter.convertDomain(gameId),
+            round
+        ));
     }
 
     List<Resource> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType, UUID playerId) {

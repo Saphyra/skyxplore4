@@ -12,10 +12,14 @@ import java.util.UUID;
 public class SkillCommandService implements CommandService<Skill> {
     private final SkillDao skillDao;
 
-
     @Override
     public void delete(Skill domain) {
         skillDao.delete(domain);
+    }
+
+    @Override
+    public void deleteAll(List<Skill> domains) {
+        skillDao.deleteAll(domains);
     }
 
     @Override

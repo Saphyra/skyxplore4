@@ -1,5 +1,7 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 
+import com.github.saphyra.skyxplore.common.context.RequestContext;
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.common.interfaces.CommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +14,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class ResourceCommandService implements CommandService<Resource> {
+    private final RequestContextHolder requestContextHolder;
     private final ResourceDao resourceDao;
 
     @Override
@@ -20,8 +23,19 @@ public class ResourceCommandService implements CommandService<Resource> {
     }
 
     @Override
+    public void deleteAll(List<Resource> domains) {
+        resourceDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         resourceDao.deleteByGameId(gameId);
+    }
+
+    public void deleteExpiredByGameId(int expiration) {
+        RequestContext context = requestContextHolder.get();
+        UUID gameId = context.getGameId();
+        resourceDao.deleteExpiredByGameId(gameId, expiration);
     }
 
     @Override

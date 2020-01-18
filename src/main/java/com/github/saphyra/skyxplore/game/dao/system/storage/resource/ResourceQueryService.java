@@ -33,6 +33,12 @@ public class ResourceQueryService {
             .orElse(0);
     }
 
+    public List<Resource> getByGameIdAndRound(Integer round) {
+        RequestContext context = requestContextHolder.get();
+        UUID gameId = context.getGameId();
+        return resourceDao.getByGameIdAndRound(gameId, round);
+    }
+
     public List<Resource> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();

@@ -28,6 +28,10 @@ public class StarQueryService {
     public List<Star> getByOwnerId() {
         RequestContext requestContext = requestContextHolder.get();
         UUID playerId = requestContext.getPlayerId();
+        return getByOwnerId(playerId);
+    }
+
+    public List<Star> getByOwnerId(UUID playerId) {
         return starDao.getByOwnerId(playerId);
     }
 

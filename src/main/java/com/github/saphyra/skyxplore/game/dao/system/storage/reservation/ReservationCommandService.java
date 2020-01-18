@@ -23,6 +23,11 @@ public class ReservationCommandService implements CommandService<Reservation> {
     }
 
     @Override
+    public void deleteAll(List<Reservation> domains) {
+        reservationDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         reservationDao.deleteByGameId(gameId);
     }

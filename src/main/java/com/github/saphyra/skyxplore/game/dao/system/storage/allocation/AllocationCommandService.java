@@ -23,6 +23,11 @@ public class AllocationCommandService implements CommandService<Allocation> {
     }
 
     @Override
+    public void deleteAll(List<Allocation> domains) {
+        allocationDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         allocationDao.deleteByGameId(gameId);
     }

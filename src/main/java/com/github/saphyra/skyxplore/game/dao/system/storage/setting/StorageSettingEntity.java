@@ -26,6 +26,7 @@ public class StorageSettingEntity implements SettablePersistable<String> {
     private String dataId;
     private Integer targetAmount;
     private Integer priority;
+    private Boolean buildable;
 
     @Transient
     private boolean isNew;

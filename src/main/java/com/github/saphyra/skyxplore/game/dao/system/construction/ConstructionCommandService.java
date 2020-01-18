@@ -31,6 +31,11 @@ public class ConstructionCommandService implements CommandService<Construction> 
     }
 
     @Override
+    public void deleteAll(List<Construction> domains) {
+        constructionDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         constructionDao.deleteByGameId(gameId);
     }

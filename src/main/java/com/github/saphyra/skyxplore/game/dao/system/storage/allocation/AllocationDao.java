@@ -38,6 +38,12 @@ class AllocationDao extends AbstractDao<AllocationEntity, Allocation, String, Al
         ));
     }
 
+    public List<Allocation> getByGameId(UUID gameId) {
+        return converter.convertEntity(repository.getByGameId(
+            uuidConverter.convertDomain(gameId)
+        ));
+    }
+
     List<Allocation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType, UUID playerId) {
         return converter.convertEntity(repository.getByStarIdAndStorageTypeAndPlayerId(
             uuidConverter.convertDomain(starId),

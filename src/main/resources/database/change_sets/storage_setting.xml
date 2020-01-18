@@ -35,4 +35,16 @@
             <column name="game_id"/>
         </createIndex>
     </changeSet>
+
+    <changeSet id="add-column-buildable-to-storage_setting" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="storage_setting" columnName="buildable"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="storage_setting">
+            <column name="buildable" type="boolean"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

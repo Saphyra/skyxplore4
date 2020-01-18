@@ -18,6 +18,11 @@ public class PlayerCommandService implements CommandService<Player> {
     }
 
     @Override
+    public void deleteAll(List<Player> domains) {
+        playerDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         playerDao.deleteByGameId(gameId);
     }

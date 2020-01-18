@@ -18,6 +18,11 @@ public class StarConnectionCommandService implements CommandService<StarConnecti
     }
 
     @Override
+    public void deleteAll(List<StarConnection> domains) {
+        starConnectionDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         starConnectionDao.deleteByGameId(gameId);
     }

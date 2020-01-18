@@ -17,6 +17,11 @@ interface ResourceRepository extends CrudRepository<ResourceEntity, String> {
     @Transactional
     void deleteByGameId(@Param("gameId") String gameId);
 
+    @Modifying
+    @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId AND e.round < :round")
+    @Transactional
+    void deleteByGameIdAndRoundBefore(@Param("gameId") String gameId, @Param("round") int round);
+
     @Transactional
     void deleteByResourceIdIn(List<String> ids);
 
@@ -25,6 +30,8 @@ interface ResourceRepository extends CrudRepository<ResourceEntity, String> {
     Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId);
 
     List<ResourceEntity> getByGameId(String gameId);
+
+    List<ResourceEntity> getByGameIdAndRound(String gameId, Integer round);
 
     List<ResourceEntity> getByStarIdAndStorageTypeAndPlayerId(String starId, StorageType storageType, String playerId);
 

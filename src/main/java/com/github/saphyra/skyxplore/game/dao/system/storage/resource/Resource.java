@@ -7,7 +7,7 @@ import lombok.NonNull;
 import java.util.UUID;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class Resource {
     @NonNull
     private final UUID resourceId;

@@ -20,6 +20,11 @@ public class GameCommandService implements CommandService<Game> {
     }
 
     @Override
+    public void deleteAll(List<Game> domains) {
+        gameDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         gameDao.deleteByGameId(gameId);
     }

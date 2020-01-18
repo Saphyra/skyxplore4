@@ -20,6 +20,11 @@ public class StorageSettingCommandService implements CommandService<StorageSetti
     }
 
     @Override
+    public void deleteAll(List<StorageSetting> domains) {
+        storageSettingDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         storageSettingDao.deleteByGameId(gameId);
     }

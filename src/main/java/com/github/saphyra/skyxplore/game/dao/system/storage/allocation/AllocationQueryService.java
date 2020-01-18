@@ -17,16 +17,22 @@ public class AllocationQueryService {
     private final AllocationDao allocationDao;
     private final RequestContextHolder requestContextHolder;
 
-    public List<Allocation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType) {
+    public List<Allocation> getByGameId() {
         RequestContext context = requestContextHolder.get();
-        UUID playerId = context.getPlayerId();
-        return allocationDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
+        UUID gameId = context.getGameId();
+        return allocationDao.getByGameId(gameId);
     }
 
     public List<Allocation> getByExternalReferenceAndPlayerId(UUID externalReference) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return allocationDao.getByExternalReferenceAndPlayerId(externalReference, playerId);
+    }
+
+    public List<Allocation> getByStarIdAndStorageTypeAndPlayerId(UUID starId, StorageType storageType) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return allocationDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
     }
 
     public List<Allocation> getByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {

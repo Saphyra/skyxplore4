@@ -24,7 +24,7 @@ class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerReposito
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    List<Player> getByUserIdAndGameId(UUID gameId) {
+    List<Player> getByGameId(UUID gameId) {
         return converter.convertEntity(repository.getByGameId(
             uuidConverter.convertDomain(gameId)
         ));

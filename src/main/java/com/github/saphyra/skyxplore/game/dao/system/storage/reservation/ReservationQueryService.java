@@ -18,6 +18,12 @@ public class ReservationQueryService {
     private final RequestContextHolder requestContextHolder;
     private final ReservationDao reservationDao;
 
+    public List<Reservation> getByGameId() {
+        RequestContext context = requestContextHolder.get();
+        UUID gameId = context.getGameId();
+        return reservationDao.getByGameId(gameId);
+    }
+
     public List<Reservation> getByStarIdAndDataIdAndGameIdAndPlayerId(UUID starId, String dataId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();

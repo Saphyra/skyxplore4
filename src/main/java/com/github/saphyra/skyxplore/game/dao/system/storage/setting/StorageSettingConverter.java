@@ -21,6 +21,7 @@ public class StorageSettingConverter extends ConverterBase<StorageSettingEntity,
             .targetAmount(entity.getTargetAmount())
             .priority(entity.getPriority())
             .isNew(entity.isNew())
+            .buildable(entity.getBuildable())
             .build();
     }
 
@@ -35,6 +36,7 @@ public class StorageSettingConverter extends ConverterBase<StorageSettingEntity,
             .targetAmount(domain.getTargetAmount())
             .priority(domain.getPriority())
             .isNew(domain.isNew())
+            .buildable(domain.getBuildable())
             .build();
     }
 }

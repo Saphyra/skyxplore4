@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,6 +48,16 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
     }
 
     @Override
+    public void deleteByGameIdAndRoundBefore(String gameId, int round) {
+        Collection<ResourceEntity> deletable = getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(resourceEntity -> resourceEntity.getRound() < round)
+            .collect(Collectors.toList());
+        deleteAll(deletable);
+    }
+
+    @Override
     public void deleteByResourceIdIn(List<String> ids) {
         ids.forEach(this::deleteById);
     }
@@ -78,6 +89,15 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
     @Override
     public List<ResourceEntity> getByGameId(String gameId) {
         return new ArrayList<>(getMapByKey(gameId).values());
+    }
+
+    @Override
+    public List<ResourceEntity> getByGameIdAndRound(String gameId, Integer round) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(resourceEntity -> resourceEntity.getRound().equals(round))
+            .collect(Collectors.toList());
     }
 
     @Override

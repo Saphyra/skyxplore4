@@ -18,6 +18,11 @@ public class ResearchCommandService implements CommandService<Research> {
     }
 
     @Override
+    public void deleteAll(List<Research> domains) {
+        researchDao.deleteAll(domains);
+    }
+
+    @Override
     public void deleteByGameId(UUID gameId) {
         researchDao.deleteByGameId(gameId);
     }
