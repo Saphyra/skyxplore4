@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PriorityRepository extends CrudRepository<PriorityEntity, PriorityEntityId> {
@@ -17,4 +18,8 @@ public interface PriorityRepository extends CrudRepository<PriorityEntity, Prior
     void deleteByGameId(@Param("gameId") String gameId);
 
     List<PriorityEntity> getByGameId(String gameId);
+
+    List<PriorityEntity> getByIdStarIdAndPlayerId(String starId, String playerId);
+
+    Optional<PriorityEntity> findByIdAndPlayerId(PriorityEntityId priorityEntityId, String playerId);
 }

@@ -2,6 +2,7 @@
     scriptLoader.loadScript("/js/game/star/system_details/storage_details_controller.js");
     scriptLoader.loadScript("/js/game/star/system_details/population_details_controller.js");
     scriptLoader.loadScript("/js/game/star/system_details/surface_building_details_controller.js");
+    scriptLoader.loadScript("/js/game/star/system_details/system_details_priority_controller.js");
 
     window.systemDetailsController = new function(){
         this.showSystemDetails = function(starId, containerId){
@@ -23,5 +24,6 @@
             container.appendChild(storageDetailsController.createStorageDetails(starId, systemDetails.storage));
             container.appendChild(populationDetailsController.createPopulationDetails(starId, systemDetails.population));
             container.appendChild(surfaceBuildingDetailsController.createSurfaceBuildingDetails(systemDetails.surfaceBuildings));
+            container.appendChild(systemDetailsPriorityController.createPriorityDetails(starId, systemDetails.priorities));
     }
 })();

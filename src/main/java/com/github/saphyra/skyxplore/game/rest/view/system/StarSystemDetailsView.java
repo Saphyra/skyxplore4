@@ -17,4 +17,7 @@ public class StarSystemDetailsView {
 
     @NonNull
     private final List<SurfaceBuildingView> surfaceBuildings;
+
+    @NonNull
+    private final List<PriorityView> priorities;
 }

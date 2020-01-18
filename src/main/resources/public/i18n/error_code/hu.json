@@ -14,6 +14,7 @@
   "INVALID_STAR_NAME": "Érvénytelen csillag név.",
   "MAX_LEVEL_REACHED": "A maximális szint elérve.",
   "PLAYER_NOT_FOUND": "Játékos nem található",
+  "PRIORITY_NOT_FOUND": "Rekord nem található.",
   "RESEARCH_NOT_PRESENT": "Nincs kifejlesztve az összes, építéshez szükséges kutatás.",
   "RESERVATION_NOT_FOUND": "Lefoglalás nem található.",
   "SESSION_EXPIRED": "A bejelentkezés lejárt.",

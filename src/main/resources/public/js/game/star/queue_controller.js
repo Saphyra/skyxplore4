@@ -106,7 +106,7 @@
         const request = new Request(
             HttpMethod.POST,
             Mapping.replace(
-                Mapping.UPDATE_PRIORITY,
+                Mapping.UPDATE_QUEUE_PRIORITY,
                 {
                     starId: starId,
                     queueItemId: queueItem.queueItemId

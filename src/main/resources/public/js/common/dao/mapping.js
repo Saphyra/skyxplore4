@@ -25,8 +25,9 @@ window.Mapping = {
     RENAME_CITIZEN: "/api/game/star/citizen/*",
     RENAME_STAR: "/api/game/star/*",
     TERRAFORM_SURFACE: "/api/game/surface/*/terraform",
-    UPDATE_PRIORITY: "/api/game/star/{starId}/queue/{queueItemId}",
+    UPDATE_QUEUE_PRIORITY: "/api/game/star/{starId}/queue/{queueItemId}",
     UPDATE_STORAGE_SETTING: "/api/game/star/system/storage-settings/*",
+    UPDATE_SYSTEM_PRIORITY: "/api/game/star/{starId}/priority/{type}",
     UPGRADE_BUILDING: "/api/game/building/*/upgrade",
 
     ACCOUNT_PAGE: "/web/account",
