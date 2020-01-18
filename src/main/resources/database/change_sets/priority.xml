@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-priority" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="priority"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="priority">
+            <column name="star_id" type="varchar(37)"/>
+            <column name="type" type="varchar(255)"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
+            <column name="value" type="number"/>
+        </createTable>
+
+        <addPrimaryKey tableName="priority" columnNames="star_id,type" constraintName="priority-pk"/>
+    </changeSet>
+
+    <changeSet id="create-index_game-id_priority" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="priority" indexName="priority-game_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="priority" indexName="priority-game_id">
+            <column name="game_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

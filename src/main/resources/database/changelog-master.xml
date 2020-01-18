@@ -16,6 +16,7 @@
     <include file="database/change_sets/construction_resource_requirement.xml"/>
     <include file="database/change_sets/game.xml"/>
     <include file="database/change_sets/player.xml"/>
+    <include file="database/change_sets/priority.xml"/>
     <include file="database/change_sets/research.xml"/>
     <include file="database/change_sets/reservation.xml"/>
     <include file="database/change_sets/resource.xml"/>

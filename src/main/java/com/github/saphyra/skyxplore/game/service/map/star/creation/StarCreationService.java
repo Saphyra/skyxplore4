@@ -9,6 +9,7 @@ import com.github.saphyra.skyxplore.game.service.map.connection.creation.Connect
 import com.github.saphyra.skyxplore.game.service.map.surface.creation.SurfaceCreationService;
 import com.github.saphyra.skyxplore.game.service.player.PlayerService;
 import com.github.saphyra.skyxplore.game.service.system.citizen.creation.CitizenCreationService;
+import com.github.saphyra.skyxplore.game.service.system.priority.create.PriorityCreationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ public class StarCreationService {
     private final CoordinateProvider coordinateProvider;
     private final DomainSaverService domainSaverService;
     private final PlayerService playerService;
+    private final PriorityCreationService priorityCreationService;
     private final StarFactory starFactory;
     private final StarNames starNames;
     private final SurfaceCreationService surfaceCreationService;
@@ -55,6 +57,7 @@ public class StarCreationService {
         }
         domainSaverService.addAll(createdStars);
         connectionCreationService.createConnections(createdStars);
+        priorityCreationService.createForStars(createdStars);
         surfaceCreationService.createSurfaces(createdStars);
         citizenCreationService.createCitizens(createdStars);
     }
