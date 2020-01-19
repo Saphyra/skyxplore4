@@ -9,6 +9,11 @@
             return;
         }
 
+        if(amount == 0){
+            notificationService.showError(Localization.getAdditionalContent("invalid-value"));
+            return;
+        }
+
         const request = new Request(HttpMethod.POST, Mapping.concat(Mapping.UPDATE_STORAGE_SETTING, storageSettingId), {targetAmount: amount, priority: priority})
             request.processValidResponse = function(){
                 notificationService.showSuccess(Localization.getAdditionalContent("storage-setting-updated"));

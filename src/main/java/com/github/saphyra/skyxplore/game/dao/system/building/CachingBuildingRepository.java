@@ -82,6 +82,16 @@ public class CachingBuildingRepository extends CacheRepository<String, BuildingE
 
     }
 
+    @Override
+    public List<BuildingEntity> getByStarIdAndPlayerId(String starId, String playerId) {
+        return getMapByKey(getGameId()).values()
+            .stream()
+            .parallel()
+            .filter(buildingEntity -> buildingEntity.getStarId().equals(starId))
+            .filter(buildingEntity -> buildingEntity.getPlayerId().equals(playerId))
+            .collect(Collectors.toList());
+    }
+
     private String getGameId() {
         return uuidConverter.convertDomain(requestContextHolder.get().getGameId());
     }

@@ -34,4 +34,10 @@ public class BuildingQueryService {
         UUID playerId = context.getPlayerId();
         return buildingDao.getByStarIdAndDataIdAndPlayerId(starId, dataId, playerId);
     }
+
+    public List<Building> getByStarIdAndPlayerId(UUID starId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return buildingDao.getByStarIdAndPlayerId(starId, playerId);
+    }
 }

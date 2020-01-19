@@ -20,7 +20,7 @@ com:
         cacheRepository:
           fullSyncExecutionIntervalInMilliseconds: 60000 #1 minute
           expirationSeconds: 600 #10 minutes
-          enabled: true
+          enabled: false
 
 logging:
   level:

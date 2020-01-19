@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Repository
 interface ReservationRepository extends CrudRepository<ReservationEntity, String> {
+    @Transactional
     void deleteByExternalReferenceAndPlayerId(String externalReference, String playerId);
 
     @Modifying

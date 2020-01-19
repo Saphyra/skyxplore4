@@ -47,6 +47,13 @@ class BuildingDao extends AbstractDao<BuildingEntity, Building, String, Building
         ));
     }
 
+    public List<Building> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndPlayerId(
+            uuidConverter.convertDomain(starId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
     @Override
     public void saveAll(List<Building> buildings) {
         repository.saveAll(converter.convertDomain(buildings));

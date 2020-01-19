@@ -84,6 +84,11 @@
     }
 
     function createSetting(resourceId, amount, priority, starId, availableSettings){
+        if(amount == 0){
+            notificationService.showError(Localization.getAdditionalContent("invalid-value"));
+            return;
+        }
+
         if(availableSettings[resourceId] < amount){
             notificationService.showError(Localization.getAdditionalContent("not-enough-storage"));
             return;

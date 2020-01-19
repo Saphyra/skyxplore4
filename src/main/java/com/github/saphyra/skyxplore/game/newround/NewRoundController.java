@@ -2,6 +2,8 @@ package com.github.saphyra.skyxplore.game.newround;
 
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.game.common.interfaces.Order;
+import com.github.saphyra.skyxplore.game.common.interfaces.OrderProvider;
 import com.github.saphyra.skyxplore.game.dao.game.Game;
 import com.github.saphyra.skyxplore.game.dao.game.GameCommandService;
 import com.github.saphyra.skyxplore.game.dao.game.GameQueryService;
@@ -15,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +32,7 @@ public class NewRoundController {
     private final GameCommandService gameCommandService;
     private final GameQueryService gameQueryService;
     private final NewRoundResourceHandler newRoundResourceHandler;
+    private final List<OrderProvider> orderProviders;
     private final PlayerQueryService playerQueryService;
     private final RequestContextHolder requestContextHolder;
     private final StarQueryService starQueryService;
@@ -71,6 +75,9 @@ public class NewRoundController {
     }
 
     private void processNewRoundForStar(Star star) {
-        //TODO
+        orderProviders.stream()
+            .flatMap(orderProvider -> orderProvider.getForStar(star.getStarId()).stream())
+            .sorted(Comparator.comparingInt(Order::getPriority))
+            .forEach(Order::process);
     }
 }

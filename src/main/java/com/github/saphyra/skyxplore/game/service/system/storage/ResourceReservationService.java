@@ -5,20 +5,24 @@ import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
 import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceData;
 import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.Allocation;
+import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationCommandService;
 import com.github.saphyra.skyxplore.game.dao.system.storage.allocation.AllocationType;
 import com.github.saphyra.skyxplore.game.dao.system.storage.reservation.ReservationType;
-import com.github.saphyra.skyxplore.game.service.system.storage.allocation.AllocationService;
+import com.github.saphyra.skyxplore.game.service.system.storage.allocation.AllocationFactory;
 import com.github.saphyra.skyxplore.game.service.system.storage.reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class ResourceReservationService {
-    private final AllocationService allocationService;
+    private final AllocationCommandService allocationCommandService;
+    private final AllocationFactory allocationFactory;
     private final GameDataQueryService gameDataQueryService;
     private final ReservationService reservationService;
     private final StorageQueryService storageQueryService;
@@ -48,9 +52,10 @@ public class ResourceReservationService {
         int availableStoragePlace = storageQueryService.getAvailableStoragePlace(starId, resourceData.getStorageType());
         int available = storageQueryService.getAvailableResource(starId, dataId);
 
+        Optional<Allocation> allocation = Optional.empty();
         if (available > 0) {
             int toAllocate = Math.min(available, amount);
-            allocationService.allocate(
+            allocation = Optional.of(allocationFactory.allocate(
                 gameId,
                 starId,
                 externalReference,
@@ -58,13 +63,15 @@ public class ResourceReservationService {
                 toAllocate,
                 AllocationType.CONSTRUCTION,
                 playerId
-            );
+            ));
             amount -= toAllocate;
         }
 
         if (availableStoragePlace < amount) {
             throw ExceptionFactory.storageFull(starId, resourceData.getStorageType());
         }
+
+        allocation.ifPresent(allocationCommandService::save);
 
         if (amount > 0) {
             reservationService.reserve(
