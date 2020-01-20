@@ -1,5 +1,6 @@
 {
   "id": "oil_rig",
+  "cache": 5,
   "buildingType": "production",
   "gives": {
     "oil": {

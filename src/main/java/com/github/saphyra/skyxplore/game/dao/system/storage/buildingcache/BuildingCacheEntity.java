@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.dao.system.building;
+package com.github.saphyra.skyxplore.game.dao.system.storage.buildingcache;
 
 import com.github.saphyra.skyxplore.game.dao.common.cache.SettablePersistable;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -18,25 +16,22 @@ import javax.persistence.Transient;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "building")
-@Inheritance(strategy = InheritanceType.JOINED)
-class BuildingEntity implements SettablePersistable<String> {
+@Table(name = "building_cache")
+public class BuildingCacheEntity implements SettablePersistable<String> {
     @Id
-    private String buildingId;
-    private String buildingDataId;
+    private String buildingCacheId;
     private String gameId;
-    private String starId;
     private String playerId;
-    private String surfaceId;
-    private Integer level;
-    private String constructionId;
+    private String buildingId;
+    private String dataId;
+    private Integer amount;
 
     @Transient
     private boolean isNew;
 
     @Override
     public String getId() {
-        return buildingId;
+        return buildingCacheId;
     }
 
     @Override

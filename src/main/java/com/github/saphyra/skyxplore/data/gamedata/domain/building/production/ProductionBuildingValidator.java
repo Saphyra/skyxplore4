@@ -29,6 +29,7 @@ public class ProductionBuildingValidator implements DataValidator<Map<String, Pr
             requireNonNull(productionBuilding.getWorkers(), "Workers must not be null.");
             requireNonNull(productionBuilding.getPrimarySurfaceType(), "PrimarySurfaceType must not be null.");
             requireNonNull(productionBuilding.getPlaceableSurfaceTypes(), "PlaceableSurfaceTypes must not be null.");
+            requireNonNull(productionBuilding.getCache(), "Cache must not be null.");
            productionValidator.validate(productionBuilding.getGives());
         } catch (Exception e) {
             throw new IllegalStateException("Invalid data with key " + key, e);

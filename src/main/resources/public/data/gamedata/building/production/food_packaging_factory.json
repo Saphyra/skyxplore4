@@ -1,5 +1,6 @@
 {
   "id": "food_packaging_factory",
+  "cache": 5,
   "buildingType": "production",
   "gives": {
     "food": {

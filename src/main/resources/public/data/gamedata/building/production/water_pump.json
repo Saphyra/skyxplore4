@@ -1,5 +1,6 @@
 {
   "id": "water_pump",
+  "cache": 5,
   "buildingType": "production",
   "gives": {
     "water": {

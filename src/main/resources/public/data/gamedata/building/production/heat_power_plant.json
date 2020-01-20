@@ -1,5 +1,6 @@
 {
   "id": "heat_power_plant",
+  "cache": 5,
   "buildingType": "production",
   "gives": {
     "energy": {

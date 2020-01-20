@@ -1,5 +1,6 @@
 {
   "id": "sand_processing_plant",
+  "cache": 5,
   "buildingType": "production",
   "gives": {
     "glass": {

@@ -1,5 +1,6 @@
 {
   "id": "foundry",
+  "cache": 5,
   "buildingType": "production",
   "gives": {
     "steel": {
