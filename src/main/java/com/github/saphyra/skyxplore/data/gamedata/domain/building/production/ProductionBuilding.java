@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building.production;
 
+import com.github.saphyra.skyxplore.common.OptionalHashMap;
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import lombok.Data;
@@ -7,7 +8,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
@@ -16,7 +16,7 @@ import static java.util.Objects.isNull;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ProductionBuilding extends BuildingData {
-    private Map<String, Production> gives;
+    private OptionalHashMap<String, Production> gives;
     private Integer workers;
     private Integer cache;
     private SurfaceType primarySurfaceType;

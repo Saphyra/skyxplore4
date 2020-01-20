@@ -1,8 +1,7 @@
-package com.github.saphyra.skyxplore.game.service.system.storage.setting.order;
+package com.github.saphyra.skyxplore.game.newround.order;
 
-import com.github.saphyra.skyxplore.game.common.interfaces.Order;
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetting;
-import com.github.saphyra.skyxplore.game.service.system.storage.setting.order.processor.StorageSettingOrderProcessor;
+import com.github.saphyra.skyxplore.game.newround.order.processor.StorageSettingOrderProcessor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -11,6 +10,8 @@ import lombok.NonNull;
 @Builder
 public class StorageSettingOrder implements Order {
     private final Integer priority;
+
+    private final Integer missingAmount;
 
     @NonNull
     private final StorageSetting storageSetting;
