@@ -8,7 +8,7 @@ metrics:
 
 server:
   tomcat:
-    max-threads: 100
+    max-threads: 1
 
 game:
   devMode: true
@@ -21,6 +21,10 @@ com:
           fullSyncExecutionIntervalInMilliseconds: 60000 #1 minute
           expirationSeconds: 600 #10 minutes
           enabled: false
+        game:
+          star:
+            creation:
+              attempts: 1
 
 logging:
   level:

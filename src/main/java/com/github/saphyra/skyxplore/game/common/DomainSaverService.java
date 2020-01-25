@@ -47,7 +47,7 @@ public class DomainSaverService {
     public void addAll(@NonNull Collection<?> o) {
         log.debug("Adding items to cache: {}", o);
         if (o.isEmpty()) {
-            throw new IllegalArgumentException("Collection must not be empty.");
+            return;
         }
         getList(getType(o)).addAll(o);
     }

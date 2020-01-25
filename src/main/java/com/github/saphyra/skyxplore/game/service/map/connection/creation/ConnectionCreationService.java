@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -42,6 +43,9 @@ public class ConnectionCreationService {
     }
 
     private List<StarConnection> connectDistantStars(List<Star> stars, List<StarConnection> connections) {
+        if (stars.size() < 2) {
+            return Collections.emptyList();
+        }
         return stars.stream()
             .filter(star -> !hasConnection(star, connections))
             .map(star -> starConnectionFactory.createConnection(star, getClosestStar(star, stars)))

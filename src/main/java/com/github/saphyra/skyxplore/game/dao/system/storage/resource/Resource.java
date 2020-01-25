@@ -34,4 +34,8 @@ public class Resource {
     private final Integer round;
 
     private final boolean isNew;
+
+    public void addAmount(Integer addition) {
+        amount += addition;
+    }
 }

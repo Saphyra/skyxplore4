@@ -1,0 +1,40 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-production_order" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="production_order"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="production_order">
+            <column name="production_order_id" type="varchar(37)"/>
+            <column name="game_id" type="varchar(37)"/>
+            <column name="player_id" type="varchar(37)"/>
+            <column name="order_id" type="varchar(37)"/>
+            <column name="producer_building_id" type="varchar(37)"/>
+            <column name="data_id" type="varchar(255)"/>
+            <column name="customer_id" type="varchar(255)"/>
+            <column name="target_amount" type="number"/>
+            <column name="produced_amount" type="number"/>
+        </createTable>
+
+        <addPrimaryKey tableName="production_order" columnNames="production_order_id" constraintName="production_order-pk"/>
+    </changeSet>
+
+    <changeSet id="create_index-game_id-to-production_order" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="production_order" indexName="production_order-game_id"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="production_order" indexName="production_order-game_id">
+            <column name="game_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

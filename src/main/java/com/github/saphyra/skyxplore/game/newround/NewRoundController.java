@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
@@ -39,12 +40,13 @@ public class NewRoundController {
 
     @PostMapping(NEW_ROUND_MAPPING)
     void newRound() {
+        log.info("Processing new rounds...");
         Game game = gameQueryService.findByGameIdAndUserIdValidated();
         List<Player> players = playerQueryService.getByGameId();
 
         RequestContext context = requestContextHolder.get();
         players.stream()
-            .parallel()
+            //.parallel()
             .forEach(player -> processNewRoundForPlayer(player, context.getUserId()));
 
         newRoundResourceHandler.cleanUpResources(context.getGameId());
@@ -54,6 +56,7 @@ public class NewRoundController {
 
         game.incrementRound();
         gameCommandService.save(game);
+        log.info("New rounds finished.");
     }
 
     private void processNewRoundForPlayer(Player player, UUID userId) {
@@ -67,7 +70,7 @@ public class NewRoundController {
 
             starQueryService.getByOwnerId(player.getPlayerId())
                 .stream()
-                .parallel()
+                //.parallel()
                 .forEach(this::processNewRoundForStar);
         } finally {
             requestContextHolder.clear();
@@ -75,9 +78,11 @@ public class NewRoundController {
     }
 
     private void processNewRoundForStar(Star star) {
-        orderProviders.stream()
+        List<Order> orders = orderProviders.stream()
             .flatMap(orderProvider -> orderProvider.getForStar(star.getStarId()).stream())
             .sorted(Comparator.comparingInt(Order::getPriority))
-            .forEach(Order::process);
+            .collect(Collectors.toList());
+        log.info("Orders for star {}: {}", star.getStarId(), orders);
+        orders.forEach(Order::process);
     }
 }

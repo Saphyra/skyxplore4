@@ -29,23 +29,29 @@ public class StorageSettingOrderProvider implements OrderProvider {
 
     @Override
     public List<Order> getForStar(UUID starId) {
+        log.info("Querying StorageSetttingOrders for starId {}", starId);
         Map<PriorityType, Integer> priorities = priorityQueryService.getByStarIdAndPlayerId(starId)
             .stream()
             .collect(Collectors.toMap(Priority::getType, Priority::getValue));
-        return storageSettingQueryService.getByStarIdAndPlayerId(starId)
+        List<StorageSetting> storageSettings = storageSettingQueryService.getByStarIdAndPlayerId(starId);
+        log.info("All storageSettings for starId {}: {}", starId, storageSettings);
+        List<Order> orders = storageSettings
             .stream()
             .map(storageSetting -> convert(storageSetting, priorities))
             .filter(storageSettingOrder -> storageSettingOrder.getMissingAmount() > 0)
             .collect(Collectors.toList());
+        log.info("StorageSettingOrders for starId {}: {}", starId, orders);
+        return orders;
     }
 
     private StorageSettingOrder convert(StorageSetting storageSetting, Map<PriorityType, Integer> priorities) {
         Integer currentAmount = resourceQueryService.findLatestAmountByStarIdAndDataIdAndPlayerId(storageSetting.getStarId(), storageSetting.getDataId());
+        log.info("Current amount of {} at star {} is {}", storageSetting.getDataId(), storageSetting.getStarId(), currentAmount);
         return StorageSettingOrder.builder()
             .storageSetting(storageSetting)
             .orderProcessor(storageSettingOrderProcessor)
             .priority(storageSetting.getPriority() * priorities.get(storageSetting.getPriorityType()))
-            .missingAmount(currentAmount - storageSetting.getTargetAmount())
+            .missingAmount(storageSetting.getTargetAmount() - currentAmount)
             .build();
     }
 }

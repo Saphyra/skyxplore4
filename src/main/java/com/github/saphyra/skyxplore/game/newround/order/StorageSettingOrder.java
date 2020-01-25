@@ -9,8 +9,10 @@ import lombok.NonNull;
 @Data
 @Builder
 public class StorageSettingOrder implements Order {
+    @NonNull
     private final Integer priority;
 
+    @NonNull
     private final Integer missingAmount;
 
     @NonNull
