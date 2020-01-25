@@ -2,8 +2,6 @@ package com.github.saphyra.skyxplore.game.newround;
 
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
-import com.github.saphyra.skyxplore.game.newround.order.Order;
-import com.github.saphyra.skyxplore.game.newround.order.provider.OrderProvider;
 import com.github.saphyra.skyxplore.game.dao.game.Game;
 import com.github.saphyra.skyxplore.game.dao.game.GameCommandService;
 import com.github.saphyra.skyxplore.game.dao.game.GameQueryService;
@@ -11,8 +9,9 @@ import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.dao.player.Player;
 import com.github.saphyra.skyxplore.game.dao.player.PlayerQueryService;
+import com.github.saphyra.skyxplore.game.newround.order.Order;
+import com.github.saphyra.skyxplore.game.newround.order.provider.OrderProvider;
 import com.github.saphyra.skyxplore.game.newround.resource.NewRoundResourceHandler;
-import com.github.saphyra.skyxplore.game.newround.state.StateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +36,6 @@ public class NewRoundController {
     private final PlayerQueryService playerQueryService;
     private final RequestContextHolder requestContextHolder;
     private final StarQueryService starQueryService;
-    private final List<StateService> stateServices;
 
     @PostMapping(NEW_ROUND_MAPPING)
     void newRound() {
@@ -56,7 +54,6 @@ public class NewRoundController {
 
         game.incrementRound();
         gameCommandService.save(game);
-        stateServices.forEach(StateService::clear);
     }
 
     private void processNewRoundForPlayer(Player player, UUID userId) {
