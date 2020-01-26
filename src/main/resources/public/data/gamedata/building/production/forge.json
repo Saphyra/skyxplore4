@@ -13,7 +13,7 @@
         "researchRequirements": [
           "smelting"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1,
           "ore": 1
         }

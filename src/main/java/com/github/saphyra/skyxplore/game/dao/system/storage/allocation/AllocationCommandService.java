@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.allocation;
 
+import com.github.saphyra.skyxplore.common.UuidConverter;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.common.interfaces.CommandService;
@@ -16,10 +17,15 @@ import java.util.UUID;
 public class AllocationCommandService implements CommandService<Allocation> {
     private final AllocationDao allocationDao;
     private final RequestContextHolder requestContextHolder;
+    private final UuidConverter uuidConverter;
 
     @Override
     public void delete(Allocation domain) {
         allocationDao.delete(domain);
+    }
+
+    public void delete(UUID allocationId) {
+        allocationDao.deleteById(uuidConverter.convertDomain(allocationId));
     }
 
     @Override

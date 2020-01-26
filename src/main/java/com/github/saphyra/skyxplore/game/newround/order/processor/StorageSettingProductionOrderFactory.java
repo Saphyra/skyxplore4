@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-class ProductionOrderFactory {
+class StorageSettingProductionOrderFactory {
     private final IdGenerator idGenerator;
 
     ProductionOrder create(StorageSetting storageSetting, int targetAmount) {
         return ProductionOrder.builder()
             .productionOrderId(idGenerator.randomUUID())
             .gameId(storageSetting.getGameId())
+            .starId(storageSetting.getStarId())
             .playerId(storageSetting.getPlayerId())
             .orderId(storageSetting.getStorageSettingId())
             .customerId(storageSetting.getStorageSettingId())

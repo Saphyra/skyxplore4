@@ -14,6 +14,7 @@
         <createTable tableName="production_order">
             <column name="production_order_id" type="varchar(37)"/>
             <column name="game_id" type="varchar(37)"/>
+            <column name="star_id" type="varchar(37)"/>
             <column name="player_id" type="varchar(37)"/>
             <column name="order_id" type="varchar(37)"/>
             <column name="producer_building_id" type="varchar(37)"/>

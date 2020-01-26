@@ -38,4 +38,8 @@ public class Resource {
     public void addAmount(Integer addition) {
         amount += addition;
     }
+
+    public void removeAmount(int removal) {
+        amount -= removal;
+    }
 }

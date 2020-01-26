@@ -13,7 +13,7 @@
         "researchRequirements": [
           "oil_mining"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1,
           "oil": 1
         }
@@ -29,7 +29,7 @@
         "researchRequirements": [
           "plastic_manufacturing"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1,
           "oil": 1
         }

@@ -5,6 +5,8 @@ import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionO
 import java.util.UUID;
 
 public interface Producer {
+    Double getLoad();
+
     UUID getId();
 
     boolean produce(ProductionOrder order);

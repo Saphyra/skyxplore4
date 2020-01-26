@@ -64,6 +64,26 @@ public class CachingProductionOrderRepository extends CacheRepository<String, Pr
             .collect(Collectors.toList());
     }
 
+    @Override
+    public List<ProductionOrderEntity> getByProducerBuildingIdAndPlayerId(String producerBuildingId, String playerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(entity -> entity.getPlayerId().equals(playerId))
+            .filter(entity -> entity.getProducerBuildingId().equals(producerBuildingId))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductionOrderEntity> getByCustomerIdAndPlayerId(String customerId, String playerId) {
+        return getMapByKey(getGameId())
+            .values()
+            .stream()
+            .filter(entity -> entity.getPlayerId().equals(playerId))
+            .filter(entity -> entity.getCustomerId().equals(customerId))
+            .collect(Collectors.toList());
+    }
+
     private String getGameId() {
         return uuidConverter.convertDomain(requestContextHolder.get().getGameId());
     }

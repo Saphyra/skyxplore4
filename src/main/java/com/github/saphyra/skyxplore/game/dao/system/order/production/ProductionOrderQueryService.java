@@ -21,4 +21,16 @@ public class ProductionOrderQueryService {
         UUID playerId = context.getPlayerId();
         return productionOrderDao.getByOrderIdAndPlayerId(orderId, playerId);
     }
+
+    public List<ProductionOrder> getByProducerBuildingIdAndPlayerId(UUID productionBuildingId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return productionOrderDao.getByProducerBuildingIdAndPlayerId(productionBuildingId, playerId);
+    }
+
+    public List<ProductionOrder> getByCustomerIdAndPlayerId(UUID customerId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return productionOrderDao.getByCustomerIdAndPlayerId(customerId, playerId);
+    }
 }

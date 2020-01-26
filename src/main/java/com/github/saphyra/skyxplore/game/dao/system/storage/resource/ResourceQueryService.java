@@ -1,7 +1,9 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 
+import com.github.saphyra.exceptionhandling.exception.InternalServerErrorException;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.game.dao.game.GameQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -16,8 +18,22 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class ResourceQueryService {
+    private final GameQueryService gameQueryService;
     private final RequestContextHolder requestContextHolder;
     private final ResourceDao resourceDao;
+
+    public Optional<Resource> findByStarIdAndDataIdAndRoundAndPlayerId(UUID starId, String dataId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        int round = gameQueryService.findByGameIdAndUserIdValidated().getRound();
+        return resourceDao.findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId, round, playerId);
+    }
+
+    public Resource findByStarIdAndDataIdAndRoundAndPlayerIdValidated(UUID starId, String dataId) {
+        return findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId)
+            //TODO create default resource
+            .orElseThrow(() -> new InternalServerErrorException(String.format("Resource not found for starId %s and dataId %s for the last round.", starId, dataId)));
+    }
 
     public Optional<Resource> findByStarIdAndDataIdAndRoundAndPlayerId(UUID starId, String dataId, int round) {
         RequestContext context = requestContextHolder.get();

@@ -1,6 +1,8 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building.production;
 
 import com.github.saphyra.skyxplore.data.base.DataValidator;
+import com.github.saphyra.skyxplore.data.gamedata.domain.ConstructionRequirementsValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -10,7 +12,10 @@ import static java.util.Objects.requireNonNull;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Component
+@RequiredArgsConstructor
 public class ProductionValidator implements DataValidator<Map<String, Production>> {
+    private final ConstructionRequirementsValidator constructionRequirementsValidator;
+
     @Override
     public void validate(Map<String, Production> item) {
         requireNonNull(item, "Gives must not be null.");
@@ -35,6 +40,7 @@ public class ProductionValidator implements DataValidator<Map<String, Production
             requireNonNull(production.getAmount(), "Amount must not be null.");
 
             requireNonNull(production.getConstructionRequirements(), "ConstructionRequirements must not be null.");
+            constructionRequirementsValidator.validate(production.getConstructionRequirements());
         } catch (Exception e) {
             throw new IllegalStateException("Invalid Gives for resourceId " + resourceId, e);
         }

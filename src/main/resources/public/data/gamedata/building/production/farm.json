@@ -14,7 +14,7 @@
         "researchRequirements": [
           "agriculture"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "wheat": 1
         }
       }
@@ -30,7 +30,7 @@
         "researchRequirements": [
           "agriculture"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "wheat": 1,
           "water": 1
         }
@@ -47,7 +47,7 @@
         "researchRequirements": [
           "agriculture"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "water": 1
         }
       }

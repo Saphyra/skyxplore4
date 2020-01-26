@@ -13,7 +13,7 @@
         "researchRequirements": [
           "glass_production"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1,
           "sand": 1
         }
@@ -27,7 +27,7 @@
       "constructionRequirements": {
         "requiredWorkPoints": 1,
         "researchRequirements": [],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1,
           "sand": 1
         }

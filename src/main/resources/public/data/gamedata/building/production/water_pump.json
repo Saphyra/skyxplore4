@@ -12,7 +12,7 @@
         "requiredWorkPoints": 0,
         "researchRequirements": [
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1
         }
       }

@@ -13,7 +13,7 @@
         "researchRequirements": [
           "food_packaging"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "energy": 1,
           "plastic": 1,
           "raw_food": 1,

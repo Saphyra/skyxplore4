@@ -21,6 +21,7 @@ class ProductionOrderEntity implements SettablePersistable<String> {
     @Id
     private String productionOrderId;
     private String gameId;
+    private String starId;
     private String playerId;
     private String orderId;
     private String customerId;

@@ -13,7 +13,7 @@
         "requiredWorkPoints": 1,
         "researchRequirements": [
         ],
-        "resourceRequirements": {
+        "requiredResources": {
         }
       }
     },
@@ -27,7 +27,7 @@
         "requiredWorkPoints": 1,
         "researchRequirements": [
         ],
-        "resourceRequirements": {
+        "requiredResources": {
         }
       }
     }

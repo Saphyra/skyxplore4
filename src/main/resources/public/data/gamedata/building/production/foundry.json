@@ -13,7 +13,7 @@
         "researchRequirements": [
           "stealmaking"
         ],
-        "resourceRequirements": {
+        "requiredResources": {
           "coal": 1,
           "energy": 1,
           "iron": 1

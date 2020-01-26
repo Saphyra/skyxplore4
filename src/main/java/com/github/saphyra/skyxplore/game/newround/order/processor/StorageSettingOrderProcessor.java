@@ -36,7 +36,7 @@ public class StorageSettingOrderProcessor {
 
     private final GameQueryService gameQueryService;
     private final ProductionOrderCommandService productionOrderCommandService;
-    private final ProductionOrderFactory productionOrderFactory;
+    private final StorageSettingProductionOrderFactory storageSettingProductionOrderFactory;
     private final ProductionOrderQueryService productionOrderQueryService;
     private final ProducerQueryService producerQueryService;
     private final ResourceCommandService resourceCommandService;
@@ -79,7 +79,7 @@ public class StorageSettingOrderProcessor {
 
         List<ProductionOrder> newOrders = new ArrayList<>();
         for (int amount = orderRequiredAmount; amount > 0; amount -= BATCH_SIZE) {
-            newOrders.add(productionOrderFactory.create(settingOrder.getStorageSetting(), Math.min(amount, BATCH_SIZE)));
+            newOrders.add(storageSettingProductionOrderFactory.create(settingOrder.getStorageSetting(), Math.min(amount, BATCH_SIZE)));
         }
         return newOrders;
     }

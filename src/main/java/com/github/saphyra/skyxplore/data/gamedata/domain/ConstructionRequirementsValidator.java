@@ -18,6 +18,7 @@ public class ConstructionRequirementsValidator implements DataValidator<Construc
             throw new NullPointerException("ResearchRequirements must not contain null.");
         }
 
+        requireNonNull(item.getRequiredResources(), "RequiredResources must not be null.");
         if (item.getRequiredResources().entrySet().stream().anyMatch(e -> isNull(e.getValue()))) {
             throw new NullPointerException("RequiredResources must not contain null.");
         }

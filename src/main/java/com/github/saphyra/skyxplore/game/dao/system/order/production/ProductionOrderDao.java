@@ -26,4 +26,18 @@ class ProductionOrderDao extends AbstractDao<ProductionOrderEntity, ProductionOr
             uuidConverter.convertDomain(playerId)
         ));
     }
+
+    List<ProductionOrder> getByProducerBuildingIdAndPlayerId(UUID productionBuildingId, UUID playerId) {
+        return converter.convertEntity(repository.getByProducerBuildingIdAndPlayerId(
+            uuidConverter.convertDomain(productionBuildingId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
+    List<ProductionOrder> getByCustomerIdAndPlayerId(UUID customerId, UUID playerId) {
+        return converter.convertEntity(repository.getByCustomerIdAndPlayerId(
+            uuidConverter.convertDomain(customerId),
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
 }

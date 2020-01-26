@@ -18,7 +18,6 @@ class ResourceFactory {
     private final ResourceQueryService resourceQueryService;
 
     Resource createOrUpdate(ProductionOrder order, UUID starId, int round) {
-
         Resource resource = resourceQueryService.findByStarIdAndDataIdAndRoundAndPlayerId(
             starId,
             order.getDataId(),

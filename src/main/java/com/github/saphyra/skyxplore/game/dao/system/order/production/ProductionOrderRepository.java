@@ -22,4 +22,8 @@ interface ProductionOrderRepository extends CrudRepository<ProductionOrderEntity
     List<ProductionOrderEntity> getByGameId(String gameId);
 
     List<ProductionOrderEntity> getByOrderIdAndPlayerId(String orderId, String playerId);
+
+    List<ProductionOrderEntity> getByProducerBuildingIdAndPlayerId(String producerBuildingId, String playerId);
+
+    List<ProductionOrderEntity> getByCustomerIdAndPlayerId(String customerId, String playerId);
 }

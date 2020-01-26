@@ -11,5 +11,4 @@ public interface CommandService<T> extends SaveAllDao<T> {
     void deleteByGameId(UUID gameId);
 
     void save(T domain);
-
 }
