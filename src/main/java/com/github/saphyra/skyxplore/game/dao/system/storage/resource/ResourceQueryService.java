@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.resource;
 
-import com.github.saphyra.exceptionhandling.exception.InternalServerErrorException;
 import com.github.saphyra.skyxplore.common.context.RequestContext;
 import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.dao.game.GameQueryService;
@@ -18,6 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class ResourceQueryService {
+    private final DefaultResourceFactory defaultResourceFactory;
     private final GameQueryService gameQueryService;
     private final RequestContextHolder requestContextHolder;
     private final ResourceDao resourceDao;
@@ -31,8 +31,7 @@ public class ResourceQueryService {
 
     public Resource findByStarIdAndDataIdAndRoundAndPlayerIdValidated(UUID starId, String dataId) {
         return findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId)
-            //TODO create default resource
-            .orElseThrow(() -> new InternalServerErrorException(String.format("Resource not found for starId %s and dataId %s for the last round.", starId, dataId)));
+            .orElseGet(() -> defaultResourceFactory.create(starId, dataId));
     }
 
     public Optional<Resource> findByStarIdAndDataIdAndRoundAndPlayerId(UUID starId, String dataId, int round) {

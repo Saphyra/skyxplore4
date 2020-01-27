@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,6 +51,7 @@ public class ResourceSpendService {
             .build();
     }
 
+    @Transactional
     public void spend(ResourceSpendDetails spendDetails) {
         Resource resource = resourceQueryService.findByStarIdAndDataIdAndRoundAndPlayerIdValidated(spendDetails.getStarId(), spendDetails.getDataId());
         resource.removeAmount(spendDetails.getAvailableAmount());
