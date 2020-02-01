@@ -38,6 +38,7 @@ public class ProductionValidator implements DataValidator<Map<String, Production
             }
 
             requireNonNull(production.getAmount(), "Amount must not be null.");
+            requireNonNull(production.getRequiredSkill(), "RequiredSkill must not be null.");
 
             requireNonNull(production.getConstructionRequirements(), "ConstructionRequirements must not be null.");
             constructionRequirementsValidator.validate(production.getConstructionRequirements());

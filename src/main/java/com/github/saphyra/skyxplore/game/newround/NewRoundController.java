@@ -9,6 +9,7 @@ import com.github.saphyra.skyxplore.game.dao.map.star.Star;
 import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
 import com.github.saphyra.skyxplore.game.dao.player.Player;
 import com.github.saphyra.skyxplore.game.dao.player.PlayerQueryService;
+import com.github.saphyra.skyxplore.game.newround.hr.HumanResourceService;
 import com.github.saphyra.skyxplore.game.newround.order.Order;
 import com.github.saphyra.skyxplore.game.newround.order.provider.OrderProvider;
 import com.github.saphyra.skyxplore.game.newround.resource.NewRoundResourceHandler;
@@ -32,6 +33,7 @@ public class NewRoundController {
 
     private final GameCommandService gameCommandService;
     private final GameQueryService gameQueryService;
+    private final HumanResourceService humanResourceService;
     private final NewRoundResourceHandler newRoundResourceHandler;
     private final List<OrderProvider> orderProviders;
     private final PlayerQueryService playerQueryService;
@@ -52,6 +54,7 @@ public class NewRoundController {
         newRoundResourceHandler.cleanUpResources(context.getGameId());
         newRoundResourceHandler.prepareForNewRound(game.getRound());
         newRoundResourceHandler.deleteExpiredResources(game.getRound() + 1);
+        humanResourceService.clear(game.getGameId());
         requestContextHolder.setContext(context);
 
         game.incrementRound();
