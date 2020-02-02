@@ -30,4 +30,10 @@ public class HumanResource {
     public Integer getProductivity(SkillType requiredSkill) {
         return skills.get(requiredSkill).getLevel() * citizen.getMorale();
     }
+
+    public int produce(SkillType requiredSkill, int targetAmount, int workPointsPerItem) {
+        //TODO implement
+        //TODO handle items with higher workPoints
+        return 0;
+    }
 }

@@ -18,6 +18,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Objects.isNull;
+
 @Builder
 @Data
 @Slf4j
@@ -29,6 +31,8 @@ public class ProductionBuildingProducer implements Producer {
     private final ProductionBuilding productionBuilding;
     @NonNull
     private final ProductionContext productionContext;
+
+    private int allocatedWorkers = 0;
 
     @Override
     public Double getLoad() {
@@ -46,11 +50,10 @@ public class ProductionBuildingProducer implements Producer {
     public boolean produce(ProductionOrder order) {
         order.setProducerBuildingId(building.getBuildingId());
 
-        int missingAmount = order.getTargetAmount() - order.getProducedAmount();
         Production production = productionBuilding.getGives().get(order.getDataId());
 
         List<String> existingResourceRequirements = order.getExistingResourceRequirements();
-        Map<String, Integer> totalRequirements = getTotalRequirements(missingAmount, production, existingResourceRequirements);
+        Map<String, Integer> totalRequirements = getTotalRequirements(order.getMissingAmount(), production, existingResourceRequirements);
         List<ProductionOrder> existingOrders = getExistingOrders(order);
 
         List<ProductionOrder> requirementOrders = getRequirementOrders(order, totalRequirements);
@@ -70,17 +73,29 @@ public class ProductionBuildingProducer implements Producer {
         boolean depleted = false;
         if (existingResourceRequirements.containsAll(totalRequirements.keySet())) {
             log.info("ProductionOrder {} is finished.", order);
-            boolean allProcessed = false;
             do {
                 ProductionBuilding productionBuilding = productionContext.getProductionBuildingService().get(building.getBuildingDataId());
                 SkillType requiredSkill = productionBuilding.getGives().get(order.getDataId()).getRequiredSkill();
-                Optional<HumanResource> humanResource = productionContext.getHumanResourceService().getOne(building.getGameId(), building.getStarId(), building.getBuildingId(), requiredSkill);
-                if (humanResource.isPresent()) {
-                    //TODO implement
+                Optional<HumanResource> optionalHumanResource = productionContext.getHumanResourceService().getOne(building.getGameId(), building.getStarId(), building.getBuildingId(), requiredSkill);
+                if (optionalHumanResource.isPresent()) {
+                    HumanResource humanResource = optionalHumanResource.get();
+                    if (isNull(humanResource.getAllocation())) {
+                        if (building.getLevel() * productionBuilding.getWorkers() == allocatedWorkers) {
+                            depleted = true;
+                            break;
+                        } else {
+                            allocatedWorkers++;
+                            humanResource.setAllocation(building.getBuildingId());
+                        }
+                    }
+
+                    int workPointsPerItem = production.getConstructionRequirements().getRequiredWorkPoints();
+                    int producedAmount = humanResource.produce(requiredSkill, order.getMissingAmount(), workPointsPerItem);
+                    order.addProduced(producedAmount);
                 } else {
                     depleted = true;
                 }
-            } while (allProcessed || depleted);
+            } while (order.isReady() || depleted);
         }
 
         return depleted;
