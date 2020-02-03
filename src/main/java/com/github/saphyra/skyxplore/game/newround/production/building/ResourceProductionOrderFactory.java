@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.newround.production;
+package com.github.saphyra.skyxplore.game.newround.production.building;
 
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
 import com.github.saphyra.util.IdGenerator;

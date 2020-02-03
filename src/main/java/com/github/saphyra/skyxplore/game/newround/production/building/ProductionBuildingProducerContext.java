@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.newround.production;
+package com.github.saphyra.skyxplore.game.newround.production.building;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.building.production.ProductionBuildingService;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrderCommandService;
@@ -10,27 +10,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-class ProductionContext {
+public class ProductionBuildingProducerContext {
     private final HumanResourceService humanResourceService;
+    private final OngoingProductionOrderQueryService ongoingProductionOrderQueryService;
     private final ProductionBuildingService productionBuildingService;
     private final ProductionOrderCommandService productionOrderCommandService;
     private final ProductionOrderQueryService productionOrderQueryService;
-    private final ProductionResourceProvider productionResourceProvider;
-    private final ResourceProductionOrderFactory resourceProductionOrderFactory;
+    private final ResourceProducerService resourceProducerService;
 
-    ProductionContext(
+    ProductionBuildingProducerContext(
         @Lazy HumanResourceService humanResourceService,
+        @Lazy OngoingProductionOrderQueryService ongoingProductionOrderQueryService,
         @Lazy ProductionBuildingService productionBuildingService,
         @Lazy ProductionOrderCommandService productionOrderCommandService,
         @Lazy ProductionOrderQueryService productionOrderQueryService,
-        @Lazy ProductionResourceProvider productionResourceProvider,
-        @Lazy ResourceProductionOrderFactory resourceProductionOrderFactory
+        @Lazy ResourceProducerService resourceProducerService
     ) {
         this.humanResourceService = humanResourceService;
+        this.ongoingProductionOrderQueryService = ongoingProductionOrderQueryService;
         this.productionBuildingService = productionBuildingService;
         this.productionOrderCommandService = productionOrderCommandService;
         this.productionOrderQueryService = productionOrderQueryService;
-        this.productionResourceProvider = productionResourceProvider;
-        this.resourceProductionOrderFactory = resourceProductionOrderFactory;
+        this.resourceProducerService = resourceProducerService;
     }
 }

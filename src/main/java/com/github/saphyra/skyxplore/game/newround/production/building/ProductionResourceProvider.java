@@ -1,7 +1,9 @@
-package com.github.saphyra.skyxplore.game.newround.production;
+package com.github.saphyra.skyxplore.game.newround.production.building;
 
 import com.github.saphyra.exceptionhandling.exception.InternalServerErrorException;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
+import com.github.saphyra.skyxplore.game.newround.production.Producer;
+import com.github.saphyra.skyxplore.game.newround.production.ProducerQueryService;
 import com.github.saphyra.skyxplore.game.newround.resource.spend.ResourceSpendDetails;
 import com.github.saphyra.skyxplore.game.newround.resource.spend.ResourceSpendService;
 import lombok.RequiredArgsConstructor;
