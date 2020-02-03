@@ -23,6 +23,7 @@ class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, Prod
             .dataId(entity.getDataId())
             .targetAmount(entity.getTargetAmount())
             .producedAmount(entity.getProducedAmount())
+            .currentProgress(entity.getCurrentProgress())
             .isNew(entity.isNew())
             .build();
     }
@@ -40,6 +41,7 @@ class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, Prod
             .dataId(domain.getDataId())
             .targetAmount(domain.getTargetAmount())
             .producedAmount(domain.getProducedAmount())
+            .currentProgress(domain.getCurrentProgress())
             .isNew(domain.isNew())
             .build();
     }

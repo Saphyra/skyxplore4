@@ -14,6 +14,9 @@ import java.util.UUID;
 @Builder
 public class HumanResource {
     @NonNull
+    private final HumanResourceContext context;
+
+    @NonNull
     private final Citizen citizen;
 
     private UUID allocation;
@@ -31,9 +34,8 @@ public class HumanResource {
         return skills.get(requiredSkill).getLevel() * citizen.getMorale();
     }
 
-    public int produce(SkillType requiredSkill, int targetAmount, int workPointsPerItem) {
+    public ProductionProcess produce(SkillType requiredSkill, int targetAmount, int workPointsPerItem, Integer currentProgress) {
         //TODO implement
-        //TODO handle items with higher workPoints
-        return 0;
+        return null;
     }
 }

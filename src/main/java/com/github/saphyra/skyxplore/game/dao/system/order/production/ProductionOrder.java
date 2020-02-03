@@ -42,6 +42,10 @@ public class ProductionOrder {
 
     @NonNull
     @Builder.Default
+    private Integer currentProgress = 0;
+
+    @NonNull
+    @Builder.Default
     private final List<String> existingResourceRequirements = new ArrayList<>();
 
     private final boolean isNew;

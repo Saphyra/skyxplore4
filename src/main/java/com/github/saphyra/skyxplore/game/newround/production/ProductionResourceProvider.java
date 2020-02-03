@@ -26,7 +26,7 @@ class ProductionResourceProvider {
 
         Producer producer = producerQueryService.getByStarIdAndDataId(productionOrder.getStarId(), productionOrder.getDataId())
             .stream()
-            .min((o1, o2) -> -1 * o1.getLoad().compareTo(o2.getLoad()))
+            .min((o1, o2) -> o2.getLoad().compareTo(o1.getLoad()))
             .orElseThrow(() -> new InternalServerErrorException(String.format("Producer not found for ProductionOrder %s", productionOrder)));
 
         producer.produce(productionOrder);

@@ -59,6 +59,8 @@ com:
             - surfaceName: VOLCANO
               spawnRate: 2
               optional: true
+          humanResource:
+            workPoints: 1
           skill:
             initialNextLevel: 1000
             experienceRequirementMultiplier: 2

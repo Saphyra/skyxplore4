@@ -38,4 +38,16 @@
             <column name="game_id"/>
         </createIndex>
     </changeSet>
+
+    <changeSet id="add_column-current_progress-to-production_order" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="production_order" columnName="current_progress"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="production_order">
+            <column name="current_progress" type="number"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

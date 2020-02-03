@@ -6,6 +6,7 @@ import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.citizen.SkillType;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
 import com.github.saphyra.skyxplore.game.newround.hr.HumanResource;
+import com.github.saphyra.skyxplore.game.newround.hr.ProductionProcess;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -90,8 +91,14 @@ public class ProductionBuildingProducer implements Producer {
                     }
 
                     int workPointsPerItem = production.getConstructionRequirements().getRequiredWorkPoints();
-                    int producedAmount = humanResource.produce(requiredSkill, order.getMissingAmount(), workPointsPerItem);
-                    order.addProduced(producedAmount);
+                    ProductionProcess productionProcess = humanResource.produce(
+                        requiredSkill,
+                        order.getMissingAmount(),
+                        workPointsPerItem,
+                        order.getCurrentProgress()
+                    );
+                    order.addProduced(productionProcess.getFinishedProducts());
+                    order.setCurrentProgress(productionProcess.getCurrentProgress());
                 } else {
                     depleted = true;
                 }
