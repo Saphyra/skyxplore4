@@ -1,6 +1,5 @@
 {
   "id": "hospital",
-  "cache": 5,
   "buildingType": "production",
   "gives": {
     "citizen": {

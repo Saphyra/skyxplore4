@@ -1,6 +1,5 @@
 {
   "id": "camp",
-  "cache": 5,
   "buildingType": "production",
   "gives": {
     "raw_food": {

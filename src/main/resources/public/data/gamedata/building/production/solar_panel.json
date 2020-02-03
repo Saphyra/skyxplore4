@@ -1,6 +1,5 @@
 {
   "id": "solar_panel",
-  "cache": 5,
   "buildingType": "production",
   "gives": {
     "energy": {

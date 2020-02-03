@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 @Component
@@ -27,10 +28,15 @@ public class ProductionBuildingValidator implements DataValidator<Map<String, Pr
             log.debug("Validating ProductionBuilding with key {}", key);
             buildingDataValidator.validate(productionBuilding);
             requireNonNull(productionBuilding.getWorkers(), "Workers must not be null.");
+            if (productionBuilding.getWorkers() < 1) {
+                throw new IllegalStateException("Workers must be higher than 0");
+            }
             requireNonNull(productionBuilding.getPrimarySurfaceType(), "PrimarySurfaceType must not be null.");
             requireNonNull(productionBuilding.getPlaceableSurfaceTypes(), "PlaceableSurfaceTypes must not be null.");
-            requireNonNull(productionBuilding.getCache(), "Cache must not be null.");
-           productionValidator.validate(productionBuilding.getGives());
+            if (!isNull(productionBuilding.getCache())) {
+                throw new IllegalStateException("Cache is deprecated, and must be null.");
+            }
+            productionValidator.validate(productionBuilding.getGives());
         } catch (Exception e) {
             throw new IllegalStateException("Invalid data with key " + key, e);
         }

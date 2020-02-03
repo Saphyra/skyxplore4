@@ -1,6 +1,5 @@
 {
   "id": "excavator",
-  "cache": 5,
   "buildingType": "production",
   "gives": {
     "coal": {

@@ -1,6 +1,5 @@
 {
   "id": "farm",
-  "cache": 5,
   "buildingType": "production",
   "gives": {
     "leather": {

@@ -1,6 +1,5 @@
 {
   "id": "gas_turbine",
-  "cache": 5,
   "buildingType": "production",
   "gives": {
     "energy": {

@@ -14,6 +14,9 @@ public class ConstructionRequirementsValidator implements DataValidator<Construc
     @Override
     public void validate(ConstructionRequirements item) {
         requireNonNull(item.getRequiredWorkPoints(), "requiredWorkPoints must not be null.");
+        if (item.getRequiredWorkPoints() < 1) {
+            throw new IllegalStateException("requiredWorkPoints must be higher than 0");
+        }
         if (item.getResearchRequirements().stream().anyMatch(Objects::isNull)) {
             throw new NullPointerException("ResearchRequirements must not contain null.");
         }
