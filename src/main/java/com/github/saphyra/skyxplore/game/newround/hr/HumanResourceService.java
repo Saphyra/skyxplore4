@@ -29,21 +29,28 @@ public class HumanResourceService {
     public Optional<HumanResource> getOne(UUID gameId, UUID starId, UUID buildingId, SkillType requiredSkill) {
         List<HumanResource> availableHumanResources = fetch(gameId, starId)
             .stream()
+            //Filter out depleted HumanResources
             .filter(humanResource -> !humanResource.isDepleted())
             .collect(Collectors.toList());
         Optional<HumanResource> allocated = availableHumanResources.stream()
+            //Searching for HumanResource already allocated to Producer
             .filter(humanResource -> buildingId.equals(humanResource.getAllocation()))
             .findFirst();
         if (allocated.isPresent()) {
+            log.info("Allocated HumanResource found: {}", allocated);
             return allocated;
         } else {
-            return getUnassigned(availableHumanResources, requiredSkill);
+            Optional<HumanResource> result = getUnassigned(availableHumanResources, requiredSkill);
+            log.info("Unassigned HumanResource found: {}", result);
+            return result;
         }
     }
 
     private Optional<HumanResource> getUnassigned(List<HumanResource> availableHumanResources, SkillType requiredSkill) {
         return availableHumanResources.stream()
+            //Filtering free HumanResources
             .filter(humanResource -> isNull(humanResource.getAllocation()))
+            //Ordering by productivity
             .max(Comparator.comparing(o -> o.getProductivity(requiredSkill)));
     }
 
@@ -53,6 +60,7 @@ public class HumanResourceService {
         }
         Map<UUID, Vector<HumanResource>> resourcesForGame = resourceMap.get(gameId);
         if (!resourcesForGame.containsKey(starId)) {
+            log.info("Loading HumanResources for gameId {} and starId {}", gameId, starId);
             resourcesForGame.put(starId, load(starId));
         }
         return resourcesForGame.get(starId);
@@ -66,6 +74,7 @@ public class HumanResourceService {
     }
 
     public void clear(UUID gameId) {
+        //TODO process moral changes
         resourceMap.remove(gameId);
     }
 }

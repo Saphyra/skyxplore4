@@ -40,6 +40,7 @@ public class ResourceCommandService implements CommandService<Resource> {
 
     @Override
     public void save(Resource domain) {
+        log.info("Saving Resource {}", domain, new RuntimeException());
         resourceDao.save(domain);
     }
 

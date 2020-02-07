@@ -37,6 +37,7 @@ public class HumanResource {
     }
 
     public ProductionProcess produce(SkillType requiredSkill, int targetAmount, int workPointsPerItem, Integer currentProgress) {
+        log.info("Production started. requiredSkill: {}, targetAmount: {}, workPointsPerItem: {}, currentProgress: {}", requiredSkill, targetAmount, workPointsPerItem, currentProgress);
         //TODO moral multiplier
         int skillMultiplier = 1 + (skills.get(requiredSkill).getLevel() - 1) / 10;
         int availableWorkPoints = workPointsLeft * skillMultiplier;

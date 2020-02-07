@@ -33,7 +33,7 @@ public class Resource {
     @NonNull
     private final Integer round;
 
-    private final boolean isNew;
+    private boolean isNew;
 
     public void addAmount(Integer addition) {
         amount += addition;

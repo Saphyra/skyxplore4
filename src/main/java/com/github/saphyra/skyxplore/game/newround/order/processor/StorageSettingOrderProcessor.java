@@ -59,13 +59,13 @@ public class StorageSettingOrderProcessor {
                 if (depleted) {
                     depletedProducerIds.add(producer.getId());
                 }
+                productionOrderCommandService.save(order);
                 if (order.isReady()) {
                     Resource resource = resourceFactory.createOrUpdate(order, storageSetting.getStarId(), gameQueryService.findByGameIdAndUserIdValidated().getRound());
                     resourceCommandService.save(resource);
                     productionOrderCommandService.delete(order);
                 }
             }
-            productionOrderCommandService.save(order);
         }
     }
 

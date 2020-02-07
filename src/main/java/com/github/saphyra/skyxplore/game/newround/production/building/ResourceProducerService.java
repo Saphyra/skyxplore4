@@ -39,30 +39,36 @@ class ResourceProducerService {
         do {
             //TODO add logging
             Optional<HumanResource> optionalHumanResource = humanResourceService.getOne(building.getGameId(), building.getStarId(), building.getBuildingId(), requiredSkill);
+            log.info("HumanResource found: {}", optionalHumanResource.isPresent());
             if (optionalHumanResource.isPresent()) {
                 HumanResource humanResource = optionalHumanResource.get();
                 depleted = allocateHumanResource(producer, building, productionBuilding, humanResource);
 
                 if (!depleted) {
+                    log.info("There is available HumanResource.");
                     produce(order, requiredSkill, workPointsPerItem, humanResource);
                 }
             } else {
                 depleted = true;
             }
-        } while (!order.isReady() || !depleted);
+        } while (!order.isReady() && !depleted);
         return depleted;
     }
 
     private boolean allocateHumanResource(ProductionBuildingProducer producer, Building building, ProductionBuilding productionBuilding, HumanResource humanResource) {
         if (humanResourceNotAllocated(humanResource)) {
+            log.info("HumanResource is not allocated.");
             if (!buildingCanHireWorkers(producer, building, productionBuilding)) {
+                log.info("HumanResource allocation failed - ProductionBuilding cannot employ more employees.");
                 return true;
             } else {
+                log.info("Allocating HumanResource to Producer...");
                 producer.allocateWorker();
                 humanResource.setAllocation(building.getBuildingId());
                 return false;
             }
         }
+        log.info("HumanResource is already allocated to the Producer.");
         return false;
     }
 
@@ -71,10 +77,14 @@ class ResourceProducerService {
     }
 
     private boolean buildingCanHireWorkers(ProductionBuildingProducer producer, Building building, ProductionBuilding productionBuilding) {
-        return building.getLevel() * productionBuilding.getWorkers() == producer.getAllocatedWorkers();
+        int maxWorkers = building.getLevel() * productionBuilding.getWorkers();
+        boolean result = maxWorkers > producer.getAllocatedWorkers();
+        log.info("Producer can hire workers: {}. maxWorkers: {}, allocatedWorkers: {}", result, maxWorkers, producer.getAllocatedWorkers());
+        return result;
     }
 
     private void produce(ProductionOrder order, SkillType requiredSkill, int workPointsPerItem, HumanResource humanResource) {
+        log.info("Production requested for order {}", order);
         ProductionProcess productionProcess = humanResource.produce(
             requiredSkill,
             order.getMissingAmount(),
