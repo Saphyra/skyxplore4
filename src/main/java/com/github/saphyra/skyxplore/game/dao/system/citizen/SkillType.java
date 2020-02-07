@@ -8,6 +8,7 @@ public enum SkillType {
     ENTERTAINING,
     FARMING,
     MELEE_FIGHTING,
+    MINING,
     PILOTING,
     RESEARCHING,
     SUPPLYING

@@ -8,17 +8,18 @@
       ],
       "amount": 1,
       "constructionRequirements": {
-        "requiredWorkPoints": 0,
+        "requiredWorkPoints": 1,
         "researchRequirements": [
           "oil_mining"
         ],
         "requiredResources": {
           "energy": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
-  "workers": 0,
+  "workers": 1,
   "constructionRequirements": {
     "1": {
       "researchRequirements": [

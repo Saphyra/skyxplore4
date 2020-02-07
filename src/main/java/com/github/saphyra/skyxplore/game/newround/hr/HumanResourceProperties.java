@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class HumanResourceProperties {
-    @Value("com.github.saphyra.skyxplore.game.humanResource.workPoints")
+    @Value("${com.github.saphyra.skyxplore.game.humanResource.workPoints}")
     private Integer workPoints;
 }

@@ -16,7 +16,8 @@
         "requiredResources": {
           "wheat": 1
         }
-      }
+      },
+      "requiredSkill": "FARMING"
     },
     "raw_food": {
       "placed": [
@@ -33,7 +34,8 @@
           "wheat": 1,
           "water": 1
         }
-      }
+      },
+      "requiredSkill": "FARMING"
     },
     "wheat": {
       "placed": [
@@ -49,7 +51,8 @@
         "requiredResources": {
           "water": 1
         }
-      }
+      },
+      "requiredSkill": "FARMING"
     }
   },
   "workers": 1,

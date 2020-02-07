@@ -14,7 +14,8 @@
         ],
         "requiredResources": {
         }
-      }
+      },
+      "requiredSkill": "FARMING"
     },
     "leather": {
       "placed": [
@@ -28,7 +29,8 @@
         ],
         "requiredResources": {
         }
-      }
+      },
+      "requiredSkill": "FARMING"
     }
   },
   "workers": 1,

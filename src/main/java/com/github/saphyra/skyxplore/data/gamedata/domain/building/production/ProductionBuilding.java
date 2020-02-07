@@ -18,8 +18,6 @@ import static java.util.Objects.isNull;
 public class ProductionBuilding extends BuildingData {
     private OptionalHashMap<String, Production> gives;
     private Integer workers;
-    @Deprecated //TODO remove
-    private Integer cache;
     private SurfaceType primarySurfaceType;
 
     @Override

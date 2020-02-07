@@ -14,7 +14,8 @@
         "requiredResources": {
           "energy": 1
         }
-      }
+      },
+      "requiredSkill": "MINING"
     },
     "sand": {
       "placed": [
@@ -28,7 +29,8 @@
         "requiredResources": {
           "energy": 1
         }
-      }
+      },
+      "requiredSkill": "MINING"
     },
     "ore": {
       "placed": [
@@ -42,7 +44,8 @@
         "requiredResources": {
           "energy": 1
         }
-      }
+      },
+      "requiredSkill": "MINING"
     },
     "stone": {
       "placed": [
@@ -56,7 +59,8 @@
         "requiredResources": {
           "energy": 1
         }
-      }
+      },
+      "requiredSkill": "MINING"
     }
   },
   "workers": 1,

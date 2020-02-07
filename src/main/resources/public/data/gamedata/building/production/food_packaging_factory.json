@@ -18,7 +18,8 @@
           "raw_food": 1,
           "water": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
   "workers": 1,

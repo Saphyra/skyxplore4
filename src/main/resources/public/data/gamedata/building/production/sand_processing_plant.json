@@ -16,7 +16,8 @@
           "energy": 1,
           "sand": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     },
     "silicon": {
       "placed": [
@@ -30,7 +31,8 @@
           "energy": 1,
           "sand": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
   "workers": 1,

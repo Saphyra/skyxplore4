@@ -17,7 +17,8 @@
           "energy": 1,
           "iron": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
   "workers": 1,

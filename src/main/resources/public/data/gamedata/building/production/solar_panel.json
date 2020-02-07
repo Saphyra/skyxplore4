@@ -14,10 +14,11 @@
         ],
         "requiredResources": {
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
-  "workers": 0,
+  "workers": 1,
   "defaultBuilding": true,
   "primarySurfaceType": "desert",
   "constructionRequirements": {

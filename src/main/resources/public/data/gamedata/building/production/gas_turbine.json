@@ -15,10 +15,11 @@
         "requiredResources": {
           "fuel": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
-  "workers": 0,
+  "workers": 1,
   "constructionRequirements": {
     "1": {
       "researchRequirements": [

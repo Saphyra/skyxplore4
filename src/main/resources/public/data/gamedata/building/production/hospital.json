@@ -15,7 +15,8 @@
           "energy": 1,
           "water": 1
         }
-      }
+      },
+      "requiredSkill": "DOCTORING"
     }
   },
   "workers": 1,

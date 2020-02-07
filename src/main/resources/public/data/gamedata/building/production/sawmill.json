@@ -14,7 +14,8 @@
         "requiredResources": {
           "energy": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     },
     "plank": {
       "placed": [
@@ -30,7 +31,8 @@
           "energy": 1,
           "wood": 1
         }
-      }
+      },
+      "requiredSkill": "ENGINEERING"
     }
   },
   "workers": 1,
