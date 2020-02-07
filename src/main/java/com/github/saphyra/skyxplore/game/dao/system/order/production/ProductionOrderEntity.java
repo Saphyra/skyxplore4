@@ -30,6 +30,7 @@ class ProductionOrderEntity implements SettablePersistable<String> {
     private Integer targetAmount;
     private Integer producedAmount;
     private Integer currentProgress;
+    private String existingResourceRequirements;
 
     @Transient
     private boolean isNew;

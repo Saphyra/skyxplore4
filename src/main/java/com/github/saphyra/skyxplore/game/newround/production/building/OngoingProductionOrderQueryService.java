@@ -17,9 +17,9 @@ class OngoingProductionOrderQueryService {
     private final ResourceProductionOrderFactory resourceProductionOrderFactory;
 
     List<ProductionOrder> getExistingOrders(ProductionOrder order) {
-        return productionOrderQueryService.getByCustomerIdAndPlayerId(order.getCustomerId())
+        return productionOrderQueryService.getByCustomerIdAndPlayerId(order.getProductionOrderId())
             .stream()
-            .map(productionResourceProvider::getForOrder)
+            .map(productionResourceProvider::spendForOrder)
             .collect(Collectors.toList());
     }
 
@@ -27,7 +27,7 @@ class OngoingProductionOrderQueryService {
         return totalRequirements.entrySet()
             .stream()
             .map(requirement -> resourceProductionOrderFactory.createResourceOrder(order, requirement))
-            .map(productionResourceProvider::getForOrder)
+            .map(productionResourceProvider::spendForOrder)
             .collect(Collectors.toList());
     }
 }

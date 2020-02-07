@@ -24,10 +24,10 @@ public class ProductionOrder {
     private final UUID playerId;
 
     @NonNull
-    private final UUID orderId;
+    private final UUID orderId; //The id of the root trigger (StorageSetting, etc)
 
     @NonNull
-    private final UUID customerId;
+    private final UUID customerId; //The id of the parent trigger (another ProductionOrder, StorageSetting, etc)
 
     private UUID producerBuildingId;
 
@@ -46,7 +46,7 @@ public class ProductionOrder {
 
     @NonNull
     @Builder.Default
-    private final List<String> existingResourceRequirements = new ArrayList<>();
+    private final List<String> existingResourceRequirements = new ArrayList<>(); //Requirement resource dataIds what are already produced
 
     private final boolean isNew;
 

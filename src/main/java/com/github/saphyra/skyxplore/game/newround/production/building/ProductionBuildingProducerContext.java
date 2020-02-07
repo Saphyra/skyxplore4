@@ -4,6 +4,7 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.building.production.Pro
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrderCommandService;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrderQueryService;
 import com.github.saphyra.skyxplore.game.newround.hr.HumanResourceService;
+import com.github.saphyra.skyxplore.game.newround.production.ProducerQueryService;
 import lombok.Getter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class ProductionBuildingProducerContext {
     private final HumanResourceService humanResourceService;
     private final OngoingProductionOrderQueryService ongoingProductionOrderQueryService;
+    private final ProducerQueryService producerQueryService;
     private final ProductionBuildingService productionBuildingService;
     private final ProductionOrderCommandService productionOrderCommandService;
     private final ProductionOrderQueryService productionOrderQueryService;
@@ -21,6 +23,7 @@ public class ProductionBuildingProducerContext {
     ProductionBuildingProducerContext(
         @Lazy HumanResourceService humanResourceService,
         @Lazy OngoingProductionOrderQueryService ongoingProductionOrderQueryService,
+        @Lazy ProducerQueryService producerQueryService,
         @Lazy ProductionBuildingService productionBuildingService,
         @Lazy ProductionOrderCommandService productionOrderCommandService,
         @Lazy ProductionOrderQueryService productionOrderQueryService,
@@ -28,6 +31,7 @@ public class ProductionBuildingProducerContext {
     ) {
         this.humanResourceService = humanResourceService;
         this.ongoingProductionOrderQueryService = ongoingProductionOrderQueryService;
+        this.producerQueryService = producerQueryService;
         this.productionBuildingService = productionBuildingService;
         this.productionOrderCommandService = productionOrderCommandService;
         this.productionOrderQueryService = productionOrderQueryService;

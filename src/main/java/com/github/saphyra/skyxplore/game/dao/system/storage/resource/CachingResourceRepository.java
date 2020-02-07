@@ -75,15 +75,14 @@ public class CachingResourceRepository extends CacheRepository<String, ResourceE
     }
 
     @Override
-    public Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId) {
+    public Optional<ResourceEntity> findTopByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId) {
         return getMapByKey(getGameId())
             .values()
             .stream()
             .filter(resourceEntity -> resourceEntity.getStarId().equals(starId))
             .filter(resourceEntity -> resourceEntity.getDataId().equals(dataId))
             .filter(resourceEntity -> resourceEntity.getPlayerId().equals(playerId))
-            .sorted((o1, o2) -> o2.getRound() - o1.getRound())
-            .findAny();
+            .min((o1, o2) -> o2.getRound() - o1.getRound());
     }
 
     @Override

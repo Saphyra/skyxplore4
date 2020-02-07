@@ -50,4 +50,16 @@
             <column name="current_progress" type="number"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="add_column-existing_resource_requirements-to-production_order" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="existing_resource_requirements" columnName="current_progress"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="production_order">
+            <column name="existing_resource_requirements" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

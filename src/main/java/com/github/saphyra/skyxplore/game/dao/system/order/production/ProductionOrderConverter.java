@@ -2,12 +2,16 @@ package com.github.saphyra.skyxplore.game.dao.system.order.production;
 
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.util.ObjectMapperWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
 class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, ProductionOrder> {
+    private final ObjectMapperWrapper objectMapperWrapper;
     private final UuidConverter uuidConverter;
 
     @Override
@@ -24,7 +28,8 @@ class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, Prod
             .targetAmount(entity.getTargetAmount())
             .producedAmount(entity.getProducedAmount())
             .currentProgress(entity.getCurrentProgress())
-            .isNew(entity.isNew())
+            .isNew(false)
+            .existingResourceRequirements(new ArrayList<>(objectMapperWrapper.readArrayValue(entity.getExistingResourceRequirements(), String[].class)))
             .build();
     }
 
@@ -43,6 +48,7 @@ class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, Prod
             .producedAmount(domain.getProducedAmount())
             .currentProgress(domain.getCurrentProgress())
             .isNew(domain.isNew())
+            .existingResourceRequirements(objectMapperWrapper.writeValueAsString(domain.getExistingResourceRequirements()))
             .build();
     }
 }

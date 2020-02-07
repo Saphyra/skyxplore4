@@ -27,7 +27,7 @@ interface ResourceRepository extends CrudRepository<ResourceEntity, String> {
 
     Optional<ResourceEntity> findByStarIdAndDataIdAndRoundAndPlayerId(String starId, String dataId, int round, String playerId);
 
-    Optional<ResourceEntity> findLatestByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId);
+    Optional<ResourceEntity> findTopByStarIdAndDataIdAndPlayerIdOrderByRoundDesc(String starId, String dataId, String playerId);
 
     List<ResourceEntity> getByGameId(String gameId);
 

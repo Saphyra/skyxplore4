@@ -21,7 +21,7 @@ class ResourceConverter extends ConverterBase<ResourceEntity, Resource> {
             .dataId(entity.getDataId())
             .amount(entity.getAmount())
             .round(entity.getRound())
-            .isNew(entity.isNew())
+            .isNew(false)
             .build();
     }
 

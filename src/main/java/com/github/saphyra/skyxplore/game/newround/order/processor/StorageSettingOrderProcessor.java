@@ -39,9 +39,9 @@ public class StorageSettingOrderProcessor {
 
     public void process(StorageSettingOrder settingOrder) {
         StorageSetting storageSetting = settingOrder.getStorageSetting();
-        log.info("Processing StorageSettingOrder for StorageSetting {} with priority {}", storageSetting.getStorageSettingId(), settingOrder.getPriority());
+        log.info("Processing StorageSettingOrder for StorageSetting {} with priority {} ({} amount of {})", storageSetting.getStorageSettingId(), settingOrder.getPriority(), storageSetting.getTargetAmount(), storageSetting.getDataId());
 
-        List<ProductionOrder> existingOrders = productionOrderQueryService.getByOrderIdAndPlayerId(storageSetting.getStorageSettingId());
+        List<ProductionOrder> existingOrders = productionOrderQueryService.getByCustomerIdAndPlayerId(storageSetting.getStorageSettingId());
 
         List<ProductionOrder> newOrders = newOrderCreator.createNewOrders(settingOrder, existingOrders);
         List<ProductionOrder> productionOrderQueue = mergeAndSort(existingOrders, newOrders);
@@ -49,9 +49,11 @@ public class StorageSettingOrderProcessor {
         Map<UUID, Producer> producers = producerQueryService.getByStarIdAndDataId(storageSetting.getStarId(), storageSetting.getDataId())
             .stream()
             .collect(Collectors.toMap(Producer::getId, Function.identity()));
+        log.info("Producers for dataId {}: {}", storageSetting.getDataId(), producers);
 
         Set<UUID> depletedProducerIds = new HashSet<>();
         for (ProductionOrder order : productionOrderQueue) {
+            log.info("Producing ProductionOrder {}", order);
             Optional<Producer> optionalProducer = producerSelector.selectProducer(order, producers, depletedProducerIds);
             if (optionalProducer.isPresent()) {
                 Producer producer = optionalProducer.get();
