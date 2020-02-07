@@ -37,6 +37,7 @@ class ResourceProducerService {
 
         boolean depleted;
         do {
+            //TODO add logging
             Optional<HumanResource> optionalHumanResource = humanResourceService.getOne(building.getGameId(), building.getStarId(), building.getBuildingId(), requiredSkill);
             if (optionalHumanResource.isPresent()) {
                 HumanResource humanResource = optionalHumanResource.get();

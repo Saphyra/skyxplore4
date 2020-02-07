@@ -60,7 +60,7 @@ com:
               spawnRate: 2
               optional: true
           humanResource:
-            workPoints: 1
+            workPoints: 10
           skill:
             initialNextLevel: 1000
             experienceRequirementMultiplier: 2

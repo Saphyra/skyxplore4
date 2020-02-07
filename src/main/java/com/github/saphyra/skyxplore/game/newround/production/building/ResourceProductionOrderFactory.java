@@ -18,6 +18,7 @@ class ResourceProductionOrderFactory {
         return ProductionOrder.builder()
             .productionOrderId(idGenerator.randomUUID())
             .gameId(order.getGameId())
+            .starId(order.getStarId())
             .playerId(order.getPlayerId())
             .orderId(order.getOrderId())
             .customerId(order.getProductionOrderId())
