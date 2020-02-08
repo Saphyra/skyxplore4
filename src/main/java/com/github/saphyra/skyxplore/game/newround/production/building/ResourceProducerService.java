@@ -37,11 +37,10 @@ class ResourceProducerService {
 
         boolean depleted;
         do {
-            //TODO add logging
             Optional<HumanResource> optionalHumanResource = humanResourceService.getOne(building.getGameId(), building.getStarId(), building.getBuildingId(), requiredSkill);
-            log.info("HumanResource found: {}", optionalHumanResource.isPresent());
             if (optionalHumanResource.isPresent()) {
                 HumanResource humanResource = optionalHumanResource.get();
+                log.info("Available HumanResource found: {}", humanResource);
                 depleted = allocateHumanResource(producer, building, productionBuilding, humanResource);
 
                 if (!depleted) {
@@ -49,6 +48,7 @@ class ResourceProducerService {
                     produce(order, requiredSkill, workPointsPerItem, humanResource);
                 }
             } else {
+                log.info("Available HumanResource not found. Producer is depleted.");
                 depleted = true;
             }
         } while (!order.isReady() && !depleted);
@@ -56,20 +56,23 @@ class ResourceProducerService {
     }
 
     private boolean allocateHumanResource(ProductionBuildingProducer producer, Building building, ProductionBuilding productionBuilding, HumanResource humanResource) {
+        boolean humanResourceAvailable;
         if (humanResourceNotAllocated(humanResource)) {
             log.info("HumanResource is not allocated.");
             if (!buildingCanHireWorkers(producer, building, productionBuilding)) {
                 log.info("HumanResource allocation failed - ProductionBuilding cannot employ more employees.");
-                return true;
+                humanResourceAvailable = true;
             } else {
                 log.info("Allocating HumanResource to Producer...");
                 producer.allocateWorker();
                 humanResource.setAllocation(building.getBuildingId());
-                return false;
+                humanResourceAvailable = false;
             }
+        } else {
+            log.info("HumanResource is already allocated to the Producer.");
+            humanResourceAvailable = false;
         }
-        log.info("HumanResource is already allocated to the Producer.");
-        return false;
+        return humanResourceAvailable;
     }
 
     private boolean humanResourceNotAllocated(HumanResource humanResource) {
