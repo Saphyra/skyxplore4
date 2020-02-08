@@ -18,7 +18,7 @@ interface ResourceRepository extends CrudRepository<ResourceEntity, String> {
     void deleteByGameId(@Param("gameId") String gameId);
 
     @Modifying
-    @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId AND e.round < :round")
+    @Query("DELETE FROM ResourceEntity e WHERE e.gameId = :gameId AND e.round <= :round")
     @Transactional
     void deleteByGameIdAndRoundBefore(@Param("gameId") String gameId, @Param("round") int round);
 

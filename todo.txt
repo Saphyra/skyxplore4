@@ -1,4 +1,3 @@
-TODO bugfix - resources are not duplicated at the end of the round
 TODO bugfix - Calculate average correctly
 TODO update reservations for storageSettings at the end of the round
 TODO Update ProductionOrders when StorageSetting is changed

@@ -33,7 +33,7 @@ public class NewRoundResourceHandler {
     }
 
     public void prepareForNewRound(Integer round) {
-        Integer newRound = round++;
+        Integer newRound = round + 1;
         List<Resource> resources = resourceQueryService.getByGameIdAndRound(round)
             .stream()
             .parallel()
