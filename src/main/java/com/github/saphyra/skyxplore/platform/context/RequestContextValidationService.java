@@ -26,7 +26,7 @@ class RequestContextValidationService {
                 throw new InvalidContextException("GameId is mandatory when playerId is present.");
             }
 
-            if (!playerQueryService.findByGameIdAndPlayerId().isPresent()){
+            if (!playerQueryService.findByGameIdAndPlayerId().isPresent()) {
                 throw new InvalidContextException("Invalid playerId");
             }
         }

@@ -31,8 +31,8 @@ public class StorageBuildingService extends ValidationAbstractDataService<String
 
     public StorageBuilding findByStorageType(StorageType storageType) {
         return values().stream()
-                .filter(storageBuilding -> storageBuilding.getStores().equals(storageType))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(String.format("No storage found for storageType %s.", storageType)));
+            .filter(storageBuilding -> storageBuilding.getStores().equals(storageType))
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException(String.format("No storage found for storageType %s.", storageType)));
     }
 }

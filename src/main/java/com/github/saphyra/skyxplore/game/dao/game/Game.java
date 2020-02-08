@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @Data
-public class Game{
+public class Game {
     @Id
     @NonNull
     private final UUID gameId;

@@ -1,15 +1,14 @@
 package com.github.saphyra.skyxplore.game.rest.view.building;
 
-import java.util.Optional;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.common.ViewConverter;
 import com.github.saphyra.skyxplore.data.gamedata.GameDataQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.rest.view.ConstructionStatusView;
 import com.github.saphyra.skyxplore.game.service.system.costruction.ConstructionViewQueryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

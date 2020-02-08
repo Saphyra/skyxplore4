@@ -1,6 +1,10 @@
 package com.github.saphyra.skyxplore.game.service.system.storage.resource;
 
-import static java.util.Objects.isNull;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,12 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
-import org.springframework.stereotype.Service;
-
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.StorageType;
-import lombok.RequiredArgsConstructor;
+import static java.util.Objects.isNull;
 
 @Service
 @RequiredArgsConstructor

@@ -22,7 +22,7 @@ import javax.persistence.Transient;
 @Data
 @Entity
 @Table(name = "surface")
-class SurfaceEntity  implements SettablePersistable<String> {
+class SurfaceEntity implements SettablePersistable<String> {
     @Id
     private String surfaceId;
 

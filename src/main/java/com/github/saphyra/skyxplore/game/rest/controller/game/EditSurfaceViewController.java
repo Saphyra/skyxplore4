@@ -31,7 +31,7 @@ public class EditSurfaceViewController {
 
     @GetMapping(GET_BUILDABLE_BUILDINGS_MAPPING)
     List<BuildableBuildingView> getBuildableBuildings(
-            @PathVariable("surfaceId") UUID surfaceId
+        @PathVariable("surfaceId") UUID surfaceId
     ) {
         log.info("Querying buildable buildings for surfaceId {}", surfaceId);
         return editSurfaceQueryService.getBuildableBuildings(surfaceId);
@@ -44,7 +44,7 @@ public class EditSurfaceViewController {
     }
 
     @GetMapping(GET_TERRAFORMING_POSSIBILITIES)
-    List<TerraformingPossibilityView> getTerraformingPossibilities(@PathVariable("surfaceId") UUID surfaceId){
+    List<TerraformingPossibilityView> getTerraformingPossibilities(@PathVariable("surfaceId") UUID surfaceId) {
         log.info("Querying terraforming possibilities of surface {}", surfaceId);
         return editSurfaceQueryService.getTerraformingPossibilities(surfaceId);
     }

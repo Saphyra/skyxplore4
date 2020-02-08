@@ -1,15 +1,13 @@
 package com.github.saphyra.skyxplore.game.service.map.surface.creation;
 
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Component
 @Data

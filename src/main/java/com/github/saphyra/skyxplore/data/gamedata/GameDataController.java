@@ -24,9 +24,9 @@ public class GameDataController {
     @GetMapping(GET_DATA_MAPPING)
     GameDataItem getData(@PathVariable("dataId") String dataId) {
         return dataServices.stream()
-                .flatMap(abstractDataService -> abstractDataService.values().stream())
-                .filter(gameDataItem -> gameDataItem.getId().equals(dataId))
-                .findFirst()
-                .orElseThrow(() -> ExceptionFactory.dataNotFound(dataId));
+            .flatMap(abstractDataService -> abstractDataService.values().stream())
+            .filter(gameDataItem -> gameDataItem.getId().equals(dataId))
+            .findFirst()
+            .orElseThrow(() -> ExceptionFactory.dataNotFound(dataId));
     }
 }

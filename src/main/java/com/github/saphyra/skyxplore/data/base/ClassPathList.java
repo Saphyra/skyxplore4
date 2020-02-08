@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassPathList<T> extends ArrayList<T> {
-    public ClassPathList(CustomObjectMapperWrapper objectMapper, String fileLocation){
+    public ClassPathList(CustomObjectMapperWrapper objectMapper, String fileLocation) {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileLocation);
         TypeReference<List<String>> ref = new TypeReference<List<String>>() {
         };

@@ -1,10 +1,9 @@
 package com.github.saphyra.skyxplore.game.dao.system.storage.reservation;
 
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.common.UuidConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component

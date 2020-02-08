@@ -1,11 +1,10 @@
 package com.github.saphyra.skyxplore.game.rest.view.connection;
 
-import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.common.ViewConverter;
 import com.github.saphyra.skyxplore.game.dao.map.connection.StarConnection;
+import com.github.saphyra.skyxplore.game.dao.map.star.StarQueryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor

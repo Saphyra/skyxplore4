@@ -1,16 +1,14 @@
 package com.github.saphyra.skyxplore.game.service.queue;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.rest.request.UpdatePriorityRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

@@ -18,9 +18,9 @@ import static com.github.saphyra.skyxplore.common.RequestConstants.WEB_PREFIX;
 @RequiredArgsConstructor
 @Slf4j
 public class PageController {
-    public static final String GAME_MAPPING = WEB_PREFIX + "/game";
+    private static final String GAME_MAPPING = WEB_PREFIX + "/game";
     public static final String INDEX_MAPPING = WEB_PREFIX;
-    public static final String MAIN_MENU_MAPPING = WEB_PREFIX + "/main-menu";
+    private static final String MAIN_MENU_MAPPING = WEB_PREFIX + "/main-menu";
     private static final String SELECT_GAME_MAPPING = GAME_MAPPING + "/{gameId}";
 
     private final CookieUtil cookieUtil;
@@ -49,8 +49,8 @@ public class PageController {
 
     @GetMapping(SELECT_GAME_MAPPING)
     String selectGame(
-            @PathVariable("gameId") UUID gameId,
-            HttpServletResponse response
+        @PathVariable("gameId") UUID gameId,
+        HttpServletResponse response
     ) {
         String redirection;
         if (gameQueryService.findByGameIdAndUserId(gameId).isPresent()) {

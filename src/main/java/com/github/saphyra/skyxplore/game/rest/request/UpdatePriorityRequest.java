@@ -1,9 +1,9 @@
 package com.github.saphyra.skyxplore.game.rest.request;
 
-import javax.validation.constraints.NotNull;
-
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class UpdatePriorityRequest {

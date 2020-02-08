@@ -4,5 +4,6 @@ import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionSta
 
 public interface DisplayedQueueable extends Queueable, Buildable {
     ConstructionStatus getConstructionStatus();
+
     String getAdditionalData();
 }

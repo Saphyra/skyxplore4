@@ -1,10 +1,9 @@
 package com.github.saphyra.skyxplore.game.service.system.storage.resource;
 
-import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.game.dao.system.storage.resource.Resource;
+import com.github.saphyra.skyxplore.game.dao.system.storage.resource.ResourceQueryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor

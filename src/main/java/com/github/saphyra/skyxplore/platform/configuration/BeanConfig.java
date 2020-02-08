@@ -9,7 +9,7 @@ import org.springframework.util.AntPathMatcher;
 @ComponentScan(basePackages = "com.github.saphyra.util")
 class BeanConfig {
     @Bean
-    public AntPathMatcher antPathMatcher(){
+    public AntPathMatcher antPathMatcher() {
         return new AntPathMatcher();
     }
 }

@@ -1,13 +1,12 @@
 package com.github.saphyra.skyxplore.game.dao.map.star;
 
-import com.github.saphyra.encryption.impl.StringEncryptor;
-import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.converter.ConverterBase;
+import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component

@@ -1,19 +1,5 @@
 package com.github.saphyra.skyxplore.game.rest.controller.game;
 
-import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
-
-import java.util.List;
-import java.util.UUID;
-
-import javax.validation.Valid;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.github.saphyra.skyxplore.common.OneParamRequest;
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.rest.request.UpdatePriorityRequest;
@@ -22,6 +8,18 @@ import com.github.saphyra.skyxplore.game.service.queue.QueueQueryService;
 import com.github.saphyra.skyxplore.game.service.queue.QueueService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
+
+import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
@@ -39,7 +37,7 @@ public class QueueController {
         @PathVariable("starId") UUID starId,
         @PathVariable("queueItemId") UUID queueItemId,
         @Valid @RequestBody OneParamRequest<QueueType> queueType
-        ){
+    ) {
         log.info("Cancelling queueItem {} with queueType {}", queueItemId, queueType.getValue());
         queueService.cancel(starId, queueItemId, queueType.getValue());
     }

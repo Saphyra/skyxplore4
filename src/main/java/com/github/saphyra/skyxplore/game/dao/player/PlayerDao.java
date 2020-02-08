@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerRepository>  {
+class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerRepository> {
     private final UuidConverter uuidConverter;
 
     PlayerDao(PlayerConverter converter, PlayerRepository repository, UuidConverter uuidConverter) {

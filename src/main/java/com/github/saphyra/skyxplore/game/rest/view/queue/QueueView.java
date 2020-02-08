@@ -1,17 +1,19 @@
 package com.github.saphyra.skyxplore.game.rest.view.queue;
 
-import java.time.OffsetDateTime;
-import java.util.UUID;
-
 import com.github.saphyra.skyxplore.game.common.interfaces.QueueType;
 import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionStatus;
 import com.github.saphyra.skyxplore.game.rest.view.ProductionStatusView;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.ToString;
 
-@Data
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
+@Getter
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class QueueView extends ProductionStatusView {
     @NonNull

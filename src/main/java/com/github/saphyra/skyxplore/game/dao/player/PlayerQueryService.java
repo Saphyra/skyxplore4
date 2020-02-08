@@ -16,7 +16,7 @@ public class PlayerQueryService {
     private final PlayerDao playerDao;
     private final RequestContextHolder requestContextHolder;
 
-    public Optional<Player> findByGameIdAndPlayerId(){
+    public Optional<Player> findByGameIdAndPlayerId() {
         RequestContext context = requestContextHolder.get();
         UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
@@ -27,10 +27,10 @@ public class PlayerQueryService {
         RequestContext context = requestContextHolder.get();
         UUID userId = context.getUserId();
         return playerDao.getByGameId(gameId).stream()
-                .filter(player -> !player.isAi())
-                .map(Player::getPlayerId)
-                .findFirst()
-                .orElseThrow(() -> ExceptionFactory.playerNotFound(userId, gameId));
+            .filter(player -> !player.isAi())
+            .map(Player::getPlayerId)
+            .findFirst()
+            .orElseThrow(() -> ExceptionFactory.playerNotFound(userId, gameId));
     }
 
     public List<Player> getByGameId() {

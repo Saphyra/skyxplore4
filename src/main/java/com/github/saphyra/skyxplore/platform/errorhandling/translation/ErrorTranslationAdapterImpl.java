@@ -1,15 +1,13 @@
 package com.github.saphyra.skyxplore.platform.errorhandling.translation;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.exceptionhandling.ErrorTranslationAdapter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor

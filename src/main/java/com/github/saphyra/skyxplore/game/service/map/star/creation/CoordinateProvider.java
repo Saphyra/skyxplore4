@@ -1,15 +1,14 @@
 package com.github.saphyra.skyxplore.game.service.map.star.creation;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.game.common.DistanceCalculator;
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import com.github.saphyra.util.Random;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -41,7 +40,6 @@ class CoordinateProvider {
         double distance = distanceCalculator.getDistance(placedStar, coordinate);
         return distance < configuration.getMinStarDistance();
     }
-
 
 
     private Coordinate getRandomCoordinate() {

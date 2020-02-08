@@ -4,9 +4,9 @@ import com.github.saphyra.skyxplore.game.dao.map.surface.Surface;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
+import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import com.github.saphyra.skyxplore.game.rest.view.system.BuildingSummaryView;
 import com.github.saphyra.skyxplore.game.rest.view.system.SurfaceBuildingView;
-import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

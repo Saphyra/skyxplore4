@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.JarURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.CodeSource;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
@@ -54,9 +54,9 @@ class JarLoader<K, V> extends AbstractLoader<V> {
     private void loadJarEntry(JarFile jarFile, JarEntry entry) {
         String entryName = entry.getName();
         if (entryName.startsWith(jarPath) && entryName.endsWith(".json")) {
-                String contentString = readJarEntry(jarFile, entry);
-                    V content = fileUtil.readValue(contentString, clazz);
-                    dataService.addItem(content, entryName.substring(jarPath.length()));
+            String contentString = readJarEntry(jarFile, entry);
+            V content = fileUtil.readValue(contentString, clazz);
+            dataService.addItem(content, entryName.substring(jarPath.length()));
         }
     }
 
@@ -71,6 +71,6 @@ class JarLoader<K, V> extends AbstractLoader<V> {
             throw new RuntimeException(e);
         }
 
-        return new String(builder.toString().getBytes(), Charset.forName("UTF-8"));
+        return new String(builder.toString().getBytes(), StandardCharsets.UTF_8);
     }
 }

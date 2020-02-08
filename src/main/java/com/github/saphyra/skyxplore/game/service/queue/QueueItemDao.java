@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface QueueItemDao {
     boolean canHandle(QueueType queueType);
+
     List<? extends DisplayedQueueable> getQueueOfStar(UUID starId);
 
     void updatePriority(UUID starId, UUID queueItemId, UpdatePriorityRequest request);

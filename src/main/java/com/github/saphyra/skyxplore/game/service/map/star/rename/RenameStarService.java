@@ -25,7 +25,7 @@ public class RenameStarService {
     }
 
     private void validate(String newName) {
-        if(newName.length() < 3 || newName.length() > 30){
+        if (newName.length() < 3 || newName.length() > 30) {
             throw ExceptionFactory.invalidStarName();
         }
     }

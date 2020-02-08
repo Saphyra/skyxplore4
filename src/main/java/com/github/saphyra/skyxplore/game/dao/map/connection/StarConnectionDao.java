@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarConnection, String, StarConnectionRepository>{
+class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarConnection, String, StarConnectionRepository> {
     private final UuidConverter uuidConverter;
 
     StarConnectionDao(StarConnectionConverter converter, StarConnectionRepository repository, UuidConverter uuidConverter) {

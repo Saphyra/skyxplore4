@@ -1,12 +1,12 @@
 package com.github.saphyra.skyxplore.game.rest.view.surface;
 
-import java.util.List;
-
 import com.github.saphyra.skyxplore.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.List;
 
 @Builder
 @Data

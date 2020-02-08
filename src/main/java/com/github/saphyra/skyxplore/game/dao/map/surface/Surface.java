@@ -1,7 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.map.surface;
 
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
 
 import java.util.UUID;
 

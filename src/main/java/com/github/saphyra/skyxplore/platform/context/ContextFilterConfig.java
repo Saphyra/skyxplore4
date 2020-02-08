@@ -20,8 +20,8 @@ public class ContextFilterConfig {
         filterRegistrationBean.setFilter(contextFilter);
         filterRegistrationBean.setOrder(FILTER_ORDER);
         filterRegistrationBean.addUrlPatterns(
-                API_PREFIX + "/*",
-                WEB_PREFIX + "/*"
+            API_PREFIX + "/*",
+            WEB_PREFIX + "/*"
         );
         return filterRegistrationBean;
     }

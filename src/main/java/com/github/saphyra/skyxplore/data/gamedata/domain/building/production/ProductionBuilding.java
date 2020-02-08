@@ -23,8 +23,8 @@ public class ProductionBuilding extends BuildingData {
     @Override
     public List<SurfaceType> getPlaceableSurfaceTypes() {
         return gives.values().stream()
-                .flatMap(production -> production.getPlaced().stream())
-                .collect(Collectors.toList());
+            .flatMap(production -> production.getPlaced().stream())
+            .collect(Collectors.toList());
     }
 
     @Override

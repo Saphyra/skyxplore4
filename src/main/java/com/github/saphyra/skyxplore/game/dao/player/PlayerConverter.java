@@ -1,12 +1,11 @@
 package com.github.saphyra.skyxplore.game.dao.player;
 
-import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.encryption.impl.StringEncryptor;
 import com.github.saphyra.skyxplore.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor

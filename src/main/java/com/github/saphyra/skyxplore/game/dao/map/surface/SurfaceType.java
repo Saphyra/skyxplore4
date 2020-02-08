@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.game.dao.map.surface;
 
-import java.util.Arrays;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public enum  SurfaceType {
+import java.util.Arrays;
+
+public enum SurfaceType {
     COAL_MINE,
     CONCRETE,
     DESERT,

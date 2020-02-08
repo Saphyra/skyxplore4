@@ -1,9 +1,8 @@
 package com.github.saphyra.skyxplore.game.common;
 
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.game.dao.common.coordinate.Coordinate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j

@@ -1,13 +1,12 @@
 package com.github.saphyra.skyxplore.data.gamedata.domain.building;
 
-import static java.util.Objects.requireNonNull;
-import static org.springframework.util.ObjectUtils.isEmpty;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.data.base.DataValidator;
 import com.github.saphyra.skyxplore.data.gamedata.domain.ConstructionRequirementsValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import static java.util.Objects.requireNonNull;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Component
 @RequiredArgsConstructor

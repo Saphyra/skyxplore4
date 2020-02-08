@@ -14,7 +14,7 @@ public class RequestContextHolder {
 
     public RequestContext get() {
         return Optional.ofNullable(storage.get())
-                .orElseThrow(() -> new IllegalStateException("RequestContext is not set for the current thread."));
+            .orElseThrow(() -> new IllegalStateException("RequestContext is not set for the current thread."));
     }
 
     public void clear() {

@@ -1,9 +1,9 @@
 package com.github.saphyra.skyxplore.game.common;
 
+import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import com.github.saphyra.skyxplore.game.service.SurfaceBuildingSummaryQueryService;
 import com.github.saphyra.skyxplore.game.service.system.PopulationQueryService;
 import com.github.saphyra.skyxplore.game.service.system.StorageStatusQueryService;
-import com.github.saphyra.skyxplore.game.rest.view.system.StarSystemDetailsView;
 import com.github.saphyra.skyxplore.game.service.system.priority.PriorityViewQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

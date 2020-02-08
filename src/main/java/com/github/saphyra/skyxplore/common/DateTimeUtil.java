@@ -1,13 +1,12 @@
 package com.github.saphyra.skyxplore.common;
 
+import com.github.saphyra.converter.ConverterBase;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-
-import org.springframework.stereotype.Component;
-
-import com.github.saphyra.converter.ConverterBase;
-import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
