@@ -42,6 +42,16 @@
                     amountLabel.appendChild(amountInput);
                 container.appendChild(amountLabel);
 
+                        const batchSizeLabel = document.createElement("LABEL");
+                            batchSizeLabel.appendChild(document.createTextNode(Localization.getAdditionalContent("batch-size") +": "));
+
+                            const batchSizeInput = document.createElement("INPUT");
+                                batchSizeInput.type = "number";
+                                batchSizeInput.min = 1;
+                                batchSizeInput.value = 10;
+                        batchSizeLabel.appendChild(batchSizeInput);
+                    container.appendChild(batchSizeLabel);
+
                     const priorityLabel = document.createElement("LABEL");
                         priorityLabel.appendChild(document.createTextNode(Localization.getAdditionalContent("priority") + ": "));
 
@@ -70,7 +80,7 @@
                     }
 
                     createButton.onclick = function(){
-                        createSetting(resourceSelect.value, amountInput.value, priorityInput.value, starId, availableSettings);
+                        createSetting(resourceSelect.value, amountInput.value, priorityInput.value, batchSizeInput.value, starId, availableSettings);
                     }
 
                 function createOption(resourceId){
@@ -83,8 +93,13 @@
         dao.sendRequestAsync(request);
     }
 
-    function createSetting(resourceId, amount, priority, starId, availableSettings){
-        if(amount == 0){
+    function createSetting(resourceId, amount, priority, batchSize, starId, availableSettings){
+        if(amount <= 0){
+            notificationService.showError(Localization.getAdditionalContent("invalid-value"));
+            return;
+        }
+
+        if(batchSize <= 0){
             notificationService.showError(Localization.getAdditionalContent("invalid-value"));
             return;
         }
@@ -97,6 +112,7 @@
         const requestBody = {
             dataId: resourceId,
             targetAmount: amount,
+            batchSize: batchSize,
             priority: priority
         }
 

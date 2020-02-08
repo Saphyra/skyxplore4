@@ -47,4 +47,16 @@
             <column name="buildable" type="boolean"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="add-column-batch_size-to-storage_setting" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="storage_setting" columnName="batch_size"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="storage_setting">
+            <column name="batch_size" type="number"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

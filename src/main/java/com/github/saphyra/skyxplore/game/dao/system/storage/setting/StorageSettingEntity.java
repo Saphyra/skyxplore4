@@ -25,6 +25,7 @@ public class StorageSettingEntity implements SettablePersistable<String> {
     private String playerId;
     private String dataId;
     private Integer targetAmount;
+    private Integer batchSize;
     private Integer priority;
     private Boolean buildable;
 

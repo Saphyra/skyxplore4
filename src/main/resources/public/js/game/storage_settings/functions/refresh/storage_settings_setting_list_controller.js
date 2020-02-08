@@ -49,6 +49,15 @@
                     amountLabel.appendChild(amountInput);
                 detailsContainer.appendChild(amountLabel);
 
+                    const batchSizeLabel = document.createElement("LABEL");
+                        batchSizeLabel.appendChild(document.createTextNode(Localization.getAdditionalContent("batch-size") + ": "));
+                        const batchSizeInput = document.createElement("INPUT");
+                            batchSizeInput.type = "number";
+                            batchSizeInput.min = 1;
+                            batchSizeInput.value = storageSetting.batchSize
+                    batchSizeLabel.appendChild(batchSizeInput);
+                detailsContainer.appendChild(batchSizeLabel);
+
                     const priorityLabel = document.createElement("LABEL");
                         priorityLabel.appendChild(document.createTextNode(Localization.getAdditionalContent("priority") + ": "));
 
@@ -74,7 +83,7 @@
                     const updateButton = document.createElement("BUTTON");
                         updateButton.innerHTML = Localization.getAdditionalContent("save");
                         updateButton.onclick = function(){
-                            storageSettingUpdateService.updateSetting(starId, storageSetting.storageSettingId, amountInput.value, priorityInput.value, storageSetting.maxAmount);
+                            storageSettingUpdateService.updateSetting(starId, storageSetting.storageSettingId, amountInput.value, priorityInput.value, batchSizeInput.value, storageSetting.maxAmount);
                         }
                 buttonContainer.appendChild(updateButton);
 

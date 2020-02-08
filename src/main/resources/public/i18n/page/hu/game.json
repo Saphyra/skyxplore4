@@ -19,6 +19,7 @@
     "amount": "Mennyiség",
     "asc": "Növekvő",
     "average": "Átlag",
+    "batch-size": "Darabolás mérete",
     "build": "Építés",
     "building-started": "Építés megkezdve.",
     "build-building-button": "Építés indítása",

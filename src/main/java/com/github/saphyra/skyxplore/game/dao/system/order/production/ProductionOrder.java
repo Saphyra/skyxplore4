@@ -48,7 +48,7 @@ public class ProductionOrder {
     @Builder.Default
     private final List<String> existingResourceRequirements = new ArrayList<>(); //Requirement resource dataIds what are already produced
 
-    private final boolean isNew;
+    private boolean isNew;
 
     public void addProduced(int addition) {
         producedAmount += addition;

@@ -24,6 +24,10 @@
             vertical-align: middle;
         }
 
+        .storage-settings-create-setting-container label input[type=number]{
+            width: 5rem;
+        }
+
 .storage-settings-settings--list-container{
     position: absolute;
     top: var(--page-header-height);
@@ -44,4 +48,8 @@
 
         .storage-setting h3{
             border-bottom: 2px ridge white;
+        }
+
+        .storage-setting input[type=number]{
+            width: 5rem;
         }

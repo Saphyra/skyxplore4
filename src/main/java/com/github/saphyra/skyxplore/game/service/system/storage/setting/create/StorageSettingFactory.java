@@ -22,7 +22,8 @@ public class StorageSettingFactory {
         UUID playerId,
         String dataId,
         Integer targetAmount,
-        Integer priority
+        Integer priority,
+        Integer batchSize
     ) {
         return StorageSetting.builder()
             .storageSettingId(idGenerator.randomUUID())
@@ -32,6 +33,7 @@ public class StorageSettingFactory {
             .dataId(dataId)
             .buildable(isBuildable(dataId))
             .targetAmount(targetAmount)
+            .batchSize(batchSize)
             .priority(priority)
             .isNew(true)
             .build();

@@ -53,6 +53,7 @@ public class StorageSettingUpdateService {
 
         storageSetting.setTargetAmount(request.getTargetAmount());
         storageSetting.setPriority(request.getPriority());
+        storageSetting.setBatchSize(request.getBatchSize());
         storageSettingCommandService.save(storageSetting);
     }
 

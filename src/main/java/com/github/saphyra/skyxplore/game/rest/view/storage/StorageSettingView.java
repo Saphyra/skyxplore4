@@ -19,6 +19,9 @@ public class StorageSettingView {
     private final Integer targetAmount;
 
     @NonNull
+    private final Integer batchSize;
+
+    @NonNull
     private final Integer priority;
 
     @NonNull

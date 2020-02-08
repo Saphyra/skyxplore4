@@ -54,7 +54,15 @@ public class StorageSettingCreationService {
         RequestContext requestContext = requestContextHolder.get();
         UUID gameId = requestContext.getGameId();
         UUID playerId = requestContext.getPlayerId();
-        StorageSetting storageSetting = storageSettingFactory.create(gameId, starId, playerId, request.getDataId(), request.getTargetAmount(), request.getPriority());
+        StorageSetting storageSetting = storageSettingFactory.create(
+            gameId,
+            starId,
+            playerId,
+            request.getDataId(),
+            request.getTargetAmount(),
+            request.getPriority(),
+            request.getBatchSize()
+        );
         storageSettingCommandService.save(storageSetting);
         reservationService.reserve(
             gameId,

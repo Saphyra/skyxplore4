@@ -52,6 +52,7 @@ public class StorageSettingViewQueryService {
             .targetAmount(storageSetting.getTargetAmount())
             .priority(storageSetting.getPriority())
             .maxAmount(availableStorage.get(resourceDataService.get(storageSetting.getDataId()).getStorageType()))
+            .batchSize(storageSetting.getBatchSize())
             .build();
     }
 

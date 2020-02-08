@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +74,7 @@ public class StorageSettingOrderProcessor {
 
     private List<ProductionOrder> mergeAndSort(List<ProductionOrder> existingOrders, List<ProductionOrder> newOrders) {
         Stream<ProductionOrder> existing = existingOrders.stream()
-            .sorted((o1, o2) -> getRemaining(o2) - getRemaining(o1));
+            .sorted(Comparator.comparingInt(this::getRemaining));
 
         return Stream.concat(existing, newOrders.stream())
             .collect(Collectors.toList());

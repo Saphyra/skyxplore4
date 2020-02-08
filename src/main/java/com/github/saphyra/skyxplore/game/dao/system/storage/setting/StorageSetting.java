@@ -35,6 +35,9 @@ public class StorageSetting implements Queueable {
     private Integer priority;
 
     @NonNull
+    private Integer batchSize;
+
+    @NonNull
     private final Boolean buildable;
 
     private final boolean isNew;

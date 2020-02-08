@@ -14,6 +14,10 @@ public class UpdateStorageSettingsRequest {
 
     @NotNull
     @Min(1)
+    private Integer batchSize;
+
+    @NotNull
+    @Min(1)
     @Max(10)
     private Integer priority;
 }
