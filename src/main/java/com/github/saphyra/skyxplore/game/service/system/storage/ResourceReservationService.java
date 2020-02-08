@@ -50,7 +50,7 @@ public class ResourceReservationService {
     private void reserveResource(UUID gameId, UUID starId, UUID playerId, String dataId, Integer amount, ReservationType reservationType, UUID externalReference) {
         ResourceData resourceData = gameDataQueryService.getResourceData(dataId);
         int availableStoragePlace = storageQueryService.getAvailableStoragePlace(starId, resourceData.getStorageType());
-        int available = storageQueryService.getAvailableResource(starId, dataId);
+        int available = storageQueryService.getAvailableResourceByStarIdAndDataIdAndPlayerId(starId, dataId);
 
         Optional<Allocation> allocation = Optional.empty();
         if (available > 0) {

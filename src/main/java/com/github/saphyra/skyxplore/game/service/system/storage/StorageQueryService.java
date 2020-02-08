@@ -56,8 +56,8 @@ public class StorageQueryService {
             .sum();
     }
 
-    int getAvailableResource(UUID starId, String resourceId) {
-        return resourceQueryService.findLatestAmountByStarIdAndDataIdAndPlayerId(starId, resourceId);
+    public int getAvailableResourceByStarIdAndDataIdAndPlayerId(UUID starId, String dataId) {
+        return resourceQueryService.findLatestAmountByStarIdAndDataIdAndPlayerId(starId, dataId);
     }
 
     public Integer getAllocatedStorage(UUID starId, StorageType storageType) {

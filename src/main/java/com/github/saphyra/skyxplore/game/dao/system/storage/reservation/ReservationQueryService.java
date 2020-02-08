@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -36,10 +37,16 @@ public class ReservationQueryService {
         return reservationDao.getByStarIdAndStorageTypeAndPlayerId(starId, storageType, playerId);
     }
 
+    public Optional<Reservation> findByExternalReferenceAndDataIdAndPlayerId(UUID externalReference, String dataId) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return reservationDao.findByExternalReferenceAndDataIdAndPlayerId(externalReference, dataId, playerId);
+    }
+
     public Reservation findByExternalReferenceAndDataIdAndPlayerIdValidated(UUID externalReference, String dataId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
-        return reservationDao.findByExternalReferenceAndDataIdAndPlayerId(externalReference, dataId, playerId)
+        return findByExternalReferenceAndDataIdAndPlayerId(externalReference, dataId)
             .orElseThrow(() -> ExceptionFactory.reservationNotFoundByExternalReferenceAndDataId(externalReference, dataId, playerId));
     }
 }

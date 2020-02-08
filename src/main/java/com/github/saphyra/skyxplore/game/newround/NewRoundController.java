@@ -13,6 +13,7 @@ import com.github.saphyra.skyxplore.game.newround.hr.HumanResourceService;
 import com.github.saphyra.skyxplore.game.newround.order.Order;
 import com.github.saphyra.skyxplore.game.newround.order.provider.OrderProvider;
 import com.github.saphyra.skyxplore.game.newround.resource.NewRoundResourceHandler;
+import com.github.saphyra.skyxplore.game.newround.resource.StorageSettingReservationUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ import static com.github.saphyra.skyxplore.common.RequestConstants.API_PREFIX;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
+//TODO refactor - split
 public class NewRoundController {
     private static final String NEW_ROUND_MAPPING = API_PREFIX + "/game";
 
@@ -39,6 +41,7 @@ public class NewRoundController {
     private final PlayerQueryService playerQueryService;
     private final RequestContextHolder requestContextHolder;
     private final StarQueryService starQueryService;
+    private final StorageSettingReservationUpdateService storageSettingReservationUpdateService;
 
     @PostMapping(NEW_ROUND_MAPPING)
     void newRound() {
@@ -87,5 +90,6 @@ public class NewRoundController {
             .collect(Collectors.toList());
         log.info("Orders for star {}: {}", star.getStarId(), orders);
         orders.forEach(Order::process);
+        storageSettingReservationUpdateService.updateForStar(star);
     }
 }
