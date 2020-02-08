@@ -16,14 +16,6 @@ public class ProductionOrderQueryService {
     private final ProductionOrderDao productionOrderDao;
     private final RequestContextHolder requestContextHolder;
 
-    @Deprecated
-    //TODO remove
-    public List<ProductionOrder> getByOrderIdAndPlayerId(UUID orderId) {
-        RequestContext context = requestContextHolder.get();
-        UUID playerId = context.getPlayerId();
-        return productionOrderDao.getByOrderIdAndPlayerId(orderId, playerId);
-    }
-
     public List<ProductionOrder> getByProducerBuildingIdAndPlayerId(UUID productionBuildingId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();

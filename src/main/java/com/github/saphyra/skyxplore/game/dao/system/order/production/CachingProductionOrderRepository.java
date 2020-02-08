@@ -55,16 +55,6 @@ public class CachingProductionOrderRepository extends CacheRepository<String, Pr
     }
 
     @Override
-    public List<ProductionOrderEntity> getByOrderIdAndPlayerId(String orderId, String playerId) {
-        return getMapByKey(getGameId())
-            .values()
-            .stream()
-            .filter(entity -> entity.getOrderId().equals(orderId))
-            .filter(entity -> entity.getPlayerId().equals(playerId))
-            .collect(Collectors.toList());
-    }
-
-    @Override
     public List<ProductionOrderEntity> getByProducerBuildingIdAndPlayerId(String producerBuildingId, String playerId) {
         return getMapByKey(getGameId())
             .values()

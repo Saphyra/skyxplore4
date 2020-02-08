@@ -20,13 +20,6 @@ class ProductionOrderDao extends AbstractDao<ProductionOrderEntity, ProductionOr
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    List<ProductionOrder> getByOrderIdAndPlayerId(UUID orderId, UUID playerId) {
-        return converter.convertEntity(repository.getByOrderIdAndPlayerId(
-            uuidConverter.convertDomain(orderId),
-            uuidConverter.convertDomain(playerId)
-        ));
-    }
-
     List<ProductionOrder> getByProducerBuildingIdAndPlayerId(UUID productionBuildingId, UUID playerId) {
         return converter.convertEntity(repository.getByProducerBuildingIdAndPlayerId(
             uuidConverter.convertDomain(productionBuildingId),
