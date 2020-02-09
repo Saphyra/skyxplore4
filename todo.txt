@@ -1,3 +1,2 @@
-TODO Update ProductionOrders when StorageSetting is changed
 TODO Add System defence details to system summary
 TODO API tests

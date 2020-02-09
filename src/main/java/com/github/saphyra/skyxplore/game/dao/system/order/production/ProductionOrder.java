@@ -35,7 +35,7 @@ public class ProductionOrder {
     private final String dataId;
 
     @NonNull
-    private final Integer targetAmount;
+    private Integer targetAmount;
 
     @NonNull
     private Integer producedAmount;

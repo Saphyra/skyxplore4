@@ -30,7 +30,7 @@ public class StorageSettingReservationUpdateService {
         List<StorageSetting> storageSettings = storageSettingQueryService.getByStarIdAndPlayerId(star.getStarId());
         for (StorageSetting storageSetting : storageSettings) {
             log.info("Updating reservations for StorageSetting {}", storageSetting);
-            int availableResource = storageQueryService.getAvailableResourceByStarIdAndDataIdAndPlayerId(star.getStarId(), storageSetting.getDataId());
+            int availableResource = storageQueryService.getAvailableResourceAmountByStarIdAndDataIdAndPlayerId(star.getStarId(), storageSetting.getDataId());
             int missingResource = storageSetting.getTargetAmount() - availableResource;
             log.info("available {}: {}, missing: {}", storageSetting.getDataId(), availableResource, missingResource);
             Optional<Reservation> reservationOptional = reservationQueryService.findByExternalReferenceAndDataIdAndPlayerId(storageSetting.getStorageSettingId(), storageSetting.getDataId());

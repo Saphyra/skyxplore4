@@ -38,7 +38,6 @@ public class StorageSettingOrderProvider implements OrderProvider {
         List<Order> orders = storageSettings
             .stream()
             .map(storageSetting -> convert(storageSetting, priorities))
-            .filter(storageSettingOrder -> storageSettingOrder.getMissingAmount() > 0)
             .collect(Collectors.toList());
         log.info("StorageSettingOrders for starId {}: {}", starId, orders);
         return orders;

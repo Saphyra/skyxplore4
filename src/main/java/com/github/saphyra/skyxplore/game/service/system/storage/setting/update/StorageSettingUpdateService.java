@@ -24,6 +24,7 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class StorageSettingUpdateService {
+    private final ProductionOrderUpdateService productionOrderUpdateService;
     private final ReservationCommandService reservationCommandService;
     private final ReservationFactory reservationFactory;
     private final ReservationQueryService reservationQueryService;
@@ -51,6 +52,15 @@ public class StorageSettingUpdateService {
         reservation.setAmount(Math.max(reserve, 0));
         reservationCommandService.save(reservation);
 
+        int originalTargetAmount = storageSetting.getTargetAmount();
+        if(request.getTargetAmount() < originalTargetAmount){
+            productionOrderUpdateService.updateProductionOrderIfNecessary(
+                storageSetting.getStarId(),
+                storageSetting.getDataId(),
+                storageSetting.getStorageSettingId(),
+                request.getTargetAmount()
+            );
+        }
         storageSetting.setTargetAmount(request.getTargetAmount());
         storageSetting.setPriority(request.getPriority());
         storageSetting.setBatchSize(request.getBatchSize());

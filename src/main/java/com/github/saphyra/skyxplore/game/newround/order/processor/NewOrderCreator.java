@@ -26,7 +26,6 @@ class NewOrderCreator {
             newOrders.add(storageSettingProductionOrderFactory.create(settingOrder.getStorageSetting(), Math.min(amount, batchSize)));
         }
         log.info("Amount of new orders created: {}", newOrders.size());
-        productionOrderCommandService.saveAll(newOrders);
         newOrders.forEach(productionOrder -> productionOrder.setNew(false));
         return newOrders;
     }
