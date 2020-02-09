@@ -6,6 +6,8 @@ import com.github.saphyra.skyxplore.data.gamedata.domain.building.production.Pro
 import com.github.saphyra.skyxplore.game.dao.map.surface.SurfaceQueryService;
 import com.github.saphyra.skyxplore.game.dao.system.building.Building;
 import com.github.saphyra.skyxplore.game.dao.system.building.BuildingQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionQueryService;
+import com.github.saphyra.skyxplore.game.dao.system.construction.ConstructionStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import static java.util.Objects.isNull;
 @RequiredArgsConstructor
 public class ProducerQueryService {
     private final BuildingQueryService buildingQueryService;
+    private final ConstructionQueryService constructionQueryService;
     private final ProducerFactory producerFactory;
     private final ProductionBuildingService productionBuildingService;
     private final SurfaceQueryService surfaceQueryService;
@@ -38,7 +41,7 @@ public class ProducerQueryService {
             //Query buildings for the producer buildingDataIds
             .flatMap(productionBuilding -> buildingQueryService.getByStarIdAndDataIdAndPlayerId(starId, productionBuilding.getId()).stream())
             //Filter buildings under construction / update, since they cannot produce
-            .filter(building -> isNull(building.getConstructionId()))
+            .filter(building -> isNull(building.getConstructionId()) || constructionNotInProgress(building.getConstructionId()))
             //Filter buildings placed on proper surfaceType for the production
             .filter(building -> isOnCorrectSurfaceType(building, buildings.get(building.getBuildingDataId()).getGives().get(dataId)))
             .map(producerFactory::convertToProducer)
@@ -47,5 +50,9 @@ public class ProducerQueryService {
 
     private boolean isOnCorrectSurfaceType(Building building, Production productionBuilding) {
         return productionBuilding.getPlaced().contains(surfaceQueryService.findBySurfaceIdAndPlayerId(building.getSurfaceId()).getSurfaceType());
+    }
+
+    private boolean constructionNotInProgress(UUID constructionId) {
+        return !constructionQueryService.findByConstructionIdAndPlayerId(constructionId).getConstructionStatus().equals(ConstructionStatus.IN_PROGRESS);
     }
 }
