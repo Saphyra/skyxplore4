@@ -69,7 +69,7 @@ public class ProductionBuildingProducer implements Producer {
 
         List<String> existingResourceRequirements = order.getExistingResourceRequirements();
         for (ProductionOrder productionOrder : processableOrders) {
-            processOrders(productionOrder);
+            processOrder(productionOrder);
             if (productionOrder.isReady()) {
                 log.info("Requirement ProductionOrder is ready: {}", productionOrder);
                 existingResourceRequirements.add(productionOrder.getDataId());
@@ -97,7 +97,7 @@ public class ProductionBuildingProducer implements Producer {
             .collect(Collectors.toMap(Map.Entry::getKey, requirement -> requirement.getValue() * missingAmount));
     }
 
-    private void processOrders(ProductionOrder productionOrder) {
+    private void processOrder(ProductionOrder productionOrder) {
         log.info("Processing productionOrder as requirement: {}", productionOrder);
         Producer producer = context.getProducerQueryService().getByStarIdAndDataId(productionOrder.getStarId(), productionOrder.getDataId())
             .stream()
