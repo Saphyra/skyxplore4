@@ -30,5 +30,7 @@ interface ConstructionRepository extends CrudRepository<ConstructionEntity, Stri
 
     List<ConstructionEntity> getByGameId(String gameId);
 
+    List<ConstructionEntity> getByStarIdAndConstructionTypeAndPlayerId(String starId, ConstructionType constructionType, String playerId);
+
     List<ConstructionEntity> getByStarIdAndPlayerId(String starId, String playerId);
 }

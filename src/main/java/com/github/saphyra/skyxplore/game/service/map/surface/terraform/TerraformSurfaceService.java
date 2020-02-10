@@ -59,7 +59,7 @@ public class TerraformSurfaceService {
             throw ExceptionFactory.terraformingAlreadyInProgress(surface.getSurfaceId());
         }
 
-        if (constructionQueryService.findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType.BUILDING, surface.getSurfaceId()).isPresent()) {
+        if (constructionQueryService.findByConstructionTypeAndSurfaceIdAndPlayerId(ConstructionType.BUILDING, surface.getSurfaceId()).isPresent()) {
             throw ExceptionFactory.constructionInProgress(surface.getSurfaceId());
         }
 

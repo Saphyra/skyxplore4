@@ -105,4 +105,15 @@ public class CachingConstructionRepository extends CacheRepository<String, Const
     public List<ConstructionEntity> getByGameId(String gameId) {
         return new ArrayList<>(getMapByKey(gameId).values());
     }
+
+    @Override
+    public List<ConstructionEntity> getByStarIdAndConstructionTypeAndPlayerId(String starId, ConstructionType constructionType, String playerId) {
+        return getMapByKey(getGameId()).values()
+            .stream()
+            .parallel()
+            .filter(constructionEntity -> constructionEntity.getStarId().equals(starId))
+            .filter(constructionEntity -> constructionEntity.getConstructionType().equals(constructionType))
+            .filter(constructionEntity -> constructionEntity.getPlayerId().equals(playerId))
+            .collect(Collectors.toList());
+    }
 }

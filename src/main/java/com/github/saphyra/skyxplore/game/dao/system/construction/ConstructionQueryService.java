@@ -18,10 +18,9 @@ public class ConstructionQueryService {
 
     public Construction findByConstructionIdAndPlayerId(UUID constructionId) {
         RequestContext context = requestContextHolder.get();
-        UUID gameId = context.getGameId();
         UUID playerId = context.getPlayerId();
         return constructionDao.findByConstructionIdAndPlayerId(constructionId, playerId)
-            .orElseThrow(() -> ExceptionFactory.constructionNotFound(constructionId, gameId, playerId));
+            .orElseThrow(() -> ExceptionFactory.constructionNotFound(constructionId, playerId));
     }
 
     public Optional<Construction> findByConstructionTypeAndExternalIdAndPlayerId(ConstructionType constructionType, UUID externalId) {
@@ -30,7 +29,7 @@ public class ConstructionQueryService {
         return constructionDao.findByConstructionTypeAndExternalIdAndPlayerId(constructionType, externalId, playerId);
     }
 
-    public Optional<Construction> findByConstructionTypeAndSurfaceIdAndGameIdAndPlayerId(ConstructionType constructionType, UUID surfaceId) {
+    public Optional<Construction> findByConstructionTypeAndSurfaceIdAndPlayerId(ConstructionType constructionType, UUID surfaceId) {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return constructionDao.findByConstructionTypeAndSurfaceIdAndPlayerId(constructionType, surfaceId, playerId);
@@ -40,5 +39,11 @@ public class ConstructionQueryService {
         RequestContext context = requestContextHolder.get();
         UUID playerId = context.getPlayerId();
         return constructionDao.getByStarIdAndPlayerId(starId, playerId);
+    }
+
+    public List<Construction> getByStarIdAndConstructionTypeAndPlayerId(UUID starId, ConstructionType constructionType) {
+        RequestContext context = requestContextHolder.get();
+        UUID playerId = context.getPlayerId();
+        return constructionDao.getByStarIdAndConstructionTypeAndPlayerId(starId, constructionType, playerId);
     }
 }

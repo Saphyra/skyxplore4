@@ -58,6 +58,14 @@ class ConstructionDao extends AbstractDao<ConstructionEntity, Construction, Stri
         );
     }
 
+    public List<Construction> getByStarIdAndConstructionTypeAndPlayerId(UUID starId, ConstructionType constructionType, UUID playerId) {
+        return converter.convertEntity(repository.getByStarIdAndConstructionTypeAndPlayerId(
+            uuidConverter.convertDomain(starId),
+            constructionType,
+            uuidConverter.convertDomain(playerId)
+        ));
+    }
+
     List<Construction> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
         return converter.convertEntity(repository.getByStarIdAndPlayerId(
             uuidConverter.convertDomain(starId),

@@ -8,7 +8,7 @@ import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetti
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSettingQueryService;
 import com.github.saphyra.skyxplore.game.newround.order.Order;
 import com.github.saphyra.skyxplore.game.newround.order.StorageSettingOrder;
-import com.github.saphyra.skyxplore.game.newround.order.processor.StorageSettingOrderProcessor;
+import com.github.saphyra.skyxplore.game.newround.order.processor.storagesetting.StorageSettingOrderProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

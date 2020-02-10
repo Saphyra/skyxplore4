@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.game.newround.order;
 
 import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetting;
-import com.github.saphyra.skyxplore.game.newround.order.processor.StorageSettingOrderProcessor;
+import com.github.saphyra.skyxplore.game.newround.order.processor.storagesetting.StorageSettingOrderProcessor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;

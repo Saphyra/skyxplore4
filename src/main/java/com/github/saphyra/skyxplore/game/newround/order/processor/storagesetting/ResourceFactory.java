@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.newround.order.processor;
+package com.github.saphyra.skyxplore.game.newround.order.processor.storagesetting;
 
 import com.github.saphyra.skyxplore.data.gamedata.domain.resource.ResourceDataService;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;

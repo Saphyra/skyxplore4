@@ -1,7 +1,6 @@
-package com.github.saphyra.skyxplore.game.newround.order.processor;
+package com.github.saphyra.skyxplore.game.newround.order.processor.storagesetting;
 
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
-import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrderCommandService;
 import com.github.saphyra.skyxplore.game.newround.order.StorageSettingOrder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 class NewOrderCreator {
-    private final ProductionOrderCommandService productionOrderCommandService;
     private final StorageSettingProductionOrderFactory storageSettingProductionOrderFactory;
 
     List<ProductionOrder> createNewOrders(StorageSettingOrder settingOrder, List<ProductionOrder> existingOrders) {
