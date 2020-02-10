@@ -38,7 +38,8 @@ public class ProductionOrder {
     private Integer targetAmount;
 
     @NonNull
-    private Integer producedAmount;
+    @Builder.Default
+    private Integer producedAmount = 0;
 
     @NonNull
     @Builder.Default

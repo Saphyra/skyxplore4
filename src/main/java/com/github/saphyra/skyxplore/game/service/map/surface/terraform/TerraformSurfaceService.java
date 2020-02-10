@@ -43,7 +43,7 @@ public class TerraformSurfaceService {
             surfaceId,
             terraformingPossibility.getConstructionRequirements(),
             ConstructionType.TERRAFORMING,
-            null,
+            surfaceId,
             surfaceType.name(),
             surface.getPlayerId()
         );

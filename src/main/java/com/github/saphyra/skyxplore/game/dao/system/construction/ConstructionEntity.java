@@ -38,6 +38,7 @@ class ConstructionEntity implements SettablePersistable<String> {
     private String surfaceId;
     private String additionalData;
     private Long addedAt;
+    private String existingResourceRequirements;
 
     @Transient
     private boolean isNew;

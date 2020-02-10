@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NonNull;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -48,6 +50,9 @@ public class Construction implements DisplayedQueueable {
 
     private String additionalData;
 
+    @Builder.Default
+    private final List<String> existingResourceRequirements = new ArrayList<>();
+
     @NonNull
     private final OffsetDateTime addedAt;
 
@@ -79,5 +84,13 @@ public class Construction implements DisplayedQueueable {
     @Override
     public PriorityType getPriorityType() {
         return PriorityType.CONSTRUCTION;
+    }
+
+    public void addResource(String dataId) {
+        existingResourceRequirements.add(dataId);
+    }
+
+    public boolean isResourcesAvailable() {
+        return existingResourceRequirements.containsAll(constructionRequirements.getRequiredResources().keySet());
     }
 }

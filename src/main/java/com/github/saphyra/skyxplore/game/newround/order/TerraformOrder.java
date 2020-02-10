@@ -19,7 +19,7 @@ public class TerraformOrder implements Order {
 
     @Override
     public Integer getPriority() {
-        return null;
+        return priority * construction.getPriority();
     }
 
     @Override

@@ -60,7 +60,7 @@ public class ProductionBuildingProducer implements Producer {
             log.info("requirementOrders: {}", requirementOrders);
         }
 
-        List<ProductionOrder> existingOrders = context.getOngoingProductionOrderQueryService().getExistingOrders(order);
+        List<ProductionOrder> existingOrders = context.getOngoingProductionOrderQueryService().getExistingOrders(order.getProductionOrderId());
         log.info("existingOrders: {}", existingOrders);
 
         List<ProductionOrder> processableOrders = Stream.concat(existingOrders.stream(), requirementOrders.stream())

@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-//Used for reserving storage where the non-existing resources will be stored once they are producted
+//Used for reserving storage where the non-existing resources will be stored once they are produced
 public class Reservation {
     @NonNull
     private final UUID reservationId;

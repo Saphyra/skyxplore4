@@ -26,7 +26,7 @@ public class HumanResourceService {
     private final CitizenQueryService citizenQueryService;
     private final HumanResourceConverter humanResourceConverter;
 
-    public Optional<HumanResource> getOne(UUID gameId, UUID starId, UUID buildingId, SkillType requiredSkill) {
+    public Optional<HumanResource> getOne(UUID gameId, UUID starId, UUID allocation, SkillType requiredSkill) {
         List<HumanResource> availableHumanResources = fetch(gameId, starId)
             .stream()
             //Filter out depleted HumanResources
@@ -34,7 +34,7 @@ public class HumanResourceService {
             .collect(Collectors.toList());
         Optional<HumanResource> allocated = availableHumanResources.stream()
             //Searching for HumanResource already allocated to Producer
-            .filter(humanResource -> buildingId.equals(humanResource.getAllocation()))
+            .filter(humanResource -> allocation.equals(humanResource.getAllocation()))
             .findFirst();
         if (allocated.isPresent()) {
             log.info("Allocated HumanResource found: {}", allocated);

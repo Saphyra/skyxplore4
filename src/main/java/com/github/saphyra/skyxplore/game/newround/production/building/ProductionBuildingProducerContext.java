@@ -5,6 +5,7 @@ import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionO
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrderQueryService;
 import com.github.saphyra.skyxplore.game.newround.hr.HumanResourceService;
 import com.github.saphyra.skyxplore.game.newround.production.ProducerQueryService;
+import com.github.saphyra.skyxplore.game.newround.production.ongoing.OngoingProductionOrderQueryService;
 import lombok.Getter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

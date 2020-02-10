@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.game.newround.production.building;
+package com.github.saphyra.skyxplore.game.newround.production.ongoing;
 
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
 import com.github.saphyra.skyxplore.game.newround.resource.spend.ResourceSpendDetails;

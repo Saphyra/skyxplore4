@@ -10,6 +10,7 @@ import com.github.saphyra.skyxplore.game.dao.system.storage.setting.StorageSetti
 import com.github.saphyra.skyxplore.game.newround.order.StorageSettingOrder;
 import com.github.saphyra.skyxplore.game.newround.production.Producer;
 import com.github.saphyra.skyxplore.game.newround.production.ProducerQueryService;
+import com.github.saphyra.skyxplore.game.newround.production.ProducerSelector;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -62,12 +63,16 @@ public class StorageSettingOrderProcessor {
                 if (depleted) {
                     depletedProducerIds.add(producer.getId());
                 }
-                productionOrderCommandService.save(order);
                 if (order.isReady()) {
                     Resource resource = resourceFactory.createOrUpdate(order, storageSetting.getStarId(), gameQueryService.findByGameIdAndUserIdValidated().getRound());
                     resourceCommandService.save(resource);
                     productionOrderCommandService.delete(order);
+                } else {
+                    productionOrderCommandService.save(order);
                 }
+            } else {
+                log.info("Available Producer not found for dataId {}", storageSetting.getDataId());
+                break;
             }
         }
     }

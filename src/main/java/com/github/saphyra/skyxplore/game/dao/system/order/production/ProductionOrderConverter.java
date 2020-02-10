@@ -6,8 +6,6 @@ import com.github.saphyra.util.ObjectMapperWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
 @Component
 @RequiredArgsConstructor
 class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, ProductionOrder> {
@@ -29,7 +27,7 @@ class ProductionOrderConverter extends ConverterBase<ProductionOrderEntity, Prod
             .producedAmount(entity.getProducedAmount())
             .currentProgress(entity.getCurrentProgress())
             .isNew(false)
-            .existingResourceRequirements(new ArrayList<>(objectMapperWrapper.readArrayValue(entity.getExistingResourceRequirements(), String[].class)))
+            .existingResourceRequirements(objectMapperWrapper.readArrayValue(entity.getExistingResourceRequirements(), String[].class))
             .build();
     }
 

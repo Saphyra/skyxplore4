@@ -83,4 +83,16 @@
             <column name="player_id"/>
         </createIndex>
     </changeSet>
+
+    <changeSet id="add_column-existing_resource_requirements-to-construction" author="Bernat Bonda">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="construction" columnName="existing_resource_requirements"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="construction">
+            <column name="existing_resource_requirements" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

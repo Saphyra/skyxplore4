@@ -54,7 +54,7 @@
     <changeSet id="add_column-existing_resource_requirements-to-production_order" author="Bernat Bonda">
         <preConditions onFail="MARK_RAN">
             <not>
-                <columnExists tableName="existing_resource_requirements" columnName="current_progress"/>
+                <columnExists tableName="production_order" columnName="existing_resource_requirements"/>
             </not>
         </preConditions>
 
