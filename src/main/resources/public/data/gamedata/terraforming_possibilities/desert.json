@@ -3,11 +3,11 @@
     "surfaceType": "concrete",
     "constructionRequirements": {
       "researchRequirements": [],
-      "requiredWorkPoints": 1,
+      "requiredWorkPoints": 20,
       "requiredResources": {
-        "stone": 1,
-        "water": 1,
-        "energy": 1
+        "stone": 17,
+        "water": 21,
+        "energy": 39
       }
     }
   },

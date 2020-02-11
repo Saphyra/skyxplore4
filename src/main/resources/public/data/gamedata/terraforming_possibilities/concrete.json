@@ -2,7 +2,7 @@
   {
     "surfaceType": "desert",
     "constructionRequirements": {
-      "researchRequirements": ["todo"],
+      "researchRequirements": [],
       "requiredWorkPoints": 1,
       "requiredResources": {
         "energy": 1,

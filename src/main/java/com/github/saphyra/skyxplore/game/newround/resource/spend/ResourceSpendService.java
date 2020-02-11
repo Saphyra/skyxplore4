@@ -11,8 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
 
 @Component
 @RequiredArgsConstructor
@@ -24,21 +29,29 @@ public class ResourceSpendService {
     private final ResourceQueryService resourceQueryService;
 
     public ResourceSpendDetails getSpendDetails(UUID starId, String dataId, int amount) {
+        return getSpendDetails(starId, dataId, amount, null);
+    }
+
+    public ResourceSpendDetails getSpendDetails(UUID starId, String dataId, int amount, UUID allocationId) {
         return resourceQueryService.findByStarIdAndDataIdAndRoundAndPlayerId(starId, dataId)
-            .map(resource -> getDetails(resource, amount))
+            .map(resource -> getDetails(resource, amount, allocationId))
             .orElseGet(() -> getDetails(starId, dataId, amount));
     }
 
-    private ResourceSpendDetails getDetails(Resource resource, int amount) {
-        int allocated = allocationQueryService.getByStarIdAndDataIdAndPlayerId(resource.getStarId(), resource.getDataId())
+    private ResourceSpendDetails getDetails(Resource resource, int amount, UUID allocationId) {
+        Map<UUID, Allocation> allocations = allocationQueryService.getByStarIdAndDataIdAndPlayerId(resource.getStarId(), resource.getDataId())
             .stream()
+            .collect(Collectors.toMap(Allocation::getAllocationId, Function.identity()));
+        int allocated = allocations.values()
+            .stream()
+            .filter(allocation -> !isNull(allocationId) && !allocation.getAllocationId().equals(allocationId))
             .mapToInt(Allocation::getAmount)
             .sum();
         return ResourceSpendDetails.builder()
             .starId(resource.getStarId())
             .dataId(resource.getDataId())
             .requestedAmount(amount)
-            .availableAmount(Math.max(0, resource.getAmount() - allocated))
+            .availableAmount(resource.getAmount() - allocated)
             .build();
     }
 

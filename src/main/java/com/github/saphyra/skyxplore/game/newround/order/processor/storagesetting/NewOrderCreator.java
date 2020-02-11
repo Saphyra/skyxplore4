@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.game.newround.order.processor.storagesettin
 
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
 import com.github.saphyra.skyxplore.game.newround.order.StorageSettingOrder;
+import com.github.saphyra.skyxplore.game.newround.order.ProductionOrderFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 class NewOrderCreator {
-    private final StorageSettingProductionOrderFactory storageSettingProductionOrderFactory;
+    private final ProductionOrderFactory productionOrderFactory;
 
     List<ProductionOrder> createNewOrders(StorageSettingOrder settingOrder, List<ProductionOrder> existingOrders) {
         int orderRequiredAmount = getOrderRequiredAmount(settingOrder, existingOrders);
@@ -21,7 +22,7 @@ class NewOrderCreator {
         List<ProductionOrder> newOrders = new ArrayList<>();
         Integer batchSize = settingOrder.getStorageSetting().getBatchSize();
         for (int amount = orderRequiredAmount; amount > 0; amount -= batchSize) {
-            newOrders.add(storageSettingProductionOrderFactory.create(settingOrder.getStorageSetting(), Math.min(amount, batchSize)));
+            newOrders.add(productionOrderFactory.create(settingOrder.getStorageSetting(), Math.min(amount, batchSize)));
         }
         log.info("Amount of new orders created: {}", newOrders.size());
         newOrders.forEach(productionOrder -> productionOrder.setNew(false));

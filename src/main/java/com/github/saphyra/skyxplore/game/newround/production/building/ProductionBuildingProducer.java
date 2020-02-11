@@ -101,7 +101,7 @@ public class ProductionBuildingProducer implements Producer {
         log.info("Processing productionOrder as requirement: {}", productionOrder);
         Producer producer = context.getProducerQueryService().getByStarIdAndDataId(productionOrder.getStarId(), productionOrder.getDataId())
             .stream()
-            .min((o1, o2) -> o2.getLoad().compareTo(o1.getLoad()))
+            .findFirst()
             .orElseThrow(() -> new InternalServerErrorException(String.format("Producer not found for ProductionOrder %s", productionOrder)));
 
         producer.produce(productionOrder);

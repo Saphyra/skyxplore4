@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore.game.newround.production.ongoing;
 
-import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrder;
 import com.github.saphyra.skyxplore.game.dao.system.order.production.ProductionOrderQueryService;
 import lombok.RequiredArgsConstructor;
@@ -29,16 +28,6 @@ public class OngoingProductionOrderQueryService {
         return totalRequirements.entrySet()
             .stream()
             .map(requirement -> resourceProductionOrderFactory.createResourceOrder(order, requirement))
-            .map(productionResourceProvider::spendForOrder)
-            .collect(Collectors.toList());
-    }
-
-    public List<ProductionOrder> getRequirementOrders(Construction construction) {
-        return construction.getConstructionRequirements()
-            .getRequiredResources()
-            .entrySet()
-            .stream()
-            .map(requirement -> resourceProductionOrderFactory.createResourceOrder(construction, requirement))
             .map(productionResourceProvider::spendForOrder)
             .collect(Collectors.toList());
     }

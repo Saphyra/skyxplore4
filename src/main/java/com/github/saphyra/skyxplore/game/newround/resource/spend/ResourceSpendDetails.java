@@ -18,7 +18,7 @@ public class ResourceSpendDetails {
     @NonNull
     private final String dataId;
 
-    private final UUID allocationId;
+    private UUID allocationId;
 
     @NonNull
     private final Integer requestedAmount;

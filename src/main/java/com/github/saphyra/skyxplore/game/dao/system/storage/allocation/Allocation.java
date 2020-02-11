@@ -45,4 +45,8 @@ public class Allocation {
     private final AllocationType allocationType;
 
     private final boolean isNew;
+
+    public void addAmount(int producedAmount) {
+        amount += producedAmount;
+    }
 }

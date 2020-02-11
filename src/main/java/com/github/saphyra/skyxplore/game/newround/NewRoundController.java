@@ -12,6 +12,7 @@ import com.github.saphyra.skyxplore.game.dao.player.PlayerQueryService;
 import com.github.saphyra.skyxplore.game.newround.hr.HumanResourceService;
 import com.github.saphyra.skyxplore.game.newround.order.Order;
 import com.github.saphyra.skyxplore.game.newround.order.provider.OrderProvider;
+import com.github.saphyra.skyxplore.game.newround.production.ProducerQueryService;
 import com.github.saphyra.skyxplore.game.newround.resource.NewRoundResourceHandler;
 import com.github.saphyra.skyxplore.game.newround.resource.StorageSettingReservationUpdateService;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,7 @@ public class NewRoundController {
     private final NewRoundResourceHandler newRoundResourceHandler;
     private final List<OrderProvider> orderProviders;
     private final PlayerQueryService playerQueryService;
+    private final ProducerQueryService producerQueryService;
     private final RequestContextHolder requestContextHolder;
     private final StarQueryService starQueryService;
     private final StorageSettingReservationUpdateService storageSettingReservationUpdateService;
@@ -58,6 +60,7 @@ public class NewRoundController {
         newRoundResourceHandler.prepareForNewRound(game.getRound());
         newRoundResourceHandler.deleteExpiredResources(game.getRound() + 1);
         humanResourceService.clear(game.getGameId());
+        producerQueryService.clear(game.getGameId());
         requestContextHolder.setContext(context);
 
         game.incrementRound();
