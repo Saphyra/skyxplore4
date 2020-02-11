@@ -1,5 +1,6 @@
 TODO handle ProductionOrders where all resource is present
 TODO Introduce Allocation and Reservation handling for terraformations
 TODO remove productionOrders when Terraforming is cancelled
+TODO bug: FE displays deleted game
 TODO Add System defence details to system summary
 TODO API tests

@@ -54,7 +54,7 @@ public class ResourceSpendService {
     @Transactional
     public void spend(ResourceSpendDetails spendDetails) {
         Resource resource = resourceQueryService.findByStarIdAndDataIdAndRoundAndPlayerIdValidated(spendDetails.getStarId(), spendDetails.getDataId());
-        resource.removeAmount(spendDetails.getAvailableAmount());
+        resource.removeAmount(spendDetails.getToSpend());
         resourceCommandService.save(resource);
         Optional.ofNullable(spendDetails.getAllocationId())
             .ifPresent(allocationCommandService::delete);

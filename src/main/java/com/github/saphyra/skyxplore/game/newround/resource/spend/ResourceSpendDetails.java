@@ -25,4 +25,8 @@ public class ResourceSpendDetails {
 
     @NonNull
     private final Integer availableAmount;
+
+    public int getToSpend(){
+        return Math.min(requestedAmount, availableAmount);
+    }
 }

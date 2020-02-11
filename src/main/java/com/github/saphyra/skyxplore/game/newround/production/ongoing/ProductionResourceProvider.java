@@ -16,7 +16,7 @@ class ProductionResourceProvider {
     ProductionOrder spendForOrder(ProductionOrder productionOrder) {
         ResourceSpendDetails spendDetails = resourceSpendService.getSpendDetails(productionOrder.getStarId(), productionOrder.getDataId(), productionOrder.getMissingAmount());
         resourceSpendService.spend(spendDetails);
-        productionOrder.addProduced(spendDetails.getAvailableAmount());
+        productionOrder.addProduced(spendDetails.getToSpend());
         return productionOrder;
     }
 }
