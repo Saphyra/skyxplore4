@@ -1,21 +1,21 @@
 package com.github.saphyra.skyxplore.game.newround.order;
 
 import com.github.saphyra.skyxplore.game.dao.system.construction.Construction;
-import com.github.saphyra.skyxplore.game.newround.order.processor.construction.TerraformOrderProcessor;
+import com.github.saphyra.skyxplore.game.newround.order.processor.construction.BuildingOrderProcessor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 @Builder
 @Data
-public class TerraformOrder implements Order {
+public class BuildingOrder implements Order{
     @NonNull
     private final Construction construction;
 
     private final int priority;
 
     @NonNull
-    private final TerraformOrderProcessor terraformOrderProcessor;
+    private final BuildingOrderProcessor buildingOrderProcessor;
 
     @Override
     public Integer getPriority() {
@@ -24,6 +24,6 @@ public class TerraformOrder implements Order {
 
     @Override
     public void process() {
-        terraformOrderProcessor.process(this);
+        buildingOrderProcessor.process(this);
     }
 }

@@ -28,4 +28,8 @@ public class Building {
     private UUID constructionId;
 
     private final boolean isNew;
+
+    public void increaseLevel() {
+        level++;
+    }
 }
