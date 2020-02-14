@@ -1,11 +1,13 @@
 package com.github.saphyra.skyxplore.data.base.loader;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.saphyra.skyxplore.data.base.AbstractDataService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import java.io.File;
-
-import static java.util.Objects.isNull;
+import java.io.IOException;
 
 @Slf4j
 class FileLoader<K, V> extends AbstractLoader<V> {
@@ -22,7 +24,19 @@ class FileLoader<K, V> extends AbstractLoader<V> {
 
     @Override
     public void load() {
-        log.debug("Loading elements from file.");
+        try {
+            //TODO fix
+            PathMatchingResourcePatternResolver patternResolver = new PathMatchingResourcePatternResolver();
+            Resource[] resources = patternResolver.getResources(dataService.getPath().replace("src/main/resources/", "classpath:") + "/*.json");
+            ObjectMapper objectMapper = new ObjectMapper();
+            for (Resource resource : resources) {
+                dataService.addItem(objectMapper.readValue(resource.getURL(), clazz), resource.getFilename());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        /*
+        log.info("Loading elements from file.");
         if (!root.isDirectory()) {
             throw new IllegalArgumentException("Source must be a directory. Path: " + root.getAbsolutePath());
         }
@@ -35,7 +49,7 @@ class FileLoader<K, V> extends AbstractLoader<V> {
         for (File file : files) {
             log.debug("Loading item {}", file.getName());
             loadFile(file);
-        }
+        }*/
     }
 
     private void loadFile(File file) {

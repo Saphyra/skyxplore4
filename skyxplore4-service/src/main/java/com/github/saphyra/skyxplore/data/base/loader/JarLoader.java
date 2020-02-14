@@ -15,6 +15,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 @Slf4j
+//TODO remove
 class JarLoader<K, V> extends AbstractLoader<V> {
     private final String jarPath;
     private final AbstractDataService<K, V> dataService;

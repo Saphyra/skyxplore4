@@ -16,7 +16,8 @@ public class ContentLoaderFactory {
 
     public <K, V> ContentLoader getInstance(Class<V> clazz, AbstractDataService<K, V> gameDataService) {
         File root = new File(gameDataService.getPath());
-        if (root.exists()) {
+        log.info("Creating ContentLoader for file {}", root);
+        if (root.exists() || true) {//TODO fix
             return new FileLoader<>(clazz, gameDataService, fileUtil);
         } else {
             return new JarLoader<>(clazz, gameDataService, fileUtil);

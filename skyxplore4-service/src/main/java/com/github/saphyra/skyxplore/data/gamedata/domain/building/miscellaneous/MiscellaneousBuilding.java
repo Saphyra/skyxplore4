@@ -11,6 +11,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class MiscellaneousBuilding extends BuildingData {
     private List<SurfaceType> placeableSurfaceTypes;
+    private Integer workers;
 
     @Override
     public SurfaceType getPrimarySurfaceType() {
