@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>common-data</artifactId>
+            <artifactId>data</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 

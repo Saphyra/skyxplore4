@@ -23,6 +23,6 @@
     <build>
     </build>
     <modules>
-        <module>common-data</module>
+        <module>data</module>
     </modules>
 </project>

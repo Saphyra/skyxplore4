@@ -7,10 +7,10 @@
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>common-data</artifactId>
+    <artifactId>data</artifactId>
     <version>${artifact.version}</version>
 
-    <name>common-data</name>
+    <name>data</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
