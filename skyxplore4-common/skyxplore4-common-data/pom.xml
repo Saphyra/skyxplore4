@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.saphyra</groupId>
             <artifactId>util</artifactId>
-            <version>1.5.0</version>
+            <version>${versions.saphyra.util}</version>
         </dependency>
 
         <dependency>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
-            <version>1.3.2</version>
+            <version>${versions.apache-commons.commons-io}</version>
         </dependency>
     </dependencies>
 

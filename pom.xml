@@ -4,10 +4,39 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
         <java.version>1.8</java.version>
         <artifact.version>1.0-SNAPSHOT</artifact.version>
+
+        <!-- Platform Versions -->
+        <versions.spring-boot newVersion="2.2.4.RELEASE">2.0.2.RELEASE</versions.spring-boot>
+        <versions.liquibase-core newVersion="3.8.6">3.6.3</versions.liquibase-core>
+        <versions.mysql-connector newVersion="8.0.19">8.0.16</versions.mysql-connector>
+        <versions.postgresql-connector newVersion="42.2.10">42.2.9</versions.postgresql-connector>
+
+        <!-- Saphyra Versions -->
+        <versions.saphyra.auth-service>3.1.0</versions.saphyra.auth-service>
+        <versions.saphyra.encryption>1.0.2</versions.saphyra.encryption>
+        <versions.saphyra.cache>1.0.5</versions.saphyra.cache>
+        <versions.saphyra.converter>1.0.0</versions.saphyra.converter>
+        <versions.saphyra.dao>1.1.1</versions.saphyra.dao>
+        <versions.saphyra.exception-handling>1.3.4</versions.saphyra.exception-handling>
+        <versions.saphyra.util>1.5.0</versions.saphyra.util>
+
+        <!-- Lib Versions -->
+        <versions.apache-commons.commons-io newVersion="2.6">1.3.2</versions.apache-commons.commons-io>
+        <versions.apache-commons.commons-lang3 newVersion="3.9">3.0</versions.apache-commons.commons-lang3>
+        <versions.apache-commons.commons-net>3.6</versions.apache-commons.commons-net>
+        <versions.assertj-core newVersion="3.15.0">3.12.2</versions.assertj-core>
+        <versions.h2 newVersion="1.4.200">1.4.199</versions.h2>
+        <versions.jackson-core newVersion="2.10.2">2.9.9</versions.jackson-core>
+        <versions.junit newVersion="4.13">4.12</versions.junit>
+        <versions.mockito-core newVersion="3.2.4">2.21.0</versions.mockito-core>
+        <versions.thymeleaf-spring>3.0.11.RELEASE</versions.thymeleaf-spring>
+
+        <!-- Plugin Versions -->
+        <version.maven-compiler-plugin newVersion="3.8.1">3.5.1</version.maven-compiler-plugin>
+        <version.lombok>1.18.12</version.lombok>
+        <version.lombok-maven>1.18.10.0</version.lombok-maven>
     </properties>
 
     <groupId>com.github.saphyra</groupId>
@@ -30,41 +59,41 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.1.6.RELEASE</version>
+            <version>${versions.spring-boot}</version>
         </dependency>
 
         <!-- TODO move to module -->
         <dependency>
             <groupId>com.github.saphyra</groupId>
             <artifactId>auth-service</artifactId>
-            <version>3.1.0</version>
+            <version>${versions.saphyra.auth-service}</version>
         </dependency>
 
         <!-- TODO move to module -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.1.6.RELEASE</version>
+            <version>${versions.spring-boot}</version>
         </dependency>
 
         <!-- TODO move to module -->
         <dependency>
             <groupId>com.github.saphyra</groupId>
             <artifactId>encryption</artifactId>
-            <version>1.0.2</version>
+            <version>${versions.saphyra.encryption}</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
+            <version>${version.lombok}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok-maven</artifactId>
-            <version>1.18.6.0</version>
+            <version>${version.lombok-maven}</version>
             <type>pom</type>
         </dependency>
     </dependencies>
@@ -76,6 +105,6 @@
         <module>skyxplore4-service</module>
         <module>skyxplore4-automated_test</module>
         <module>skyxplore4-server</module>
-      <module>skyxplore4-common</module>
-  </modules>
+        <module>skyxplore4-common</module>
+    </modules>
 </project>
