@@ -1,0 +1,30 @@
+package com.github.saphyra.skyxplore_deprecated.platform.auth.domain.user;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
+@Data
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@Builder
+public class SkyXpUser {
+    @Id
+    @NonNull
+    private String userId;
+
+    @NonNull
+    private String userName;
+
+    @NonNull
+    private String password;
+}
