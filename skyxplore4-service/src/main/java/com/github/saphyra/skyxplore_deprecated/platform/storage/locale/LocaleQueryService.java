@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.platform.storage.locale;
 
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.platform.storage.domain.Storage;
 import com.github.saphyra.skyxplore_deprecated.platform.storage.domain.StorageKey;
 import com.github.saphyra.skyxplore_deprecated.platform.storage.domain.StorageKeyId;

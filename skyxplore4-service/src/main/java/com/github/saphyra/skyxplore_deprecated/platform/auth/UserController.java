@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore_deprecated.platform.auth;
 
 import com.github.saphyra.encryption.impl.PasswordService;
 import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.platform.auth.domain.RegistrationRequest;
 import com.github.saphyra.skyxplore_deprecated.platform.auth.domain.user.SkyXpUser;
 import com.github.saphyra.skyxplore_deprecated.platform.auth.domain.user.UserRepository;

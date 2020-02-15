@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore_deprecated.platform.auth;
 
 import com.github.saphyra.authservice.auth.domain.User;
 import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.platform.auth.domain.user.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

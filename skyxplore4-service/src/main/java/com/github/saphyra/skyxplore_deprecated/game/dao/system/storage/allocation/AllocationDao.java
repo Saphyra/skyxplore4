@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.allocation;
 
 import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.resource.StorageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.common;
+package com.github.saphyra.skyxplore.common.utils;
 
 import com.github.saphyra.converter.ConverterBase;
 import lombok.extern.slf4j.Slf4j;

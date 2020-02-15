@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.rest.controller;
 
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CookieValue;

@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.platform.errorhandling.translation;
 
 import com.github.saphyra.skyxplore_deprecated.common.RequestConstants;
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.data.errorcode.ErrorCodeLocalization;
 import com.github.saphyra.skyxplore_deprecated.data.errorcode.ErrorCodeService;
 import com.github.saphyra.skyxplore_deprecated.platform.storage.locale.LocaleCache;

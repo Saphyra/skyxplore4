@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.common.cache;
 
-import com.github.saphyra.skyxplore_deprecated.common.CollectionUtil;
+import com.github.saphyra.skyxplore.common.utils.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.repository.CrudRepository;

@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.service.system.costruction;
 
-import com.github.saphyra.skyxplore_deprecated.common.DateTimeUtil;
+import com.github.saphyra.skyxplore.common.utils.DateTimeUtil;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.construction.ConstructionCommandService;

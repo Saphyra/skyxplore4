@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.newround.order.processor.construction;
 
-import com.github.saphyra.skyxplore_deprecated.common.OptionalHashMap;
+import com.github.saphyra.skyxplore.common.utils.OptionalHashMap;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.order.production.ProductionOrder;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.order.production.ProductionOrderCommandService;

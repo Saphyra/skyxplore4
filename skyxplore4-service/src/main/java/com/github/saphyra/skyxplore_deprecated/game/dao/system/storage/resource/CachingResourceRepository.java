@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.resource;
 
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.CacheContext;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.CacheRepository;

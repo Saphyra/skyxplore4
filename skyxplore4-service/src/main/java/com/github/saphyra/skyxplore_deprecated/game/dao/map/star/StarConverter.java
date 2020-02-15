@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore_deprecated.game.dao.map.star;
 
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.encryption.impl.StringEncryptor;
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.CoordinateConverter;
 import lombok.RequiredArgsConstructor;

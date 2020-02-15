@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore_deprecated.game.dao.system.citizen;
 
 import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore_deprecated.common.UuidConverter;
+import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
