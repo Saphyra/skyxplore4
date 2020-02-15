@@ -11,10 +11,10 @@
     </properties>
 
     <groupId>com.github.saphyra</groupId>
-    <artifactId>skyxplore4-parent</artifactId>
+    <artifactId>skyxplore4</artifactId>
     <version>${artifact.version}</version>
 
-    <name>skyxplore4-parent</name>
+    <name>skyxplore4</name>
     <url>http://www.example.com</url>
 
     <packaging>pom</packaging>
@@ -27,15 +27,54 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.1.6.RELEASE</version>
+        </dependency>
 
+        <!-- TODO move to module -->
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>auth-service</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- TODO move to module -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.1.6.RELEASE</version>
+        </dependency>
+
+        <!-- TODO move to module -->
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>encryption</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-maven</artifactId>
+            <version>1.18.6.0</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 
     <build>
-
     </build>
 
     <modules>
         <module>skyxplore4-service</module>
         <module>skyxplore4-automated_test</module>
+        <module>skyxplore4-server</module>
     </modules>
 </project>
