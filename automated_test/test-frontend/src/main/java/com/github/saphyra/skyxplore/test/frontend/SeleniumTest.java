@@ -2,10 +2,12 @@ package com.github.saphyra.skyxplore.test.frontend;
 
 import com.github.saphyra.skyxplore.server.Application;
 import com.github.saphyra.skyxplore.test.common.TestBase;
+import com.github.saphyra.skyxplore.test.framework.SleepUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.ITestResult;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,7 +20,7 @@ import static java.util.Objects.isNull;
 public class SeleniumTest extends TestBase {
     private static final String CHROME_DRIVER_PROPERTY_NAME = "webdriver.chrome.driver";
     private static final String CHROME_DRIVER_EXE_LOCATION = "chromedriver.exe";
-    private static final boolean HEADLESS_MODE = true;
+    private static final boolean HEADLESS_MODE = false;
 
     private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -43,8 +45,11 @@ public class SeleniumTest extends TestBase {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void stopDriver() {
+    public void stopDriver(ITestResult testResult) {
         WebDriver driver = this.driver.get();
+        if (ITestResult.FAILURE == testResult.getStatus()) {
+            SleepUtil.sleep(20000);
+        }
         if (!isNull(driver)) {
             log.info("Closing driver {}", driver);
             driver.close();
@@ -52,7 +57,7 @@ public class SeleniumTest extends TestBase {
         }
     }
 
-    private WebDriver extractDriver() {
+    protected WebDriver extractDriver() {
         return Optional.ofNullable(driver.get())
             .orElseThrow(() -> new RuntimeException("WebDriver has not been initialized."));
     }

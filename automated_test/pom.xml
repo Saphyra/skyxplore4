@@ -31,6 +31,19 @@
             <version>${versions.testng}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${versions.spring-boot}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

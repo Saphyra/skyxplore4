@@ -3,6 +3,7 @@ package com.github.saphyra.skyxplore.web;
 import com.github.saphyra.authservice.redirection.RedirectionFilterSettings;
 import com.github.saphyra.authservice.redirection.domain.ProtectedUri;
 import com.github.saphyra.authservice.redirection.domain.RedirectionContext;
+import com.github.saphyra.skyxplore.common.config.RequestConstants;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class HomePageFilterSetting implements RedirectionFilterSettings {
 
     @Override
     public String getRedirectionPath(RedirectionContext redirectionContext) {
-        return PageController.INDEX_MAPPING;
+        return RequestConstants.INDEX_MAPPING;
     }
 
     @Override

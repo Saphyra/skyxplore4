@@ -5,3 +5,5 @@ TODO Display resource status properly when construction in progress
 TODO bug: FE displays deleted game
 TODO Add System defence details to system summary
 TODO API tests
+
+-parallel methods -threadcount 16 -dataproviderthreadcount 16
