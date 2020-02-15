@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.platform.configuration;
+package com.github.saphyra.skyxplore.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

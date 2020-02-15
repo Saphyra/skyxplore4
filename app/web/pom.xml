@@ -7,10 +7,10 @@
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>server</artifactId>
+    <artifactId>web</artifactId>
     <version>${artifact.version}</version>
 
-    <name>skyxplore4-server</name>
+    <name>web</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,36 +19,23 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>data</artifactId>
+            <artifactId>config</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>web</artifactId>
+            <artifactId>localization</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${versions.liquibase-core}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${versions.postgresql-connector}</version>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>${versions.thymeleaf-spring}</version>
         </dependency>
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${versions.spring-boot}</version>
-            </plugin>
-        </plugins>
     </build>
 </project>

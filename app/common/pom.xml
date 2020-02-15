@@ -24,5 +24,6 @@
     </build>
     <modules>
         <module>data</module>
-    </modules>
+      <module>config</module>
+  </modules>
 </project>

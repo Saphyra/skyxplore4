@@ -19,7 +19,6 @@ import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.WE
 @Slf4j
 public class PageController {
     private static final String GAME_MAPPING = WEB_PREFIX + "/game";
-    public static final String INDEX_MAPPING = WEB_PREFIX;
     private static final String MAIN_MENU_MAPPING = WEB_PREFIX + "/main-menu";
     private static final String SELECT_GAME_MAPPING = GAME_MAPPING + "/{gameId}";
 
@@ -31,12 +30,6 @@ public class PageController {
     String game() {
         log.info("Request arrived to {}", GAME_MAPPING);
         return "game";
-    }
-
-    @GetMapping(INDEX_MAPPING)
-    String index() {
-        log.info("Request arrived to {}", INDEX_MAPPING);
-        return "index";
     }
 
     @GetMapping(MAIN_MENU_MAPPING)
