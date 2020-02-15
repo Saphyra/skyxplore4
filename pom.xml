@@ -43,8 +43,7 @@
     <artifactId>skyxplore4</artifactId>
     <version>${artifact.version}</version>
 
-    <name>skyxplore4</name>
-    <url>http://www.example.com</url>
+    <name>skyxplore4-parent</name>
 
     <packaging>pom</packaging>
 
@@ -102,9 +101,9 @@
     </build>
 
     <modules>
-        <module>skyxplore4-service</module>
-        <module>skyxplore4-automated_test</module>
-        <module>skyxplore4-server</module>
-        <module>skyxplore4-common</module>
+        <module>skyxplore4-deprecated</module>
+        <module>automated_test</module>
+        <module>common-utils</module>
+        <module>app</module>
     </modules>
 </project>

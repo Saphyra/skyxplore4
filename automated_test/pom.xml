@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>skyxplore4</artifactId>
         <groupId>com.github.saphyra</groupId>
         <version>${artifact.version}</version>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>skyxplore4-common</artifactId>
+    <artifactId>automated_test</artifactId>
     <version>${artifact.version}</version>
 
-    <name>skyxplore4-common</name>
-    <packaging>pom</packaging>
+    <name>skyxplore4-automated_test</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,8 +22,4 @@
 
     <build>
     </build>
-    <modules>
-        <module>skyxplore4-common-data</module>
-        <module>skyxplore4-common-utils</module>
-    </modules>
 </project>

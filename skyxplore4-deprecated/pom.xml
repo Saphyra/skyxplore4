@@ -8,7 +8,7 @@
         <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>skyxplore4-service</artifactId>
+    <artifactId>skyxplore4-deprecated</artifactId>
     <version>${artifact.version}</version>
 
     <name>skyxplore4-service</name>
@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>skyxplore4-common-data</artifactId>
+            <artifactId>common-data</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 

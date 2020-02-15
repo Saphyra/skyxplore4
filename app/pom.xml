@@ -7,30 +7,25 @@
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>skyxplore4-server</artifactId>
+    <packaging>pom</packaging>
+
+    <artifactId>app</artifactId>
     <version>${artifact.version}</version>
 
-    <name>skyxplore4-server</name>
+    <name>app</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>skyxplore4-service</artifactId>
-            <version>${artifact.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${versions.spring-boot}</version>
-            </plugin>
-        </plugins>
+
     </build>
+    <modules>
+        <module>common</module>
+        <module>server</module>
+    </modules>
 </project>

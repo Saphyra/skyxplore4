@@ -2,15 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>skyxplore4-common</artifactId>
+        <artifactId>skyxplore4</artifactId>
         <groupId>com.github.saphyra</groupId>
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>skyxplore4-common-data</artifactId>
+    <artifactId>common-utils</artifactId>
     <version>${artifact.version}</version>
-
-    <name>skyxplore4-common-data</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,23 +17,27 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>util</artifactId>
-            <version>${versions.saphyra.util}</version>
+            <artifactId>converter</artifactId>
+            <version>${versions.saphyra.converter}</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>skyxplore4-common-utils</artifactId>
-            <version>${artifact.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${versions.apache-commons.commons-io}</version>
+            <artifactId>util</artifactId>
+            <version>${versions.saphyra.util}</version>
         </dependency>
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
