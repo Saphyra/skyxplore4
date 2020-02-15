@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.data.errorcode;
 
 import com.github.saphyra.skyxplore_deprecated.common.ErrorCode;
-import com.github.saphyra.skyxplore_deprecated.data.base.DataValidator;
+import com.github.saphyra.skyxplore.common.data.DataValidator;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

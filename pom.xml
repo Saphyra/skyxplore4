@@ -76,5 +76,6 @@
         <module>skyxplore4-service</module>
         <module>skyxplore4-automated_test</module>
         <module>skyxplore4-server</module>
-    </modules>
+      <module>skyxplore4-common</module>
+  </modules>
 </project>

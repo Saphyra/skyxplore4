@@ -1,6 +1,6 @@
-package com.github.saphyra.skyxplore_deprecated.data.base;
+package com.github.saphyra.skyxplore.common.data;
 
-import com.github.saphyra.skyxplore_deprecated.data.base.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore.common.data.loader.ContentLoaderFactory;
 import com.github.saphyra.util.OptionalMap;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

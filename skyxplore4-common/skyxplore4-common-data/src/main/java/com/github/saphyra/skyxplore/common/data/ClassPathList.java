@@ -1,16 +1,16 @@
-package com.github.saphyra.skyxplore_deprecated.data.base;
+package com.github.saphyra.skyxplore.common.data;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.saphyra.skyxplore_deprecated.common.CustomObjectMapperWrapper;
+import com.github.saphyra.skyxplore.common.utils.CustomObjectMapperWrapper;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class ClassPathList<T> extends ArrayList<T> {
     public ClassPathList(CustomObjectMapperWrapper objectMapper, String fileLocation) {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileLocation);
-        TypeReference<List<String>> ref = new TypeReference<List<String>>() {
+        TypeReference<Collection<T>> ref = new TypeReference<Collection<T>>() {
         };
         addAll(objectMapper.readValue(inputStream, ref));
     }

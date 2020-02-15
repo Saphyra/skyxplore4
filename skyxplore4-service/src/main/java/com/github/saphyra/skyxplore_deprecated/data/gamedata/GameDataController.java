@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata;
 
+import com.github.saphyra.skyxplore.common.data.AbstractDataService;
 import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.data.base.AbstractDataService;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.GameDataItem;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

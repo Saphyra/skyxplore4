@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>skyxplore4</artifactId>
+        <artifactId>skyxplore4-common</artifactId>
         <groupId>com.github.saphyra</groupId>
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>skyxplore4-server</artifactId>
+    <artifactId>skyxplore4-common-data</artifactId>
     <version>${artifact.version}</version>
 
-    <name>skyxplore4-server</name>
+    <name>skyxplore4-common-data</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,18 +19,23 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>skyxplore4-service</artifactId>
+            <artifactId>util</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>skyxplore4-common-utils</artifactId>
             <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
         </dependency>
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.0.2.RELEASE</version>
-            </plugin>
-        </plugins>
     </build>
 </project>

@@ -1,6 +1,6 @@
-package com.github.saphyra.skyxplore_deprecated.data.base;
+package com.github.saphyra.skyxplore.common.data;
 
-import com.github.saphyra.skyxplore_deprecated.data.base.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore.common.data.loader.ContentLoaderFactory;
 
 import java.util.Map;
 

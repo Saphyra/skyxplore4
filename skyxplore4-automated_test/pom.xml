@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>skyxplore4</artifactId>
-    <groupId>com.github.saphyra</groupId>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>skyxplore4</artifactId>
+        <groupId>com.github.saphyra</groupId>
+        <version>${artifact.version}</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <artifactId>skyxplore4-automated_test</artifactId>
     <version>${artifact.version}</version>
-    <relativePath>..</relativePath>
-  </parent>
 
-  <artifactId>skyxplore4-automated_test</artifactId>
-  <version>${artifact.version}</version>
+    <name>skyxplore4-automated_test</name>
 
-  <name>skyxplore4-automated_test</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
+    <dependencies>
+    </dependencies>
 
-  <dependencies>
-  </dependencies>
+    <build>
 
-  <build>
-
-  </build>
+    </build>
 </project>

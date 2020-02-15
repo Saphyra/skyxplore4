@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata;
 
-import com.github.saphyra.skyxplore_deprecated.common.CustomObjectMapperWrapper;
-import com.github.saphyra.skyxplore_deprecated.data.base.ClassPathList;
+import com.github.saphyra.skyxplore.common.data.ClassPathList;
+import com.github.saphyra.skyxplore.common.utils.CustomObjectMapperWrapper;
 import com.github.saphyra.util.Random;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

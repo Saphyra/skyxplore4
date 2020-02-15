@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.terraforming;
 
-import com.github.saphyra.skyxplore_deprecated.data.base.ValidationAbstractDataService;
-import com.github.saphyra.skyxplore_deprecated.data.base.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore.common.data.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.common.data.loader.ContentLoaderFactory;
 import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;

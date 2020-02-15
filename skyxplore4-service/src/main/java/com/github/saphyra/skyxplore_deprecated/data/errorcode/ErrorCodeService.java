@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore_deprecated.data.errorcode;
 
 import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.data.base.ValidationAbstractDataService;
-import com.github.saphyra.skyxplore_deprecated.data.base.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore.common.data.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.common.data.loader.ContentLoaderFactory;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 

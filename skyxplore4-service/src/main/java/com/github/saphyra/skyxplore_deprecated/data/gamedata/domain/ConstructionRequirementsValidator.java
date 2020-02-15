@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain;
 
-import com.github.saphyra.skyxplore_deprecated.data.base.DataValidator;
+import com.github.saphyra.skyxplore.common.data.DataValidator;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.ConstructionRequirements;
 import org.springframework.stereotype.Component;
 

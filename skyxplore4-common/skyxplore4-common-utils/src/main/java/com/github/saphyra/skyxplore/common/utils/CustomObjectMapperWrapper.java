@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.common;
+package com.github.saphyra.skyxplore.common.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 
 @Component
 public class CustomObjectMapperWrapper extends ObjectMapperWrapper {
@@ -19,9 +19,17 @@ public class CustomObjectMapperWrapper extends ObjectMapperWrapper {
         this.objectMapper = objectMapper;
     }
 
-    public <T> Collection<? extends T> readValue(InputStream inputStream, TypeReference<List<String>> ref) {
+    public <T> Collection<? extends T> readValue(InputStream inputStream, TypeReference<? extends Collection<T>> ref) {
         try {
             return objectMapper.readValue(inputStream, ref);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public <V> V readValue(URL url, Class<V> clazz) {
+        try {
+            return objectMapper.readValue(url, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
