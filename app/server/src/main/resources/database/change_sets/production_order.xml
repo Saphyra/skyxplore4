@@ -12,7 +12,9 @@
         </preConditions>
 
         <createTable tableName="production_order">
-            <column name="production_order_id" type="varchar(37)"/>
+            <column name="production_order_id" type="varchar(37)">
+                <constraints nullable="false"/>
+            </column>
             <column name="game_id" type="varchar(37)"/>
             <column name="star_id" type="varchar(37)"/>
             <column name="player_id" type="varchar(37)"/>

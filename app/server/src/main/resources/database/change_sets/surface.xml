@@ -12,7 +12,9 @@
         </preConditions>
 
         <createTable tableName="surface">
-            <column name="surface_id" type="varchar(37)"/>
+            <column name="surface_id" type="varchar(37)">
+                <constraints nullable="false"/>
+            </column>
             <column name="star_id" type="varchar(37)"/>
             <column name="game_id" type="varchar(37)"/>
             <column name="player_id" type="varchar(37)"/>

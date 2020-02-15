@@ -30,7 +30,10 @@
         <versions.h2 newVersion="1.4.200">1.4.199</versions.h2>
         <versions.jackson-core newVersion="2.10.2">2.9.9</versions.jackson-core>
         <versions.junit newVersion="4.13">4.12</versions.junit>
+        <versions.maven-surefire-plugin>3.0.0-M4</versions.maven-surefire-plugin>
         <versions.mockito-core newVersion="3.2.4">2.21.0</versions.mockito-core>
+        <versions.selenium newVersion="4.0.0-alpha-4">4.0.0-alpha-2</versions.selenium>
+        <versions.testng>7.1.0</versions.testng>
         <versions.thymeleaf-spring>3.0.11.RELEASE</versions.thymeleaf-spring>
 
         <!-- Plugin Versions -->
@@ -61,27 +64,6 @@
             <version>${versions.spring-boot}</version>
         </dependency>
 
-        <!-- TODO move to module -->
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>auth-service</artifactId>
-            <version>${versions.saphyra.auth-service}</version>
-        </dependency>
-
-        <!-- TODO move to module -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${versions.spring-boot}</version>
-        </dependency>
-
-        <!-- TODO move to module -->
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>encryption</artifactId>
-            <version>${versions.saphyra.encryption}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -101,8 +83,8 @@
     </build>
 
     <modules>
-        <module>automated_test</module>
         <module>common-utils</module>
         <module>app</module>
+        <module>automated_test</module>
     </modules>
 </project>

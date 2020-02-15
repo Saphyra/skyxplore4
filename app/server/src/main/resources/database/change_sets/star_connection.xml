@@ -12,7 +12,9 @@
         </preConditions>
 
         <createTable tableName="star_connection">
-            <column name="connection_id" type="varchar(37)"/>
+            <column name="connection_id" type="varchar(37)">
+                <constraints nullable="false"/>
+            </column>
             <column name="game_id" type="varchar(37)"/>
             <column name="star1" type="varchar(37)"/>
             <column name="star2" type="varchar(37)"/>

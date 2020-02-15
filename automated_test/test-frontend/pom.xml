@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>automated_test</artifactId>
+        <groupId>com.github.saphyra</groupId>
+        <version>${artifact.version}</version>
+    </parent>
+
+    <artifactId>test-frontend</artifactId>
+    <version>${artifact.version}</version>
+
+    <name>test-frontend</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>test-common</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${versions.selenium}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${versions.maven-surefire-plugin}</version>
+                <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>16</threadCount>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

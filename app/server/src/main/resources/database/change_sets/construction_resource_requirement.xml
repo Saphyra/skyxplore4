@@ -12,7 +12,9 @@
         </preConditions>
 
         <createTable tableName="construction_resource_requirement">
-            <column name="construction_resource_requirement_id" type="varchar(37)"/>
+            <column name="construction_resource_requirement_id" type="varchar(37)">
+                <constraints nullable="false"/>
+            </column>
             <column name="game_id" type="varchar(37)"/>
             <column name="construction_id" type="varchar(37)"/>
             <column name="resource_id" type="text"/>

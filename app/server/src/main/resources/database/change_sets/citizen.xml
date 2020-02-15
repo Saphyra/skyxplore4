@@ -12,7 +12,9 @@
         </preConditions>
 
         <createTable tableName="citizen">
-            <column name="citizen_id" type="varchar(37)"/>
+            <column name="citizen_id" type="varchar(37)">
+                <constraints nullable="false"/>
+            </column>
             <column name="game_id" type="varchar(37)"/>
             <column name="owner_id" type="varchar(37)"/>
             <column name="location_type" type="text"/>

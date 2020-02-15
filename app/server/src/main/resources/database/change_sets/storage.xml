@@ -12,8 +12,12 @@
         </preConditions>
 
         <createTable tableName="storage">
-            <column name="user_id" type="varchar(37)"/>
-            <column name="storage_key" type="varchar(64)"/>
+            <column name="user_id" type="varchar(37)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="storage_key" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
             <column name="value" type="text"/>
         </createTable>
 
