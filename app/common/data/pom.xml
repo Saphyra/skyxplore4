@@ -19,12 +19,6 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>util</artifactId>
-            <version>${versions.saphyra.util}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
             <artifactId>common-utils</artifactId>
             <version>${artifact.version}</version>
         </dependency>

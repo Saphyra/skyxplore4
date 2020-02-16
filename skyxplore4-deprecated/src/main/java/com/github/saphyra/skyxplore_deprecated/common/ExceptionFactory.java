@@ -37,8 +37,6 @@ public class ExceptionFactory {
     private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
     private static final String TERRAFORMING_NOT_POSSIBLE_PREFIX = "Surface %s cannot be terraformed to %s";
     private static final String UPGRADE_ALREADY_IN_PROGRESS_PREFIX = "Upgrade already in progress for building %s";
-    private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
-    private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
     private static final String TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX = "Terraforming of surface %s is already in progress";
 
     public static RestException buildingNotFound(UUID buildingId, UUID playerId) {
@@ -131,17 +129,5 @@ public class ExceptionFactory {
 
     public static RestException upgradeAlreadyInProgress(UUID buildingId) {
         return new ConflictException(createErrorMessage(ErrorCode.UPGRADE_ALREADY_IN_PROGRESS), String.format(UPGRADE_ALREADY_IN_PROGRESS_PREFIX, buildingId));
-    }
-
-    public static RestException userNameAlreadyExists(String userName) {
-        return new ConflictException(createErrorMessage(ErrorCode.USER_NAME_ALREADY_EXISTS), String.format(USER_NAME_ALREADY_EXISTS_PREFIX, userName));
-    }
-
-    public static RestException userNotFound(UUID userId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.USER_NOT_FOUND), String.format(USER_NOT_FOUND_PREFIX, userId.toString()));
-    }
-
-    private static ErrorMessage createErrorMessage(ErrorCode errorCode) {
-        return new ErrorMessage(errorCode.name());
     }
 }

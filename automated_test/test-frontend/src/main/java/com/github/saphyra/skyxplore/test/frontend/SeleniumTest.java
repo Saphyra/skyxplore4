@@ -3,8 +3,12 @@ package com.github.saphyra.skyxplore.test.frontend;
 import com.github.saphyra.skyxplore.server.Application;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.framework.SleepUtil;
+import lombok.Builder;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
@@ -48,6 +52,7 @@ public class SeleniumTest extends TestBase {
     public void stopDriver(ITestResult testResult) {
         WebDriver driver = this.driver.get();
         if (ITestResult.FAILURE == testResult.getStatus()) {
+            extractLogs(driver);
             SleepUtil.sleep(20000);
         }
         if (!isNull(driver)) {
@@ -60,5 +65,36 @@ public class SeleniumTest extends TestBase {
     protected WebDriver extractDriver() {
         return Optional.ofNullable(driver.get())
             .orElseThrow(() -> new RuntimeException("WebDriver has not been initialized."));
+    }
+
+
+    private void extractLogs(WebDriver driver) {
+        log.info("Extracting logs...");
+        driver.findElements(By.cssSelector("#logcontainermessages > div"))
+            .stream()
+            .map(this::extractMessage)
+            .forEach(logMessage -> log.info(logMessage.toString()));
+        log.info("Logs extracted.");
+    }
+
+    private LogMessage extractMessage(WebElement webElement) {
+        return LogMessage.builder()
+            .severity(webElement.findElement(By.cssSelector(":first-child")).getText())
+            .title(webElement.findElement(By.cssSelector(":nth-child(2)")).getText())
+            .message(webElement.findElement(By.cssSelector(":nth-child(3)")).getText())
+            .build();
+    }
+
+    @Data
+    @Builder
+    private static class LogMessage {
+        private final String severity;
+        private final String title;
+        private final String message;
+
+        @Override
+        public String toString() {
+            return String.format("%s --- %s - %s", severity, title, message);
+        }
     }
 }

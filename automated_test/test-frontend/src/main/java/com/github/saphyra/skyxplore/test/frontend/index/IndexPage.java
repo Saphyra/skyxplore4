@@ -13,6 +13,7 @@ class IndexPage {
     private static final By USER_NAME_VALID = By.id("invalid-username");
     private static final By PASSWORD_VALID = By.id("invalid-password");
     private static final By CONFIRM_PASSWORD_VALID = By.id("invalid-confirm-password");
+    private static final By REGISTRATION_SUBMIT_BUTTON = By.id("registration-button");
 
     static WebElement userNameInput(WebDriver driver) {
         return driver.findElement(USER_NAME_INPUT);
@@ -36,5 +37,9 @@ class IndexPage {
 
     static WebElement confirmPasswordValid(WebDriver driver) {
         return driver.findElement(CONFIRM_PASSWORD_VALID);
+    }
+
+    static WebElement registrationSubmitButton(WebDriver driver) {
+        return driver.findElement(REGISTRATION_SUBMIT_BUTTON);
     }
 }

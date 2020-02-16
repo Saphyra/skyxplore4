@@ -1,8 +1,9 @@
 package com.github.saphyra.skyxplore.test.frontend.index;
 
 import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
+import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.PasswordValidationResult;
-import com.github.saphyra.skyxplore.test.frontend.index.registration.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.RegistrationValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.UsernameValidationResult;
 import lombok.Builder;
@@ -56,5 +57,19 @@ class IndexPageActions {
         } else {
             assertThat(inputValid.isDisplayed()).isFalse();
         }
+    }
+
+    static void submitRegistration(WebDriver driver) {
+        assertThat(driver.getCurrentUrl()).endsWith(RequestConstants.INDEX_MAPPING);
+        WebElement submitButton = IndexPage.registrationSubmitButton(driver);
+
+        VerifiedOperation.waitUntil(
+            submitButton::isEnabled,
+            3,
+            1000
+        );
+
+        assertThat(submitButton.isEnabled()).isTrue();
+        submitButton.click();
     }
 }

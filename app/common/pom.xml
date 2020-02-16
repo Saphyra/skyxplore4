@@ -25,5 +25,6 @@
     <modules>
         <module>data</module>
       <module>config</module>
+    <module>exception-handling</module>
   </modules>
 </project>

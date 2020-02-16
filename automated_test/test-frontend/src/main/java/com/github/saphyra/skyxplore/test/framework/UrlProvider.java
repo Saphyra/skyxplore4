@@ -11,4 +11,8 @@ public class UrlProvider {
     public static String getWebRoot(int port) {
         return getRoot(port) + "/web";
     }
+
+    public static String getMainMenu(int port) {
+        return getWebRoot(port) + "/main-menu";
+    }
 }

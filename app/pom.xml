@@ -19,6 +19,35 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>common-utils</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>exception-handling</artifactId>
+            <version>${versions.saphyra.exception-handling}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>dao</artifactId>
+            <version>${versions.saphyra.dao}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>encryption</artifactId>
+            <version>${versions.saphyra.encryption}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${versions.spring-boot}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -29,5 +58,7 @@
         <module>server</module>
         <module>web</module>
         <module>localization</module>
-    </modules>
+        <module>domain</module>
+      <module>auth</module>
+  </modules>
 </project>

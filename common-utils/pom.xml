@@ -20,12 +20,6 @@
             <artifactId>converter</artifactId>
             <version>${versions.saphyra.converter}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>util</artifactId>
-            <version>${versions.saphyra.util}</version>
-        </dependency>
     </dependencies>
 
     <build>
