@@ -11,12 +11,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RedirectionTest extends SeleniumTest {
     @Test
+    public void redirectToIndexWhenNoAccessToken(){
+        //TODO
+    }
+
+    @Test
     public void redirectToWebWhenCalledRoot() {
         //GIVEN
         WebDriver driver = extractDriver();
 
         //WHEN
-
         Operation operation = new Operation() {
             @Override
             public void execute() {
