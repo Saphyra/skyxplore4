@@ -17,7 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 @Component
-//TODO unit test
 public class AuthDaoImpl implements AuthDao {
     private final AccessTokenDao accessTokenDao;
     private final PasswordService passwordService;
@@ -59,16 +58,6 @@ public class AuthDaoImpl implements AuthDao {
     @Override
     public void saveAccessToken(AccessToken accessToken) {
         accessTokenDao.save(accessToken);
-    }
-
-    @Override
-    public void successfulLogoutCallback(AccessToken deletedAccessToken) {
-
-    }
-
-    @Override
-    public void successfulLoginCallback(AccessToken accessToken) {
-
     }
 
     @Override
