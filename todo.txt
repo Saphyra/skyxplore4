@@ -1,9 +1,9 @@
-TODO handle ProductionOrders where all resource is present
-TODO remove productionOrders when Terraforming is cancelled
-TODO add missing buildingNames to localization
-TODO Display resource status properly when construction in progress
-TODO bug: FE displays deleted game
-TODO Add System defence details to system summary
-TODO API tests
+handle ProductionOrders where all resource is present
+remove productionOrders when Terraforming is cancelled
+add missing buildingNames to localization
+Display resource status properly when construction in progress
+bug: FE displays deleted game
+Add System defence details to system summary
+API tests
 
 -parallel methods -threadcount 16 -dataproviderthreadcount 16
