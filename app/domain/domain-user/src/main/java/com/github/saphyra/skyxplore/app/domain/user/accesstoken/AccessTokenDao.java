@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import java.time.OffsetDateTime;
 
 @Component
-//TODO unit test
 public class AccessTokenDao extends AbstractDao<SkyXpAccessToken, AccessToken, String, AccessTokenRepository> {
     public AccessTokenDao(AccessTokenConverter converter, AccessTokenRepository repository) {
         super(converter, repository);

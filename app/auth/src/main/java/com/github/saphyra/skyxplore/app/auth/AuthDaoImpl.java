@@ -39,7 +39,6 @@ public class AuthDaoImpl implements AuthDao {
     }
 
     @Override
-    @Transactional
     public void deleteAccessTokenByUserId(String userId) {
         accessTokenDao.deleteByUserId(userId);
     }

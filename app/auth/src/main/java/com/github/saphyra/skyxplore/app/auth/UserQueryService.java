@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-//TODO unit test
 public class UserQueryService {
     private final UserDao userDao;
     private final UuidConverter uuidConverter;

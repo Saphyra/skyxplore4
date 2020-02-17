@@ -24,7 +24,7 @@ import static java.util.Objects.isNull;
 public class SeleniumTest extends TestBase {
     private static final String CHROME_DRIVER_PROPERTY_NAME = "webdriver.chrome.driver";
     private static final String CHROME_DRIVER_EXE_LOCATION = "chromedriver.exe";
-    private static final boolean HEADLESS_MODE = false;
+    private static final boolean HEADLESS_MODE = true;
 
     private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 

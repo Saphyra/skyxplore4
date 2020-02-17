@@ -10,8 +10,8 @@ import javax.transaction.Transactional;
 import java.time.OffsetDateTime;
 
 @Repository
-//TODO unit test
 public interface AccessTokenRepository extends JpaRepository<SkyXpAccessToken, String> {
+    @Transactional
     void deleteByUserId(String userId);
 
     @Transactional
