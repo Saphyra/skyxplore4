@@ -27,7 +27,6 @@ import java.util.UUID;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 //TODO API test
 public class UserController {
     private static final String CHANGE_PASSWORD_MAPPING = RequestConstants.API_PREFIX + "/user/password";
@@ -40,29 +39,11 @@ public class UserController {
     private final UserRepository userRepository;
     private final UuidConverter uuidConverter;
 
-    @PostMapping(CHANGE_USERNAME_MAPPING)
-    void changeUsername(@RequestBody @Valid ChangeUsernameRequest request) {
-        if (userRepository.findByUserName(request.getUserName()).isPresent()) {
-            throw ExceptionFactory.usernameAlreadyExists(request.getUserName());
-        }
-
-        UUID userId = requestContextHolder.get().getUserId();
-        SkyXpUser user = userRepository.findById(
-            uuidConverter.convertDomain(userId)
-        ).orElseThrow(() -> ExceptionFactory.userNotFound(userId));
-
-        user.setUserName(request.getUserName());
-        userRepository.save(user);
-    }
-
     @PostMapping(CHANGE_PASSWORD_MAPPING)
     void changePassword(@RequestBody @Valid ChangePasswordRequest request) {
-        UUID userId = requestContextHolder.get().getUserId();
-        SkyXpUser user = userRepository.findById(
-            uuidConverter.convertDomain(userId)
-        ).orElseThrow(() -> ExceptionFactory.userNotFound(userId));
+        SkyXpUser user = getUser();
 
-        if (passwordService.authenticate(request.getOldPassword(), user.getPassword())) {
+        if (!passwordService.authenticate(request.getOldPassword(), user.getPassword())) {
             throw ExceptionFactory.invalidPassword();
         }
 
@@ -70,18 +51,37 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @DeleteMapping(DELETE_ACCOUNT_MAPPING)
-    void deleteAccount(@RequestBody @Valid DeleteAccountRequest request) {
-        UUID userId = requestContextHolder.get().getUserId();
-        SkyXpUser user = userRepository.findById(
-            uuidConverter.convertDomain(userId)
-        ).orElseThrow(() -> ExceptionFactory.userNotFound(userId));
+    @PostMapping(CHANGE_USERNAME_MAPPING)
+    void changeUsername(@RequestBody @Valid ChangeUsernameRequest request) {
+        if (userRepository.findByUserName(request.getUserName()).isPresent()) {
+            throw ExceptionFactory.usernameAlreadyExists(request.getUserName());
+        }
 
-        if (passwordService.authenticate(request.getPassword(), user.getPassword())) {
+        SkyXpUser user = getUser();
+        if (!passwordService.authenticate(request.getPassword(), user.getPassword())) {
             throw ExceptionFactory.invalidPassword();
         }
 
+        user.setUserName(request.getUserName());
+        userRepository.save(user);
+    }
+
+    @DeleteMapping(DELETE_ACCOUNT_MAPPING)
+    void deleteAccount(@RequestBody @Valid DeleteAccountRequest request) {
+        SkyXpUser user = getUser();
+
+        if (!passwordService.authenticate(request.getPassword(), user.getPassword())) {
+            throw ExceptionFactory.invalidPassword();
+        }
+        //TODO delete userData
         userRepository.delete(user);
+    }
+
+    private SkyXpUser getUser() {
+        UUID userId = requestContextHolder.get().getUserId();
+        return userRepository.findById(
+            uuidConverter.convertDomain(userId)
+        ).orElseThrow(() -> ExceptionFactory.userNotFound(userId));
     }
 
     @PutMapping(RequestConstants.REGISTRATION_MAPPING)
@@ -91,7 +91,7 @@ public class UserController {
         }
 
         SkyXpUser user = SkyXpUser.builder()
-            .userId(uuidConverter.convertDomain(idGenerator.randomUUID()))
+            .userId(idGenerator.generateRandomId())
             .userName(registrationRequest.getUserName())
             .password(passwordService.hashPassword(registrationRequest.getPassword()))
             .build();
