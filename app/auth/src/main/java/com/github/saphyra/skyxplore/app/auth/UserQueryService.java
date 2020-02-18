@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.app.auth;
 
 import com.github.saphyra.authservice.auth.domain.User;
-import com.github.saphyra.skyxplore.app.domain.user.user.UserDao;
+import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
 import com.github.saphyra.skyxplore.common.exception_handling.ExceptionFactory;
 import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import lombok.RequiredArgsConstructor;

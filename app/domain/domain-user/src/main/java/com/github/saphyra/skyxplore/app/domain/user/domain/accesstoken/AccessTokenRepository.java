@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.domain.user.accesstoken;
+package com.github.saphyra.skyxplore.app.domain.user.domain.accesstoken;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

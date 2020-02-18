@@ -3,7 +3,9 @@ remove productionOrders when Terraforming is cancelled
 add missing buildingNames to localization
 Display resource status properly when construction in progress
 bug: FE displays deleted game
+
+User Settings page
+
 Add System defence details to system summary
-API tests
 
 -parallel methods -threadcount 16 -dataproviderthreadcount 16

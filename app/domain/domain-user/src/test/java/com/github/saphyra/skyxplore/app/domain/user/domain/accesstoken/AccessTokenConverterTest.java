@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.domain.user.accesstoken;
+package com.github.saphyra.skyxplore.app.domain.user.domain.accesstoken;
 
 import com.github.saphyra.authservice.auth.domain.AccessToken;
 import org.junit.Test;

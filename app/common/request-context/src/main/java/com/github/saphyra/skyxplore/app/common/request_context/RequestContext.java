@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.common.context;
+package com.github.saphyra.skyxplore.app.common.request_context;
 
 import lombok.Builder;
 import lombok.Data;

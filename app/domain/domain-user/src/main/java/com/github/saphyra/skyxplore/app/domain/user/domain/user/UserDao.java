@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.domain.user.user;
+package com.github.saphyra.skyxplore.app.domain.user.domain.user;
 
 import com.github.saphyra.authservice.auth.domain.User;
 import com.github.saphyra.dao.AbstractDao;

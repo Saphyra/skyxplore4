@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.common.exception_handling;
 
 import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
+import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;
 import com.github.saphyra.exceptionhandling.exception.RestException;
@@ -8,8 +9,13 @@ import com.github.saphyra.exceptionhandling.exception.RestException;
 import java.util.UUID;
 
 public class ExceptionFactory {
+    private static final String INVALID_PASSWORD_MESSAGE = "Invalid password.";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
+
+    public static RestException invalidPassword() {
+        return new BadRequestException(createErrorMessage(ErrorCode.INVALID_PASSWORD), INVALID_PASSWORD_MESSAGE);
+    }
 
     public static RestException usernameAlreadyExists(String userName) {
         return new ConflictException(createErrorMessage(ErrorCode.USER_NAME_ALREADY_EXISTS), String.format(USER_NAME_ALREADY_EXISTS_PREFIX, userName));

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.domain.user.accesstoken;
+package com.github.saphyra.skyxplore.app.domain.user.domain.accesstoken;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

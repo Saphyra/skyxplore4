@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.domain.user.user;
+package com.github.saphyra.skyxplore.app.domain.user.domain.user;
 
 import com.github.saphyra.skyxplore.app.common.test.RepositoryTestConfiguration;
 import org.junit.After;
