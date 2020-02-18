@@ -28,7 +28,7 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 //TODO API test
-public class UserController {
+class UserController {
     private static final String CHANGE_PASSWORD_MAPPING = RequestConstants.API_PREFIX + "/user/password";
     private static final String CHANGE_USERNAME_MAPPING = RequestConstants.API_PREFIX + "/user/name";
     private static final String DELETE_ACCOUNT_MAPPING = RequestConstants.API_PREFIX + "/user";

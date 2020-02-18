@@ -32,6 +32,7 @@
         <versions.junit newVersion="4.13">4.12</versions.junit>
         <versions.maven-surefire-plugin>3.0.0-M4</versions.maven-surefire-plugin>
         <versions.mockito-core newVersion="3.2.4">2.21.0</versions.mockito-core>
+        <versions.rest-assured>3.0.0</versions.rest-assured>
         <versions.selenium newVersion="4.0.0-alpha-4">4.0.0-alpha-2</versions.selenium>
         <versions.testng>7.1.0</versions.testng>
         <versions.thymeleaf-spring>3.0.11.RELEASE</versions.thymeleaf-spring>

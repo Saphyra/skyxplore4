@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeSuite;
 import static java.util.Objects.isNull;
 
 public class TestBase {
-    protected static final int PORT = new Random().randInt(9000, 10000);
+    public static final int PORT = new Random().randInt(9000, 10000);
 
     private final String[] ARGS = new String[]{
         "--spring.profiles.active=test",

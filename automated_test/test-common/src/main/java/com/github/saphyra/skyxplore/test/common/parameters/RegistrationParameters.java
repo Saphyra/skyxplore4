@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.test.common.parameters;
 
+import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
 import com.github.saphyra.util.IdGenerator;
 import lombok.Builder;
 import lombok.Data;
@@ -22,15 +23,26 @@ public class RegistrationParameters {
     private final String password;
     private final String confirmPassword;
 
+    public RegistrationRequest toRegistrationRequest() {
+        return RegistrationRequest.builder()
+            .userName(userName)
+            .password(password)
+            .build();
+    }
+
     public static RegistrationParameters validParameters() {
+        return validParameters(VALID_PASSWORD);
+    }
+
+    private static RegistrationParameters validParameters(String password) {
         String[] userNameCharacters = ("user-" + ID_GENERATOR.generateRandomId()).split("");
         String userName = Arrays.stream(userNameCharacters)
             .limit(30)
             .collect(Collectors.joining());
         return RegistrationParameters.builder()
             .userName(userName)
-            .password(VALID_PASSWORD)
-            .confirmPassword(VALID_PASSWORD)
+            .password(password)
+            .confirmPassword(password)
             .build();
     }
 
