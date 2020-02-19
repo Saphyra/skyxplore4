@@ -29,6 +29,12 @@
             <artifactId>config</artifactId>
             <version>${artifact.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>request-context</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

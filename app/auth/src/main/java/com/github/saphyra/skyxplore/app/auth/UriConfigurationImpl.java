@@ -16,7 +16,8 @@ public class UriConfigurationImpl implements UriConfiguration {
         Stream.of(
             new AllowedUri("/", HttpMethod.GET),
             new AllowedUri(RequestConstants.REGISTRATION_MAPPING, HttpMethod.PUT),
-            new AllowedUri(RequestConstants.INDEX_MAPPING, HttpMethod.GET)
+            new AllowedUri(RequestConstants.INDEX_MAPPING, HttpMethod.GET),
+            new AllowedUri(RequestConstants.API_PREFIX + "/locale/*", HttpMethod.POST)
         ),
         RequestConstants.PROPERTY_PATHS.stream()
             .map(propertyPath -> new AllowedUri(propertyPath, HttpMethod.GET))

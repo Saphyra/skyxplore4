@@ -1,12 +1,12 @@
 package com.github.saphyra.skyxplore.test.backend.user;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordRequest;
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
 import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
+import com.github.saphyra.skyxplore.test.framework.ResponseConverter;
 import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.SettingsPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
@@ -50,7 +50,7 @@ public class ChangePasswordTest extends TestBase {
         Response response = SettingsPageActions.changePassword(accessCookies, changePasswordRequest);
         //THEN
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
-        ErrorResponse errorResponse = new ObjectMapper().readValue(response.getBody().asString(), ErrorResponse.class);
+        ErrorResponse errorResponse = ResponseConverter.convert(response, ErrorResponse.class);
         assertThat(errorResponse.getErrorCode()).isEqualTo(ErrorCode.INVALID_PASSWORD.name());
         assertThat(errorResponse.getLocalizedMessage()).isEqualTo("Hibás jelszó.");
     }

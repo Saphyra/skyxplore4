@@ -13,4 +13,16 @@ public class SettingsPageActions {
             .post(UrlFactory.assemble("/api/user/password"))
             .thenReturn();
     }
+
+    public static Response setLocale(AccessCookies accessCookies, String locale) {
+        return RequestFactory.createAuthorizedRequest(accessCookies)
+            .post(String.format(UrlFactory.assemble("/api/user/locale/%s"), locale))
+            .thenReturn();
+    }
+
+    public static Response setLocaleCookie(String locale) {
+        return RequestFactory.createRequest()
+            .post(String.format(UrlFactory.assemble("/api/locale/%s"), locale))
+            .thenReturn();
+    }
 }

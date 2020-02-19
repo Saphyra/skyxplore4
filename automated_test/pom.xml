@@ -43,7 +43,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${versions.spring-boot}</version>
         </dependency>
-
     </dependencies>
 
     <build>

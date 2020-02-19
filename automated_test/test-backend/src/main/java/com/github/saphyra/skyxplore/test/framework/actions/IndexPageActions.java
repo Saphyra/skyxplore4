@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.test.framework.actions;
 
 import com.github.saphyra.authservice.auth.domain.LoginRequest;
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
+import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.RequestFactory;
 import com.github.saphyra.skyxplore.test.framework.UrlFactory;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
@@ -32,5 +33,11 @@ public class IndexPageActions {
             .accessTokenId(response.getCookie("accesstokenid"))
             .userId(response.getCookie("userId"))
             .build();
+    }
+
+    public static AccessCookies registerAndLogin() {
+        RegistrationRequest registrationRequest = RegistrationParameters.validParameters().toRegistrationRequest();
+        registerUser(registrationRequest);
+        return login(registrationRequest.getUserName(), registrationRequest.getPassword());
     }
 }
