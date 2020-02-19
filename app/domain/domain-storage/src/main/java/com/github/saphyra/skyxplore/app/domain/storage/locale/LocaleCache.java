@@ -10,7 +10,6 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Component
-//TODO unit test
 public class LocaleCache extends AbstractCache<UUID, String> implements LocaleProvider {
     private final LocaleQueryService localeQueryService;
 
@@ -19,9 +18,8 @@ public class LocaleCache extends AbstractCache<UUID, String> implements LocalePr
         this.localeQueryService = localeQueryService;
     }
 
-
     @Override
-    public Optional<String> get(UUID key) {
+    public Optional<String> load(UUID key) {
         return localeQueryService.getLocale(key);
     }
 

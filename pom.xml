@@ -14,9 +14,9 @@
         <versions.postgresql-connector newVersion="42.2.10">42.2.9</versions.postgresql-connector>
 
         <!-- Saphyra Versions -->
-        <versions.saphyra.auth-service>3.1.2</versions.saphyra.auth-service>
+        <versions.saphyra.auth-service>3.1.3</versions.saphyra.auth-service>
         <versions.saphyra.encryption>1.0.2</versions.saphyra.encryption>
-        <versions.saphyra.cache>1.0.5</versions.saphyra.cache>
+        <versions.saphyra.cache>1.0.8</versions.saphyra.cache>
         <versions.saphyra.converter>1.0.0</versions.saphyra.converter>
         <versions.saphyra.dao>1.1.1</versions.saphyra.dao>
         <versions.saphyra.exception-handling>1.3.4</versions.saphyra.exception-handling>
