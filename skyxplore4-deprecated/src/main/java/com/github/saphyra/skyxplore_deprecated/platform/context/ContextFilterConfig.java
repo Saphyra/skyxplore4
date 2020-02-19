@@ -12,20 +12,6 @@ import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.WE
 @Slf4j
 public class ContextFilterConfig {
     private static final int FILTER_ORDER = 110;
-
-    @Bean
-    public FilterRegistrationBean<ContextFilter> contextFilterFilterRegistrationBean(ContextFilter contextFilter) {
-        log.info("ContextFilter order: {}", FILTER_ORDER);
-        FilterRegistrationBean<ContextFilter> filterRegistrationBean = new FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter(contextFilter);
-        filterRegistrationBean.setOrder(FILTER_ORDER);
-        filterRegistrationBean.addUrlPatterns(
-            API_PREFIX + "/*",
-            WEB_PREFIX + "/*"
-        );
-        return filterRegistrationBean;
-    }
-
     @Bean
     public FilterRegistrationBean<ContextValidationFilter> contextValidationFilterFilterRegistrationBean(ContextValidationFilter contextValidationFilter) {
         log.info("ContextValidationFilter order: {}", FILTER_ORDER + 1);

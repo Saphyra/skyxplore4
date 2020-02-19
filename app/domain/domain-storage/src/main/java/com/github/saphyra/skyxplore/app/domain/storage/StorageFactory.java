@@ -1,9 +1,9 @@
-package com.github.saphyra.skyxplore_deprecated.platform.storage;
+package com.github.saphyra.skyxplore.app.domain.storage;
 
+import com.github.saphyra.skyxplore.app.domain.storage.domain.Storage;
+import com.github.saphyra.skyxplore.app.domain.storage.domain.StorageKey;
+import com.github.saphyra.skyxplore.app.domain.storage.domain.StorageKeyId;
 import com.github.saphyra.skyxplore.common.utils.UuidConverter;
-import com.github.saphyra.skyxplore_deprecated.platform.storage.domain.Storage;
-import com.github.saphyra.skyxplore_deprecated.platform.storage.domain.StorageKey;
-import com.github.saphyra.skyxplore_deprecated.platform.storage.domain.StorageKeyId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 public class StorageFactory {
     private final UuidConverter uuidConverter;
 

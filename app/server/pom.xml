@@ -43,6 +43,12 @@
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
+            <artifactId>domain-storage</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
             <artifactId>web</artifactId>
             <version>${artifact.version}</version>
         </dependency>

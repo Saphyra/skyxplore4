@@ -32,8 +32,10 @@
     </dependencies>
 
     <build>
-       
+
     </build>
-<modules>  <module>domain-user</module>
-  </modules>
+    <modules>
+        <module>domain-user</module>
+        <module>domain-storage</module>
+    </modules>
 </project>

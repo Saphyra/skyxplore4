@@ -27,6 +27,12 @@
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
+            <artifactId>cache</artifactId>
+            <version>${versions.saphyra.cache}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
             <artifactId>exception-handling</artifactId>
             <version>${versions.saphyra.exception-handling}</version>
         </dependency>
@@ -41,6 +47,12 @@
             <groupId>com.github.saphyra</groupId>
             <artifactId>encryption</artifactId>
             <version>${versions.saphyra.encryption}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${versions.apache-commons.commons-lang3}</version>
         </dependency>
 
         <dependency>

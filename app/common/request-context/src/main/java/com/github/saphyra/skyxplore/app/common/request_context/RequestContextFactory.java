@@ -1,7 +1,6 @@
-package com.github.saphyra.skyxplore_deprecated.platform.context;
+package com.github.saphyra.skyxplore.app.common.request_context;
 
-import com.github.saphyra.skyxplore_deprecated.common.RequestConstants;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
+import com.github.saphyra.skyxplore.common.config.RequestConstants;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +14,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 @Component
 @RequiredArgsConstructor
 @Slf4j
+//TODO unit test
 class RequestContextFactory {
     private final CookieUtil cookieUtil;
 

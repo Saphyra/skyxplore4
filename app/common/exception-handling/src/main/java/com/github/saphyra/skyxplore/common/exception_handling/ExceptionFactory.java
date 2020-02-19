@@ -9,9 +9,14 @@ import com.github.saphyra.exceptionhandling.exception.RestException;
 import java.util.UUID;
 
 public class ExceptionFactory {
+    private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
     private static final String INVALID_PASSWORD_MESSAGE = "Invalid password.";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
+
+    public static RestException invalidLocale(String locale) {
+        return new BadRequestException(createErrorMessage(ErrorCode.INVALID_LOCALE), String.format(INVALID_LOCALE_PREFIX, locale));
+    }
 
     public static RestException invalidPassword() {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_PASSWORD), INVALID_PASSWORD_MESSAGE);

@@ -22,6 +22,18 @@
             <artifactId>exception-handling</artifactId>
             <version>${versions.saphyra.exception-handling}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>config</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>data</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

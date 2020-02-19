@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.platform.errorhandling.translation;
+package com.github.saphyra.skyxplore.common.exception_handling.localization;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 @Slf4j
+//TODO unit test
 class ParameterInserter {
     private final ParamKeyAssembler paramKeyAssembler;
 

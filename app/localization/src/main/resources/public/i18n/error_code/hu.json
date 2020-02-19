@@ -10,6 +10,7 @@
   "INVALID_BUILD_LOCATION": "Ezt ide nem építheted.",
   "INVALID_CITIZEN_NAME": "Érvénytelen név.",
   "INVALID_LOCALE": "Érvénytelen nyelv.",
+  "INVALID_PASSWORD": "Hibás jelszó.",
   "INVALID_REQUEST_CONTEXT": "Érvénytelen kérelem.",
   "INVALID_STAR_NAME": "Érvénytelen csillag név.",
   "MAX_LEVEL_REACHED": "A maximális szint elérve.",

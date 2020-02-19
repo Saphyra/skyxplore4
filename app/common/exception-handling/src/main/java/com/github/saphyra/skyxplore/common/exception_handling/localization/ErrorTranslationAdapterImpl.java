@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.platform.errorhandling.translation;
+package com.github.saphyra.skyxplore.common.exception_handling.localization;
 
 import com.github.saphyra.exceptionhandling.ErrorTranslationAdapter;
 import lombok.NonNull;
@@ -12,6 +12,7 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 @Slf4j
+//TODO unit test
 public class ErrorTranslationAdapterImpl implements ErrorTranslationAdapter {
     private final ErrorMessageResolver errorMessageResolver;
     private final ParameterInserter parameterInserter;

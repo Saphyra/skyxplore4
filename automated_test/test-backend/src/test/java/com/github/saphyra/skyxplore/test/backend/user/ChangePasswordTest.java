@@ -52,7 +52,7 @@ public class ChangePasswordTest extends TestBase {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
         ErrorResponse errorResponse = new ObjectMapper().readValue(response.getBody().asString(), ErrorResponse.class);
         assertThat(errorResponse.getErrorCode()).isEqualTo(ErrorCode.INVALID_PASSWORD.name());
-        assertThat(errorResponse.getLocalizedMessage()).isEqualTo("Hibás jelszó");
+        assertThat(errorResponse.getLocalizedMessage()).isEqualTo("Hibás jelszó.");
     }
 
     @Test

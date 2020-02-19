@@ -23,7 +23,6 @@ public class ExceptionFactory {
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s and userId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
     private static final String INVALID_CITIZEN_NAME_PREFIX = "Invalid citizen name: %s";
-    private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
     private static final String INVALID_STAR_NAME_MESSAGE = "Invalid star name.";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
     private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
@@ -69,10 +68,6 @@ public class ExceptionFactory {
 
     public static RestException invalidCitizenName(String newName) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_CITIZEN_NAME), String.format(INVALID_CITIZEN_NAME_PREFIX, newName));
-    }
-
-    public static RestException invalidLocale(String locale) {
-        return new BadRequestException(createErrorMessage(ErrorCode.INVALID_LOCALE), String.format(INVALID_LOCALE_PREFIX, locale));
     }
 
     public static RestException invalidStarName() {

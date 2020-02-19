@@ -1,7 +1,5 @@
-package com.github.saphyra.skyxplore_deprecated.platform.context;
+package com.github.saphyra.skyxplore.app.common.request_context;
 
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,6 +15,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Component
 @Slf4j
+//TODO unit test
 public class ContextFilter extends OncePerRequestFilter {
     private final RequestContextFactory requestContextFactory;
     private final RequestContextHolder requestContextHolder;
@@ -36,6 +35,4 @@ public class ContextFilter extends OncePerRequestFilter {
             requestContextHolder.clear();
         }
     }
-
-
 }

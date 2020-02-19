@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore_deprecated.platform.storage.locale;
+package com.github.saphyra.skyxplore.app.domain.storage.locale;
 
-import com.github.saphyra.skyxplore_deprecated.common.RequestConstants;
-import com.github.saphyra.skyxplore_deprecated.data.errorcode.ErrorCodeService;
+import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.common.exception_handling.localization.properties.ErrorCodeService;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.COOKIE_LOCALE;
+import static com.github.saphyra.skyxplore.common.config.RequestConstants.COOKIE_LOCALE;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor
+//TODO unit test
+//TODO API test
 class LocaleController {
     private static final String SET_LOCALE_MAPPING = RequestConstants.API_PREFIX + "/locale/{locale}";
 

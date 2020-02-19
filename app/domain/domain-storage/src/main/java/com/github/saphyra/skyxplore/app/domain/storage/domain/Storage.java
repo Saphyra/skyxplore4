@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.platform.storage.domain;
+package com.github.saphyra.skyxplore.app.domain.storage.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

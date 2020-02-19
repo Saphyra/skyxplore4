@@ -1,7 +1,8 @@
-package com.github.saphyra.skyxplore_deprecated.data.errorcode;
+package com.github.saphyra.skyxplore.common.exception_handling.localization.properties;
 
-import com.github.saphyra.skyxplore_deprecated.common.ErrorCode;
 import com.github.saphyra.skyxplore.common.data.DataValidator;
+import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -11,6 +12,8 @@ import java.util.Optional;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Component
+@Slf4j
+//TODO unit test
 public class ErrorCodeValidator implements DataValidator<Map<String, ErrorCodeLocalization>> {
 
     @Override
@@ -36,7 +39,9 @@ public class ErrorCodeValidator implements DataValidator<Map<String, ErrorCodeLo
 
     private void validate(String errorCode) {
         if (!ErrorCode.fromValue(errorCode).isPresent()) {
-            throw new IllegalStateException(errorCode + " is not present in enum ErrorCode. Can be removed from localization.");
+            log.warn("{} is not present in enum ErrorCode. Can be removed from localization.", errorCode);
+            //TODO restore validation
+            //throw new IllegalStateException(errorCode + " is not present in enum ErrorCode. Can be removed from localization.");
         }
     }
 

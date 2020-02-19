@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.platform.errorhandling.translation;
+package com.github.saphyra.skyxplore.common.exception_handling.localization;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+//TODO unit test
 class ErrorMessageResolver {
     private static final String DEFAULT_ERROR_TRANSLATION_PREFIX = "Could not translate errorCode %s";
 

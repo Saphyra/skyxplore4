@@ -1,10 +1,9 @@
-package com.github.saphyra.skyxplore_deprecated.platform.errorhandling.translation;
+package com.github.saphyra.skyxplore.common.exception_handling.localization;
 
-import com.github.saphyra.skyxplore_deprecated.common.RequestConstants;
+import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.common.exception_handling.localization.properties.ErrorCodeLocalization;
+import com.github.saphyra.skyxplore.common.exception_handling.localization.properties.ErrorCodeService;
 import com.github.saphyra.skyxplore.common.utils.UuidConverter;
-import com.github.saphyra.skyxplore_deprecated.data.errorcode.ErrorCodeLocalization;
-import com.github.saphyra.skyxplore_deprecated.data.errorcode.ErrorCodeService;
-import com.github.saphyra.skyxplore_deprecated.platform.storage.locale.LocaleCache;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +18,11 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 @Component
 @RequiredArgsConstructor
 @Slf4j
+//TODO unit test
 class ErrorCodeLocalizationResolver {
     private final CookieUtil cookieUtil;
     private final ErrorCodeService errorCodeService;
-    private final LocaleCache localeCache;
+    private final LocaleProvider localeProvider;
     private final UuidConverter uuidConverter;
 
     Optional<ErrorCodeLocalization> getErrorCodeLocalization(HttpServletRequest request) {
@@ -64,7 +64,7 @@ class ErrorCodeLocalizationResolver {
     }
 
     private Optional<ErrorCodeLocalization> getErrorCodeLocalizationByUserId(UUID userId) {
-        Optional<String> locale = localeCache.get(userId);
+        Optional<String> locale = localeProvider.getByUserId(userId);
         log.debug("Saved locale for userId {}: {}", userId, locale);
         return locale.flatMap(errorCodeService::getOptional);
     }

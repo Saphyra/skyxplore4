@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
+//TODO unit test
 public class RequestContextHolder {
     private final ThreadLocal<RequestContext> storage = new ThreadLocal<>();
 

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.platform.storage.domain;
+package com.github.saphyra.skyxplore.app.domain.storage.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

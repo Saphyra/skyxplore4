@@ -5,10 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-/*@EnableEncryption
-@EnableExceptionHandler
-@EnableAuthService
-@EnableAspectJAutoProxy*/
 public class Application {
     public static ConfigurableApplicationContext applicationContext;
 
