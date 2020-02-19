@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore_deprecated.common;
 
-import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
 import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;

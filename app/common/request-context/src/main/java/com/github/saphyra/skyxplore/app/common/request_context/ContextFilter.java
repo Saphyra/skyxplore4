@@ -15,7 +15,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Component
 @Slf4j
-//TODO unit test
 public class ContextFilter extends OncePerRequestFilter {
     private final RequestContextFactory requestContextFactory;
     private final RequestContextHolder requestContextHolder;

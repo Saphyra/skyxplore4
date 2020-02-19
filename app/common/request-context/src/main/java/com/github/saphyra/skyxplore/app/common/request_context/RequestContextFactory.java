@@ -14,7 +14,6 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class RequestContextFactory {
     private final CookieUtil cookieUtil;
 

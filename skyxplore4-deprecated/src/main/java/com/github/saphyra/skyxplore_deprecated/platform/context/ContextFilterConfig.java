@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.API_PREFIX;
-import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.WEB_PREFIX;
 
 @Configuration
 @Slf4j
