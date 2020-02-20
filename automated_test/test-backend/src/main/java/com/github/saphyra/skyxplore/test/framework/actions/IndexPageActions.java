@@ -24,15 +24,19 @@ public class IndexPageActions {
     }
 
     public static AccessCookies login(String username, String password) {
-        Response response = RequestFactory.createRequest()
-            .body(new LoginRequest(username, password, false))
-            .when()
-            .post(UrlFactory.assemble("/api/login"))
-            .thenReturn();
+        Response response = getLoginResponse(username, password);
         return AccessCookies.builder()
             .accessTokenId(response.getCookie("accesstokenid"))
             .userId(response.getCookie("userId"))
             .build();
+    }
+
+    public static Response getLoginResponse(String username, String password) {
+        return RequestFactory.createRequest()
+                .body(new LoginRequest(username, password, false))
+                .when()
+                .post(UrlFactory.assemble("/api/login"))
+                .thenReturn();
     }
 
     public static AccessCookies registerAndLogin() {

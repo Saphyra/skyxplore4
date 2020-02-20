@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum ErrorCode {
+    BAD_CREDENTIALS,
+    GENERAL_ERROR,
     INVALID_LOCALE,
     INVALID_PASSWORD,
+    SESSION_EXPIRED,
     USER_NAME_ALREADY_EXISTS,
     USER_NOT_FOUND;
 

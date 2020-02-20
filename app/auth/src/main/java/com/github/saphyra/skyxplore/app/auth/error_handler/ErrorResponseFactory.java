@@ -1,11 +1,10 @@
-package com.github.saphyra.skyxplore_deprecated.platform.errorhandling;
+package com.github.saphyra.skyxplore.app.auth.error_handler;
 
 import com.github.saphyra.authservice.auth.domain.AccessStatus;
 import com.github.saphyra.exceptionhandling.ErrorTranslationAdapter;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
-import com.github.saphyra.skyxplore_deprecated.common.ErrorCode;
+import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ class ErrorResponseFactory {
         HashMap<String, String> params = new HashMap<>();
         params.put(GENERAL_ERROR_KEY, String.format(MESSAGE_UNKNOWN_ACCESS_STATUS, accessStatus.name()));
         return ErrorResponse.builder()
-            .httpStatus(HttpStatus.UNAUTHORIZED.value())
+            .httpStatus(accessStatus.getResponseStatus().value())
             .errorCode(errorCode.name())
             .localizedMessage(errorTranslationAdapter.translateMessage(request, errorCode.name(), params))
             .params(params)

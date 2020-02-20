@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class StorageFactory {
     private final UuidConverter uuidConverter;
 

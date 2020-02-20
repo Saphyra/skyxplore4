@@ -1,10 +1,10 @@
-package com.github.saphyra.skyxplore_deprecated.platform.errorhandling;
+package com.github.saphyra.skyxplore.app.auth.error_handler;
 
 import com.github.saphyra.authservice.auth.ErrorResponseResolver;
 import com.github.saphyra.authservice.auth.domain.AuthContext;
 import com.github.saphyra.authservice.auth.domain.RestErrorResponse;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
-import com.github.saphyra.skyxplore_deprecated.common.PageController;
+import com.github.saphyra.skyxplore.common.config.RequestConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -17,11 +17,11 @@ public class ErrorResponseResolverImpl implements ErrorResponseResolver {
     @Override
     public RestErrorResponse getRestErrorResponse(AuthContext authContext) {
         ErrorResponse errorResponse = errorResponseFactory.createErrorResponse(authContext.getRequest(), authContext.getAccessStatus());
-        return new RestErrorResponse(HttpStatus.UNAUTHORIZED, errorResponse);
+        return new RestErrorResponse(HttpStatus.valueOf(errorResponse.getHttpStatus()), errorResponse);
     }
 
     @Override
     public String getRedirectionPath(AuthContext authContext) {
-        return PageController.INDEX_MAPPING;
+        return RequestConstants.INDEX_MAPPING;
     }
 }
