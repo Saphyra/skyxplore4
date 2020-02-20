@@ -15,13 +15,16 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Component
-//TODO unit test
 class LocaleQueryService {
     private final StorageRepository storageRepository;
     private final UuidConverter uuidConverter;
 
     Optional<String> getLocale(UUID userId) {
-        return storageRepository.findById(new StorageKeyId(uuidConverter.convertDomain(userId), StorageKey.LOCALE))
+        StorageKeyId keyId = new StorageKeyId(
+            uuidConverter.convertDomain(userId),
+            StorageKey.LOCALE
+        );
+        return storageRepository.findById(keyId)
             .map(Storage::getValue);
     }
 }

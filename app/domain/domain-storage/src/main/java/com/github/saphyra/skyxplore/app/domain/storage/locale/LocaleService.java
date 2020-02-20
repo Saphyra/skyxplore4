@@ -15,23 +15,26 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class LocaleService {
     private final LocaleCache localeCache;
     private final StorageRepository storageRepository;
-    private final StorageFactory userSettingsFactory;
+    private final StorageFactory storageFactory;
     private final UuidConverter uuidConverter;
 
     void setLocale(UUID userId, String locale) {
-        Storage userSettings = getOrCreate(userId);
-        userSettings.setValue(locale);
-        storageRepository.save(userSettings);
+        Storage storage = getOrCreate(userId);
+        storage.setValue(locale);
+        storageRepository.save(storage);
         localeCache.invalidate(userId);
         log.info("Locale for user {} is set to {}", userId, locale);
     }
 
     private Storage getOrCreate(UUID userId) {
-        return storageRepository.findById(new StorageKeyId(uuidConverter.convertDomain(userId), StorageKey.LOCALE))
-            .orElseGet(() -> userSettingsFactory.create(userId, StorageKey.LOCALE));
+        StorageKeyId storageKeyId = new StorageKeyId(
+            uuidConverter.convertDomain(userId),
+            StorageKey.LOCALE
+        );
+        return storageRepository.findById(storageKeyId)
+            .orElseGet(() -> storageFactory.create(userId, StorageKey.LOCALE));
     }
 }
