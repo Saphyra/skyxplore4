@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.app.domain.user;
 
 import com.github.saphyra.encryption.impl.PasswordService;
+import com.github.saphyra.skyxplore.app.common.event.UserDeletedEvent;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.SkyXpUser;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserRepository;
@@ -14,6 +15,7 @@ import com.github.saphyra.skyxplore.common.utils.UuidConverter;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +34,7 @@ class UserController {
     private static final String CHANGE_USERNAME_MAPPING = RequestConstants.API_PREFIX + "/user/name";
     private static final String DELETE_ACCOUNT_MAPPING = RequestConstants.API_PREFIX + "/user";
 
+    private final ApplicationEventPublisher applicationEventPublisher;
     private final IdGenerator idGenerator;
     private final RequestContextHolder requestContextHolder;
     private final PasswordService passwordService;
@@ -72,15 +75,16 @@ class UserController {
         if (!passwordService.authenticate(request.getPassword(), user.getPassword())) {
             throw ExceptionFactory.invalidPassword();
         }
-        //TODO delete userData
+
+        UUID userId = uuidConverter.convertEntity(user.getUserId());
+        applicationEventPublisher.publishEvent(new UserDeletedEvent(userId));
         userRepository.delete(user);
     }
 
     private SkyXpUser getUser() {
         UUID userId = requestContextHolder.get().getUserId();
-        return userRepository.findById(
-            uuidConverter.convertDomain(userId)
-        ).orElseThrow(() -> ExceptionFactory.userNotFound(userId));
+        return userRepository.findById(uuidConverter.convertDomain(userId)).
+            orElseThrow(() -> ExceptionFactory.userNotFound(userId));
     }
 
     @PutMapping(RequestConstants.REGISTRATION_MAPPING)

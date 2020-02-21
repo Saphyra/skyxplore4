@@ -24,8 +24,9 @@
     </build>
     <modules>
         <module>data</module>
-      <module>config</module>
-    <module>exception-handling</module>
-    <module>request-context</module>
-  </modules>
+        <module>config</module>
+        <module>exception-handling</module>
+        <module>request-context</module>
+        <module>event</module>
+    </modules>
 </project>

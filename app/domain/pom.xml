@@ -35,6 +35,19 @@
             <artifactId>request-context</artifactId>
             <version>${artifact.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>event</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>common-test</artifactId>
+            <version>${artifact.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

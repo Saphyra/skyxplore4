@@ -4,6 +4,7 @@ import com.github.saphyra.encryption.impl.PasswordService;
 import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;
+import com.github.saphyra.skyxplore.app.common.event.UserDeletedEvent;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.SkyXpUser;
@@ -22,6 +23,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -55,6 +57,9 @@ public class UserControllerTest {
         .userName(NEW_USER_NAME)
         .password(ENTERED_PASSWORD)
         .build();
+
+    @Mock
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Mock
     private IdGenerator idGenerator;
@@ -185,9 +190,13 @@ public class UserControllerTest {
 
     @Test
     public void deleteAccount() {
+        //GIVEN
+        given(uuidConverter.convertEntity(USER_ID_STRING)).willReturn(USER_ID);
+        given(user.getUserId()).willReturn(USER_ID_STRING);
         //WHEN
         underTest.deleteAccount(DELETE_ACCOUNT_REQUEST);
         //THEN
+        verify(applicationEventPublisher).publishEvent(new UserDeletedEvent(USER_ID));
         verify(userRepository).delete(user);
     }
 
