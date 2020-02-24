@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RedirectionTest extends SeleniumTest {
     @Test
-    public void redirectToIndexWhenNoAccessToken(){
+    public void redirectToIndexWhenNoAccessToken() {
         //TODO
     }
 

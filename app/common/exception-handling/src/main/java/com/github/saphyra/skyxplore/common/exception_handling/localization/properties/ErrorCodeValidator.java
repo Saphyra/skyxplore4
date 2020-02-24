@@ -13,7 +13,6 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Component
 @Slf4j
-//TODO unit test
 public class ErrorCodeValidator implements DataValidator<Map<String, ErrorCodeLocalization>> {
 
     @Override
