@@ -7,6 +7,7 @@ import com.github.saphyra.skyxplore.app.auth.AuthScanner;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextScanner;
 import com.github.saphyra.skyxplore.app.domain.storage.StorageScanner;
 import com.github.saphyra.skyxplore.app.domain.user.DomainUserScanner;
+import com.github.saphyra.skyxplore.common.config.CommonConfigScanner;
 import com.github.saphyra.skyxplore.common.data.CommonDataScanner;
 import com.github.saphyra.skyxplore.common.exception_handling.ErrorHandlingScanner;
 import com.github.saphyra.skyxplore.common.utils.CommonUtilsScanner;
@@ -22,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
     basePackageClasses = {
         AuthScanner.class,
         CommonDataScanner.class,
+        CommonConfigScanner.class,
         CommonUtilsScanner.class,
         DomainUserScanner.class,
         ErrorHandlingScanner.class,
