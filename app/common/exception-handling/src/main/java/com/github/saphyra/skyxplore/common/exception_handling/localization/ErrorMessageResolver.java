@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.common.exception_handling.localization;
 
+import com.github.saphyra.skyxplore.common.exception_handling.localization.code_resolver.ErrorCodeLocalizationResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
