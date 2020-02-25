@@ -13,8 +13,8 @@ import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordReques
 import com.github.saphyra.skyxplore.app.domain.user.request.ChangeUsernameRequest;
 import com.github.saphyra.skyxplore.app.domain.user.request.DeleteAccountRequest;
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
-import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
-import com.github.saphyra.skyxplore.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import com.github.saphyra.util.IdGenerator;
 import org.junit.Before;
 import org.junit.Test;

@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import static com.github.saphyra.skyxplore.common.config.RequestConstants.INDEX_MAPPING;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.INDEX_MAPPING;
 
 @Controller
 @RequiredArgsConstructor

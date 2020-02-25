@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.test.backend.locale;
 
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
-import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.framework.ResponseConverter;
 import com.github.saphyra.skyxplore.test.framework.actions.SettingsPageActions;

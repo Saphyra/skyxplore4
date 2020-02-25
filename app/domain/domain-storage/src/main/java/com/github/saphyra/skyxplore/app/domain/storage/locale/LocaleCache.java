@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore.app.domain.storage.locale;
 
 import com.github.saphyra.cache.AbstractCache;
-import com.github.saphyra.skyxplore.common.exception_handling.localization.LocaleProvider;
+import com.github.saphyra.skyxplore.app.common.exception_handling.localization.LocaleProvider;
 import com.google.common.cache.CacheBuilder;
 import org.springframework.stereotype.Component;
 

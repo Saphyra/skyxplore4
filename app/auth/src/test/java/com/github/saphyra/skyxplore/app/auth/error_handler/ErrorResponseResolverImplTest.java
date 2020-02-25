@@ -4,7 +4,7 @@ import com.github.saphyra.authservice.auth.domain.AccessStatus;
 import com.github.saphyra.authservice.auth.domain.AuthContext;
 import com.github.saphyra.authservice.auth.domain.RestErrorResponse;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

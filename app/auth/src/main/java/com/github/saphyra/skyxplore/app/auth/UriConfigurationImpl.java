@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.app.auth;
 
 import com.github.saphyra.authservice.auth.UriConfiguration;
 import com.github.saphyra.authservice.auth.domain.AllowedUri;
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 

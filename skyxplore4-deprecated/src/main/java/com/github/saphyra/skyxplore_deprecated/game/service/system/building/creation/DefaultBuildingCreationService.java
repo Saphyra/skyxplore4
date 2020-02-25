@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.service.system.building.creation;
 
-import com.github.saphyra.skyxplore.common.data.AbstractDataService;
+import com.github.saphyra.skyxplore.app.common.data.AbstractDataService;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore_deprecated.game.common.DistanceCalculator;
 import com.github.saphyra.skyxplore_deprecated.game.common.DomainSaverService;

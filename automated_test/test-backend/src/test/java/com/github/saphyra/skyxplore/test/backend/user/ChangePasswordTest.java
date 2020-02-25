@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.test.backend.user;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordRequest;
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
-import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.ResponseConverter;

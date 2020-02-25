@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.app.auth.error_handler;
 import com.github.saphyra.authservice.auth.domain.AccessStatus;
 import com.github.saphyra.exceptionhandling.ErrorTranslationAdapter;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
-import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

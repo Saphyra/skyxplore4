@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.research;
 
-import com.github.saphyra.skyxplore.common.data.ValidationAbstractDataService;
-import com.github.saphyra.skyxplore.common.data.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.game.common;
 
-import com.github.saphyra.skyxplore.common.utils.OptionalHashMap;
+import com.github.saphyra.skyxplore.app.common.utils.OptionalHashMap;
 import com.github.saphyra.skyxplore_deprecated.game.common.event.EntitiesSavedEvent;
 import com.github.saphyra.skyxplore_deprecated.game.common.interfaces.SaveAllDao;
 import com.github.saphyra.util.OptionalMap;

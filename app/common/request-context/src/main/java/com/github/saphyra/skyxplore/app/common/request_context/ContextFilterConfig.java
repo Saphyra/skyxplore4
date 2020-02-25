@@ -5,8 +5,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.github.saphyra.skyxplore.common.config.RequestConstants.API_PREFIX;
-import static com.github.saphyra.skyxplore.common.config.RequestConstants.WEB_PREFIX;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.WEB_PREFIX;
 
 @Configuration
 @Slf4j

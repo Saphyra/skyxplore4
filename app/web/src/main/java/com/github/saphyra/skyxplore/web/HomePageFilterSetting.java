@@ -3,7 +3,7 @@ package com.github.saphyra.skyxplore.web;
 import com.github.saphyra.authservice.redirection.RedirectionFilterSettings;
 import com.github.saphyra.authservice.redirection.domain.ProtectedUri;
 import com.github.saphyra.authservice.redirection.domain.RedirectionContext;
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 

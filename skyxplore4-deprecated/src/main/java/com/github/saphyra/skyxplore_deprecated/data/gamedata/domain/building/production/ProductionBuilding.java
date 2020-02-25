@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.production;
 
-import com.github.saphyra.skyxplore.common.utils.OptionalHashMap;
+import com.github.saphyra.skyxplore.app.common.utils.OptionalHashMap;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.BuildingData;
 import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
 import lombok.Data;

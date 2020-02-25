@@ -2,7 +2,7 @@ package com.github.saphyra.skyxplore.app.domain.storage;
 
 import com.github.saphyra.skyxplore.app.domain.storage.domain.Storage;
 import com.github.saphyra.skyxplore.app.domain.storage.domain.StorageKey;
-import com.github.saphyra.skyxplore.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.research;
 
-import com.github.saphyra.skyxplore.common.data.DataValidator;
+import com.github.saphyra.skyxplore.app.common.data.DataValidator;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.ConstructionRequirementsValidator;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.GameDataItemValidator;
 import lombok.RequiredArgsConstructor;

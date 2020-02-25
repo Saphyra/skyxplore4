@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.test.frontend.index;
 
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.PasswordValidationResult;

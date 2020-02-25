@@ -1,7 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
 
 import com.github.saphyra.converter.ConverterBase;
-import com.github.saphyra.skyxplore.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.app.common.request_context;
 
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

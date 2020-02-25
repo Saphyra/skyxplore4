@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.terraforming;
 
-import com.github.saphyra.skyxplore.common.data.DataValidator;
+import com.github.saphyra.skyxplore.app.common.data.DataValidator;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.ConstructionRequirementsValidator;
 import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;

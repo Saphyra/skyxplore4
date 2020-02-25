@@ -1,8 +1,9 @@
 package com.github.saphyra.skyxplore.app.auth.error_handler;
 
-import com.github.saphyra.authservice.auth.domain.AccessStatus;
-import com.github.saphyra.skyxplore.common.exception_handling.ErrorCode;
 import org.springframework.stereotype.Component;
+
+import com.github.saphyra.authservice.auth.domain.AccessStatus;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 
 @Component
 class ErrorCodeResolver {

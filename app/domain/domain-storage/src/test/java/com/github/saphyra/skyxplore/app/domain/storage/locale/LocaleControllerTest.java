@@ -2,8 +2,8 @@ package com.github.saphyra.skyxplore.app.domain.storage.locale;
 
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
-import com.github.saphyra.skyxplore.common.config.RequestConstants;
-import com.github.saphyra.skyxplore.common.exception_handling.localization.properties.ErrorCodeService;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties.ErrorCodeService;
 import com.github.saphyra.util.CookieUtil;
 import org.junit.Before;
 import org.junit.Test;
