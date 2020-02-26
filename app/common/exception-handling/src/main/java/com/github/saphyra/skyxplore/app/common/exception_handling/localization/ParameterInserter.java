@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.app.common.exception_handling.localization;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class ParameterInserter {
     private final ParamKeyAssembler paramKeyAssembler;
 
@@ -18,7 +18,7 @@ class ParameterInserter {
         String result = errorMessage;
         for (Map.Entry<String, String> entry : params.entrySet()) {
             String key = paramKeyAssembler.assembleKey(entry.getKey());
-            result = result.replaceAll(key, entry.getValue());
+            result = result.replace(key, entry.getValue());
         }
         log.debug("Result: {}", result);
         return result;
