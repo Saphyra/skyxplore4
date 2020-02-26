@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.test.framework.actions;
 
 import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordRequest;
+import com.github.saphyra.skyxplore.app.domain.user.request.ChangeUsernameRequest;
 import com.github.saphyra.skyxplore.test.framework.RequestFactory;
 import com.github.saphyra.skyxplore.test.framework.UrlFactory;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
@@ -23,6 +24,13 @@ public class SettingsPageActions {
     public static Response setLocaleCookie(String locale) {
         return RequestFactory.createRequest()
             .post(String.format(UrlFactory.assemble("/api/locale/%s"), locale))
+            .thenReturn();
+    }
+
+    public static Response changeUsername(AccessCookies accessCookies, ChangeUsernameRequest request) {
+        return RequestFactory.createAuthorizedRequest(accessCookies)
+            .body(request)
+            .post(UrlFactory.assemble("/api/user/name"))
             .thenReturn();
     }
 }

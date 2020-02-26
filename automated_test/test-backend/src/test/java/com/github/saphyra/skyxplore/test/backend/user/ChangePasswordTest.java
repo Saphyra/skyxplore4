@@ -1,9 +1,18 @@
 package com.github.saphyra.skyxplore.test.backend.user;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.http.HttpStatus;
+import org.testng.annotations.Test;
+
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordRequest;
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
-import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.ResponseConverter;
@@ -12,14 +21,6 @@ import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.SettingsPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import io.restassured.response.Response;
-import org.springframework.http.HttpStatus;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ChangePasswordTest extends TestBase {
     private static final String NEW_PASSWORD = "new-password";
@@ -39,8 +40,8 @@ public class ChangePasswordTest extends TestBase {
         AccessCookies accessCookies = IndexPageActions.login(registrationRequest.getUserName(), registrationRequest.getPassword());
 
         ChangePasswordRequest changePasswordRequest = ChangePasswordRequest.builder()
-            .newPassword(NEW_PASSWORD)
-            .oldPassword(TOO_SHORT_PASSWORD)
+            .newPassword(TOO_SHORT_PASSWORD)
+            .oldPassword(registrationRequest.getPassword())
             .build();
         //WHEN
         Response response = SettingsPageActions.changePassword(accessCookies, changePasswordRequest);
@@ -58,8 +59,8 @@ public class ChangePasswordTest extends TestBase {
         AccessCookies accessCookies = IndexPageActions.login(registrationRequest.getUserName(), registrationRequest.getPassword());
 
         ChangePasswordRequest changePasswordRequest = ChangePasswordRequest.builder()
-            .newPassword(NEW_PASSWORD)
-            .oldPassword(TOO_LONG_PASSWORD)
+            .newPassword(TOO_LONG_PASSWORD)
+            .oldPassword(registrationRequest.getPassword())
             .build();
         //WHEN
         Response response = SettingsPageActions.changePassword(accessCookies, changePasswordRequest);
@@ -68,7 +69,7 @@ public class ChangePasswordTest extends TestBase {
     }
 
     @Test
-    public void invalidOldPassword() throws IOException {
+    public void incorrectOldPassword() throws IOException {
         //GIVEN
         RegistrationRequest registrationRequest = RegistrationParameters.validParameters()
             .toRegistrationRequest();
