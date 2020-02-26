@@ -1,18 +1,19 @@
 package com.github.saphyra.skyxplore.app.common.exception_handling.localization;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.exceptionhandling.ErrorTranslationAdapter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 public class ErrorTranslationAdapterImpl implements ErrorTranslationAdapter {
     private final ErrorMessageResolver errorMessageResolver;
     private final ParameterInserter parameterInserter;
