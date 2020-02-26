@@ -1,18 +1,22 @@
 package com.github.saphyra.skyxplore.test.frontend.index;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.Navigation;
+import com.github.saphyra.skyxplore.test.framework.Operation;
 import com.github.saphyra.skyxplore.test.framework.UrlProvider;
 import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.frontend.SeleniumTest;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.PasswordValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.RegistrationValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.UsernameValidationResult;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.github.saphyra.skyxplore.test.frontend.main_menu.MainMenuPageActions;
 
 public class RegistrationTest extends SeleniumTest {
     @DataProvider(name = "registrationParameters", parallel = true)
@@ -61,7 +65,38 @@ public class RegistrationTest extends SeleniumTest {
 
     @Test
     public void userNameAlreadyExists() {
-        //TODO
+        //GIVEN
+        WebDriver driver = extractDriver();
+        Navigation.toIndexPage(driver, PORT);
+
+        RegistrationParameters existingUser = RegistrationParameters.validParameters();
+        VerifiedOperation.operate(
+            new Operation() {
+                @Override
+                public void execute() {
+                    IndexPageActions.fillRegistrationForm(driver, existingUser);
+                    IndexPageActions.submitRegistration(driver);
+                }
+
+                @Override
+                public boolean check() {
+                    return driver.getCurrentUrl().endsWith("/main-menu");
+                }
+            }
+        );
+
+        MainMenuPageActions.logout(driver);
+
+        RegistrationParameters registrationParameters = RegistrationParameters.validParameters().toBuilder()
+            .userName(existingUser.getUserName())
+            .build();
+        IndexPageActions.fillRegistrationForm(driver, registrationParameters);
+        //WHEN
+        IndexPageActions.submitRegistration(driver);
+        //THEN
+        //TODO verify notification
+
+        assertThat(driver.getCurrentUrl()).endsWith(RequestConstants.INDEX_MAPPING);
     }
 
     private RegistrationValidationResult valid() {

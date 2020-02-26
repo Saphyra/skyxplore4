@@ -1,11 +1,9 @@
 package com.github.saphyra.skyxplore.test.frontend;
 
-import com.github.saphyra.skyxplore.server.Application;
-import com.github.saphyra.skyxplore.test.common.TestBase;
-import com.github.saphyra.skyxplore.test.framework.SleepUtil;
-import lombok.Builder;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import static java.util.Objects.isNull;
+
+import java.util.Optional;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,15 +14,18 @@ import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.util.Optional;
-
-import static java.util.Objects.isNull;
+import com.github.saphyra.skyxplore.server.Application;
+import com.github.saphyra.skyxplore.test.common.TestBase;
+import com.github.saphyra.skyxplore.test.framework.SleepUtil;
+import lombok.Builder;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SeleniumTest extends TestBase {
     private static final String CHROME_DRIVER_PROPERTY_NAME = "webdriver.chrome.driver";
     private static final String CHROME_DRIVER_EXE_LOCATION = "chromedriver.exe";
-    private static final boolean HEADLESS_MODE = true;
+    private static final boolean HEADLESS_MODE = false;
 
     private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -51,7 +52,7 @@ public class SeleniumTest extends TestBase {
     @AfterMethod(alwaysRun = true)
     public void stopDriver(ITestResult testResult) {
         WebDriver driver = this.driver.get();
-        if (ITestResult.FAILURE == testResult.getStatus()) {
+        if (ITestResult.FAILURE == testResult.getStatus() && !HEADLESS_MODE) {
             extractLogs(driver);
             SleepUtil.sleep(20000);
         }

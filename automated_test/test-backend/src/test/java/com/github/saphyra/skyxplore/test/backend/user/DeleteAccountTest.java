@@ -23,7 +23,6 @@ public class DeleteAccountTest extends TestBase {
     private static final String INCORRECT_PASSWORD = "incorrect-password";
 
     @Test
-    //TODO implement
     public void invalidPassword() throws IOException {
         //GIVEN
         RegistrationRequest registrationRequest = RegistrationParameters.validParameters()
