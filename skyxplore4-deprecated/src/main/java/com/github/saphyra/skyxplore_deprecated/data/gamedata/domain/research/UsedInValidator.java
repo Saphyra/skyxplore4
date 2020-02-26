@@ -1,12 +1,13 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.research;
 
 
-import com.github.saphyra.skyxplore.app.common.data.DataValidator;
-import org.springframework.stereotype.Component;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.common.data.DataValidator;
 
 @Component
 public class UsedInValidator implements DataValidator<List<Unlock>> {

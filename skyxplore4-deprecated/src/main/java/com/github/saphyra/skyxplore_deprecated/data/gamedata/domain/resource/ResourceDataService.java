@@ -1,10 +1,11 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.resource;
 
-import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
-import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
 
 
 @Component

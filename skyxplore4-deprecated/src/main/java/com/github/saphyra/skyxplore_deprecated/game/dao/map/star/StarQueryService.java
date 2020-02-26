@@ -1,15 +1,16 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.map.star;
 
-import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
 import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
 import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.Coordinate;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor

@@ -1,11 +1,12 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.order.production;
 
-import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.dao.AbstractDao;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 
 @Component
 class ProductionOrderDao extends AbstractDao<ProductionOrderEntity, ProductionOrder, String, ProductionOrderRepository> {

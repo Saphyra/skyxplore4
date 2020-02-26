@@ -1,16 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.game.common;
 
-import com.github.saphyra.skyxplore.app.common.utils.OptionalHashMap;
-import com.github.saphyra.skyxplore_deprecated.game.common.event.EntitiesSavedEvent;
-import com.github.saphyra.skyxplore_deprecated.game.common.interfaces.SaveAllDao;
-import com.github.saphyra.util.OptionalMap;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StopWatch;
+import static java.util.Objects.isNull;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,7 +10,18 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.isNull;
+import javax.transaction.Transactional;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
+
+import com.github.saphyra.skyxplore.app.common.utils.OptionalHashMap;
+import com.github.saphyra.skyxplore_deprecated.game.common.event.EntitiesSavedEvent;
+import com.github.saphyra.skyxplore_deprecated.game.common.interfaces.SaveAllDao;
+import com.github.saphyra.util.OptionalMap;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j

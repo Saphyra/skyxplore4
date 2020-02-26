@@ -1,9 +1,10 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.citizen;
 
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor

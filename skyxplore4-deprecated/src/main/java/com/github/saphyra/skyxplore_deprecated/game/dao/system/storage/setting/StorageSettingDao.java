@@ -1,12 +1,13 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.setting;
 
-import com.github.saphyra.dao.AbstractDao;
-import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.dao.AbstractDao;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 
 @Component
 public class StorageSettingDao extends AbstractDao<StorageSettingEntity, StorageSetting, String, StorageSettingRepository> {

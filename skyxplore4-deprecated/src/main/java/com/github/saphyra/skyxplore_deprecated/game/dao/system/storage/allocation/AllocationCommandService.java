@@ -1,15 +1,16 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.allocation;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
 import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
 import com.github.saphyra.skyxplore_deprecated.game.common.interfaces.CommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j

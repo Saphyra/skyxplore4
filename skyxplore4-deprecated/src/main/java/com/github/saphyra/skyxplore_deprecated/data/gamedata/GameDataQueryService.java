@@ -1,5 +1,10 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.app.common.data.AbstractDataService;
 import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.BuildingData;
@@ -7,10 +12,6 @@ import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.resource.Res
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.resource.ResourceDataService;
 import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

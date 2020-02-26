@@ -1,16 +1,17 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.research;
 
+import static java.util.Objects.requireNonNull;
+import static org.springframework.util.ObjectUtils.isEmpty;
+
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.data.DataValidator;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.ConstructionRequirementsValidator;
 import com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.GameDataItemValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
-import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Component
 @Slf4j

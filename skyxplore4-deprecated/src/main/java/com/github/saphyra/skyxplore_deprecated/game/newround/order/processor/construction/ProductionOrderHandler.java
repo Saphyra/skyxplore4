@@ -1,5 +1,13 @@
 package com.github.saphyra.skyxplore_deprecated.game.newround.order.processor.construction;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.utils.OptionalHashMap;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.construction.Construction;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.order.production.ProductionOrder;
@@ -10,13 +18,6 @@ import com.github.saphyra.skyxplore_deprecated.game.newround.order.ProductionOrd
 import com.github.saphyra.util.OptionalMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

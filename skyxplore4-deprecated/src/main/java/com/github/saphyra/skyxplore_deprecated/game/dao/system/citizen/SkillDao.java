@@ -1,12 +1,13 @@
 package com.github.saphyra.skyxplore_deprecated.game.dao.system.citizen;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.UUID;
 
 @Component
 @Slf4j

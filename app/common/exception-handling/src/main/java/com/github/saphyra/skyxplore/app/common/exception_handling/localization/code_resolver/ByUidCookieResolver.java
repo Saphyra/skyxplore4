@@ -1,5 +1,12 @@
 package com.github.saphyra.skyxplore.app.common.exception_handling.localization.code_resolver;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.config.RequestDataProvider;
 import com.github.saphyra.skyxplore.app.common.exception_handling.localization.LocaleProvider;
 import com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties.ErrorCodeLocalization;
@@ -7,16 +14,10 @@ import com.github.saphyra.skyxplore.app.common.exception_handling.localization.p
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
-import java.util.UUID;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 class ByUidCookieResolver {
     private final ErrorCodeService errorCodeService;
     private final LocaleProvider localeProvider;

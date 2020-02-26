@@ -1,5 +1,10 @@
 package com.github.saphyra.skyxplore_deprecated.game.service.system.costruction;
 
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.app.common.utils.DateTimeUtil;
 import com.github.saphyra.skyxplore_deprecated.game.dao.common.ConstructionRequirements;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.construction.Construction;
@@ -11,10 +16,6 @@ import com.github.saphyra.skyxplore_deprecated.game.dao.system.construction.Cons
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

@@ -1,12 +1,13 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.terraforming;
 
-import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
-import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
 
 @Component
 public class TerraformingPossibilitiesService extends ValidationAbstractDataService<SurfaceType, TerraformingPossibilities> {

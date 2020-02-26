@@ -1,14 +1,16 @@
 package com.github.saphyra.skyxplore_deprecated.data.gamedata.domain.building.storage;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.data.DataValidator;
 import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
 import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.resource.StorageType;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.util.Map;
 
 @Component
 @Slf4j
