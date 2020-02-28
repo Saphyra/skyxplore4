@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class GameConverter extends ConverterBase<GameEntity, Game> {
     private final RequestContextHolder requestContextHolder;
     private final StringEncryptor stringEncryptor;

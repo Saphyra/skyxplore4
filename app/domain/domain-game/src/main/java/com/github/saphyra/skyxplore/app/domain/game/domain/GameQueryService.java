@@ -12,7 +12,6 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-//TODO unit test
 public class GameQueryService {
     private final GameDao gameDao;
     private final RequestContextHolder requestContextHolder;

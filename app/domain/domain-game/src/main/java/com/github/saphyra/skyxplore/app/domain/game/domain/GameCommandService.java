@@ -11,7 +11,6 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-//TODO unit test
 public class GameCommandService implements CommandService<Game> {
     private final GameDao gameDao;
 

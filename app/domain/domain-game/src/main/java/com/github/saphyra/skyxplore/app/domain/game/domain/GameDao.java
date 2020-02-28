@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-//TODO unit test
 class GameDao extends AbstractDao<GameEntity, Game, String, GameRepository> {
     private final UuidConverter uuidConverter;
 
