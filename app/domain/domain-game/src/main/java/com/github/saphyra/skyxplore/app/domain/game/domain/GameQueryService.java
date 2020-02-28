@@ -1,8 +1,8 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.game;
+package com.github.saphyra.skyxplore.app.domain.game.domain;
 
-import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+//TODO unit test
 public class GameQueryService {
     private final GameDao gameDao;
     private final RequestContextHolder requestContextHolder;

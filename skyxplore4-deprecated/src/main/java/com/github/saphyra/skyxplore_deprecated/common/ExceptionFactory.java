@@ -19,7 +19,6 @@ public class ExceptionFactory {
     private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
     private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with constructionId %s, and playerId %s";
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
-    private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s and userId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
     private static final String INVALID_CITIZEN_NAME_PREFIX = "Invalid citizen name: %s";
     private static final String INVALID_STAR_NAME_MESSAGE = "Invalid star name.";
@@ -57,9 +56,7 @@ public class ExceptionFactory {
         return new NotFoundException(createErrorMessage(ErrorCode.DATA_NOT_FOUND), String.format(DATA_NOT_FOUND_PREFIX, dataId));
     }
 
-    public static RestException gameNotFound(UUID gameId, UUID userId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.GAME_NOT_FOUND), String.format(GAME_NOT_FOUND_PREFIX, gameId, userId));
-    }
+
 
     public static RestException invalidBuildLocation(String dataId, UUID surfaceId) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_BUILD_LOCATION), String.format(INVALID_BUILD_LOCATION_PREFIX, dataId, surfaceId));

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.game;
+package com.github.saphyra.skyxplore.app.domain.game.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

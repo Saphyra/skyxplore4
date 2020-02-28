@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.common.interfaces;
+package com.github.saphyra.skyxplore.app.common.game_context;
 
 import java.util.List;
 import java.util.UUID;

@@ -56,5 +56,6 @@
     <modules>
         <module>domain-user</module>
         <module>domain-storage</module>
+        <module>domain-game</module>
     </modules>
 </project>
