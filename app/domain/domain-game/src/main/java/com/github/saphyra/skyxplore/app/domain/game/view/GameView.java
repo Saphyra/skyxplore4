@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.view;
+package com.github.saphyra.skyxplore.app.domain.game.view;
 
 
 import lombok.AllArgsConstructor;

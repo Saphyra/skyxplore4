@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.common;
+package com.github.saphyra.skyxplore.app.common.common_request;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,11 +1,11 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.game;
+package com.github.saphyra.skyxplore.app.domain.game.view;
 
-import com.github.saphyra.skyxplore_deprecated.common.ViewConverter;
-import com.github.saphyra.skyxplore_deprecated.game.dao.game.Game;
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.GameView;
+import com.github.saphyra.skyxplore.app.common.common_request.ViewConverter;
+import com.github.saphyra.skyxplore.app.domain.game.domain.Game;
 import org.springframework.stereotype.Component;
 
 @Component
+//TODO unit test
 public class GameViewConverter implements ViewConverter<Game, GameView> {
     @Override
     public GameView convertDomain(Game domain) {

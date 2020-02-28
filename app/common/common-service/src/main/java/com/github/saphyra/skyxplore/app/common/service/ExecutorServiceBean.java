@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.common;
+package com.github.saphyra.skyxplore.app.common.service;
 
 import org.springframework.stereotype.Component;
 

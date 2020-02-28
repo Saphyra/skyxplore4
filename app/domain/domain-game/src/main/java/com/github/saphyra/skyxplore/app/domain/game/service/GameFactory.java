@@ -1,6 +1,6 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.game.creation;
+package com.github.saphyra.skyxplore.app.domain.game.service;
 
-import com.github.saphyra.skyxplore_deprecated.game.dao.game.Game;
+import com.github.saphyra.skyxplore.app.domain.game.domain.Game;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,8 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-class GameFactroy {
+//TODO unit test
+class GameFactory {
     private final IdGenerator idGenerator;
 
     Game create(UUID userId, String gameName) {
