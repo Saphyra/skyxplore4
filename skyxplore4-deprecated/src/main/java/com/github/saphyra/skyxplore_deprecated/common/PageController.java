@@ -19,7 +19,6 @@ import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.WE
 @Slf4j
 public class PageController {
     private static final String GAME_MAPPING = WEB_PREFIX + "/game";
-    private static final String MAIN_MENU_MAPPING = WEB_PREFIX + "/main-menu";
     private static final String SELECT_GAME_MAPPING = GAME_MAPPING + "/{gameId}";
 
     private final CookieUtil cookieUtil;
@@ -30,14 +29,6 @@ public class PageController {
     String game() {
         log.info("Request arrived to {}", GAME_MAPPING);
         return "game";
-    }
-
-    @GetMapping(MAIN_MENU_MAPPING)
-    String mainMenu(HttpServletResponse response) {
-        log.info("Request arrived to {}", MAIN_MENU_MAPPING);
-        cookieUtil.setCookie(response, RequestConstants.COOKIE_PLAYER_ID, "", 0);
-        cookieUtil.setCookie(response, RequestConstants.COOKIE_GAME_ID, "", 0);
-        return "main_menu";
     }
 
     @GetMapping(SELECT_GAME_MAPPING)
