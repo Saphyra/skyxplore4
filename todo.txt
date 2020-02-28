@@ -1,5 +1,3 @@
-refactor notification_service.js
-
 handle ProductionOrders where all resource is present
 remove productionOrders when Terraforming is cancelled
 add missing buildingNames to localization
@@ -11,3 +9,17 @@ User Settings page
 Add System defence details to system summary
 
 -parallel methods -threadcount 16 -dataproviderthreadcount 16
+
+function aFunction(fun){
+    return fun(new Promise(...))
+        .catch(err => console.log(err));
+}
+
+function anotherFunction(){
+    const fun = (p1) => {
+        return p1.then(() => {
+            return undefined;
+        })
+    }
+    const p = aFunction(fun);
+}

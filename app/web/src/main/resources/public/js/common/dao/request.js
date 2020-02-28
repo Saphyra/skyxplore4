@@ -20,7 +20,7 @@ function Request(method, path, body){
     this.state = {};
     
     function processBody(body){
-        if(body == null || body == undefined){
+        if(!hasValue(body)){
             return "";
         }
         if(typeof body == "object"){

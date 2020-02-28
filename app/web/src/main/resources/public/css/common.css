@@ -186,6 +186,33 @@ input:disabled, button:disabled, textarea:disabled, .disabled{
     background-color: rgba(150,150,150,0.8);
 }
 
+/*=======NOTIFICATION=======*/
+#notification-container{
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    max-width: calc(100vw - 10px);
+}
+
+    .notification-message-wrapper{
+        display: inline-block;
+    }
+
+        .notification-message{
+            font-size: 1.5rem;
+            margin: 0.25rem;
+            padding: 0.25rem;
+            white-space: nowrap;
+        }
+
+    .notification-success{
+        background: green;
+    }
+
+    .notification-error{
+        background: red;
+    }
+
 /*=======ADDITIONAL=======*/
 .notification-container{
     color: red;

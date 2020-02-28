@@ -10,9 +10,6 @@ import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.Navigation;
 import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
-import com.github.saphyra.skyxplore.test.framework.Operation;
-import com.github.saphyra.skyxplore.test.framework.UrlProvider;
-import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.frontend.SeleniumTest;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.PasswordValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.RegistrationValidationResult;
@@ -45,47 +42,13 @@ public class RegistrationTest extends SeleniumTest {
     }
 
     @Test
-    public void successfulRegistration() {
-        //GIVEN
-        WebDriver driver = extractDriver();
-        Navigation.toIndexPage(driver, PORT);
-        IndexPageActions.fillRegistrationForm(driver, RegistrationParameters.validParameters());
-
-        //WHEN
-        IndexPageActions.submitRegistration(driver);
-        //THEN
-        VerifiedOperation.waitUntil(
-            () -> driver.getCurrentUrl().equals(UrlProvider.getMainMenu(PORT)),
-            10,
-            200
-        );
-
-        //THEN
-        assertThat(driver.getCurrentUrl()).isEqualTo(UrlProvider.getMainMenu(PORT));
-    }
-
-    @Test
     public void userNameAlreadyExists() {
         //GIVEN
         WebDriver driver = extractDriver();
         Navigation.toIndexPage(driver, PORT);
 
         RegistrationParameters existingUser = RegistrationParameters.validParameters();
-        VerifiedOperation.operate(
-            new Operation() {
-                @Override
-                public void execute() {
-                    IndexPageActions.fillRegistrationForm(driver, existingUser);
-                    IndexPageActions.submitRegistration(driver);
-                }
-
-                @Override
-                public boolean check() {
-                    return driver.getCurrentUrl().endsWith("/main-menu");
-                }
-            }
-        );
-
+        IndexPageActions.registerUser(driver, existingUser);
         MainMenuPageActions.logout(driver);
 
         RegistrationParameters registrationParameters = RegistrationParameters.validParameters().toBuilder()

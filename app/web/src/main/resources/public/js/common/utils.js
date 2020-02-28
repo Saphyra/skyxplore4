@@ -1,3 +1,7 @@
+function hasValue(obj){
+    return obj != undefined && obj != null;
+}
+
 function throwException(name, message){
     name = name == undefined ? "" : name;
     message = message == undefined ? "" : message;

@@ -1,7 +1,17 @@
 package com.github.saphyra.skyxplore.test.frontend.index;
 
+import static com.github.saphyra.skyxplore.test.common.TestBase.PORT;
+import static com.github.saphyra.skyxplore.test.framework.WebElementUtils.clearAndFill;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
+import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
+import com.github.saphyra.skyxplore.test.framework.Operation;
+import com.github.saphyra.skyxplore.test.framework.UrlProvider;
 import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.PasswordValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.index.registration.RegistrationValidationResult;
@@ -9,16 +19,31 @@ import com.github.saphyra.skyxplore.test.frontend.index.registration.UsernameVal
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import static com.github.saphyra.skyxplore.test.framework.WebElementUtils.clearAndFill;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @Builder
 @RequiredArgsConstructor
 @Slf4j
 class IndexPageActions {
+    public static void registerUser(WebDriver driver, RegistrationParameters registrationParameters){
+        VerifiedOperation.operate(
+            new Operation() {
+                @Override
+                public void execute() {
+                    IndexPageActions.fillRegistrationForm(driver, registrationParameters);
+                    IndexPageActions.submitRegistration(driver);
+                }
+
+                @Override
+                public boolean check() {
+                    return driver.getCurrentUrl().endsWith("/main-menu");
+                }
+            }
+        );
+
+        assertThat(driver.getCurrentUrl()).isEqualTo(UrlProvider.getMainMenu(PORT));
+        NotificationUtil.verifySuccessNotification(driver, "Sikeres regisztráció!");
+    }
+
     static void fillRegistrationForm(WebDriver driver, RegistrationParameters parameters) {
         assertThat(driver.getCurrentUrl()).endsWith(RequestConstants.INDEX_MAPPING);
 

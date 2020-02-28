@@ -1,6 +1,5 @@
 package com.github.saphyra.skyxplore.test.framework;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.openqa.selenium.By;
@@ -11,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class NotificationUtil {
-    private static final By NOTIFICATIONS_LOCATOR = By.cssSelector("#notificationcontainer > DIV");
+    private static final By NOTIFICATIONS_LOCATOR = By.cssSelector("#notification-container > DIV");
     private static final By NOTIFICATION_TEXT_LOCATOR = By.cssSelector(":first-child");
 
     public static void verifyErrorNotification(WebDriver driver, String notificationMessage) {
@@ -25,12 +24,22 @@ public class NotificationUtil {
         }
     }
 
+    public static void verifySuccessNotification(WebDriver driver, String notificationMessage) {
+        waitUntilNotificationVisible(driver, notificationMessage);
+        Optional<WebElement> matchingNotification = getMatchingNotification(driver, notificationMessage);
+        WebElement element = matchingNotification.get()
+            .findElement(NOTIFICATION_TEXT_LOCATOR);
+        String backgroundColor = element.getCssValue("backgroundColor");
+        if (!backgroundColor.equals("rgba(0, 128, 0, 1)")) {
+            throw new AssertionError("Notification's background color is not green. It is " + backgroundColor);
+        }
+    }
+
     private static void waitUntilNotificationVisible(WebDriver driver, String notificationMessage) {
-        VerifiedOperation.waitUntil(() -> {
-            List<WebElement> notifications = driver.findElements(NOTIFICATIONS_LOCATOR);
-            return notifications.stream()
-                .anyMatch(webElement -> webElement.findElement(NOTIFICATION_TEXT_LOCATOR).getText().equals(notificationMessage));
-        });
+        VerifiedOperation.waitUntil(
+            () -> driver.findElements(NOTIFICATIONS_LOCATOR).stream()
+                .anyMatch(webElement -> webElement.findElement(NOTIFICATION_TEXT_LOCATOR).getText().equals(notificationMessage))
+        );
     }
 
     private static Optional<WebElement> getMatchingNotification(WebDriver driver, String notificationMessage) {
@@ -42,16 +51,5 @@ public class NotificationUtil {
             throw new AssertionError("No notification matches notificationMessage " + notificationMessage);
         }
         return matchingNotification;
-    }
-
-    public static void verifySuccessNotification(WebDriver driver, String notificationMessage) {
-        waitUntilNotificationVisible(driver, notificationMessage);
-        Optional<WebElement> matchingNotification = getMatchingNotification(driver, notificationMessage);
-        WebElement element = matchingNotification.get()
-            .findElement(NOTIFICATION_TEXT_LOCATOR);
-        String backgroundColor = element.getCssValue("backgroundColor");
-        if (!backgroundColor.equals("rgba(0, 128, 0, 1)")) {
-            throw new AssertionError("Notification's background color is not green. It is " + backgroundColor);
-        }
     }
 }
