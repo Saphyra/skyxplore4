@@ -23,7 +23,6 @@ import static java.util.Objects.isNull;
 
 @Component
 @Slf4j
-//TODO unit test
 public class DomainSaverService {
     private final ThreadLocal<Map<Class<?>, List<Object>>> tempStorage = new ThreadLocal<>();
 
