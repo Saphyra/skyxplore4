@@ -1,18 +1,20 @@
 package com.github.saphyra.skyxplore_deprecated.common;
 
+import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.WEB_PREFIX;
+
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.github.saphyra.skyxplore_deprecated.game.dao.game.GameQueryService;
 import com.github.saphyra.skyxplore_deprecated.game.dao.player.PlayerQueryService;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
-
-import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.WEB_PREFIX;
 
 @Controller
 @RequiredArgsConstructor

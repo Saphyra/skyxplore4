@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.openqa.selenium.WebDriver;
 
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
 import com.github.saphyra.skyxplore.test.framework.Operation;
 import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 
@@ -28,6 +29,6 @@ public class MainMenuPageActions {
             100
         );
 
-        //TODO verify notification visibility
+        NotificationUtil.verifySuccessNotification(driver, "Sikeres kijelentkezés.");
     }
 }

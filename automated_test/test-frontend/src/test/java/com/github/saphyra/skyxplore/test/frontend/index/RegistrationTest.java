@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.Navigation;
+import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
 import com.github.saphyra.skyxplore.test.framework.Operation;
 import com.github.saphyra.skyxplore.test.framework.UrlProvider;
 import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
@@ -56,7 +57,7 @@ public class RegistrationTest extends SeleniumTest {
         VerifiedOperation.waitUntil(
             () -> driver.getCurrentUrl().equals(UrlProvider.getMainMenu(PORT)),
             10,
-            100
+            200
         );
 
         //THEN
@@ -94,7 +95,7 @@ public class RegistrationTest extends SeleniumTest {
         //WHEN
         IndexPageActions.submitRegistration(driver);
         //THEN
-        //TODO verify notification
+        NotificationUtil.verifyErrorNotification(driver, "Felhasználónév foglalt.");
 
         assertThat(driver.getCurrentUrl()).endsWith(RequestConstants.INDEX_MAPPING);
     }

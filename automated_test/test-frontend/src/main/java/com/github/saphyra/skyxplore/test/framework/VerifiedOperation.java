@@ -12,6 +12,10 @@ public class VerifiedOperation {
         return waitUntil(operation, tryCount, sleep);
     }
 
+    public static boolean waitUntil(Checker operation) {
+        return waitUntil(operation, 10, 100);
+    }
+
     public static boolean waitUntil(Checker operation, int tryCount, int sleep) {
         for (int run = 0; run < tryCount; run++) {
             if (operation.check()) {

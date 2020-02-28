@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class PageController {
     private static final String MAIN_MENU_MAPPING = WEB_PREFIX + "/main-menu";
 
