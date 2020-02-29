@@ -8,6 +8,7 @@ import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.common.service.ExecutorServiceBean;
 import com.github.saphyra.skyxplore.app.domain.game.domain.Game;
+import com.github.saphyra.skyxplore.app.domain.game.domain.GameCommandService;
 import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +42,9 @@ public class GameDeletionServiceTest {
     private ExecutorServiceBean executorServiceBean;
 
     @Mock
+    private GameCommandService gameCommandService;
+
+    @Mock
     private GameQueryService gameQueryService;
 
     @Mock
@@ -57,6 +61,7 @@ public class GameDeletionServiceTest {
             .applicationEventPublisher(applicationEventPublisher)
             .deletables(Arrays.asList(commandService))
             .executorServiceBean(executorServiceBean)
+            .gameCommandService(gameCommandService)
             .gameQueryService(gameQueryService)
             .requestContextHolder(requestContextHolder)
             .build();
@@ -86,5 +91,6 @@ public class GameDeletionServiceTest {
 
         verify(commandService).deleteByGameId(GAME_ID);
         verify(applicationEventPublisher).publishEvent(new GameDeletedEvent());
+        verify(gameCommandService).delete(game);
     }
 }

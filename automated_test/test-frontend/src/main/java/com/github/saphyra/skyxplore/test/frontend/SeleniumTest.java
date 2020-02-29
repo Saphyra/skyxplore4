@@ -14,7 +14,7 @@ import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import com.github.saphyra.skyxplore.server.Application;
+import com.github.saphyra.skyxplore.server.app.Application;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.framework.SleepUtil;
 import lombok.Builder;

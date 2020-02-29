@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.test.common;
 
-import com.github.saphyra.skyxplore.server.Application;
+import com.github.saphyra.skyxplore.server.app.Application;
 import com.github.saphyra.util.Random;
 import org.testng.TestException;
 import org.testng.annotations.AfterSuite;

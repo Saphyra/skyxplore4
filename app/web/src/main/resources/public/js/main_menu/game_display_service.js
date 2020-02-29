@@ -5,7 +5,6 @@
     ));
 
     function loadGames(){
-        return; //TODO remove when Game domain is migrated
         const request = new Request(HttpMethod.GET, Mapping.GET_GAMES);
             request.convertResponse = function(response){
                 const games = JSON.parse(response.body);

@@ -7,3 +7,17 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
+
+logging:
+  level:
+    liquibase: WARN
+    org:
+      springframework: WARN
+      hibernate: WARN
+      apache: WARN
+    com:
+      zaxxer: WARN
+      github:
+        saphyra:
+          exceptionhandling: error
+          skyxplore: warn

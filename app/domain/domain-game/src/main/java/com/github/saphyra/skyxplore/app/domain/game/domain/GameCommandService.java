@@ -26,7 +26,7 @@ public class GameCommandService implements CommandService<Game> {
 
     @Override
     public void deleteByGameId(UUID gameId) {
-        gameDao.deleteByGameId(gameId);
+
     }
 
     public void save(Game game) {

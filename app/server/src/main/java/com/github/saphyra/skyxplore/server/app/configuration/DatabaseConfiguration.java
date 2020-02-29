@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.server.configuration;
+package com.github.saphyra.skyxplore.server.app.configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
 import lombok.extern.slf4j.Slf4j;

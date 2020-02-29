@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.server.configuration;
+package com.github.saphyra.skyxplore.server.app.configuration;
 
 import com.github.saphyra.authservice.auth.EnableAuthService;
 import com.github.saphyra.authservice.redirection.EnableRedirection;

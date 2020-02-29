@@ -6,6 +6,7 @@ import com.github.saphyra.skyxplore.app.common.game_context.CommandService;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.common.service.ExecutorServiceBean;
 import com.github.saphyra.skyxplore.app.domain.game.domain.Game;
+import com.github.saphyra.skyxplore.app.domain.game.domain.GameCommandService;
 import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class GameDeletionService {
     private final ApplicationEventPublisher applicationEventPublisher;
     private final List<CommandService> deletables;
     private final ExecutorServiceBean executorServiceBean;
+    private final GameCommandService gameCommandService;
     private final GameQueryService gameQueryService;
     private final RequestContextHolder requestContextHolder;
 
@@ -41,6 +43,7 @@ public class GameDeletionService {
                     applicationEventPublisher.publishEvent(new GameDeletedEvent());
                 }
             );
+            gameCommandService.delete(gameOptional.get());
         } else {
             throw ExceptionFactory.gameNotFound(gameId, requestContextHolder.get().getUserId());
         }

@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameCommandServiceTest {
@@ -44,9 +45,7 @@ public class GameCommandServiceTest {
 
     @Test
     public void deleteByGameId() {
-        underTest.deleteByGameId(GAME_ID);
-
-        verify(gameDao).deleteByGameId(GAME_ID);
+        verifyZeroInteractions(gameDao);
     }
 
     @Test

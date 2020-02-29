@@ -2,7 +2,6 @@ handle ProductionOrders where all resource is present
 remove productionOrders when Terraforming is cancelled
 add missing buildingNames to localization
 Display resource status properly when construction in progress
-bug: FE displays deleted game
 
 User Settings page
 
