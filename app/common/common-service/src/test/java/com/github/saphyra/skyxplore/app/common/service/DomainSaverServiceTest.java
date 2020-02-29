@@ -86,6 +86,14 @@ public class DomainSaverServiceTest {
     }
 
     @Test
+    public void save_emptyStorage() throws NoSuchFieldException, IllegalAccessException {
+        underTest.save();
+
+        verify(applicationEventPublisher).publishEvent(new EntitiesSavedEvent());
+        assertThat(getTempStorage().get()).isNull();
+    }
+
+    @Test
     public void clear() throws NoSuchFieldException, IllegalAccessException {
         underTest.add(VALUE_1);
         underTest.add(INT_1);

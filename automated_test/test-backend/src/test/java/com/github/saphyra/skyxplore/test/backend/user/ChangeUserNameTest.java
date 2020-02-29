@@ -1,14 +1,5 @@
 package com.github.saphyra.skyxplore.test.backend.user;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.springframework.http.HttpStatus;
-import org.testng.annotations.Test;
-
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.app.domain.user.request.ChangeUsernameRequest;
@@ -21,6 +12,14 @@ import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.SettingsPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import io.restassured.response.Response;
+import org.springframework.http.HttpStatus;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ChangeUserNameTest extends TestBase {
     private static final String TOO_LONG_USERNAME = Stream.generate(() -> "a")

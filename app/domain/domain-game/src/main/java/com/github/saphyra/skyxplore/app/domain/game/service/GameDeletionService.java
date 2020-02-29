@@ -7,6 +7,7 @@ import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHol
 import com.github.saphyra.skyxplore.app.common.service.ExecutorServiceBean;
 import com.github.saphyra.skyxplore.app.domain.game.domain.Game;
 import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -20,7 +21,7 @@ import java.util.UUID;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
+@Builder
 public class GameDeletionService {
     private final ApplicationEventPublisher applicationEventPublisher;
     private final List<CommandService> deletables;

@@ -37,6 +37,12 @@
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
+            <artifactId>domain-game</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
             <artifactId>domain-user</artifactId>
             <version>${artifact.version}</version>
         </dependency>

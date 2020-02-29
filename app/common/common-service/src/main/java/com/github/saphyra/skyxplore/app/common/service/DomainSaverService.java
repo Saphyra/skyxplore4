@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -60,8 +61,8 @@ public class DomainSaverService {
     public void save() {
         try {
             log.info("Saving cached domains...");
-            tempStorage.get()
-                .forEach(this::save);
+            Optional.ofNullable(tempStorage.get())
+                .ifPresent(classListMap -> classListMap.forEach(this::save));
             log.info("Save process successfully finished.");
             applicationEventPublisher.publishEvent(new EntitiesSavedEvent());
         } finally {

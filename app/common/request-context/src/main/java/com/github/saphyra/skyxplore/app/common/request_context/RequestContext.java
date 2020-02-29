@@ -1,5 +1,6 @@
 package com.github.saphyra.skyxplore.app.common.request_context;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,6 +1,7 @@
 package com.github.saphyra.skyxplore.app.domain.game;
 
 import com.github.saphyra.skyxplore.app.common.common_request.OneStringParamRequest;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
 import com.github.saphyra.skyxplore.app.domain.game.service.GameCreationService;
 import com.github.saphyra.skyxplore.app.domain.game.service.GameDeletionService;
@@ -23,8 +24,6 @@ import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.AP
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
-//TODO API test
 //TODO FE test
 public class GameController {
     private static final String CREATE_GAME_MAPPING = API_PREFIX + "/game";
@@ -35,12 +34,13 @@ public class GameController {
     private final GameQueryService gameQueryService;
     private final GameDeletionService gameDeletionService;
     private final GameViewConverter gameViewConverter;
+    private final UuidConverter uuidConverter;
 
     @PutMapping(CREATE_GAME_MAPPING)
     public String createGame(
         @RequestBody OneStringParamRequest gameName
     ) {
-        return gameCreationService.createGame(gameName.getValue());
+        return uuidConverter.convertDomain(gameCreationService.createGame(gameName.getValue()));
     }
 
     @DeleteMapping(DELETE_GAME_MAPPING)

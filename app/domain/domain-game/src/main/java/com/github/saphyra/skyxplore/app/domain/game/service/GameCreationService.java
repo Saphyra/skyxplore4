@@ -17,16 +17,18 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 public class GameCreationService {
     private final ApplicationEventPublisher applicationEventPublisher;
     private final DomainSaverService domainSaverService;
     private final GameCommandService gameCommandService;
     private final GameFactory gameFactory;
+    private final GameNameValidator gameNameValidator;
     private final RequestContextHolder requestContextHolder;
 
     @Transactional
-    public String createGame(String gameName) {
+    public UUID createGame(String gameName) {
+        gameNameValidator.validate(gameName);
+
         UUID userId = requestContextHolder.get()
             .getUserId();
         StopWatch stopWatch = new StopWatch("GameCreation");
@@ -35,7 +37,7 @@ public class GameCreationService {
         Game game = gameFactory.create(userId, gameName);
         gameCommandService.save(game);
         applicationEventPublisher.publishEvent(new GameCreatedEvent(game.getGameId()));
-        String gameId = game.getGameId().toString();
+        UUID gameId = game.getGameId();
         domainSaverService.save();
         stopWatch.stop();
         log.info("Game created with gameId {} in {} seconds", gameId, stopWatch.getTotalTimeSeconds());
