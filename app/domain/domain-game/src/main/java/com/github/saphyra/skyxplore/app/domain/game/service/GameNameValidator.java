@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
-//TODO unit test
 class GameNameValidator {
     private static final String FIELD_NAME = "gameName";
 
