@@ -43,7 +43,7 @@
             createErrorProcess(INVALID_GAME_NAME, "game-name-too-short")();
         }else if(gameName.length > 30){
             blockGameCreation();
-            createErrorProcess(INVALID_GAME_NAME, "game-name-too-short")();
+            createErrorProcess(INVALID_GAME_NAME, "game-name-too-long")();
         }else{
             createSuccessProcess(INVALID_GAME_NAME)();
             allowGameCreation();

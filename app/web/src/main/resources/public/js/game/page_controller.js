@@ -61,6 +61,7 @@
 
     $(document).ready(function(){
         eventProcessor.processEvent(new Event(events.LOAD_LOCALIZATION, "game"));
+        return; //TODO restore when map is migrated
         openWindow(mapController.createMapController());
         document.addEventListener('contextmenu', event => event.preventDefault());
     });

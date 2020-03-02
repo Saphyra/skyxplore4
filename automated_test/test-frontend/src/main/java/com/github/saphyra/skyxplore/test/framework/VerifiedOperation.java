@@ -3,6 +3,11 @@ package com.github.saphyra.skyxplore.test.framework;
 import static com.github.saphyra.skyxplore.test.framework.SleepUtil.sleep;
 
 public class VerifiedOperation {
+    public static <T> T getWithWait(Fetcher<T> fetcher) {
+        waitUntil(fetcher);
+        return fetcher.fetch();
+    }
+
     public static boolean operate(Operation operation) {
         return operate(operation, 10, 100);
     }

@@ -1,5 +1,17 @@
 package com.github.saphyra.skyxplore.app.domain.game;
 
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.github.saphyra.skyxplore.app.common.common_request.OneStringParamRequest;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
@@ -9,22 +21,10 @@ import com.github.saphyra.skyxplore.app.domain.game.view.GameView;
 import com.github.saphyra.skyxplore.app.domain.game.view.GameViewConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.UUID;
-
-import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-//TODO FE test
 public class GameController {
     private static final String CREATE_GAME_MAPPING = API_PREFIX + "/game";
     private static final String DELETE_GAME_MAPPING = API_PREFIX + "/game/{gameId}";

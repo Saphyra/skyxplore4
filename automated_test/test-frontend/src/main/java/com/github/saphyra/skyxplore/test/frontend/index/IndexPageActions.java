@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Builder
 @RequiredArgsConstructor
 @Slf4j
-class IndexPageActions {
+public class IndexPageActions {
     public static void registerUser(WebDriver driver, RegistrationParameters registrationParameters){
         VerifiedOperation.operate(
             new Operation() {
@@ -73,6 +73,8 @@ class IndexPageActions {
             validationResult.getConfirmPassword() != PasswordValidationResult.VALID,
             validationResult.getConfirmPassword().getErrorMessage()
         );
+
+        assertThat(IndexPage.registrationSubmitButton(driver).isEnabled()).isEqualTo(validationResult.allValid());
     }
 
     private static void verifyState(WebElement inputValid, boolean shouldBeVisible, String errorMessage) {

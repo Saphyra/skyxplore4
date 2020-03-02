@@ -1,9 +1,9 @@
 package com.github.saphyra.skyxplore.app.common.config;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.Arrays;
 import java.util.List;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class RequestConstants {
@@ -19,6 +19,10 @@ public class RequestConstants {
     public static final String HEADER_BROWSER_LANGUAGE = "BrowserLanguage";
 
     public static final String INDEX_MAPPING = WEB_PREFIX;
+    public static final String MAIN_MENU_MAPPING = WEB_PREFIX + "/main-menu";
+    public static final String GAME_MAPPING_BASE = WEB_PREFIX + "/game";
+    public static final String GAME_MAPPING = GAME_MAPPING_BASE + "/{gameId}";
+
     public static final String REGISTRATION_MAPPING = RequestConstants.API_PREFIX + "/user";
 
     public static final List<String> PROPERTY_PATHS = Arrays.asList(

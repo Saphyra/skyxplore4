@@ -20,4 +20,4 @@ logging:
       github:
         saphyra:
           exceptionhandling: error
-          skyxplore: warn
+          skyxplore: info
