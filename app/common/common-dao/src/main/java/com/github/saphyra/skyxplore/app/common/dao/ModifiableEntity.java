@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.common.cache;
+package com.github.saphyra.skyxplore.app.common.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

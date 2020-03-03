@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
+package com.github.saphyra.skyxplore.app.domain.player;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+//TODO unit test
 class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerRepository> {
     private final UuidConverter uuidConverter;
 

@@ -1,37 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>app</artifactId>
+        <artifactId>common</artifactId>
         <groupId>com.github.saphyra</groupId>
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>common</artifactId>
+    <artifactId>common-dao</artifactId>
     <version>${artifact.version}</version>
 
-    <name>common</name>
-    <packaging>pom</packaging>
+    <name>common-dao</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>common-service</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
+
     </build>
-    <modules>
-        <module>data</module>
-        <module>config</module>
-        <module>exception-handling</module>
-        <module>request-context</module>
-        <module>event</module>
-        <module>game-context</module>
-        <module>common-request</module>
-        <module>common-service</module>
-        <module>common-dao</module>
-    </modules>
 </project>

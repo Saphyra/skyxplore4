@@ -1,5 +1,14 @@
 package com.github.saphyra.skyxplore.app.domain.game.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.transaction.Transactional;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
+
 import com.github.saphyra.skyxplore.app.common.event.GameDeletedEvent;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
 import com.github.saphyra.skyxplore.app.common.game_context.CommandService;
@@ -11,13 +20,6 @@ import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Slf4j
@@ -25,7 +27,7 @@ import java.util.UUID;
 @Builder
 public class GameDeletionService {
     private final ApplicationEventPublisher applicationEventPublisher;
-    private final List<CommandService> deletables;
+    private final List<CommandService<?>> deletables;
     private final ExecutorServiceBean executorServiceBean;
     private final GameCommandService gameCommandService;
     private final GameQueryService gameQueryService;

@@ -1,15 +1,15 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
-
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.SettablePersistable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.github.saphyra.skyxplore.app.domain.player;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.github.saphyra.skyxplore.app.common.dao.SettablePersistable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Data

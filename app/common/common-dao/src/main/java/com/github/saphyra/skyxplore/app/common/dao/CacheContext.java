@@ -1,9 +1,10 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.common.cache;
+package com.github.saphyra.skyxplore.app.common.dao;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.github.saphyra.util.OffsetDateTimeProvider;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 @Component
 @Getter

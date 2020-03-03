@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.common.cache;
+package com.github.saphyra.skyxplore.app.common.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+//TODO unit test
 public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 

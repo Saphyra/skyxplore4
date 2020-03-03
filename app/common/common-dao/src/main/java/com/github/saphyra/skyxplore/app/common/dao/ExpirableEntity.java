@@ -1,11 +1,12 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.common.cache;
+package com.github.saphyra.skyxplore.app.common.dao;
+
+import java.time.OffsetDateTime;
 
 import com.github.saphyra.util.OffsetDateTimeProvider;
 import lombok.Data;
 
-import java.time.OffsetDateTime;
-
 @Data
+//TODO unit test
 public class ExpirableEntity<TYPE> {
     private final TYPE entity;
     private volatile OffsetDateTime lastAccess;

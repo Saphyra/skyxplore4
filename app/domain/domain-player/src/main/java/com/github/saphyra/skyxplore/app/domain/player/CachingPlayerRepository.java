@@ -1,20 +1,22 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
-
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.CacheContext;
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.CacheRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+package com.github.saphyra.skyxplore.app.domain.player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.common.dao.CacheContext;
+import com.github.saphyra.skyxplore.app.common.dao.CacheRepository;
+import lombok.extern.slf4j.Slf4j;
+
 @Component
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
+//TODO unit test
 public class CachingPlayerRepository extends CacheRepository<String, PlayerEntity, String, PlayerRepository> implements PlayerRepository {
     protected CachingPlayerRepository(PlayerRepository repository, CacheContext cacheContext) {
         super(repository, PlayerEntity::getGameId, cacheContext);

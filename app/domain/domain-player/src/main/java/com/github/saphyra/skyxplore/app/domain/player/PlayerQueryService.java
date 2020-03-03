@@ -1,17 +1,19 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
-
-import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+package com.github.saphyra.skyxplore.app.domain.player;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
+import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
+import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
+//TODO unit test
 public class PlayerQueryService {
     private final PlayerDao playerDao;
     private final RequestContextHolder requestContextHolder;

@@ -1,12 +1,12 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
+package com.github.saphyra.skyxplore.app.domain.player;
+
+import java.util.UUID;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
-
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

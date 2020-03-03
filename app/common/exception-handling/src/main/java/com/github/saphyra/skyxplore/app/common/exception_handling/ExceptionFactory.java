@@ -1,20 +1,21 @@
 package com.github.saphyra.skyxplore.app.common.exception_handling;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import com.github.saphyra.exceptionhandling.domain.ErrorMessage;
 import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;
 import com.github.saphyra.exceptionhandling.exception.RestException;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 public class ExceptionFactory {
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s and userId %s";
     private static final String INVALID_REQUEST_PREFIX = "Invalid field %s: %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
     private static final String INVALID_PASSWORD_MESSAGE = "Invalid password.";
+    private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
 
@@ -36,6 +37,10 @@ public class ExceptionFactory {
         Map<String, String> params = new HashMap<>();
         params.put(INVALID_FIELD_PLACEHOLDER, fieldName);
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_REQUEST, params), String.format(INVALID_REQUEST_PREFIX, fieldName, message));
+    }
+
+    public static RestException playerNotFound(UUID userId, UUID gameId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.PLAYER_NOT_FOUND), String.format(PLAYER_NOT_FOUND_PREFIX, gameId, userId));
     }
 
     public static RestException usernameAlreadyExists(String userName) {

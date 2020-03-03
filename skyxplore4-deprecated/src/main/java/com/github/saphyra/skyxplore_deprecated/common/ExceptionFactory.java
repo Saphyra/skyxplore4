@@ -23,7 +23,7 @@ public class ExceptionFactory {
     private static final String INVALID_CITIZEN_NAME_PREFIX = "Invalid citizen name: %s";
     private static final String INVALID_STAR_NAME_MESSAGE = "Invalid star name.";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
-    private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
+
     private static final String PRIORITY_NOT_FOUND_PREFIX = "Priority not found for starId %s, priorityType %s and playerId %s";
     private static final String RESEARCH_NOT_PRESENT_PREFIX = "Research not present.";
     private static final String RESERVATION_NOT_FOUND_BY_EXTERNAL_REFERENCE_AND_DATA_ID = "Reservation not found by externalReference %s and dataId %s for player %s";
@@ -74,9 +74,7 @@ public class ExceptionFactory {
         return new BadRequestException(createErrorMessage(ErrorCode.MAX_LEVEL_REACHED), String.format(MAX_LEVEL_REACHED_PREFIX, buildingId));
     }
 
-    public static RestException playerNotFound(UUID userId, UUID gameId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.PLAYER_NOT_FOUND), String.format(PLAYER_NOT_FOUND_PREFIX, gameId, userId));
-    }
+
 
     public static RestException priorityNotFound(UUID starId, PriorityType type, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.PRIORITY_NOT_FOUND), String.format(PRIORITY_NOT_FOUND_PREFIX, starId, type, playerId));

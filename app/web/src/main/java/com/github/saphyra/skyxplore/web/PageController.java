@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
+import com.github.saphyra.skyxplore.app.domain.player.PlayerQueryService;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 class PageController {
     private final CookieUtil cookieUtil;
     private final GameQueryService gameQueryService;
-    //private final PlayerQueryService playerQueryService; //TODO restore when player domain is migrated
+    private final PlayerQueryService playerQueryService;
 
     @GetMapping(INDEX_MAPPING)
     String index() {
@@ -47,7 +48,7 @@ class PageController {
     ) {
         if (gameQueryService.findByGameIdAndUserId(gameId).isPresent()) {
             cookieUtil.setCookie(response, RequestConstants.COOKIE_GAME_ID, gameId.toString());
-            //cookieUtil.setCookie(response, RequestConstants.COOKIE_PLAYER_ID, playerQueryService.findPlayerIdByUserIdAndGameId(gameId).toString()); //TODO restore when player domain is migrated
+            cookieUtil.setCookie(response, RequestConstants.COOKIE_PLAYER_ID, playerQueryService.findPlayerIdByUserIdAndGameId(gameId).toString());
             return "game";
         } else {
             return String.format("redirect:%s", MAIN_MENU_MAPPING);

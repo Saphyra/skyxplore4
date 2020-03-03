@@ -1,15 +1,16 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
+package com.github.saphyra.skyxplore.app.domain.player;
 
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.encryption.impl.StringEncryptor;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 public class PlayerConverter extends ConverterBase<PlayerEntity, Player> {
     private final UuidConverter uuidConverter;
     private final RequestContextHolder requestContextHolder;

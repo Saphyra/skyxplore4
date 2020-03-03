@@ -1,14 +1,16 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.player;
-
-import com.github.saphyra.skyxplore_deprecated.game.common.interfaces.CommandService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+package com.github.saphyra.skyxplore.app.domain.player;
 
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.common.game_context.CommandService;
+import lombok.RequiredArgsConstructor;
+
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 public class PlayerCommandService implements CommandService<Player> {
     private final PlayerDao playerDao;
 
