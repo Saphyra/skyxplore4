@@ -1,13 +1,5 @@
 package com.github.saphyra.skyxplore.test.frontend.main_menu;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.framework.Fetcher;
 import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
@@ -16,6 +8,13 @@ import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.framework.WebElementUtils;
 import com.github.saphyra.skyxplore.test.frontend.main_menu.game_crud.GameNameValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.main_menu.game_crud.GameViewResult;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainMenuPageActions {
     public static void logout(WebDriver driver) {
@@ -62,6 +61,7 @@ public class MainMenuPageActions {
 
     public static void submitGameCreationForm(WebDriver driver) {
         WebElement submitButton = MainMenuPage.createGameButton(driver);
+        VerifiedOperation.waitUntil(submitButton::isEnabled, 10, 500);
         assertThat(submitButton.isEnabled()).isTrue();
 
         submitButton.click();
