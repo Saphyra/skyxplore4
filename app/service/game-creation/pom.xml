@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>common</artifactId>
+        <artifactId>service</artifactId>
         <groupId>com.github.saphyra</groupId>
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>common-exception-handling</artifactId>
+    <artifactId>game-creation</artifactId>
     <version>${artifact.version}</version>
 
-    <name>exception-handling</name>
+    <name>game-creation</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,24 +19,17 @@
     <dependencies>
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>exception-handling</artifactId>
-            <version>${versions.saphyra.exception-handling}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>config</artifactId>
+            <artifactId>event</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>common-data</artifactId>
+            <artifactId>auth</artifactId>
             <version>${artifact.version}</version>
         </dependency>
     </dependencies>
 
     <build>
-
     </build>
 </project>

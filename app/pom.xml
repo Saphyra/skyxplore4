@@ -112,6 +112,7 @@
         <module>localization</module>
         <module>domain</module>
         <module>auth</module>
-      <module>common-test</module>
-  </modules>
+        <module>common-test</module>
+        <module>service</module>
+    </modules>
 </project>

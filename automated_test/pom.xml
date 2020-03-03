@@ -49,7 +49,7 @@
     </build>
     <modules>
         <module>test-common</module>
-        <module>test-frontend</module>
         <module>test-backend</module>
+        <module>test-frontend</module>
     </modules>
 </project>

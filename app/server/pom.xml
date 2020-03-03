@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>com.github.saphyra</groupId>
-            <artifactId>data</artifactId>
+            <artifactId>common-data</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 
@@ -56,6 +56,12 @@
         <dependency>
             <groupId>com.github.saphyra</groupId>
             <artifactId>web</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>game-creation</artifactId>
             <version>${artifact.version}</version>
         </dependency>
 

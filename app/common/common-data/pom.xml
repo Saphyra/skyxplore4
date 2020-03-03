@@ -7,36 +7,24 @@
         <version>${artifact.version}</version>
     </parent>
 
-    <artifactId>common-exception-handling</artifactId>
+    <artifactId>common-data</artifactId>
     <version>${artifact.version}</version>
 
-    <name>exception-handling</name>
+    <name>common-data</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>exception-handling</artifactId>
-            <version>${versions.saphyra.exception-handling}</version>
-        </dependency>
 
         <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>config</artifactId>
-            <version>${artifact.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.saphyra</groupId>
-            <artifactId>common-data</artifactId>
-            <version>${artifact.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${versions.apache-commons.commons-io}</version>
         </dependency>
     </dependencies>
 
     <build>
-
     </build>
 </project>

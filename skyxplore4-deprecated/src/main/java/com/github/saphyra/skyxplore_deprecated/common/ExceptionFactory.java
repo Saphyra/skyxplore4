@@ -1,5 +1,7 @@
 package com.github.saphyra.skyxplore_deprecated.common;
 
+import java.util.UUID;
+
 import com.github.saphyra.exceptionhandling.exception.BadRequestException;
 import com.github.saphyra.exceptionhandling.exception.ConflictException;
 import com.github.saphyra.exceptionhandling.exception.NotFoundException;
@@ -9,8 +11,6 @@ import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.priority.PriorityType;
 import com.github.saphyra.skyxplore_deprecated.game.dao.system.storage.resource.StorageType;
 import lombok.experimental.UtilityClass;
-
-import java.util.UUID;
 
 @UtilityClass
 public class ExceptionFactory {
