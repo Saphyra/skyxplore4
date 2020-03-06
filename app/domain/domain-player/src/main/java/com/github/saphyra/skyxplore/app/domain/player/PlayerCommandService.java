@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class PlayerCommandService implements CommandService<Player> {
     private final PlayerDao playerDao;
 

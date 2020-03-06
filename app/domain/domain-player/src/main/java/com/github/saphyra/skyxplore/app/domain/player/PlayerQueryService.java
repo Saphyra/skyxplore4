@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-//TODO unit test
 public class PlayerQueryService {
     private final PlayerDao playerDao;
     private final RequestContextHolder requestContextHolder;

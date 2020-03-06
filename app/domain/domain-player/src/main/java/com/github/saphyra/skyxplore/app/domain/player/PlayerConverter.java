@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class PlayerConverter extends ConverterBase<PlayerEntity, Player> {
     private final UuidConverter uuidConverter;
     private final RequestContextHolder requestContextHolder;

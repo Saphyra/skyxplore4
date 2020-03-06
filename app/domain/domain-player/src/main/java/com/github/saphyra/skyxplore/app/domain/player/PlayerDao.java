@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerRepository> {
     private final UuidConverter uuidConverter;
 
@@ -30,11 +29,6 @@ class PlayerDao extends AbstractDao<PlayerEntity, Player, String, PlayerReposito
         return converter.convertEntity(repository.getByGameId(
             uuidConverter.convertDomain(gameId)
         ));
-    }
-
-    @Override
-    public void saveAll(List<Player> players) {
-        repository.saveAll(converter.convertDomain(players));
     }
 
     Optional<Player> findPlayerByGameIdAndPlayerId(UUID gameId, UUID playerId) {

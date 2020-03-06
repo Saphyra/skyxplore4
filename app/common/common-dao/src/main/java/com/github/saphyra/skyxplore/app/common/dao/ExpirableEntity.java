@@ -3,16 +3,17 @@ package com.github.saphyra.skyxplore.app.common.dao;
 import java.time.OffsetDateTime;
 
 import com.github.saphyra.util.OffsetDateTimeProvider;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-//TODO unit test
 public class ExpirableEntity<TYPE> {
     private final TYPE entity;
     private volatile OffsetDateTime lastAccess;
     private final OffsetDateTimeProvider offsetDateTimeProvider;
     private final Integer expiration;
 
+    @Builder
     public ExpirableEntity(TYPE entity, CacheContext cacheContext) {
         this.entity = entity;
         this.offsetDateTimeProvider = cacheContext.getOffsetDateTimeProvider();

@@ -12,6 +12,7 @@ import com.github.saphyra.skyxplore.app.common.event.FullSyncTrigger;
 import com.github.saphyra.skyxplore.app.common.event.ProcessDeletionsTrigger;
 import com.github.saphyra.skyxplore.app.common.event.SynchChangesTrigger;
 import com.github.saphyra.skyxplore.app.common.service.ExecutorServiceBean;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,8 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @EnableScheduling
 @Slf4j
+@Builder
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
-//TODO unit test
 public class CacheSyncHandler {
     private final List<CacheRepository<?, ?, ?, ?>> repositories;
     private final ExecutorServiceBean executorServiceBean;
@@ -50,8 +51,7 @@ public class CacheSyncHandler {
 
     @EventListener(classes = ProcessDeletionsTrigger.class)
     public void processDeletions() {
-        executorServiceBean.execute(() -> repositories
-            .stream()
+        executorServiceBean.execute(() -> repositories.stream()
             .parallel()
             .forEach(CacheRepository::processDeletions));
     }
