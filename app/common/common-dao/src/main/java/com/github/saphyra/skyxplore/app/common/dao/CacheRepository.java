@@ -1,5 +1,10 @@
 package com.github.saphyra.skyxplore.app.common.dao;
 
+import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.repository.CrudRepository;
+
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.springframework.data.domain.Persistable;
-import org.springframework.data.repository.CrudRepository;
-
-import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
-import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
-//TODO unit test
 public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 
@@ -41,6 +39,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
 
     protected abstract void deleteByIds(List<ID> ids);
 
+    //TODO unit test
     protected void deleteByKey(KEY key) {
         log.debug("Deleting {}(s) for key {}", entityName, key);
         List<ENTITY> entities = getByKey(key);
@@ -48,6 +47,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         deleteAll(entities);
     }
 
+    //TODO unit test
     protected Map<ID, ENTITY> getMapByKey(KEY key) {
         log.debug("Querying {}(s) by key {}", entityName, key);
         return extractEntities(getMap(key));
@@ -60,6 +60,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         return new ConcurrentHashMap<>(mapping);
     }
 
+    //TODO unit test
     public void fullSync() {
         log.info("Executing full-sync for entity {}...", entityName);
         processDeletions();
@@ -67,6 +68,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         evictExpiredEntities();
     }
 
+    //TODO unit test
     public void evictExpiredEntities() {
         synchronized (cacheMap) {
             log.info("Evicting expired entities for entity {}...", entityName);
@@ -80,6 +82,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         }
     }
 
+    //TODO unit test
     public void syncChanges() {
         log.info("Synchronizing modifications for entity {}...", entityName);
         int synchedEntitiesAmount = cacheMap.values()
@@ -106,6 +109,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
             .collect(Collectors.toList());
     }
 
+    //TODO unit test
     public void processDeletions() {
         synchronized (deleteQueue) {
             log.info("Processing deletions for entity {}...", entityName);
@@ -128,6 +132,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public <S extends ENTITY> S save(S entity) {
         log.debug("Saving entity {}", entity);
         getMap(keyMapper.apply(entity)).put(Objects.requireNonNull(entity.getId()), new ModifiableEntity<>(entity, true));
@@ -145,6 +150,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public <S extends ENTITY> Iterable<S> saveAll(Iterable<S> iterable) {
         iterable.forEach(this::save);
         return iterable;
@@ -178,6 +184,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public boolean existsById(ID id) {
         if (deleteQueue.contains(id)) {
             log.debug("Entity {} with id {} is deleted.", entityName, id);
@@ -187,6 +194,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public Iterable<ENTITY> findAll() {
         Iterable<ENTITY> entities = repository.findAll();
         return CollectionUtil.toList(entities).stream()
@@ -232,6 +240,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public Iterable<ENTITY> findAllById(Iterable<ID> iterable) {
         List<ID> ids = CollectionUtil.toList(iterable);
         return CollectionUtil.toList(findAll()).stream()
@@ -240,11 +249,13 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public long count() {
         return repository.count();
     }
 
     @Override
+    //TODO unit test
     public void deleteById(ID id) {
         log.debug("Deleting entity {} with id {}", entityName, id);
         deleteQueue.add(id);
@@ -256,11 +267,13 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public void delete(ENTITY entity) {
         deleteById(Objects.requireNonNull(entity.getId()));
     }
 
     @Override
+    //TODO unit test
     public void deleteAll(Iterable<? extends ENTITY> iterable) {
         List<ID> ids = CollectionUtil.toList(iterable)
             .stream()
@@ -280,6 +293,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     }
 
     @Override
+    //TODO unit test
     public void deleteAll() {
         log.warn("Deleting all entities: {}", entityName);
         cacheMap.clear();
