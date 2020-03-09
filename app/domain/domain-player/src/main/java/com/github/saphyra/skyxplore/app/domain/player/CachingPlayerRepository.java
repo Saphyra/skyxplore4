@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import com.github.saphyra.skyxplore.app.common.dao.CacheContext;
-import com.github.saphyra.skyxplore.app.common.dao.CacheRepository;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Component

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.common.dao;
+package com.github.saphyra.skyxplore.app.common.dao.cache_repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -7,11 +7,9 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 import java.lang.reflect.Field;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -70,9 +68,9 @@ public class CacheRepositoryTest {
 
         assertThat(result).contains(entity1);
 
-        Map<UUID, ExpirableEntity<Map<UUID, ModifiableEntity<EntityStub>>>> cache = getCache();
+        CacheMap<UUID, UUID, EntityStub> cache = getCache();
         assertThat(cache).containsKey(KEY_1);
-        ExpirableEntity<Map<UUID, ModifiableEntity<EntityStub>>> items = cache.get(KEY_1);
+        ExpirableEntity<EntityMapping<UUID, EntityStub>> items = cache.get(KEY_1);
         assertThat(items.getEntity()).containsKeys(ENTITY_ID_1, ENTITY_ID_2);
         assertThat(items.getEntity().get(ENTITY_ID_1).getEntity()).isEqualTo(entity1);
         assertThat(items.getEntity().get(ENTITY_ID_1).isModified()).isFalse();
@@ -86,9 +84,9 @@ public class CacheRepositoryTest {
 
         EntityStub entity = new EntityStub(ENTITY_ID_1, KEY_1, false);
         ModifiableEntity<EntityStub> modifiableEntity = new ModifiableEntity<>(entity, false);
-        Map<UUID, ModifiableEntity<EntityStub>> modifiableEntityMap = new ConcurrentHashMap<>();
+        EntityMapping<UUID, EntityStub> modifiableEntityMap = new EntityMapping<>();
         modifiableEntityMap.put(ENTITY_ID_1, modifiableEntity);
-        Map<UUID, ExpirableEntity<Map<UUID, ModifiableEntity<EntityStub>>>> cache = getCache();
+        CacheMap<UUID, UUID, EntityStub> cache = getCache();
         cache.put(KEY_1, new ExpirableEntity<>(modifiableEntityMap, cacheContext));
 
         given(offsetDateTimeProvider.getCurrentDate()).willReturn(NEW_LAST_ACCESS);
@@ -113,10 +111,7 @@ public class CacheRepositoryTest {
     @Test
     public void deleteAll_notInCache() throws NoSuchFieldException, IllegalAccessException {
         EntityStub entity1 = new EntityStub(ENTITY_ID_1, KEY_1, false);
-        EntityStub entity2 = new EntityStub(ENTITY_ID_1, KEY_1, false);
         EntityStub entity3 = new EntityStub(ENTITY_ID_3, KEY_2, false);
-
-        given(repository.findAll()).willReturn(Arrays.asList(entity1, entity2, entity3));
 
         underTest.deleteAll(Arrays.asList(entity1, entity3));
 
@@ -131,10 +126,10 @@ public class CacheRepositoryTest {
         return (Set<UUID>) f.get(underTest);
     }
 
-    private Map<UUID, ExpirableEntity<Map<UUID, ModifiableEntity<EntityStub>>>> getCache() throws NoSuchFieldException, IllegalAccessException {
+    private CacheMap<UUID, UUID, EntityStub> getCache() throws NoSuchFieldException, IllegalAccessException {
         Field f = underTest.getClass().getSuperclass().getDeclaredField("cacheMap");
         f.setAccessible(true);
         //noinspection unchecked
-        return (Map<UUID, ExpirableEntity<Map<UUID, ModifiableEntity<EntityStub>>>>) f.get(underTest);
+        return (CacheMap<UUID, UUID, EntityStub>) f.get(underTest);
     }
 }

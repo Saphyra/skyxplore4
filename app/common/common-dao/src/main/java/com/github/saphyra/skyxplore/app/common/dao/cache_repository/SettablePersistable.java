@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.common.dao;
+package com.github.saphyra.skyxplore.app.common.dao.cache_repository;
 
 import org.springframework.data.domain.Persistable;
 

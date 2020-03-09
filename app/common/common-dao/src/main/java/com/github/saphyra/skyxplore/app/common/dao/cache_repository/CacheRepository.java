@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.common.dao;
+package com.github.saphyra.skyxplore.app.common.dao.cache_repository;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.repository.CrudRepository;
 
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.component.CacheComponentWrapper;
 import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,12 +23,13 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 
-    private final ConcurrentHashMap<KEY, ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>>> cacheMap = new ConcurrentHashMap<>();
+    private final CacheMap<KEY, ID, ENTITY> cacheMap = new CacheMap<>();
     private final Set<ID> deleteQueue = ConcurrentHashMap.newKeySet();
 
     private final String entityName;
     protected final REPOSITORY repository;
     private final Function<ENTITY, KEY> keyMapper;
+    private final CacheComponentWrapper cacheComponentWrapper;
     private final CacheContext cacheContext;
 
     protected CacheRepository(REPOSITORY repository, Function<ENTITY, KEY> keyMapper, CacheContext cacheContext) {
@@ -35,6 +37,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         this.keyMapper = keyMapper;
         this.cacheContext = cacheContext;
         this.entityName = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1].getTypeName();
+        cacheComponentWrapper = cacheContext.getCacheComponentWrapper();
     }
 
     protected abstract List<ENTITY> getByKey(KEY key);
@@ -55,11 +58,10 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         return extractEntities(getMap(key));
     }
 
-    private ConcurrentHashMap<ID, ENTITY> extractEntities(ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> map) {
-        Map<ID, ENTITY> mapping = map.entrySet()
+    private Map<ID, ENTITY> extractEntities(EntityMapping<ID, ENTITY> map) {
+        return map.entrySet()
             .stream()
             .collect(Collectors.toMap(Map.Entry::getKey, idModifiableEntityEntry -> idModifiableEntityEntry.getValue().getEntity()));
-        return new ConcurrentHashMap<>(mapping);
     }
 
     //TODO unit test
@@ -103,7 +105,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         log.info("Synchronization finished for entity {}. Updated entities: {}", entityName, synchedEntitiesAmount);
     }
 
-    private List<ENTITY> filterModified(ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> map) {
+    private List<ENTITY> filterModified(EntityMapping<ID, ENTITY> map) {
         return map.values()
             .stream()
             .filter(ModifiableEntity::isModified)
@@ -142,7 +144,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         return entity;
     }
 
-    private ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> getMap(KEY key) {
+    private EntityMapping<ID, ENTITY> getMap(KEY key) {
         if (!cacheMap.containsKey(key)) {
             log.debug("Cache does not contain key {}. Loading entities...", key);
             loadByKey(key);
@@ -219,7 +221,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         log.debug("Adding to cache entities with key {}: {}", key, entities);
         List<ENTITY> filteredList = filterDeleted(entities);
         Map<ID, ENTITY> map = mapEntities(filteredList);
-        ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> wrappedEntities = wrapEntities(map);
+        ExpirableEntity<EntityMapping<ID, ENTITY>> wrappedEntities = wrapEntities(map);
         cacheMap.put(key, wrappedEntities);
     }
 
@@ -234,11 +236,11 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
             .collect(Collectors.toMap(Persistable::getId, Function.identity()));
     }
 
-    private ExpirableEntity<ConcurrentHashMap<ID, ModifiableEntity<ENTITY>>> wrapEntities(Map<ID, ENTITY> map) {
+    private ExpirableEntity<EntityMapping<ID, ENTITY>> wrapEntities(Map<ID, ENTITY> map) {
         Map<ID, ModifiableEntity<ENTITY>> entities = map.entrySet()
             .stream()
             .collect(Collectors.toMap(Map.Entry::getKey, identityEntry -> new ModifiableEntity<>(identityEntry.getValue(), false)));
-        return new ExpirableEntity<>(new ConcurrentHashMap<>(entities), cacheContext);
+        return new ExpirableEntity<>(new EntityMapping<>(entities), cacheContext);
     }
 
     @Override

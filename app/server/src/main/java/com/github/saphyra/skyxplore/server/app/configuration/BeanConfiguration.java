@@ -9,7 +9,7 @@ import com.github.saphyra.encryption.EnableEncryption;
 import com.github.saphyra.exceptionhandling.EnableExceptionHandler;
 import com.github.saphyra.skyxplore.app.auth.AuthScanner;
 import com.github.saphyra.skyxplore.app.common.config.CommonConfigScanner;
-import com.github.saphyra.skyxplore.app.common.dao.CommonDaoScanner;
+import com.github.saphyra.skyxplore.app.common.dao.configuration.CommonDaoScanner;
 import com.github.saphyra.skyxplore.app.common.data.CommonDataScanner;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorHandlingScanner;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextScanner;

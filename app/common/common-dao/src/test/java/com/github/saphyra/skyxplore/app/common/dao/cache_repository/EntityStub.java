@@ -1,9 +1,9 @@
-package com.github.saphyra.skyxplore.app.common.dao;
+package com.github.saphyra.skyxplore.app.common.dao.cache_repository;
+
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor

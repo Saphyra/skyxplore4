@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.github.saphyra.skyxplore.app.common.dao.SettablePersistable;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
