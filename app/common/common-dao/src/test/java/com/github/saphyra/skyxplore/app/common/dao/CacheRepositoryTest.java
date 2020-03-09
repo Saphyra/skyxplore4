@@ -1,13 +1,8 @@
 package com.github.saphyra.skyxplore.app.common.dao;
 
-import com.github.saphyra.util.OffsetDateTimeProvider;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.data.repository.CrudRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 import java.lang.reflect.Field;
 import java.time.OffsetDateTime;
@@ -18,15 +13,23 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.repository.CrudRepository;
+
+import com.github.saphyra.util.OffsetDateTimeProvider;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CacheRepositoryTest {
     private static final UUID ENTITY_ID_1 = UUID.randomUUID();
     private static final UUID ENTITY_ID_2 = UUID.randomUUID();
+    private static final UUID ENTITY_ID_3 = UUID.randomUUID();
     private static final UUID KEY_1 = UUID.randomUUID();
+    private static final UUID KEY_2 = UUID.randomUUID();
     private static final OffsetDateTime NEW_LAST_ACCESS = OffsetDateTime.now();
     private static final OffsetDateTime INITIAL_LAST_ACCESS = OffsetDateTime.now().minusSeconds(1);
 
@@ -105,6 +108,20 @@ public class CacheRepositoryTest {
         Optional<EntityStub> result = underTest.findById(ENTITY_ID_1);
 
         assertThat(result).isEmpty();
+    }
+
+    @Test
+    public void deleteAll_notInCache() throws NoSuchFieldException, IllegalAccessException {
+        EntityStub entity1 = new EntityStub(ENTITY_ID_1, KEY_1, false);
+        EntityStub entity2 = new EntityStub(ENTITY_ID_1, KEY_1, false);
+        EntityStub entity3 = new EntityStub(ENTITY_ID_3, KEY_2, false);
+
+        given(repository.findAll()).willReturn(Arrays.asList(entity1, entity2, entity3));
+
+        underTest.deleteAll(Arrays.asList(entity1, entity3));
+
+        Set<UUID> deleteQueue = getDeleteQueue();
+        assertThat(deleteQueue).contains(ENTITY_ID_1, ENTITY_ID_3);
     }
 
     private Set<UUID> getDeleteQueue() throws NoSuchFieldException, IllegalAccessException {

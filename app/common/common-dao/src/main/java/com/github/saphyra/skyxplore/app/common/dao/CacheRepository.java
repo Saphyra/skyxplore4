@@ -1,10 +1,5 @@
 package com.github.saphyra.skyxplore.app.common.dao;
 
-import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Persistable;
-import org.springframework.data.repository.CrudRepository;
-
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +11,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.repository.CrudRepository;
+
+import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
+//TODO refactor
 public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
     private static final int MAX_CHUNK_SIZE = 10000;
 
