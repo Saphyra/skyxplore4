@@ -23,14 +23,14 @@ public class CachingPlayerRepository extends CacheRepository<String, PlayerEntit
     }
 
     @Override
-    protected List<PlayerEntity> getByKey(String gameId) {
+    public List<PlayerEntity> getByKey(String gameId) {
         List<PlayerEntity> entities = repository.getByGameId(gameId);
         log.info("PlayerEntities loaded by gameId {}: {}", gameId, entities.size());
         return entities;
     }
 
     @Override
-    protected void deleteByIds(List<String> playerIds) {
+    public void deleteByIds(List<String> playerIds) {
         repository.deleteByPlayerIdIn(playerIds);
     }
 

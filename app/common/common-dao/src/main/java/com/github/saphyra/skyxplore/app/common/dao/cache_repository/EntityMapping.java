@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-class EntityMapping<ID, ENTITY> extends ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> {
+public class EntityMapping<ID, ENTITY> extends ConcurrentHashMap<ID, ModifiableEntity<ENTITY>> {
     public EntityMapping(Map<ID, ModifiableEntity<ENTITY>> entities) {
         super(entities);
     }

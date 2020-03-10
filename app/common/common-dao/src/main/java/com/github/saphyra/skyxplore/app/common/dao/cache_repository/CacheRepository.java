@@ -1,7 +1,6 @@
 package com.github.saphyra.skyxplore.app.common.dao.cache_repository;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -11,18 +10,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.repository.CrudRepository;
 
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.component.CacheComponentWrapper;
 import com.github.saphyra.skyxplore.app.common.utils.CollectionUtil;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Getter
 //TODO refactor
 public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> implements CrudRepository<ENTITY, ID> {
-    private static final int MAX_CHUNK_SIZE = 10000;
-
     private final CacheMap<KEY, ID, ENTITY> cacheMap = new CacheMap<>();
     private final Set<ID> deleteQueue = ConcurrentHashMap.newKeySet();
 
@@ -40,28 +38,18 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
         cacheComponentWrapper = cacheContext.getCacheComponentWrapper();
     }
 
-    protected abstract List<ENTITY> getByKey(KEY key);
+    public abstract List<ENTITY> getByKey(KEY key);
 
-    protected abstract void deleteByIds(List<ID> ids);
+    public abstract void deleteByIds(List<ID> ids);
 
     //TODO unit test
     protected void deleteByKey(KEY key) {
-        log.debug("Deleting {}(s) for key {}", entityName, key);
-        List<ENTITY> entities = getByKey(key);
-        log.debug("Number of {}(s) to delete: {}", entities, entities.size());
-        deleteAll(entities);
+        cacheComponentWrapper.getDeleteByKey().deleteByKey(this, key);
     }
 
     //TODO unit test
     protected Map<ID, ENTITY> getMapByKey(KEY key) {
-        log.debug("Querying {}(s) by key {}", entityName, key);
-        return extractEntities(getMap(key));
-    }
-
-    private Map<ID, ENTITY> extractEntities(EntityMapping<ID, ENTITY> map) {
-        return map.entrySet()
-            .stream()
-            .collect(Collectors.toMap(Map.Entry::getKey, idModifiableEntityEntry -> idModifiableEntityEntry.getValue().getEntity()));
+        return cacheComponentWrapper.getGetMapByKey().getMapByKey(this, key, cacheContext);
     }
 
     //TODO unit test
@@ -75,82 +63,26 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     //TODO unit test
     public void evictExpiredEntities() {
         synchronized (cacheMap) {
-            log.info("Evicting expired entities for entity {}...", entityName);
-            List<KEY> expiredKeys = cacheMap.entrySet()
-                .stream()
-                .filter(expirableEntityEntry -> expirableEntityEntry.getValue().isExpired())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-            expiredKeys.forEach(cacheMap::remove);
-            log.info("Evicting expired entities finished for entity {}. Number of expired keys: {}", entityName, expiredKeys.size());
+            cacheComponentWrapper.getEvictExpiredEntitiesComponent().evictExpiredEntities(this);
         }
     }
 
     //TODO unit test
     public void syncChanges() {
-        log.info("Synchronizing modifications for entity {}...", entityName);
-        int synchedEntitiesAmount = cacheMap.values()
-            .stream()
-            .map(map -> {
-                //noinspection SynchronizationOnLocalVariableOrMethodParameter
-                synchronized (map) {
-                    List<ENTITY> entities = filterModified(map.getEntity());
-                    repository.saveAll(entities);
-                    entities.forEach(entity -> entity.setNew(false));
-                    return entities.size();
-                }
-            })
-            .mapToInt(Integer::intValue)
-            .sum();
-        log.info("Synchronization finished for entity {}. Updated entities: {}", entityName, synchedEntitiesAmount);
-    }
-
-    private List<ENTITY> filterModified(EntityMapping<ID, ENTITY> map) {
-        return map.values()
-            .stream()
-            .filter(ModifiableEntity::isModified)
-            .map(ModifiableEntity::getEntity)
-            .collect(Collectors.toList());
+        cacheComponentWrapper.getSyncChangesComponent().syncChanges(this);
     }
 
     //TODO unit test
     public void processDeletions() {
         synchronized (deleteQueue) {
-            log.info("Processing deletions for entity {}...", entityName);
-            ArrayList<ID> ids = new ArrayList<>(deleteQueue);
-            chunks(ids).forEach(this::deleteByIds);
-            deleteQueue.clear();
-            log.info("Deletion finished for entity {}. Number of deleted entities: {}", entityName, ids.size());
+            cacheComponentWrapper.getProcessDeletionsComponent().processDeletions(this);
         }
-    }
-
-    private static <T> List<List<T>> chunks(List<T> bigList) {
-        List<List<T>> chunks = new ArrayList<>();
-
-        for (int i = 0; i < bigList.size(); i += CacheRepository.MAX_CHUNK_SIZE) {
-            List<T> chunk = bigList.subList(i, Math.min(bigList.size(), i + CacheRepository.MAX_CHUNK_SIZE));
-            chunks.add(chunk);
-        }
-        log.debug("Number of entities {} was chunked to {} parts.", bigList.size(), chunks.size());
-        return chunks;
     }
 
     @Override
     //TODO unit test
     public <S extends ENTITY> S save(S entity) {
-        log.debug("Saving entity {}", entity);
-        getMap(keyMapper.apply(entity)).put(Objects.requireNonNull(entity.getId()), new ModifiableEntity<>(entity, true));
-        deleteQueue.remove(entity.getId());
-        return entity;
-    }
-
-    private EntityMapping<ID, ENTITY> getMap(KEY key) {
-        if (!cacheMap.containsKey(key)) {
-            log.debug("Cache does not contain key {}. Loading entities...", key);
-            loadByKey(key);
-        }
-        return cacheMap.get(key).updateLastAccessAndGetEntity();
-
+        return cacheComponentWrapper.getSaveComponent().save(this, keyMapper, entity, cacheContext);
     }
 
     @Override
@@ -162,29 +94,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
 
     @Override
     public Optional<ENTITY> findById(ID id) {
-        if (deleteQueue.contains(id)) {
-            log.debug("Entity {} with id {} is already deleted.", entityName, id);
-            return Optional.empty();
-        }
-        Optional<ENTITY> cachedEntity = cacheMap.values()
-            .stream()
-            .map(ExpirableEntity::getEntity)
-            .flatMap(map -> extractEntities(map).values().stream())
-            .filter(entity -> Objects.equals(entity.getId(), id))
-            .findAny();
-
-        cachedEntity.ifPresent(entity -> cacheMap.get(keyMapper.apply(entity)).updateLastAccess());
-        return cachedEntity.isPresent() ? cachedEntity : searchInRepository(id);
-    }
-
-    private Optional<ENTITY> searchInRepository(ID id) {
-        log.debug("Entity {} is not found in cache with id {}. Searching in repository...", entityName, id);
-        Optional<ENTITY> entityOptional = repository.findById(id);
-        entityOptional.ifPresent(entity -> {
-            log.debug("Entity {} is found in repository with id {}. Loading to cache...", entityName, id);
-            loadByKey(keyMapper.apply(entity));
-        });
-        return entityOptional;
+        return getCacheComponentWrapper().getFindById().findById(this, keyMapper, id, cacheContext);
     }
 
     @Override
@@ -200,47 +110,7 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     @Override
     //TODO unit test
     public Iterable<ENTITY> findAll() {
-        Iterable<ENTITY> entities = repository.findAll();
-        return CollectionUtil.toList(entities).stream()
-            .filter(entity -> !deleteQueue.contains(entity.getId()))
-            .collect(Collectors.groupingBy(keyMapper))
-            .entrySet()
-            .stream()
-            .peek(entry -> addToCache(entry.getKey(), entry.getValue()))
-            .flatMap(entry -> entry.getValue().stream())
-            .collect(Collectors.toList());
-    }
-
-    private synchronized void loadByKey(KEY key) {
-        List<ENTITY> entities = getByKey(key);
-        log.info("Entities {} loaded by key {}: {}", entityName, key, entities.size());
-        addToCache(key, entities);
-    }
-
-    private void addToCache(KEY key, List<ENTITY> entities) {
-        log.debug("Adding to cache entities with key {}: {}", key, entities);
-        List<ENTITY> filteredList = filterDeleted(entities);
-        Map<ID, ENTITY> map = mapEntities(filteredList);
-        ExpirableEntity<EntityMapping<ID, ENTITY>> wrappedEntities = wrapEntities(map);
-        cacheMap.put(key, wrappedEntities);
-    }
-
-    private List<ENTITY> filterDeleted(List<ENTITY> entities) {
-        return entities.stream()
-            .filter(entity -> !deleteQueue.contains(entity.getId()))
-            .collect(Collectors.toList());
-    }
-
-    private Map<ID, ENTITY> mapEntities(List<ENTITY> values) {
-        return values.stream()
-            .collect(Collectors.toMap(Persistable::getId, Function.identity()));
-    }
-
-    private ExpirableEntity<EntityMapping<ID, ENTITY>> wrapEntities(Map<ID, ENTITY> map) {
-        Map<ID, ModifiableEntity<ENTITY>> entities = map.entrySet()
-            .stream()
-            .collect(Collectors.toMap(Map.Entry::getKey, identityEntry -> new ModifiableEntity<>(identityEntry.getValue(), false)));
-        return new ExpirableEntity<>(new EntityMapping<>(entities), cacheContext);
+        return cacheComponentWrapper.getFindAll().findAll(this, keyMapper, cacheContext);
     }
 
     @Override
@@ -278,22 +148,8 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
 
     @Override
     //TODO unit test
-    public void deleteAll(Iterable<? extends ENTITY> iterable) {
-        List<ID> ids = CollectionUtil.toList(iterable)
-            .stream()
-            .map(Persistable::getId)
-            .collect(Collectors.toList());
-
-        log.debug("Deleting entities {} with id {}", entityName, ids);
-
-        cacheMap.values()
-            .forEach(expirableMap -> {
-                boolean elementWasRemoved = expirableMap.getEntity().entrySet().removeIf(entry -> ids.contains(entry.getKey()));
-                if (elementWasRemoved) {
-                    expirableMap.updateLastAccess();
-                }
-            });
-        deleteQueue.addAll(ids);
+    public void deleteAll(Iterable<? extends ENTITY> entities) {
+        cacheComponentWrapper.getDeleteAll().deleteAll(this, entities);
     }
 
     @Override

@@ -6,7 +6,7 @@ import lombok.NonNull;
 
 @AllArgsConstructor
 @Data
-class ModifiableEntity<TYPE> {
+public class ModifiableEntity<TYPE> {
     @NonNull
     private final TYPE entity;
 

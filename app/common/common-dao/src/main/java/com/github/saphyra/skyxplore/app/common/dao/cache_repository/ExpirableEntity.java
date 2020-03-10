@@ -7,32 +7,32 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-class ExpirableEntity<TYPE> {
+public class ExpirableEntity<TYPE> {
     private final TYPE entity;
     private volatile OffsetDateTime lastAccess;
     private final OffsetDateTimeProvider offsetDateTimeProvider;
     private final Integer expiration;
 
     @Builder
-    ExpirableEntity(TYPE entity, CacheContext cacheContext) {
+    public ExpirableEntity(TYPE entity, CacheContext cacheContext) {
         this.entity = entity;
         this.offsetDateTimeProvider = cacheContext.getOffsetDateTimeProvider();
         lastAccess = offsetDateTimeProvider.getCurrentDate();
         expiration = cacheContext.getCacheRepositoryExpirationSeconds();
     }
 
-    synchronized void updateLastAccess() {
+    public synchronized void updateLastAccess() {
         OffsetDateTime now = offsetDateTimeProvider.getCurrentDate();
         if (now.isAfter(lastAccess)) {
             lastAccess = now;
         }
     }
 
-    boolean isExpired() {
+    public boolean isExpired() {
         return lastAccess.isBefore(offsetDateTimeProvider.getCurrentDate().minusSeconds(expiration));
     }
 
-    TYPE updateLastAccessAndGetEntity() {
+    public TYPE updateLastAccessAndGetEntity() {
         updateLastAccess();
         return getEntity();
     }
