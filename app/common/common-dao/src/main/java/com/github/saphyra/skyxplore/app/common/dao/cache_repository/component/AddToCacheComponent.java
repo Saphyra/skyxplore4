@@ -14,7 +14,6 @@ import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ExpirableEntity;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEntity;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO refactor - split
-//TODO unit test
 class AddToCacheComponent {
+    private final EntityWrapperComponent entityWrapperComponent;
+
     <KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> void addToCache(CacheRepository<KEY, ENTITY, ID, REPOSITORY> repository, KEY key, List<ENTITY> entities, CacheContext cacheContext) {
         log.debug("Adding to cache entities with key {}: {}", key, entities);
         List<ENTITY> filteredList = filterDeleted(repository.getDeleteQueue(), entities);
         Map<ID, ENTITY> map = mapEntities(filteredList);
-        ExpirableEntity<EntityMapping<ID, ENTITY>> wrappedEntities = wrapEntities(map, cacheContext);
+        ExpirableEntity<EntityMapping<ID, ENTITY>> wrappedEntities = entityWrapperComponent.wrapEntities(map, cacheContext);
         repository.getCacheMap().put(key, wrappedEntities);
     }
 
@@ -42,12 +41,5 @@ class AddToCacheComponent {
     private <ID, ENTITY extends SettablePersistable<ID>> Map<ID, ENTITY> mapEntities(List<ENTITY> values) {
         return values.stream()
             .collect(Collectors.toMap(Persistable::getId, Function.identity()));
-    }
-
-    private <ID, ENTITY> ExpirableEntity<EntityMapping<ID, ENTITY>> wrapEntities(Map<ID, ENTITY> map, CacheContext cacheContext) {
-        Map<ID, ModifiableEntity<ENTITY>> entities = map.entrySet()
-            .stream()
-            .collect(Collectors.toMap(Map.Entry::getKey, identityEntry -> new ModifiableEntity<>(identityEntry.getValue(), false)));
-        return new ExpirableEntity<>(new EntityMapping<>(entities), cacheContext);
     }
 }
