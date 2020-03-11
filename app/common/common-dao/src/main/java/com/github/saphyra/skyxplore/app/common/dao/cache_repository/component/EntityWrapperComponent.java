@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 class EntityWrapperComponent {
     <ID, ENTITY> ExpirableEntity<EntityMapping<ID, ENTITY>> wrapEntities(Map<ID, ENTITY> map, CacheContext cacheContext) {
         Map<ID, ModifiableEntity<ENTITY>> entities = map.entrySet()

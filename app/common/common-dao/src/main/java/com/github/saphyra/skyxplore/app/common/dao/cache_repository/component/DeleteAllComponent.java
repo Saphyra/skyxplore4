@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 public class DeleteAllComponent {
     public <KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> void deleteAll(CacheRepository<KEY, ENTITY, ID, REPOSITORY> repository, Iterable<? extends ENTITY> iterable) {
         List<ID> ids = CollectionUtil.toList(iterable)
