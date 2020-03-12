@@ -14,11 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 public class GetEntityMappingComponent {
     private final LoadByKeyComponent loadByKey;
 
-    public <KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> EntityMapping<ID, ENTITY> getEntityMapping(CacheRepository<KEY, ENTITY, ID, REPOSITORY> repository, KEY key, CacheContext cacheContext){
+    public <KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> EntityMapping<ID, ENTITY> getEntityMapping(CacheRepository<KEY, ENTITY, ID, REPOSITORY> repository, KEY key, CacheContext cacheContext) {
         CacheMap<KEY, ID, ENTITY> cacheMap = repository.getCacheMap();
         if (!cacheMap.containsKey(key)) {
             log.debug("Cache does not contain key {}. Loading entities...", key);

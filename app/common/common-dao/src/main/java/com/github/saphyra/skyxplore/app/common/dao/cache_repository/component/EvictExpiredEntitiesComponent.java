@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 public class EvictExpiredEntitiesComponent {
 
     public <KEY, ENTITY extends SettablePersistable<ID>, ID, REPOSITORY extends CrudRepository<ENTITY, ID>> void evictExpiredEntities(CacheRepository<KEY, ENTITY, ID, REPOSITORY> repository) {

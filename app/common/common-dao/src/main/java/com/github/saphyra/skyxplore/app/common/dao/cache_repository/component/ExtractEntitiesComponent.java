@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 class ExtractEntitiesComponent {
 
     <ID, ENTITY> Map<ID, ENTITY> extractEntities(EntityMapping<ID, ENTITY> map) {

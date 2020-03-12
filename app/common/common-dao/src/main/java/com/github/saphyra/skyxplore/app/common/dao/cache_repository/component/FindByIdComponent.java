@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 public class FindByIdComponent {
     private final ExtractEntitiesComponent extractEntitiesComponent;
     private final SearchInRepositoryComponent searchInRepository;
