@@ -1,11 +1,5 @@
 package com.github.saphyra.skyxplore.app.common.dao.cache_repository.component;
 
-import java.util.Objects;
-import java.util.function.Function;
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
@@ -13,11 +7,15 @@ import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEn
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
+
+import java.util.Objects;
+import java.util.function.Function;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 public class SaveComponent {
     private final GetEntityMappingComponent getEntityMappingComponent;
 
