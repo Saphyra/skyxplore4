@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 class LoadByKeyComponent {
     private final AddToCacheComponent addToCache;
 
