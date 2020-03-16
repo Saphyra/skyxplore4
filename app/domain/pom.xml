@@ -77,5 +77,8 @@
         <module>domain-game</module>
         <module>domain-player</module>
         <module>domain-data</module>
+        <module>domain-star</module>
+        <module>domain-research</module>
+        <module>domain-coordinate</module>
     </modules>
 </project>

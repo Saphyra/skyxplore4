@@ -27,7 +27,6 @@ public class ExceptionFactory {
     private static final String PRIORITY_NOT_FOUND_PREFIX = "Priority not found for starId %s, priorityType %s and playerId %s";
     private static final String RESEARCH_NOT_PRESENT_PREFIX = "Research not present.";
     private static final String RESERVATION_NOT_FOUND_BY_EXTERNAL_REFERENCE_AND_DATA_ID = "Reservation not found by externalReference %s and dataId %s for player %s";
-    private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String STORAGE_FULL_PREFIX = "Storage for type %s is full at system %s";
     private static final String STORAGE_SETTING_ALREADY_EXISTS_PREFIX = "StorageSetting already exists for starId %s and dataId %s";
     private static final String STORAGE_SETTING_NOT_FOUND = "StorageSetting not found by storageSettingId %s and playerId %s";
@@ -74,8 +73,6 @@ public class ExceptionFactory {
         return new BadRequestException(createErrorMessage(ErrorCode.MAX_LEVEL_REACHED), String.format(MAX_LEVEL_REACHED_PREFIX, buildingId));
     }
 
-
-
     public static RestException priorityNotFound(UUID starId, PriorityType type, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.PRIORITY_NOT_FOUND), String.format(PRIORITY_NOT_FOUND_PREFIX, starId, type, playerId));
     }
@@ -86,10 +83,6 @@ public class ExceptionFactory {
 
     public static RestException reservationNotFoundByExternalReferenceAndDataId(UUID externalReference, String dataId, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.RESERVATION_NOT_FOUND), String.format(RESERVATION_NOT_FOUND_BY_EXTERNAL_REFERENCE_AND_DATA_ID, externalReference, dataId, playerId));
-    }
-
-    public static RestException starNotFound(UUID starId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.STAR_NOT_FOUND), String.format(STAR_NOT_FOUND_PREFIX, starId.toString()));
     }
 
     public static RestException storageFull(UUID starId, StorageType storageType) {
