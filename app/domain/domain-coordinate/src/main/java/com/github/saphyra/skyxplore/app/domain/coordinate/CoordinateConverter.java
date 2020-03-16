@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-//TODO unit test
 public class CoordinateConverter {
     public Coordinate convertEntity(CoordinateEntity entity) {
         return Coordinate.builder()
