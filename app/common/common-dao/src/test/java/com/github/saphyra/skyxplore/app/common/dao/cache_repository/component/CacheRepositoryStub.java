@@ -10,7 +10,7 @@ import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 
 public class CacheRepositoryStub extends CacheRepository<UUID, EntityStub, UUID, CrudRepository<EntityStub, UUID>> {
-    protected CacheRepositoryStub(CrudRepository<EntityStub, UUID> repository, CacheContext cacheContext) {
+    public CacheRepositoryStub(CrudRepository<EntityStub, UUID> repository, CacheContext cacheContext) {
         super(repository, EntityStub::getKey, cacheContext);
     }
 
