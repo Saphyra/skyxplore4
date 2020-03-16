@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
-//TODO unit test
 public class CachingPlayerRepository extends CacheRepository<String, PlayerEntity, String, PlayerRepository> implements PlayerRepository {
     protected CachingPlayerRepository(PlayerRepository repository, CacheContext cacheContext) {
         super(repository, PlayerEntity::getGameId, cacheContext);

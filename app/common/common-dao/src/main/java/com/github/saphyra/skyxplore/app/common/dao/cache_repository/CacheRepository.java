@@ -42,7 +42,8 @@ public abstract class CacheRepository<KEY, ENTITY extends SettablePersistable<ID
     public abstract void deleteByIds(List<ID> ids);
 
     protected void deleteByKey(KEY key) {
-        cacheComponentWrapper.getDeleteByKey().deleteByKey(this, key);
+        cacheComponentWrapper.getDeleteByKey()
+            .deleteByKey(this, key);
     }
 
     protected Map<ID, ENTITY> getMapByKey(KEY key) {

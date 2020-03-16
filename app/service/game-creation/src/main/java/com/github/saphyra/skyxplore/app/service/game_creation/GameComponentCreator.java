@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.saphyra.skyxplore.app.common.event.GameCreatedEvent;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.service.game_creation.player.PlayerCreationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

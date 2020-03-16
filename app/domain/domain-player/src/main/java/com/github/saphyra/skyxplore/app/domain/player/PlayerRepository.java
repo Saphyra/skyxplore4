@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-//TODO unit test
 interface PlayerRepository extends CrudRepository<PlayerEntity, String> {
     @Modifying
     @Query("DELETE FROM PlayerEntity e WHERE e.gameId = :gameId")
@@ -22,7 +21,7 @@ interface PlayerRepository extends CrudRepository<PlayerEntity, String> {
     @Transactional
     void deleteByPlayerIdIn(List<String> playerIds);
 
-    List<PlayerEntity> getByGameId(String gameId);
-
     Optional<PlayerEntity> findByGameIdAndPlayerId(String gameId, String playerId);
+
+    List<PlayerEntity> getByGameId(String gameId);
 }
