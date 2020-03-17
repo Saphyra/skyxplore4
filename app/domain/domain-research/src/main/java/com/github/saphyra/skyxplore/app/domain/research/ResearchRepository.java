@@ -11,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-//TODO unit test
 public interface ResearchRepository extends CrudRepository<ResearchEntity, String> {
     @Modifying
     @Query("DELETE FROM ResearchEntity e WHERE e.gameId = :gameId")

@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-//TODO unit test
 public class ResearchConverter extends ConverterBase<ResearchEntity, Research> {
     private final UuidConverter uuidConverter;
 
@@ -20,7 +19,7 @@ public class ResearchConverter extends ConverterBase<ResearchEntity, Research> {
             .gameId(uuidConverter.convertEntity(entity.getGameId()))
             .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
             .dataId(entity.getDataId())
-            .isNew(entity.isNew())
+            .isNew(false)
             .build();
     }
 

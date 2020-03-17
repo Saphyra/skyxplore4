@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 public class ResearchQueryService {
     private final RequestContextHolder requestContextHolder;
     private final ResearchDao researchDao;

@@ -12,17 +12,18 @@ import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
-//TODO unit test
 public class CachingResearchRepository extends CacheRepository<String, ResearchEntity, String, ResearchRepository> implements ResearchRepository {
     private final UuidConverter uuidConverter;
     private final RequestContextHolder requestContextHolder;
 
+    @Builder
     protected CachingResearchRepository(ResearchRepository repository, UuidConverter uuidConverter, RequestContextHolder requestContextHolder, CacheContext cacheContext) {
         super(repository, ResearchEntity::getGameId, cacheContext);
         this.uuidConverter = uuidConverter;

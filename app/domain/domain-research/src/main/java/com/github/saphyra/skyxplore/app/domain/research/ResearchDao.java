@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 public class ResearchDao extends AbstractDao<ResearchEntity, Research, String, ResearchRepository> {
     private final UuidConverter uuidConverter;
 
