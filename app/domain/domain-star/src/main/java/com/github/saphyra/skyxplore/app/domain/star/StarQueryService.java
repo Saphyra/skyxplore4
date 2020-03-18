@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class StarQueryService {
     private final RequestContextHolder requestContextHolder;
     private final StarDao starDao;

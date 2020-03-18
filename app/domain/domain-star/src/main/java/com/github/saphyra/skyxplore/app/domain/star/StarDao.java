@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 class StarDao extends AbstractDao<StarEntity, Star, String, StarRepository> {
     private final UuidConverter uuidConverter;
 
@@ -37,10 +36,5 @@ class StarDao extends AbstractDao<StarEntity, Star, String, StarRepository> {
         return converter.convertEntity(repository.getByOwnerId(
             uuidConverter.convertDomain(ownerId)
         ));
-    }
-
-    @Override
-    public void saveAll(List<Star> createdStars) {
-        repository.saveAll(converter.convertDomain(createdStars));
     }
 }

@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-//TODO unit test
 public class StarConverter extends ConverterBase<StarEntity, Star> {
     private final CoordinateConverter coordinateConverter;
     private final RequestContextHolder requestContextHolder;
@@ -26,7 +25,7 @@ public class StarConverter extends ConverterBase<StarEntity, Star> {
             .starName(stringEncryptor.decryptEntity(entity.getStarName(), uuidConverter.convertDomain(requestContextHolder.get().getUserId())))
             .coordinate(coordinateConverter.convertEntity(entity.getCoordinates()))
             .ownerId(uuidConverter.convertEntity(entity.getOwnerId()))
-            .isNew(entity.isNew())
+            .isNew(false)
             .build();
     }
 
