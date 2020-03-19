@@ -22,9 +22,11 @@ public class StarNames extends ClassPathList<String> {
 
     public String getRandomStarName(List<String> usedStarNames) {
         String result;
+        int counter = 0;
         do {
             result = get(random.randInt(0, size() - 1));
-        } while (usedStarNames.contains(result));
+            counter++;
+        } while (usedStarNames.contains(result) || counter == 1000);
         log.debug("StarName generated: {}", result);
         return result;
     }

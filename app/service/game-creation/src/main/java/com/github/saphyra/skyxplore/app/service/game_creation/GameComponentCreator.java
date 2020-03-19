@@ -12,7 +12,6 @@ import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHol
 import com.github.saphyra.skyxplore.app.common.service.DomainSaverService;
 import com.github.saphyra.skyxplore.app.common.utils.Mapping;
 import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.app.domain.player.Player;
 import com.github.saphyra.skyxplore.app.domain.star.Star;
 import com.github.saphyra.skyxplore.app.service.game_creation.game.GameCreationService;
 import com.github.saphyra.skyxplore.app.service.game_creation.player.PlayerCreationService;
@@ -56,9 +55,9 @@ public class GameComponentCreator {
             UUID gameId = gameCreationService.createGame(gameName, userId);
 
             List<Coordinate> coordinates = coordinateProvider.getRandomCoordinates();
-            List<Mapping<Coordinate, Player>> coordinatePlayerMapping = playerCreationService.create(gameId, userId, coordinates);
+            List<Mapping<Coordinate, UUID>> coordinatePlayerIdMapping = playerCreationService.create(gameId, userId, coordinates);
 
-            List<Star> createdStars = starCreationService.createStars(gameId, coordinatePlayerMapping);
+            List<Star> createdStars = starCreationService.createStars(gameId, coordinatePlayerIdMapping);
 
             //connectionCreationService.createConnections(createdStars);
             //priorityCreationService.createForStars(createdStars);

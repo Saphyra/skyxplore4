@@ -24,7 +24,8 @@ import com.github.saphyra.skyxplore.app.domain.player.Player;
 public class PlayerCreationServiceTest {
     private static final UUID GAME_ID = UUID.randomUUID();
     private static final UUID USER_ID = UUID.randomUUID();
-    private static final UUID PLAYER_ID = UUID.randomUUID();
+    private static final UUID PLAYER_ID_1 = UUID.randomUUID();
+    private static final UUID PLAYER_ID_2 = UUID.randomUUID();
     private static final String PLAYER_NAME = "player-name";
 
     @Mock
@@ -50,12 +51,15 @@ public class PlayerCreationServiceTest {
         given(player.getPlayerName()).willReturn(PLAYER_NAME);
         given(playerFactory.create(GAME_ID, USER_ID, true, Arrays.asList(PLAYER_NAME))).willReturn(ai);
 
-        List<Mapping<Coordinate, Player>> result = underTest.create(GAME_ID, USER_ID, Arrays.asList(coordinate1, coordinate2));
+        given(player.getPlayerId()).willReturn(PLAYER_ID_1);
+        given(ai.getPlayerId()).willReturn(PLAYER_ID_2);
+
+        List<Mapping<Coordinate, UUID>> result = underTest.create(GAME_ID, USER_ID, Arrays.asList(coordinate1, coordinate2));
 
         verify(domainSaverService).add(player);
         verify(domainSaverService).add(ai);
 
-        assertThat(result).contains(new Mapping<>(coordinate1, player));
-        assertThat(result).contains(new Mapping<>(coordinate2, ai));
+        assertThat(result).contains(new Mapping<>(coordinate1, PLAYER_ID_1));
+        assertThat(result).contains(new Mapping<>(coordinate2, PLAYER_ID_2));
     }
 }
