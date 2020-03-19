@@ -1,10 +1,11 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.view.star;
+package com.github.saphyra.skyxplore.app.rest.view.map;
 
-import com.github.saphyra.skyxplore_deprecated.common.ViewConverter;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.app.common.common_request.ViewConverter;
+import com.github.saphyra.skyxplore.app.domain.star.Star;
 import org.springframework.stereotype.Component;
 
 @Component
+//TODO unit test
 public class StarMapViewConverter implements ViewConverter<Star, StarMapView> {
     @Override
     public StarMapView convertDomain(Star domain) {

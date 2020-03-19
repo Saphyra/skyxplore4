@@ -1,16 +1,16 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
-
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.UUID;
 
 @Component
 @Slf4j
+//TODO unit test
 class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarConnection, String, StarConnectionRepository> {
     private final UuidConverter uuidConverter;
 
@@ -29,7 +29,7 @@ class StarConnectionDao extends AbstractDao<StarConnectionEntity, StarConnection
         repository.saveAll(converter.convertDomain(connections));
     }
 
-    List<StarConnection> getByGameIdAndUserId(UUID gameId) {
+    List<StarConnection> getByGameId(UUID gameId) {
         return converter.convertEntity(
             repository.getByGameId(
                 uuidConverter.convertDomain(gameId)

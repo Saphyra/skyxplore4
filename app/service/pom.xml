@@ -41,6 +41,12 @@
             <artifactId>domain-star</artifactId>
             <version>${artifact.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>domain-star-connection</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -50,5 +56,6 @@
         <module>game-creation</module>
         <module>service-common</module>
         <module>service-game</module>
+        <module>query</module>
     </modules>
 </project>

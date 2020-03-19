@@ -1,8 +1,8 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.map.star;
+package com.github.saphyra.skyxplore.app.service.query;
 
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.Star;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.StarQueryService;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.domain.star.Star;
+import com.github.saphyra.skyxplore.app.domain.star.StarQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+//TODO unit test
 public class VisibleStarQueryService {
     private final RequestContextHolder requestContextHolder;
     private final StarQueryService starQueryService;

@@ -1,11 +1,12 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.controller.game;
+package com.github.saphyra.skyxplore.app.rest.controller;
 
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.MapView;
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.connection.StarConnectionView;
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.star.StarMapView;
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.star.StarMapViewConverter;
-import com.github.saphyra.skyxplore_deprecated.game.service.map.connection.VisibleStarConnectionQueryService;
-import com.github.saphyra.skyxplore_deprecated.game.service.map.star.VisibleStarQueryService;
+import com.github.saphyra.skyxplore.app.rest.view.map.MapView;
+import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionView;
+import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionViewConverter;
+import com.github.saphyra.skyxplore.app.rest.view.map.StarMapView;
+import com.github.saphyra.skyxplore.app.rest.view.map.StarMapViewConverter;
+import com.github.saphyra.skyxplore.app.service.query.VisibleStarConnectionQueryService;
+import com.github.saphyra.skyxplore.app.service.query.VisibleStarQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +16,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.API_PREFIX;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+//TODO unit test
+//TODO api test
 public class MapViewController {
     private static final String GET_STARS_MAPPING = API_PREFIX + "/game/map";
 
+    private final StarConnectionViewConverter starConnectionViewConverter;
     private final StarMapViewConverter starMapViewConverter;
     private final VisibleStarConnectionQueryService visibleStarConnectionQueryService;
     private final VisibleStarQueryService visibleStarQueryService;
@@ -40,6 +44,8 @@ public class MapViewController {
         List<UUID> visibleStarIds = visibleStars.stream()
             .map(StarMapView::getStarId)
             .collect(Collectors.toList());
-        return visibleStarConnectionQueryService.getVisibleByStars(visibleStarIds);
+        return visibleStarConnectionQueryService.getVisibleByStars(visibleStarIds).stream()
+            .map(starConnectionViewConverter::convertDomain)
+            .collect(Collectors.toList());
     }
 }

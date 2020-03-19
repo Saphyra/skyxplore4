@@ -1,13 +1,14 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.view.connection;
+package com.github.saphyra.skyxplore.app.rest.view.map;
 
-import com.github.saphyra.skyxplore_deprecated.common.ViewConverter;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.connection.StarConnection;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.StarQueryService;
+import com.github.saphyra.skyxplore.app.common.common_request.ViewConverter;
+import com.github.saphyra.skyxplore.app.domain.star.StarQueryService;
+import com.github.saphyra.skyxplore.app.domain.star_connection.StarConnection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 public class StarConnectionViewConverter implements ViewConverter<StarConnection, StarConnectionView> {
     private final StarQueryService starQueryService;
 

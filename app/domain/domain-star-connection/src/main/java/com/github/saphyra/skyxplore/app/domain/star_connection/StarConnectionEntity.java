@@ -1,6 +1,6 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.SettablePersistable;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

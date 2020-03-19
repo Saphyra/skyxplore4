@@ -80,5 +80,6 @@
         <module>domain-star</module>
         <module>domain-research</module>
         <module>domain-coordinate</module>
+        <module>domain-star-connection</module>
     </modules>
 </project>

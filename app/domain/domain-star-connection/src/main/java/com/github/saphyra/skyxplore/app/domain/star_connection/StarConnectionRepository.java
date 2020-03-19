@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+//TODO unit test
 interface StarConnectionRepository extends CrudRepository<StarConnectionEntity, String> {
     @Transactional
     void deleteByConnectionIdIn(List<String> connectionIds);

@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

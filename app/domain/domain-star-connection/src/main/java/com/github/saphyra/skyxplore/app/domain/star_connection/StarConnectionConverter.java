@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
 import org.springframework.stereotype.Component;
 
@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
+//TODO unit test
 public class StarConnectionConverter extends ConverterBase<StarConnectionEntity, StarConnection> {
     private final UuidConverter uuidConverter;
 

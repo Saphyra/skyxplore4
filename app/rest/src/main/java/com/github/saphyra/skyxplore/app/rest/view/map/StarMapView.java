@@ -1,6 +1,6 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.view.star;
+package com.github.saphyra.skyxplore.app.rest.view.map;
 
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.Coordinate;
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContext;
-import com.github.saphyra.skyxplore_deprecated.common.context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 public class StarConnectionQueryService {
     private final RequestContextHolder requestContextHolder;
     private final StarConnectionDao starConnectionDao;
@@ -17,7 +18,6 @@ public class StarConnectionQueryService {
     public List<StarConnection> getByGameIdAndUserId() {
         RequestContext context = requestContextHolder.get();
         UUID gameId = context.getGameId();
-        UUID userId = context.getUserId();
-        return starConnectionDao.getByGameIdAndUserId(gameId);
+        return starConnectionDao.getByGameId(gameId);
     }
 }

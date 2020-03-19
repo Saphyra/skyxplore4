@@ -1,5 +1,7 @@
 package com.github.saphyra.skyxplore.server.app.configuration;
 
+import com.github.saphyra.skyxplore.app.domain.star_connection.StarConnectionScanner;
+import com.github.saphyra.skyxplore.app.service.query.QueryScanner;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -47,10 +49,12 @@ import com.github.saphyra.skyxplore.web.WebScanner;
         GameCreationScanner.class,
         GameScanner.class,
         PlayerScanner.class,
+        QueryScanner.class,
         RequestContextScanner.class,
         RestScanner.class,
         ServiceCommonScanner.class,
         ServiceGameScanner.class,
+        StarConnectionScanner.class,
         StarScanner.class,
         StorageScanner.class,
         WebScanner.class

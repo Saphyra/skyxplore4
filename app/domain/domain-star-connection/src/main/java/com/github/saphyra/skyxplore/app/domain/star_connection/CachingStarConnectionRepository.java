@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.connection;
+package com.github.saphyra.skyxplore.app.domain.star_connection;
 
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.CacheContext;
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.CacheRepository;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
@@ -14,6 +14,7 @@ import java.util.List;
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
+//TODO unit test
 public class CachingStarConnectionRepository extends CacheRepository<String, StarConnectionEntity, String, StarConnectionRepository> implements StarConnectionRepository {
 
     protected CachingStarConnectionRepository(StarConnectionRepository repository, CacheContext cacheContext) {
@@ -21,14 +22,14 @@ public class CachingStarConnectionRepository extends CacheRepository<String, Sta
     }
 
     @Override
-    protected List<StarConnectionEntity> getByKey(String gameId) {
+    public List<StarConnectionEntity> getByKey(String gameId) {
         List<StarConnectionEntity> entities = repository.getByGameId(gameId);
         log.info("StarConnectionEntities loaded by gameId {}: {}", gameId, entities.size());
         return entities;
     }
 
     @Override
-    protected void deleteByIds(List<String> connectionIds) {
+    public void deleteByIds(List<String> connectionIds) {
         repository.deleteByConnectionIdIn(connectionIds);
     }
 

@@ -1,7 +1,5 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.view;
+package com.github.saphyra.skyxplore.app.rest.view.map;
 
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.connection.StarConnectionView;
-import com.github.saphyra.skyxplore_deprecated.game.rest.view.star.StarMapView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
