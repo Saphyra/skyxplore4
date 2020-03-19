@@ -17,7 +17,7 @@ import com.github.saphyra.skyxplore.app.domain.game.GameQueryService;
 import com.github.saphyra.skyxplore.app.rest.view.game.GameView;
 import com.github.saphyra.skyxplore.app.rest.view.game.GameViewConverter;
 import com.github.saphyra.skyxplore.app.service.game.GameDeletionService;
-import com.github.saphyra.skyxplore.app.service.game_creation.game.GameCreationService;
+import com.github.saphyra.skyxplore.app.service.game_creation.GameComponentCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +29,7 @@ public class GameController {
     private static final String DELETE_GAME_MAPPING = RequestConstants.API_PREFIX + "/game/{gameId}";
     private static final String GET_GAMES_MAPPING = RequestConstants.API_PREFIX + "/game";
 
-    private final GameCreationService gameCreationService;
+    private final GameComponentCreator gameComponentCreator;
     private final GameQueryService gameQueryService;
     private final GameDeletionService gameDeletionService;
     private final GameViewConverter gameViewConverter;
@@ -39,7 +39,7 @@ public class GameController {
     public String createGame(
         @RequestBody OneStringParamRequest gameName
     ) {
-        return uuidConverter.convertDomain(gameCreationService.createGame(gameName.getValue()));
+        return uuidConverter.convertDomain(gameComponentCreator.createGame(gameName.getValue()));
     }
 
     @DeleteMapping(DELETE_GAME_MAPPING)

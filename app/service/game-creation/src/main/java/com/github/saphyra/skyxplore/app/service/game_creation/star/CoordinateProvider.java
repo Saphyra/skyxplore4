@@ -14,19 +14,20 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
-class CoordinateProvider {
+public class CoordinateProvider {
     private final DistanceCalculator distanceCalculator;
     private final Random random;
     private final StarCreatorConfiguration configuration;
 
-    List<Coordinate> getRandomCoordinates() {
+    public List<Coordinate> getRandomCoordinates() {
         List<Coordinate> result = new ArrayList<>();
         for (int i = 0; i < configuration.getCreationAttempts(); i++) {
             Coordinate coordinate = getRandomCoordinate();
             if (isPlaceable(result, coordinate)) {
                 log.debug("Placeable coordinate found: {} for attempt: {}", coordinate, i);
                 result.add(coordinate);
+            } else if (log.isDebugEnabled()) {
+                log.debug("Coordinate {} is not placeable for attempt {}", coordinate, i);
             }
         }
         log.info("Number of placeable star coordinates: {}", result.size());

@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -14,8 +16,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.github.saphyra.skyxplore.app.common.service.DomainSaverService;
+import com.github.saphyra.skyxplore.app.common.utils.Mapping;
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.app.domain.player.Player;
-import com.github.saphyra.util.IdGenerator;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerCreationServiceTest {
@@ -28,26 +31,31 @@ public class PlayerCreationServiceTest {
     private DomainSaverService domainSaverService;
 
     @Mock
-    private IdGenerator idGenerator;
-
-    @Mock
-    private PlayerNameProvider playerNameProvider;
+    private PlayerFactory playerFactory;
 
     @InjectMocks
     private PlayerCreationService underTest;
 
+    @Mock
+    private Player player;
+
+    @Mock
+    private Player ai;
+
     @Test
     public void create() {
-        given(idGenerator.randomUUID()).willReturn(PLAYER_ID);
-        given(playerNameProvider.getPlayerName(true, USER_ID, Collections.emptyList())).willReturn(PLAYER_NAME);
+        Coordinate coordinate1 = new Coordinate(1, 1);
+        Coordinate coordinate2 = new Coordinate(2, 2);
+        given(playerFactory.create(GAME_ID, USER_ID, false, Collections.emptyList())).willReturn(player);
+        given(player.getPlayerName()).willReturn(PLAYER_NAME);
+        given(playerFactory.create(GAME_ID, USER_ID, true, Arrays.asList(PLAYER_NAME))).willReturn(ai);
 
-        Player result = underTest.create(GAME_ID, USER_ID, true, Collections.emptyList());
+        List<Mapping<Coordinate, Player>> result = underTest.create(GAME_ID, USER_ID, Arrays.asList(coordinate1, coordinate2));
 
-        verify(domainSaverService).add(result);
-        assertThat(result.getPlayerId()).isEqualTo(PLAYER_ID);
-        assertThat(result.getGameId()).isEqualTo(GAME_ID);
-        assertThat(result.getPlayerName()).isEqualTo(PLAYER_NAME);
-        assertThat(result.isAi()).isTrue();
-        assertThat(result.isNew()).isTrue();
+        verify(domainSaverService).add(player);
+        verify(domainSaverService).add(ai);
+
+        assertThat(result).contains(new Mapping<>(coordinate1, player));
+        assertThat(result).contains(new Mapping<>(coordinate2, ai));
     }
 }

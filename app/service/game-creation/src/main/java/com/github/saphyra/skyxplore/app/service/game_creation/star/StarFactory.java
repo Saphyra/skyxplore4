@@ -24,5 +24,4 @@ class StarFactory {
             .isNew(true)
             .build();
     }
-
 }

@@ -22,7 +22,7 @@ import com.github.saphyra.skyxplore.app.domain.game.GameQueryService;
 import com.github.saphyra.skyxplore.app.rest.view.game.GameView;
 import com.github.saphyra.skyxplore.app.rest.view.game.GameViewConverter;
 import com.github.saphyra.skyxplore.app.service.game.GameDeletionService;
-import com.github.saphyra.skyxplore.app.service.game_creation.game.GameCreationService;
+import com.github.saphyra.skyxplore.app.service.game_creation.GameComponentCreator;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameControllerTest {
@@ -31,7 +31,7 @@ public class GameControllerTest {
     private static final String GAME_ID_STRING = "game-id";
 
     @Mock
-    private GameCreationService gameCreationService;
+    private GameComponentCreator gameComponentCreator;
 
     @Mock
     private GameQueryService gameQueryService;
@@ -56,12 +56,12 @@ public class GameControllerTest {
 
     @Test
     public void createGame() {
-        given(gameCreationService.createGame(GAME_NAME)).willReturn(GAME_ID);
+        given(gameComponentCreator.createGame(GAME_NAME)).willReturn(GAME_ID);
         given(uuidConverter.convertDomain(GAME_ID)).willReturn(GAME_ID_STRING);
 
         String result = underTest.createGame(new OneStringParamRequest(GAME_NAME));
 
-        verify(gameCreationService).createGame(GAME_NAME);
+        verify(gameComponentCreator).createGame(GAME_NAME);
         assertThat(result).isEqualTo(GAME_ID_STRING);
     }
 

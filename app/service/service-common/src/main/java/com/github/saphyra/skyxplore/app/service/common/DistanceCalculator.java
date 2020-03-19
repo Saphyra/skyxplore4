@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 public class DistanceCalculator {
     public double getDistance(Coordinate c1, Coordinate c2) {
         int d1 = c1.getX() - c2.getX();
