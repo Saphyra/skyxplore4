@@ -1,13 +1,14 @@
 package com.github.saphyra.skyxplore.app.auth.error_handler;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.authservice.auth.ErrorResponseResolver;
 import com.github.saphyra.authservice.auth.domain.AuthContext;
 import com.github.saphyra.authservice.auth.domain.RestErrorResponse;
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor

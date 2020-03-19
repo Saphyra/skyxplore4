@@ -1,22 +1,23 @@
 package com.github.saphyra.skyxplore.app.auth;
 
-import com.github.saphyra.authservice.auth.domain.User;
-import com.github.saphyra.exceptionhandling.exception.NotFoundException;
-import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
-import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
-import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.BDDMockito.given;
+
+import java.util.Optional;
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.mockito.BDDMockito.given;
+import com.github.saphyra.authservice.auth.domain.User;
+import com.github.saphyra.exceptionhandling.exception.NotFoundException;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserQueryServiceTest {

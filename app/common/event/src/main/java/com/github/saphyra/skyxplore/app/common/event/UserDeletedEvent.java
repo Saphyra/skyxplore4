@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.app.common.event;
 
-import lombok.Data;
-
 import java.util.UUID;
+
+import lombok.Data;
 
 @Data
 public class UserDeletedEvent {

@@ -40,25 +40,25 @@ com:
             minSize: 15
             maxSize: 30
             surfaceTypeSpawnDetails:
-            - surfaceName: COAL_MINE
-              spawnRate: 1
-              optional: true
-            - surfaceName: DESERT
-              spawnRate: 3
-            - surfaceName: FOREST
-              spawnRate: 2
-            - surfaceName: LAKE
-              spawnRate: 1
-            - surfaceName: MOUNTAIN
-              spawnRate: 2
-              optional: false
-            - surfaceName: OIL_FIELD
-              spawnRate: 1
-            - surfaceName: ORE_MINE
-              spawnRate: 1
-            - surfaceName: VOLCANO
-              spawnRate: 2
-              optional: true
+              - surfaceName: COAL_MINE
+                spawnRate: 1
+                optional: true
+              - surfaceName: DESERT
+                spawnRate: 3
+              - surfaceName: FOREST
+                spawnRate: 2
+              - surfaceName: LAKE
+                spawnRate: 1
+              - surfaceName: MOUNTAIN
+                spawnRate: 2
+                optional: false
+              - surfaceName: OIL_FIELD
+                spawnRate: 1
+              - surfaceName: ORE_MINE
+                spawnRate: 1
+              - surfaceName: VOLCANO
+                spawnRate: 2
+                optional: true
           humanResource:
             workPoints: 10
           skill:

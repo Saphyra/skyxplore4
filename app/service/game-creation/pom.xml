@@ -28,6 +28,18 @@
             <artifactId>auth</artifactId>
             <version>${artifact.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>service-common</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>domain-game</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

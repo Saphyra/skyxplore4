@@ -15,11 +15,16 @@ import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorHandlingS
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextScanner;
 import com.github.saphyra.skyxplore.app.common.service.CommonServiceScanner;
 import com.github.saphyra.skyxplore.app.common.utils.CommonUtilsScanner;
+import com.github.saphyra.skyxplore.app.domain.coordinate.CoordinateScanner;
 import com.github.saphyra.skyxplore.app.domain.data.DomainDataScanner;
 import com.github.saphyra.skyxplore.app.domain.game.GameScanner;
 import com.github.saphyra.skyxplore.app.domain.player.PlayerScanner;
+import com.github.saphyra.skyxplore.app.domain.star.StarScanner;
 import com.github.saphyra.skyxplore.app.domain.storage.StorageScanner;
 import com.github.saphyra.skyxplore.app.domain.user.DomainUserScanner;
+import com.github.saphyra.skyxplore.app.rest.RestScanner;
+import com.github.saphyra.skyxplore.app.service.common.ServiceCommonScanner;
+import com.github.saphyra.skyxplore.app.service.game.ServiceGameScanner;
 import com.github.saphyra.skyxplore.app.service.game_creation.GameCreationScanner;
 import com.github.saphyra.skyxplore.web.WebScanner;
 
@@ -35,6 +40,7 @@ import com.github.saphyra.skyxplore.web.WebScanner;
         CommonConfigScanner.class,
         CommonServiceScanner.class,
         CommonUtilsScanner.class,
+        CoordinateScanner.class,
         DomainDataScanner.class,
         DomainUserScanner.class,
         ErrorHandlingScanner.class,
@@ -42,6 +48,10 @@ import com.github.saphyra.skyxplore.web.WebScanner;
         GameScanner.class,
         PlayerScanner.class,
         RequestContextScanner.class,
+        RestScanner.class,
+        ServiceCommonScanner.class,
+        ServiceGameScanner.class,
+        StarScanner.class,
         StorageScanner.class,
         WebScanner.class
     })

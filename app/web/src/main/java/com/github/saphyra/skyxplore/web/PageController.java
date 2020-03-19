@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
-import com.github.saphyra.skyxplore.app.domain.game.domain.GameQueryService;
+import com.github.saphyra.skyxplore.app.domain.game.GameQueryService;
 import com.github.saphyra.skyxplore.app.domain.player.PlayerQueryService;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;

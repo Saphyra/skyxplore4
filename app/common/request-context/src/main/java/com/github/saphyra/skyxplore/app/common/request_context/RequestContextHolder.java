@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.app.common.request_context;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Optional;
+
+import org.springframework.stereotype.Component;
 
 @Component
 public class RequestContextHolder {

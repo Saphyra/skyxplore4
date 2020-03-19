@@ -1,15 +1,16 @@
 package com.github.saphyra.skyxplore.app.common.dao.cache_repository.component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEntity;
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @Slf4j

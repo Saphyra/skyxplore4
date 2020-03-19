@@ -1,13 +1,8 @@
 package com.github.saphyra.skyxplore.app.common.service;
 
-import com.github.saphyra.skyxplore.app.common.event.EntitiesSavedEvent;
-import com.github.saphyra.skyxplore.app.common.game_context.SaveAllDao;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.context.ApplicationEventPublisher;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -16,9 +11,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.context.ApplicationEventPublisher;
+
+import com.github.saphyra.skyxplore.app.common.event.EntitiesSavedEvent;
+import com.github.saphyra.skyxplore.app.common.game_context.SaveAllDao;
 
 
 @RunWith(MockitoJUnitRunner.class)

@@ -1,15 +1,17 @@
 package com.github.saphyra.skyxplore.app.common.request_context;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
-
-import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Component
 @RequiredArgsConstructor

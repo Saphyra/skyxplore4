@@ -1,14 +1,15 @@
 package com.github.saphyra.skyxplore.app.auth;
 
-import com.github.saphyra.authservice.auth.UriConfiguration;
-import com.github.saphyra.authservice.auth.domain.AllowedUri;
-import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
-import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.authservice.auth.UriConfiguration;
+import com.github.saphyra.authservice.auth.domain.AllowedUri;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 
 @Component
 public class UriConfigurationImpl implements UriConfiguration {

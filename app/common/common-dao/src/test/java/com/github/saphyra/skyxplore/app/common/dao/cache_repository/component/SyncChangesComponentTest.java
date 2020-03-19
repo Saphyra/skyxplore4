@@ -1,21 +1,22 @@
 package com.github.saphyra.skyxplore.app.common.dao.cache_repository.component;
 
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheMap;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ExpirableEntity;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEntity;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import java.util.Arrays;
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
-import java.util.UUID;
-
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheMap;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ExpirableEntity;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SyncChangesComponentTest {

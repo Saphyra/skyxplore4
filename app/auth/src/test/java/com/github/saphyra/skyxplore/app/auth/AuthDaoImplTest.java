@@ -1,22 +1,23 @@
 package com.github.saphyra.skyxplore.app.auth;
 
-import com.github.saphyra.authservice.auth.domain.AccessToken;
-import com.github.saphyra.authservice.auth.domain.User;
-import com.github.saphyra.encryption.impl.PasswordService;
-import com.github.saphyra.skyxplore.app.domain.user.domain.accesstoken.AccessTokenDao;
-import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+
+import java.time.OffsetDateTime;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.time.OffsetDateTime;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import com.github.saphyra.authservice.auth.domain.AccessToken;
+import com.github.saphyra.authservice.auth.domain.User;
+import com.github.saphyra.encryption.impl.PasswordService;
+import com.github.saphyra.skyxplore.app.domain.user.domain.accesstoken.AccessTokenDao;
+import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AuthDaoImplTest {

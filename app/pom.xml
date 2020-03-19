@@ -114,5 +114,6 @@
         <module>auth</module>
         <module>common-test</module>
         <module>service</module>
+        <module>rest</module>
     </modules>
 </project>

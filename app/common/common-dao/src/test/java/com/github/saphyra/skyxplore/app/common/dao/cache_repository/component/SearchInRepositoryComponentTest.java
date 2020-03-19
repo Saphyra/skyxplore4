@@ -1,19 +1,20 @@
 package com.github.saphyra.skyxplore.app.common.dao.cache_repository.component;
 
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.Optional;
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SearchInRepositoryComponentTest {

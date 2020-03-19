@@ -1,12 +1,13 @@
 package com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties;
 
-import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
-import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
-import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import com.github.saphyra.skyxplore.app.common.data.ValidationAbstractDataService;
+import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
 
 @Component
 public class ErrorCodeService extends ValidationAbstractDataService<String, ErrorCodeLocalization> {

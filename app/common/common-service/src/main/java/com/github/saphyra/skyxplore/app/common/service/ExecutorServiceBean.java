@@ -1,9 +1,9 @@
 package com.github.saphyra.skyxplore.app.common.service;
 
-import org.springframework.stereotype.Component;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import org.springframework.stereotype.Component;
 
 @Component
 public class ExecutorServiceBean implements Executor {

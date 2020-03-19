@@ -1,20 +1,21 @@
 package com.github.saphyra.skyxplore.app.common.request_context;
 
-import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
-import com.github.saphyra.util.CookieUtil;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.util.CookieUtil;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RequestContextFactoryTest {

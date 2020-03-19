@@ -35,6 +35,12 @@
             <artifactId>domain-data</artifactId>
             <version>${artifact.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>domain-star</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -42,5 +48,7 @@
     </build>
     <modules>
         <module>game-creation</module>
+        <module>service-common</module>
+        <module>service-game</module>
     </modules>
 </project>

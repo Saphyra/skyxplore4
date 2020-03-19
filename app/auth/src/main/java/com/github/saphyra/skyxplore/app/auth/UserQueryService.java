@@ -1,13 +1,14 @@
 package com.github.saphyra.skyxplore.app.auth;
 
-import com.github.saphyra.authservice.auth.domain.User;
-import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
-import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
-import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
-import lombok.RequiredArgsConstructor;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import com.github.saphyra.authservice.auth.domain.User;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

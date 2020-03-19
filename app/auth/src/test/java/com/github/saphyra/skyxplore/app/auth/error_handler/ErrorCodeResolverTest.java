@@ -1,17 +1,18 @@
 package com.github.saphyra.skyxplore.app.auth.error_handler;
 
-import com.github.saphyra.authservice.auth.domain.AccessStatus;
-import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
-import lombok.RequiredArgsConstructor;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.github.saphyra.authservice.auth.domain.AccessStatus;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
+import lombok.RequiredArgsConstructor;
 
 @RunWith(Parameterized.class)
 @RequiredArgsConstructor

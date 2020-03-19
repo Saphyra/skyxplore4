@@ -1,13 +1,12 @@
 package com.github.saphyra.skyxplore.app.common.request_context;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import static java.util.Objects.isNull;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import static java.util.Objects.isNull;
+import lombok.Builder;
+import lombok.Data;
 
 @Builder
 @Data

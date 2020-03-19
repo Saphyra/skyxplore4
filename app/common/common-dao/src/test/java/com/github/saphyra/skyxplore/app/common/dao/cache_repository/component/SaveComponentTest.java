@@ -1,8 +1,14 @@
 package com.github.saphyra.skyxplore.app.common.dao.cache_repository.component;
 
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEntity;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -11,14 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.EntityMapping;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.ModifiableEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SaveComponentTest {

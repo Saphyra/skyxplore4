@@ -44,14 +44,14 @@ public class CacheSyncHandlerTest {
     }
 
     @Test
-    public void syncChanges(){
+    public void syncChanges() {
         underTest.syncChanges();
 
         verify(cacheRepository).syncChanges();
     }
 
     @Test
-    public void processDeletions(){
+    public void processDeletions() {
         underTest.processDeletions();
 
         verify(cacheRepository).processDeletions();

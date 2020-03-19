@@ -1,5 +1,12 @@
 package com.github.saphyra.skyxplore.app.auth;
 
+import java.time.OffsetDateTime;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.authservice.auth.AuthDao;
 import com.github.saphyra.authservice.auth.domain.AccessToken;
 import com.github.saphyra.authservice.auth.domain.User;
@@ -8,11 +15,6 @@ import com.github.saphyra.skyxplore.app.domain.user.domain.accesstoken.AccessTok
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
-import java.time.OffsetDateTime;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Slf4j

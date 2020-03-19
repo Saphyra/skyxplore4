@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>domain-star</artifactId>
-    <version>${artifact.version}T</version>
+    <version>${artifact.version}</version>
 
     <name>domain-star</name>
 

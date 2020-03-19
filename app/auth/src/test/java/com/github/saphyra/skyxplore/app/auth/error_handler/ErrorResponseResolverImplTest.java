@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.app.auth.error_handler;
 
-import com.github.saphyra.authservice.auth.domain.AccessStatus;
-import com.github.saphyra.authservice.auth.domain.AuthContext;
-import com.github.saphyra.authservice.auth.domain.RestErrorResponse;
-import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
-import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,10 +12,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 
-import javax.servlet.http.HttpServletRequest;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
+import com.github.saphyra.authservice.auth.domain.AccessStatus;
+import com.github.saphyra.authservice.auth.domain.AuthContext;
+import com.github.saphyra.authservice.auth.domain.RestErrorResponse;
+import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ErrorResponseResolverImplTest {
