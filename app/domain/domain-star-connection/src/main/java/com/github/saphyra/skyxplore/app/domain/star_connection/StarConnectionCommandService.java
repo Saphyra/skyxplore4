@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.app.domain.star_connection;
 
-import com.github.saphyra.skyxplore.app.common.game_context.CommandService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.common.game_context.CommandService;
+import lombok.RequiredArgsConstructor;
+
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class StarConnectionCommandService implements CommandService<StarConnection> {
     private final StarConnectionDao starConnectionDao;
 

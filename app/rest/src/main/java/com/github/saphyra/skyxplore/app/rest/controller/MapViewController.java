@@ -1,5 +1,14 @@
 package com.github.saphyra.skyxplore.app.rest.controller;
 
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.github.saphyra.skyxplore.app.rest.view.map.MapView;
 import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionView;
 import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionViewConverter;
@@ -9,19 +18,10 @@ import com.github.saphyra.skyxplore.app.service.query.VisibleStarConnectionQuery
 import com.github.saphyra.skyxplore.app.service.query.VisibleStarQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 //TODO api test
 public class MapViewController {
     private static final String GET_STARS_MAPPING = API_PREFIX + "/game/map";

@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.app.domain.star_connection;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Builder
 @Data
@@ -30,10 +30,5 @@ class StarConnectionEntity implements SettablePersistable<String> {
     @Override
     public String getId() {
         return connectionId;
-    }
-
-    @Override
-    public boolean isNew() {
-        return false;
     }
 }

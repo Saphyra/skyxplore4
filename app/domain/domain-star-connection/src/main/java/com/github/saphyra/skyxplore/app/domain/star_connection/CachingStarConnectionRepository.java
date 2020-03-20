@@ -1,20 +1,20 @@
 package com.github.saphyra.skyxplore.app.domain.star_connection;
 
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
-import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheContext;
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.CacheRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
-//TODO unit test
 public class CachingStarConnectionRepository extends CacheRepository<String, StarConnectionEntity, String, StarConnectionRepository> implements StarConnectionRepository {
 
     protected CachingStarConnectionRepository(StarConnectionRepository repository, CacheContext cacheContext) {

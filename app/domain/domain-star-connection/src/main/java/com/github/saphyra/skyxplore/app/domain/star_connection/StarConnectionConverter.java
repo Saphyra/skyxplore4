@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-//TODO unit test
 public class StarConnectionConverter extends ConverterBase<StarConnectionEntity, StarConnection> {
     private final UuidConverter uuidConverter;
 
@@ -19,7 +18,7 @@ public class StarConnectionConverter extends ConverterBase<StarConnectionEntity,
             .gameId(uuidConverter.convertEntity(entity.getGameId()))
             .star1(uuidConverter.convertEntity(entity.getStar1()))
             .star2(uuidConverter.convertEntity(entity.getStar2()))
-            .isNew(entity.isNew())
+            .isNew(false)
             .build();
     }
 
