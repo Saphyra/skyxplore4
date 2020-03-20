@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.app.common.request_context;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,12 +29,16 @@ class RequestContextFactory {
     }
 
     private UUID fetch(HttpServletRequest request, String name) {
-        return cookieUtil.getCookie(request, name)
-            .filter(s -> !isEmpty(s))
-            .map(UUID::fromString)
-            .orElseGet(() -> {
-                log.debug("Cookie is empty with name {}", name);
-                return null;
-            });
+        Optional<String> cookie = cookieUtil.getCookie(request, name);
+        try {
+            return cookie.filter(s -> !isEmpty(s))
+                .map(UUID::fromString)
+                .orElseGet(() -> {
+                    log.debug("Cookie is empty with name {}", name);
+                    return null;
+                });
+        } catch (Throwable ex) {
+            throw new IllegalArgumentException("Failed fetching cookie with name " + name + ". Cookie: " + cookie, ex);
+        }
     }
 }

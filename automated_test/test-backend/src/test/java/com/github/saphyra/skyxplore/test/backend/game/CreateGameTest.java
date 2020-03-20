@@ -1,5 +1,14 @@
 package com.github.saphyra.skyxplore.test.backend.game;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.http.HttpStatus;
+import org.testng.annotations.Test;
+
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
@@ -10,15 +19,6 @@ import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.MainMenuPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import io.restassured.response.Response;
-import org.springframework.http.HttpStatus;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreateGameTest extends TestBase {
     private static final String TOO_SHORT_GAME_NAME = "ga";
@@ -28,7 +28,7 @@ public class CreateGameTest extends TestBase {
     private static final String VALID_GAME_NAME = "game-name";
 
     @Test
-    public void tooShortGameName() throws IOException {
+    public void tooShortGameName() {
         RegistrationRequest registrationRequest = RegistrationParameters.validParameters()
             .toRegistrationRequest();
         IndexPageActions.registerUser(registrationRequest);
@@ -44,7 +44,7 @@ public class CreateGameTest extends TestBase {
     }
 
     @Test
-    public void tooLongGameName() throws IOException {
+    public void tooLongGameName() {
         RegistrationRequest registrationRequest = RegistrationParameters.validParameters()
             .toRegistrationRequest();
         IndexPageActions.registerUser(registrationRequest);

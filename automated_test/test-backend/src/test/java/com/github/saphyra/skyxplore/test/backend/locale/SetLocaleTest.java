@@ -1,5 +1,10 @@
 package com.github.saphyra.skyxplore.test.backend.locale;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.springframework.http.HttpStatus;
+import org.testng.annotations.Test;
+
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
@@ -9,16 +14,10 @@ import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.SettingsPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import io.restassured.response.Response;
-import org.springframework.http.HttpStatus;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class SetLocaleTest extends TestBase {
     @Test
-    public void invalidLocale() throws IOException {
+    public void invalidLocale() {
         //GIVEN
         AccessCookies accessCookies = IndexPageActions.registerAndLogin();
         //WHEN

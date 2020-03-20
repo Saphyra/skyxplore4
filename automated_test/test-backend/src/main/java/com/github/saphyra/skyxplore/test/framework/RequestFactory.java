@@ -1,5 +1,9 @@
 package com.github.saphyra.skyxplore.test.framework;
 
+import static io.restassured.RestAssured.given;
+
+import java.util.Optional;
+
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import io.restassured.config.DecoderConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -7,13 +11,13 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
-import static io.restassured.RestAssured.given;
-
 public class RequestFactory {
-    public static RequestSpecification createAuthorizedRequest(AccessCookies accessCookies){
+    public static RequestSpecification createAuthorizedRequest(AccessCookies accessCookies) {
         return createRequest()
-            .cookie("accesstokenid", accessCookies.getAccessTokenId())
-            .cookie("userId", accessCookies.getUserId());
+            .cookie("accesstokenid", emptyIfNull(accessCookies.getAccessTokenId()))
+            .cookie("userId", emptyIfNull(accessCookies.getUserId()))
+            .cookie("game_id", emptyIfNull(accessCookies.getGameId()))
+            .cookie("player_id", emptyIfNull(accessCookies.getPlayerId()));
     }
 
     public static RequestSpecification createRequest() {
@@ -23,5 +27,10 @@ public class RequestFactory {
             .log().all()
             .contentType(ContentType.JSON)
             .header("Request-type", "rest");
+    }
+
+    private static String emptyIfNull(String in) {
+        return Optional.ofNullable(in)
+            .orElse("");
     }
 }

@@ -1,5 +1,12 @@
 package com.github.saphyra.skyxplore.test.framework.actions;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
+
 import com.github.saphyra.skyxplore.app.common.common_request.OneStringParamRequest;
 import com.github.saphyra.skyxplore.test.framework.RequestFactory;
 import com.github.saphyra.skyxplore.test.framework.ResponseConverter;
@@ -7,12 +14,6 @@ import com.github.saphyra.skyxplore.test.framework.UrlFactory;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import com.github.saphyra.skyxplore.test.framework.response.GameViewResponse;
 import io.restassured.response.Response;
-import org.springframework.http.HttpStatus;
-
-import java.util.List;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainMenuPageActions {
     public static UUID createGame(AccessCookies accessCookies, String gameName) {
@@ -43,5 +44,12 @@ public class MainMenuPageActions {
         return RequestFactory.createAuthorizedRequest(accessCookies)
             .delete(String.format(UrlFactory.assemble("/api/game/%s"), gameId))
             .thenReturn();
+    }
+
+    public static UUID getPlayerId(AccessCookies accessCookies) {
+        String cookieValue = RequestFactory.createAuthorizedRequest(accessCookies)
+            .get(UrlFactory.assemble("/web/game/" + accessCookies.getGameId()))
+            .getCookie("player_id");
+        return UUID.fromString(cookieValue);
     }
 }
