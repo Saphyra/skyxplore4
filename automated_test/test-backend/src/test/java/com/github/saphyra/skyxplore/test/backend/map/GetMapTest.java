@@ -1,11 +1,5 @@
 package com.github.saphyra.skyxplore.test.backend.map;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
-
-import java.util.UUID;
-
-import org.testng.annotations.Test;
-
 import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
 import com.github.saphyra.skyxplore.app.rest.view.map.MapView;
 import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionView;
@@ -16,6 +10,11 @@ import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.MainMenuPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.MapPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
+import org.testng.annotations.Test;
+
+import java.util.UUID;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class GetMapTest extends TestBase {
     private static final String GAME_NAME = "game-name";
@@ -37,9 +36,8 @@ public class GetMapTest extends TestBase {
         assertThat(map.getStars()).hasSize(1);
         StarMapView starMapView = map.getStars().get(0);
 
-        //TODO restore when connection creation is migrated
-        //assertThat(map.getConnections()).isNotEmpty();
-        //map.getConnections().forEach(starConnectionView -> checkConnection(starConnectionView, starMapView));
+        assertThat(map.getConnections()).isNotEmpty();
+        map.getConnections().forEach(starConnectionView -> checkConnection(starConnectionView, starMapView));
     }
 
     private void checkConnection(StarConnectionView starConnectionView, StarMapView starMapView) {

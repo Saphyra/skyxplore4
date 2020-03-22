@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.map.connection.creation;
+package com.github.saphyra.skyxplore.app.service.game_creation.star_connection;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-class ConnectionCreationConfiguration {
+class StarConnectionCreationConfiguration {
     @Value("${com.github.saphyra.skyxplore.game.connection.maxDistance}")
     private int maxDistance;
 

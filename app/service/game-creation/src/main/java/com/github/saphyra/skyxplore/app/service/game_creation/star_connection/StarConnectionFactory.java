@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.map.connection.creation;
+package com.github.saphyra.skyxplore.app.service.game_creation.star_connection;
 
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.connection.StarConnection;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.Star;
+import com.github.saphyra.skyxplore.app.domain.star.Star;
+import com.github.saphyra.skyxplore.app.domain.star_connection.StarConnection;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 class StarConnectionFactory {
     private final IdGenerator idGenerator;
 
