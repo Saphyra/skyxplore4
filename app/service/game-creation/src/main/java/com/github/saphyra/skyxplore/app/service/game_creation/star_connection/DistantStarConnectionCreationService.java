@@ -1,19 +1,20 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.star_connection;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.stereotype.Component;
+
 import com.github.saphyra.skyxplore.app.domain.star.Star;
 import com.github.saphyra.skyxplore.app.domain.star_connection.StarConnection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class DistantStarConnectionCreationService {
     private final ClosestStarFinder closestStarFinder;
     private final StarConnectionFactory starConnectionFactory;
@@ -26,12 +27,14 @@ class DistantStarConnectionCreationService {
             .filter(star -> !hasConnection(star, connections))
             .map(star -> starConnectionFactory.createConnection(star, closestStarFinder.getClosestStar(star, stars)))
             .collect(Collectors.toList());
-        connections.addAll(distantConnections);
-        return connections;
+        return Stream.concat(connections.stream(), distantConnections.stream())
+            .collect(Collectors.toList());
     }
 
     private boolean hasConnection(Star star, List<StarConnection> connections) {
-        return connections.stream()
+        boolean result = connections.stream()
             .anyMatch(starConnection -> starConnection.getStar1().equals(star.getStarId()) || starConnection.getStar2().equals(star.getStarId()));
+        log.debug("Star {} has connections: {}", star, result);
+        return result;
     }
 }

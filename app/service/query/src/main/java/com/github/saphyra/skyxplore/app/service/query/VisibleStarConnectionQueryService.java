@@ -18,9 +18,12 @@ public class VisibleStarConnectionQueryService {
     private final StarConnectionQueryService starConnectionQueryService;
 
     public List<StarConnection> getVisibleByStars(List<UUID> visibleStarIds) {
-        return starConnectionQueryService.getByGameId().stream()
+        List<StarConnection> connections = starConnectionQueryService.getByGameId();
+        List<StarConnection> result = connections.stream()
             .filter(starConnection -> isVisible(starConnection, visibleStarIds))
             .collect(Collectors.toList());
+        log.debug("Visible starConnections: {}", result);
+        return result;
     }
 
     private boolean isVisible(StarConnection starConnection, List<UUID> visibleStarIds) {
