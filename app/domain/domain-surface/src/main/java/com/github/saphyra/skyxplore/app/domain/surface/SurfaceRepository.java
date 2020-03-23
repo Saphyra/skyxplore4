@@ -1,4 +1,9 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
+package com.github.saphyra.skyxplore.app.domain.surface;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -6,11 +11,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
-
 @Repository
+//TODO unit test
 public interface SurfaceRepository extends CrudRepository<SurfaceEntity, String> {
     @Transactional
     @Query("delete from SurfaceEntity e WHERE e.surfaceId in ?1")

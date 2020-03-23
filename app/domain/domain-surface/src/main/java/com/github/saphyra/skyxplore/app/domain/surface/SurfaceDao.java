@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
+package com.github.saphyra.skyxplore.app.domain.surface;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+//TODO unit test
 class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> {
     private final UuidConverter uuidConverter;
 

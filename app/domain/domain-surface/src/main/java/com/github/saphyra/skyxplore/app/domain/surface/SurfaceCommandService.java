@@ -1,14 +1,16 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
-
-import com.github.saphyra.skyxplore_deprecated.game.common.interfaces.CommandService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+package com.github.saphyra.skyxplore.app.domain.surface;
 
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.common.game_context.CommandService;
+import lombok.RequiredArgsConstructor;
+
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 public class SurfaceCommandService implements CommandService<Surface> {
     private final SurfaceDao surfaceDao;
 

@@ -1,13 +1,13 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
+package com.github.saphyra.skyxplore.app.domain.surface;
 
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.Coordinate;
+import java.util.UUID;
+
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
-
-import java.util.UUID;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder

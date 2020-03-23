@@ -1,8 +1,8 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
+package com.github.saphyra.skyxplore.app.domain.surface;
 
 import java.util.Arrays;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum SurfaceType {
     COAL_MINE,

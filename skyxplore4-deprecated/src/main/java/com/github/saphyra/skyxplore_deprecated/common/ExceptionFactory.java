@@ -30,7 +30,6 @@ public class ExceptionFactory {
     private static final String STORAGE_FULL_PREFIX = "Storage for type %s is full at system %s";
     private static final String STORAGE_SETTING_ALREADY_EXISTS_PREFIX = "StorageSetting already exists for starId %s and dataId %s";
     private static final String STORAGE_SETTING_NOT_FOUND = "StorageSetting not found by storageSettingId %s and playerId %s";
-    private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
     private static final String TERRAFORMING_NOT_POSSIBLE_PREFIX = "Surface %s cannot be terraformed to %s";
     private static final String UPGRADE_ALREADY_IN_PROGRESS_PREFIX = "Upgrade already in progress for building %s";
     private static final String TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX = "Terraforming of surface %s is already in progress";
@@ -54,8 +53,6 @@ public class ExceptionFactory {
     public static RestException dataNotFound(String dataId) {
         return new NotFoundException(createErrorMessage(ErrorCode.DATA_NOT_FOUND), String.format(DATA_NOT_FOUND_PREFIX, dataId));
     }
-
-
 
     public static RestException invalidBuildLocation(String dataId, UUID surfaceId) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_BUILD_LOCATION), String.format(INVALID_BUILD_LOCATION_PREFIX, dataId, surfaceId));
@@ -97,9 +94,7 @@ public class ExceptionFactory {
         return new NotFoundException(createErrorMessage(ErrorCode.STORAGE_SETTING_NOT_FOUND), String.format(STORAGE_SETTING_NOT_FOUND, storageSettingId, playerId));
     }
 
-    public static NotFoundException surfaceNotFound(UUID surfaceId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.SURFACE_NOT_FOUND), String.format(SURFACE_NOT_FOUND_PREFIX, surfaceId));
-    }
+
 
     public static RestException terraformingAlreadyInProgress(UUID surfaceId) {
         return new ConflictException(createErrorMessage(ErrorCode.TERRAFORMING_ALREADY_IN_PROGRESS), String.format(TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX, surfaceId));

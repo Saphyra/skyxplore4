@@ -9,7 +9,7 @@ public class VerifiedOperation {
     }
 
     public static boolean operate(Operation operation) {
-        return operate(operation, 10, 100);
+        return operate(operation, 10, 500);
     }
 
     public static boolean operate(Operation operation, int tryCount, int sleep) {

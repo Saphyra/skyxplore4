@@ -1,11 +1,4 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
-
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.cache.SettablePersistable;
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.CoordinateEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.github.saphyra.skyxplore.app.domain.surface;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,6 +7,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
+import com.github.saphyra.skyxplore.app.domain.coordinate.CoordinateEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @AllArgsConstructor

@@ -17,6 +17,7 @@ public class ExceptionFactory {
     private static final String INVALID_PASSWORD_MESSAGE = "Invalid password.";
     private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
+    private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
     private static final String USER_NAME_ALREADY_EXISTS_PREFIX = "UserName %s already exists";
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
 
@@ -46,6 +47,10 @@ public class ExceptionFactory {
 
     public static RestException starNotFound(UUID starId) {
         return new NotFoundException(createErrorMessage(ErrorCode.STAR_NOT_FOUND), String.format(STAR_NOT_FOUND_PREFIX, starId.toString()));
+    }
+
+    public static NotFoundException surfaceNotFound(UUID surfaceId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.SURFACE_NOT_FOUND), String.format(SURFACE_NOT_FOUND_PREFIX, surfaceId));
     }
 
     public static RestException usernameAlreadyExists(String userName) {

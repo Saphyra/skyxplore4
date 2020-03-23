@@ -1,14 +1,15 @@
-package com.github.saphyra.skyxplore_deprecated.game.dao.map.surface;
+package com.github.saphyra.skyxplore.app.domain.surface;
 
 import org.springframework.stereotype.Component;
 
 import com.github.saphyra.converter.ConverterBase;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.CoordinateConverter;
+import com.github.saphyra.skyxplore.app.domain.coordinate.CoordinateConverter;
 import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
+//TODO unit test
 class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
     private final CoordinateConverter coordinateConverter;
     private final UuidConverter uuidConverter;
