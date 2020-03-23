@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
     private final CoordinateConverter coordinateConverter;
     private final UuidConverter uuidConverter;
@@ -23,7 +22,7 @@ class SurfaceConverter extends ConverterBase<SurfaceEntity, Surface> {
             .playerId(uuidConverter.convertEntity(entity.getPlayerId()))
             .coordinate(coordinateConverter.convertEntity(entity.getCoordinate()))
             .surfaceType(entity.getSurfaceType())
-            .isNew(entity.isNew())
+            .isNew(false)
             .build();
     }
 

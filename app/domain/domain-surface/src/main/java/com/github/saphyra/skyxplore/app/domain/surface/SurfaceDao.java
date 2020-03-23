@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepository> {
     private final UuidConverter uuidConverter;
 
@@ -26,21 +25,16 @@ class SurfaceDao extends AbstractDao<SurfaceEntity, Surface, String, SurfaceRepo
         repository.deleteByGameId(uuidConverter.convertDomain(gameId));
     }
 
-    @Override
-    public void saveAll(List<Surface> surfaces) {
-        repository.saveAll(converter.convertDomain(surfaces));
+    Optional<Surface> findBySurfaceIdAndPlayerId(UUID surfaceId, UUID playerId) {
+        return converter.convertEntity(repository.findBySurfaceIdAndPlayerId(
+            uuidConverter.convertDomain(surfaceId),
+            uuidConverter.convertDomain(playerId)
+        ));
     }
 
     List<Surface> getByStarIdAndPlayerId(UUID starId, UUID playerId) {
         return converter.convertEntity(repository.getByStarIdAndPlayerId(
             uuidConverter.convertDomain(starId),
-            uuidConverter.convertDomain(playerId)
-        ));
-    }
-
-    Optional<Surface> findBySurfaceIdAndPlayerId(UUID surfaceId, UUID playerId) {
-        return converter.convertEntity(repository.findBySurfaceIdAndPlayerId(
-            uuidConverter.convertDomain(surfaceId),
             uuidConverter.convertDomain(playerId)
         ));
     }

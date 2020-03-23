@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class SurfaceQueryService {
     private final RequestContextHolder requestContextHolder;
     private final SurfaceDao surfaceDao;

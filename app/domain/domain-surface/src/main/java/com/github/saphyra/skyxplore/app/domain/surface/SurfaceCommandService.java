@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class SurfaceCommandService implements CommandService<Surface> {
     private final SurfaceDao surfaceDao;
 

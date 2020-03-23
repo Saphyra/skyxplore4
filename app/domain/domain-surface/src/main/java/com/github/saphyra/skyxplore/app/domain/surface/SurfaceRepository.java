@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-//TODO unit test
 public interface SurfaceRepository extends CrudRepository<SurfaceEntity, String> {
     @Transactional
     @Query("delete from SurfaceEntity e WHERE e.surfaceId in ?1")
