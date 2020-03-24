@@ -19,10 +19,10 @@ import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHol
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.SkyXpUser;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserRepository;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangePasswordRequest;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangeUsernameRequest;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.DeleteAccountRequest;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.ChangePasswordRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.ChangeUsernameRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.DeleteAccountRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.RegistrationRequest;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

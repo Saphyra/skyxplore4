@@ -1,7 +1,7 @@
-package com.github.saphyra.skyxplore_deprecated.game.rest.controller;
+package com.github.saphyra.skyxplore.app.rest.controller;
 
-import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.API_PREFIX;
-import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.COOKIE_PLAYER_ID;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.API_PREFIX;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.COOKIE_PLAYER_ID;
 
 import java.util.UUID;
 

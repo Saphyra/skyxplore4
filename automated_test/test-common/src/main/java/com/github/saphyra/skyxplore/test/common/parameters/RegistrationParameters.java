@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.test.common.parameters;
 
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.RegistrationRequest;
 import com.github.saphyra.util.IdGenerator;
 import lombok.Builder;
 import lombok.Data;

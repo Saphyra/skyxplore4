@@ -15,6 +15,7 @@ public class ExceptionFactory {
     private static final String INVALID_REQUEST_PREFIX = "Invalid field %s: %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
     private static final String INVALID_PASSWORD_MESSAGE = "Invalid password.";
+    private static final String INVALID_STAR_NAME_MESSAGE = "Invalid star name.";
     private static final String PLAYER_NOT_FOUND_PREFIX = "Player not found with gameId %s and userId %s";
     private static final String STAR_NOT_FOUND_PREFIX = "Star not found with starId %s";
     private static final String SURFACE_NOT_FOUND_PREFIX = "Surface not found with id %s";
@@ -39,6 +40,10 @@ public class ExceptionFactory {
         Map<String, String> params = new HashMap<>();
         params.put(INVALID_FIELD_PLACEHOLDER, fieldName);
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_REQUEST, params), String.format(INVALID_REQUEST_PREFIX, fieldName, message));
+    }
+
+    public static RestException invalidStarName() {
+        return new BadRequestException(createErrorMessage(ErrorCode.INVALID_STAR_NAME), INVALID_STAR_NAME_MESSAGE);
     }
 
     public static RestException playerNotFound(UUID userId, UUID gameId) {

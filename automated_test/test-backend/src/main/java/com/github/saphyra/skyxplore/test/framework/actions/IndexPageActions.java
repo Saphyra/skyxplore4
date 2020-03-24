@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.http.HttpStatus;
 
 import com.github.saphyra.authservice.auth.domain.LoginRequest;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.RegistrationRequest;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.RequestFactory;
 import com.github.saphyra.skyxplore.test.framework.UrlFactory;

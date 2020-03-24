@@ -57,5 +57,6 @@
         <module>service-common</module>
         <module>service-game</module>
         <module>query</module>
+        <module>service-star</module>
     </modules>
 </project>

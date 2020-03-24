@@ -1,14 +1,15 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.map.star.rename;
-
-import com.github.saphyra.skyxplore_deprecated.common.ExceptionFactory;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.Star;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.StarCommandService;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.star.StarQueryService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+package com.github.saphyra.skyxplore.app.service.star;
 
 import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
+import com.github.saphyra.skyxplore.app.domain.star.Star;
+import com.github.saphyra.skyxplore.app.domain.star.StarCommandService;
+import com.github.saphyra.skyxplore.app.domain.star.StarQueryService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor

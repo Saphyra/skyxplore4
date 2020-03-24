@@ -1,8 +1,8 @@
 package com.github.saphyra.skyxplore.test.framework.actions;
 
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangePasswordRequest;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangeUsernameRequest;
-import com.github.saphyra.skyxplore.app.rest.controller.request.user.DeleteAccountRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.ChangePasswordRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.ChangeUsernameRequest;
+import com.github.saphyra.skyxplore.app.rest.request.user.DeleteAccountRequest;
 import com.github.saphyra.skyxplore.test.framework.RequestFactory;
 import com.github.saphyra.skyxplore.test.framework.UrlFactory;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;

@@ -22,7 +22,7 @@ com:
         game:
           star:
             creation:
-              attempts: 1
+              attempts: 3
 
 logging:
   level:

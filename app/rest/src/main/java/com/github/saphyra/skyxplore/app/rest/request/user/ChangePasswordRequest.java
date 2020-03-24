@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.rest.controller.request.user;
+package com.github.saphyra.skyxplore.app.rest.request.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -21,7 +21,6 @@ public class ExceptionFactory {
     private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
     private static final String INVALID_CITIZEN_NAME_PREFIX = "Invalid citizen name: %s";
-    private static final String INVALID_STAR_NAME_MESSAGE = "Invalid star name.";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
 
     private static final String PRIORITY_NOT_FOUND_PREFIX = "Priority not found for starId %s, priorityType %s and playerId %s";
@@ -60,10 +59,6 @@ public class ExceptionFactory {
 
     public static RestException invalidCitizenName(String newName) {
         return new BadRequestException(createErrorMessage(ErrorCode.INVALID_CITIZEN_NAME), String.format(INVALID_CITIZEN_NAME_PREFIX, newName));
-    }
-
-    public static RestException invalidStarName() {
-        return new BadRequestException(createErrorMessage(ErrorCode.INVALID_STAR_NAME), INVALID_STAR_NAME_MESSAGE);
     }
 
     public static RestException maxLevelReached(UUID buildingId) {
