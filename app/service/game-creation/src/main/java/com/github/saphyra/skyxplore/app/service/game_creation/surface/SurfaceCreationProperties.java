@@ -1,15 +1,15 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Component
 @Data
@@ -28,6 +28,8 @@ class SurfaceCreationProperties {
 
     @Validated
     @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     static class SurfaceTypeSpawnDetails {
         @NotNull
         private String surfaceName;

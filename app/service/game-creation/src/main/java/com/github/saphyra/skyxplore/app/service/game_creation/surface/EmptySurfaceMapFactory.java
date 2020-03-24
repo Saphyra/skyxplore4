@@ -10,8 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
-public class EmptySurfaceMapFactory {
+class EmptySurfaceMapFactory {
     private final Random random;
     private final SurfaceCreationProperties properties;
 

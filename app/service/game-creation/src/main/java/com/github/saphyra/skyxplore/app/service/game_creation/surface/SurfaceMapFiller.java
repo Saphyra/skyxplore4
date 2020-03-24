@@ -1,19 +1,17 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import static java.util.Objects.isNull;
-
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class SurfaceMapFiller {
     private final SurfaceFiller surfaceFiller;
     private final SurfaceTypeListFactory surfaceTypeListFactory;

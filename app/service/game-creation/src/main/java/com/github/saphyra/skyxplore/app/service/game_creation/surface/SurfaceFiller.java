@@ -1,18 +1,16 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import java.util.Optional;
-
-import org.springframework.stereotype.Component;
-
 import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 class SurfaceFiller {
     private final RandomEmptySlotNextToSurfaceTypeProvider randomEmptySlotNextToSurfaceTypeProvider;
     private final RandomEmptySlotProvider randomEmptySlotProvider;

@@ -18,7 +18,7 @@ public class VerifiedOperation {
     }
 
     public static boolean waitUntil(Checker operation) {
-        return waitUntil(operation, 10, 100);
+        return waitUntil(operation, 10, 500);
     }
 
     public static boolean waitUntil(Checker operation, int tryCount, int sleep) {
