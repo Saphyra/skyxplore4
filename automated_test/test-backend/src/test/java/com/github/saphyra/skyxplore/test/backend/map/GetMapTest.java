@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.test.backend.map;
 
-import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
 import com.github.saphyra.skyxplore.app.rest.view.map.MapView;
 import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionView;
 import com.github.saphyra.skyxplore.app.rest.view.map.StarMapView;

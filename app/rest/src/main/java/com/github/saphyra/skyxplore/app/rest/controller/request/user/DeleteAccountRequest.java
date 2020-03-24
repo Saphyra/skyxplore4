@@ -1,11 +1,11 @@
-package com.github.saphyra.skyxplore.app.domain.user.request;
+package com.github.saphyra.skyxplore.app.rest.controller.request.user;
+
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor

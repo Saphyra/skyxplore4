@@ -44,6 +44,7 @@ public class DomainSaverService {
         if (o instanceof Collection) {
             throw new IllegalArgumentException("Domain must not be a collection. Use addAll instead. Collection: " + o.toString());
         }
+        getDao(o.getClass());
         getList(o.getClass()).add(o);
     }
 
@@ -52,7 +53,9 @@ public class DomainSaverService {
         if (o.isEmpty()) {
             return;
         }
-        getList(getType(o)).addAll(o);
+        Class<?> type = getType(o);
+        getDao(type);
+        getList(type).addAll(o);
     }
 
     private Class<?> getType(Collection<?> o) {
@@ -81,11 +84,14 @@ public class DomainSaverService {
     private void save(Class<?> type, List<Object> domains) {
         StopWatch stopWatch = new StopWatch(String.format("%s number of %s", domains.size(), type));
         stopWatch.start();
-        daoMap.getOptional(type)
-            .orElseThrow(() -> new IllegalStateException("No dao found for type {}" + type.getName()))
-            .saveAll(domains);
+        getDao(type).saveAll(domains);
         stopWatch.stop();
         log.info("{} was/were saved in {}ms", stopWatch.getId(), stopWatch.getTotalTimeMillis());
+    }
+
+    private SaveAllDao getDao(Class<?> type) {
+        return daoMap.getOptional(type)
+            .orElseThrow(() -> new IllegalStateException("No dao found for type {}" + type.getName()));
     }
 
     private List<Object> getList(Class<?> type) {

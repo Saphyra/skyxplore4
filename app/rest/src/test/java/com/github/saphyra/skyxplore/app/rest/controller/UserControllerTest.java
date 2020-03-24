@@ -1,4 +1,4 @@
-package com.github.saphyra.skyxplore.app.domain.user;
+package com.github.saphyra.skyxplore.app.rest.controller;
 
 import com.github.saphyra.encryption.impl.PasswordService;
 import com.github.saphyra.exceptionhandling.exception.BadRequestException;
@@ -9,13 +9,14 @@ import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
 import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.SkyXpUser;
 import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserRepository;
-import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordRequest;
-import com.github.saphyra.skyxplore.app.domain.user.request.ChangeUsernameRequest;
-import com.github.saphyra.skyxplore.app.domain.user.request.DeleteAccountRequest;
-import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangePasswordRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangeUsernameRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.DeleteAccountRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import com.github.saphyra.util.IdGenerator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

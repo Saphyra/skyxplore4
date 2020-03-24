@@ -1,10 +1,12 @@
-package com.github.saphyra.skyxplore.app.domain.storage.locale;
+package com.github.saphyra.skyxplore.app.rest.controller;
 
-import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
-import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
-import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
-import com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties.ErrorCodeService;
-import com.github.saphyra.util.CookieUtil;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,11 +14,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
-
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties.ErrorCodeService;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.domain.storage.locale.LocaleService;
+import com.github.saphyra.util.CookieUtil;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LocaleControllerTest {

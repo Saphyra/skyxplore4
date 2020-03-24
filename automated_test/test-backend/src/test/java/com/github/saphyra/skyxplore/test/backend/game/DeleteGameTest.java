@@ -1,8 +1,16 @@
 package com.github.saphyra.skyxplore.test.backend.game;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
+import org.testng.annotations.Test;
+
 import com.github.saphyra.exceptionhandling.domain.ErrorResponse;
 import com.github.saphyra.skyxplore.app.common.exception_handling.ErrorCode;
-import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.ResponseConverter;
@@ -10,13 +18,6 @@ import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
 import com.github.saphyra.skyxplore.test.framework.actions.MainMenuPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
 import io.restassured.response.Response;
-import org.springframework.http.HttpStatus;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeleteGameTest extends TestBase {
     private static final String GAME_NAME = "game-name";

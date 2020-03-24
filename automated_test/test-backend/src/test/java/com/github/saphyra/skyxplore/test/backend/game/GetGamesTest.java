@@ -1,6 +1,6 @@
 package com.github.saphyra.skyxplore.test.backend.game;
 
-import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.ResponseConverter;

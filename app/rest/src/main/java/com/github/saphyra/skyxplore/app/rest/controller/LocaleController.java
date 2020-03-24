@@ -1,19 +1,21 @@
-package com.github.saphyra.skyxplore.app.domain.storage.locale;
+package com.github.saphyra.skyxplore.app.rest.controller;
 
-import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
-import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
-import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
-import com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties.ErrorCodeService;
-import com.github.saphyra.util.CookieUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.COOKIE_LOCALE;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-
-import static com.github.saphyra.skyxplore.app.common.config.RequestConstants.COOKIE_LOCALE;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.exception_handling.localization.properties.ErrorCodeService;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContext;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.domain.storage.locale.LocaleService;
+import com.github.saphyra.util.CookieUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j

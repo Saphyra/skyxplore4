@@ -1,20 +1,9 @@
-package com.github.saphyra.skyxplore.app.domain.user;
+package com.github.saphyra.skyxplore.app.rest.controller;
 
-import com.github.saphyra.encryption.impl.PasswordService;
-import com.github.saphyra.skyxplore.app.common.event.UserDeletedEvent;
-import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
-import com.github.saphyra.skyxplore.app.domain.user.domain.user.SkyXpUser;
-import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserRepository;
-import com.github.saphyra.skyxplore.app.domain.user.request.ChangePasswordRequest;
-import com.github.saphyra.skyxplore.app.domain.user.request.ChangeUsernameRequest;
-import com.github.saphyra.skyxplore.app.domain.user.request.DeleteAccountRequest;
-import com.github.saphyra.skyxplore.app.domain.user.request.RegistrationRequest;
-import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
-import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
-import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
-import com.github.saphyra.util.IdGenerator;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.UUID;
+
+import javax.validation.Valid;
+
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +11,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.UUID;
+import com.github.saphyra.encryption.impl.PasswordService;
+import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
+import com.github.saphyra.skyxplore.app.common.event.UserDeletedEvent;
+import com.github.saphyra.skyxplore.app.common.exception_handling.ExceptionFactory;
+import com.github.saphyra.skyxplore.app.common.request_context.RequestContextHolder;
+import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.domain.user.domain.user.SkyXpUser;
+import com.github.saphyra.skyxplore.app.domain.user.domain.user.UserRepository;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangePasswordRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.ChangeUsernameRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.DeleteAccountRequest;
+import com.github.saphyra.skyxplore.app.rest.controller.request.user.RegistrationRequest;
+import com.github.saphyra.util.IdGenerator;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @RestController

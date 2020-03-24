@@ -1,13 +1,14 @@
-package com.github.saphyra.skyxplore_deprecated.game.service.map.surface.creation;
-
-import com.github.saphyra.skyxplore_deprecated.game.dao.common.coordinate.Coordinate;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.Surface;
-import com.github.saphyra.skyxplore_deprecated.game.dao.map.surface.SurfaceType;
-import com.github.saphyra.util.IdGenerator;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
+import com.github.saphyra.skyxplore.app.domain.surface.Surface;
+import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
+import com.github.saphyra.util.IdGenerator;
+import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
