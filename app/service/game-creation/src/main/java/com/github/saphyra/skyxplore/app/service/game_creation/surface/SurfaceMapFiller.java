@@ -1,13 +1,14 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import static java.util.Objects.isNull;
 
 import java.util.List;
 
-import static java.util.Objects.isNull;
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @RequiredArgsConstructor

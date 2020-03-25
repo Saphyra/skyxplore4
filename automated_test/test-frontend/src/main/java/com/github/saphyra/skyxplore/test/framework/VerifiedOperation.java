@@ -12,7 +12,7 @@ public class VerifiedOperation {
     }
 
     public static boolean operate(Operation operation) {
-        return operate(operation, 10, 500);
+        return operate(operation, 60, 500);
     }
 
     public static boolean operate(Operation operation, int tryCount, int sleep) {
@@ -21,7 +21,7 @@ public class VerifiedOperation {
     }
 
     public static boolean waitUntil(Checker operation) {
-        return waitUntil(operation, 10, 500);
+        return waitUntil(operation, 60, 500);
     }
 
     public static boolean waitUntil(Checker operation, int tryCount, int sleep) {

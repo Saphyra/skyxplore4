@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
 import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.app.domain.coordinate.CoordinateConverter;
 import com.github.saphyra.skyxplore.app.domain.coordinate.CoordinateEntity;

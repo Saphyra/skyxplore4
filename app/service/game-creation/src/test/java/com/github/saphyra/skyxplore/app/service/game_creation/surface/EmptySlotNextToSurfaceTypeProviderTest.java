@@ -1,15 +1,16 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmptySlotNextToSurfaceTypeProviderTest {

@@ -1,18 +1,19 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import com.github.saphyra.skyxplore.app.common.service.DomainSaverService;
-import com.github.saphyra.skyxplore.app.domain.star.Star;
-import com.github.saphyra.skyxplore.app.domain.surface.Surface;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.github.saphyra.skyxplore.app.common.service.DomainSaverService;
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import com.github.saphyra.skyxplore.app.domain.star.Star;
+import com.github.saphyra.skyxplore.app.domain.surface.Surface;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor

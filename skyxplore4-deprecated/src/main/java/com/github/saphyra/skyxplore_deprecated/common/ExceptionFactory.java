@@ -14,11 +14,9 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ExceptionFactory {
-    private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with buildingId %s and playerId %s";
     private static final String CITIZEN_NOT_FOUND_PREFIX = "Citizen not found with citizenId %s and playerId %s";
     private static final String CONSTRUCTION_IN_PROGRESS_PREFIX = "Construction already in progress for surface %s";
     private static final String CONSTRUCTION_NOT_FOUND_PREFIX = "Construction not found with constructionId %s, and playerId %s";
-    private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String INVALID_BUILD_LOCATION_PREFIX = "%s cannot be built at surfaceId %s";
     private static final String INVALID_CITIZEN_NAME_PREFIX = "Invalid citizen name: %s";
     private static final String MAX_LEVEL_REACHED_PREFIX = "Max level reached for building %s";
@@ -33,10 +31,6 @@ public class ExceptionFactory {
     private static final String UPGRADE_ALREADY_IN_PROGRESS_PREFIX = "Upgrade already in progress for building %s";
     private static final String TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX = "Terraforming of surface %s is already in progress";
 
-    public static RestException buildingNotFound(UUID buildingId, UUID playerId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId, playerId));
-    }
-
     public static RestException citizenNotFound(UUID citizenId, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.CITIZEN_NOT_FOUND), String.format(CITIZEN_NOT_FOUND_PREFIX, citizenId, playerId));
     }
@@ -47,10 +41,6 @@ public class ExceptionFactory {
 
     public static RestException constructionNotFound(UUID constructionId, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.CONSTRUCTION_NOT_FOUND), String.format(CONSTRUCTION_NOT_FOUND_PREFIX, constructionId, playerId));
-    }
-
-    public static RestException dataNotFound(String dataId) {
-        return new NotFoundException(createErrorMessage(ErrorCode.DATA_NOT_FOUND), String.format(DATA_NOT_FOUND_PREFIX, dataId));
     }
 
     public static RestException invalidBuildLocation(String dataId, UUID surfaceId) {
@@ -88,8 +78,6 @@ public class ExceptionFactory {
     public static RestException storageSettingNotFound(UUID storageSettingId, UUID playerId) {
         return new NotFoundException(createErrorMessage(ErrorCode.STORAGE_SETTING_NOT_FOUND), String.format(STORAGE_SETTING_NOT_FOUND, storageSettingId, playerId));
     }
-
-
 
     public static RestException terraformingAlreadyInProgress(UUID surfaceId) {
         return new ConflictException(createErrorMessage(ErrorCode.TERRAFORMING_ALREADY_IN_PROGRESS), String.format(TERRAFORMING_ALREADY_IN_PROGRESS_PREFIX, surfaceId));

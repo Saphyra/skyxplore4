@@ -89,6 +89,6 @@ public class RenameStarTest extends SeleniumTest {
         WebElement starNameLabel = MapViewActions.getLabelForStar(driver, star);
         assertThat(starNameLabel.getText()).isEqualTo(VALID_STAR_NAME);
         MapViewActions.openStar(driver, star);
-        assertThat(StarViewPage.getStarNameField(driver).getText()).isEqualTo(VALID_STAR_NAME);
+        assertThat(VerifiedOperation.waitUntil(() -> StarViewPage.getStarNameField(driver).getText().equals(VALID_STAR_NAME))).isTrue();
     }
 }

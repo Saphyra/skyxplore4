@@ -1,10 +1,10 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
-import lombok.experimental.UtilityClass;
-
 import static java.util.Objects.isNull;
+
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 class SlotUtil {

@@ -1,15 +1,16 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
-import com.github.saphyra.util.Random;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import static com.github.saphyra.skyxplore.app.service.game_creation.surface.SlotUtil.isEmptySlot;
 
 import java.util.Optional;
 
-import static com.github.saphyra.skyxplore.app.service.game_creation.surface.SlotUtil.isEmptySlot;
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
+import com.github.saphyra.util.Random;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j

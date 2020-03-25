@@ -1,0 +1,38 @@
+package com.github.saphyra.skyxplore.app.game_data.domain.building.production;
+
+import static java.util.Objects.isNull;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.github.saphyra.skyxplore.app.common.utils.OptionalHashMap;
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import com.github.saphyra.skyxplore.app.game_data.domain.building.BuildingData;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+//TODO unit test
+public class ProductionBuilding extends BuildingData {
+    private OptionalHashMap<String, Production> gives;
+    private Integer workers;
+    private SurfaceType primarySurfaceType;
+
+    @Override
+    public List<SurfaceType> getPlaceableSurfaceTypes() {
+        return gives.values().stream()
+            .flatMap(production -> production.getPlaced().stream())
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public SurfaceType getPrimarySurfaceType() {
+        if (isNull(primarySurfaceType)) {
+            primarySurfaceType = getPlaceableSurfaceTypes().get(0);
+        }
+        return primarySurfaceType;
+    }
+}

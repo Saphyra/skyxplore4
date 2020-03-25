@@ -2,6 +2,7 @@ package com.github.saphyra.skyxplore.app.domain.surface;
 
 import java.util.UUID;
 
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
 import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

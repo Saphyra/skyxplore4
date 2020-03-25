@@ -82,5 +82,7 @@
         <module>domain-coordinate</module>
         <module>domain-star-connection</module>
         <module>domain-surface</module>
+        <module>domain-building</module>
+        <module>domain-common</module>
     </modules>
 </project>

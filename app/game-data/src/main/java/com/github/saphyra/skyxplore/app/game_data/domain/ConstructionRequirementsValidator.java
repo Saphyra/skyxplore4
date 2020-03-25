@@ -1,0 +1,31 @@
+package com.github.saphyra.skyxplore.app.game_data.domain;
+
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
+
+import org.springframework.stereotype.Component;
+
+import com.github.saphyra.skyxplore.app.common.data.DataValidator;
+import com.github.saphyra.skyxplore.app.domain.common.ConstructionRequirements;
+
+@Component
+//TODO unit test
+public class ConstructionRequirementsValidator implements DataValidator<ConstructionRequirements> {
+    @Override
+    public void validate(ConstructionRequirements item) {
+        requireNonNull(item.getRequiredWorkPoints(), "requiredWorkPoints must not be null.");
+        if (item.getRequiredWorkPoints() < 1) {
+            throw new IllegalStateException("requiredWorkPoints must be higher than 0");
+        }
+        if (item.getResearchRequirements().stream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException("ResearchRequirements must not contain null.");
+        }
+
+        requireNonNull(item.getRequiredResources(), "RequiredResources must not be null.");
+        if (item.getRequiredResources().entrySet().stream().anyMatch(e -> isNull(e.getValue()))) {
+            throw new NullPointerException("RequiredResources must not contain null.");
+        }
+    }
+}

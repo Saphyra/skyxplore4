@@ -22,6 +22,12 @@
             <artifactId>domain-coordinate</artifactId>
             <version>${artifact.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.saphyra</groupId>
+            <artifactId>domain-common</artifactId>
+            <version>${artifact.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

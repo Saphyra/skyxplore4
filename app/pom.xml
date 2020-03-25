@@ -115,5 +115,6 @@
         <module>common-test</module>
         <module>service</module>
         <module>rest</module>
+        <module>game-data</module>
     </modules>
 </project>

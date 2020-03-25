@@ -5,9 +5,11 @@ import static java.util.Objects.isNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -27,10 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class DomainSaverService {
-    private final ThreadLocal<Map<Class<?>, List<Object>>> tempStorage = new ThreadLocal<>();
+    private final ThreadLocal<Map<Class<?>, Set<Object>>> tempStorage = new ThreadLocal<>();
 
     private final ApplicationEventPublisher applicationEventPublisher;
-    private final OptionalMap<Class<?>, SaveAllDao> daoMap;
+    private final OptionalMap<Class<?>, SaveAllDao<?>> daoMap;
 
     public DomainSaverService(ApplicationEventPublisher applicationEventPublisher, List<SaveAllDao<?>> daos) {
         this.applicationEventPublisher = applicationEventPublisher;
@@ -81,27 +83,28 @@ public class DomainSaverService {
     }
 
     @SuppressWarnings("unchecked")
-    private void save(Class<?> type, List<Object> domains) {
+    private void save(Class<?> type, Set<Object> domains) {
         StopWatch stopWatch = new StopWatch(String.format("%s number of %s", domains.size(), type));
         stopWatch.start();
-        getDao(type).saveAll(domains);
+        getDao(type).saveAll(new ArrayList<>(domains));
         stopWatch.stop();
         log.info("{} was/were saved in {}ms", stopWatch.getId(), stopWatch.getTotalTimeMillis());
     }
 
+    @SuppressWarnings("rawtypes")
     private SaveAllDao getDao(Class<?> type) {
         return daoMap.getOptional(type)
             .orElseThrow(() -> new IllegalStateException("No dao found for type {}" + type.getName()));
     }
 
-    private List<Object> getList(Class<?> type) {
+    private Set<Object> getList(Class<?> type) {
         if (isNull(tempStorage.get())) {
             tempStorage.set(new HashMap<>());
         }
 
-        Map<Class<?>, List<Object>> map = tempStorage.get();
+        Map<Class<?>, Set<Object>> map = tempStorage.get();
         if (!map.containsKey(type)) {
-            map.put(type, new ArrayList<>());
+            map.put(type, new HashSet<>());
         }
         return map.get(type);
     }

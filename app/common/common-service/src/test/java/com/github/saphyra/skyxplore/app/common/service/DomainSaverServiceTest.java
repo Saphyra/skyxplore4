@@ -8,8 +8,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,6 +53,14 @@ public class DomainSaverServiceTest {
 
     @Test
     public void add() throws NoSuchFieldException, IllegalAccessException {
+        underTest.add(VALUE_1);
+
+        assertThat(getTempStorage().get().get(String.class)).containsExactly(VALUE_1);
+    }
+
+    @Test
+    public void addTwice() throws NoSuchFieldException, IllegalAccessException {
+        underTest.add(VALUE_1);
         underTest.add(VALUE_1);
 
         assertThat(getTempStorage().get().get(String.class)).containsExactly(VALUE_1);
@@ -104,10 +112,10 @@ public class DomainSaverServiceTest {
         assertThat(getTempStorage().get()).isNull();
     }
 
-    private ThreadLocal<Map<Class<?>, List<Object>>> getTempStorage() throws NoSuchFieldException, IllegalAccessException {
+    private ThreadLocal<Map<Class<?>, Set<Object>>> getTempStorage() throws NoSuchFieldException, IllegalAccessException {
         Field field = underTest.getClass().getDeclaredField("tempStorage");
         field.setAccessible(true);
         //noinspection unchecked
-        return (ThreadLocal<Map<Class<?>, List<Object>>>) field.get(underTest);
+        return (ThreadLocal<Map<Class<?>, Set<Object>>>) field.get(underTest);
     }
 }

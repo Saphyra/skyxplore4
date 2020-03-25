@@ -11,9 +11,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
 import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.app.domain.surface.Surface;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
 import com.github.saphyra.util.IdGenerator;
 
 @RunWith(MockitoJUnitRunner.class)

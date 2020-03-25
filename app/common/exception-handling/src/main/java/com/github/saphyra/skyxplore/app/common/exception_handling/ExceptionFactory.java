@@ -11,6 +11,8 @@ import com.github.saphyra.exceptionhandling.exception.NotFoundException;
 import com.github.saphyra.exceptionhandling.exception.RestException;
 
 public class ExceptionFactory {
+    private static final String BUILDING_NOT_FOUND_PREFIX = "Building not found with buildingId %s and playerId %s";
+    private static final String DATA_NOT_FOUND_PREFIX = "Data not found with dataId %s";
     private static final String GAME_NOT_FOUND_PREFIX = "Game not found with gameId %s and userId %s";
     private static final String INVALID_REQUEST_PREFIX = "Invalid field %s: %s";
     private static final String INVALID_LOCALE_PREFIX = "Locale %s is not supported";
@@ -23,6 +25,14 @@ public class ExceptionFactory {
     private static final String USER_NOT_FOUND_PREFIX = "User not found with userId %s";
 
     private static final String INVALID_FIELD_PLACEHOLDER = "invalidField";
+
+    public static RestException buildingNotFound(UUID buildingId, UUID playerId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.BUILDING_NOT_FOUND), String.format(BUILDING_NOT_FOUND_PREFIX, buildingId, playerId));
+    }
+
+    public static RestException dataNotFound(String dataId) {
+        return new NotFoundException(createErrorMessage(ErrorCode.DATA_NOT_FOUND), String.format(DATA_NOT_FOUND_PREFIX, dataId));
+    }
 
     public static RestException gameNotFound(UUID gameId, UUID userId) {
         return new NotFoundException(createErrorMessage(ErrorCode.GAME_NOT_FOUND), String.format(GAME_NOT_FOUND_PREFIX, gameId, userId));

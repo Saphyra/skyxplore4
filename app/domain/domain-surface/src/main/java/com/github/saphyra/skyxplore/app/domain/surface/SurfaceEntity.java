@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.github.saphyra.skyxplore.app.common.dao.cache_repository.SettablePersistable;
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
 import com.github.saphyra.skyxplore.app.domain.coordinate.CoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

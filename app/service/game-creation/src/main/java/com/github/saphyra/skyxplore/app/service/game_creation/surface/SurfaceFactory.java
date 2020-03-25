@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
 import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
 import com.github.saphyra.skyxplore.app.domain.surface.Surface;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
 import com.github.saphyra.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 

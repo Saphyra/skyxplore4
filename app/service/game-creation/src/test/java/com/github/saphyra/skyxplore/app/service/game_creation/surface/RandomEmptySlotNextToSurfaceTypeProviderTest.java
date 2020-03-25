@@ -1,20 +1,21 @@
 package com.github.saphyra.skyxplore.app.service.game_creation.surface;
 
-import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
-import com.github.saphyra.skyxplore.app.domain.surface.SurfaceType;
-import com.github.saphyra.util.Random;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
+import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
+import com.github.saphyra.skyxplore.app.domain.coordinate.Coordinate;
+import com.github.saphyra.util.Random;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RandomEmptySlotNextToSurfaceTypeProviderTest {

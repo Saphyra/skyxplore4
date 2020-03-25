@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public enum ErrorCode {
     BAD_CREDENTIALS,
+    BUILDING_NOT_FOUND,
+    DATA_NOT_FOUND,
     GAME_NOT_FOUND,
     GENERAL_ERROR,
     INVALID_REQUEST,
