@@ -1,5 +1,15 @@
 package com.github.saphyra.skyxplore.test.frontend.main_menu;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.Navigation;
@@ -10,15 +20,6 @@ import com.github.saphyra.skyxplore.test.frontend.game.GamePageActions;
 import com.github.saphyra.skyxplore.test.frontend.index.IndexPageActions;
 import com.github.saphyra.skyxplore.test.frontend.main_menu.game_crud.GameNameValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.main_menu.game_crud.GameViewResult;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameCrudTest extends SeleniumTest {
     private static final String TOO_SHORT_GAME_NAME = "ga";
@@ -48,7 +49,7 @@ public class GameCrudTest extends SeleniumTest {
     }
 
     @Test
-    public void createGame() throws InterruptedException {
+    public void createGame() {
         WebDriver driver = extractDriver();
         Navigation.toIndexPage(driver, PORT);
 

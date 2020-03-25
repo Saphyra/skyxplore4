@@ -29,6 +29,7 @@ import com.github.saphyra.skyxplore.app.service.common.ServiceCommonScanner;
 import com.github.saphyra.skyxplore.app.service.game.ServiceGameScanner;
 import com.github.saphyra.skyxplore.app.service.game_creation.GameCreationScanner;
 import com.github.saphyra.skyxplore.app.service.query.QueryScanner;
+import com.github.saphyra.skyxplore.app.service.star.StarServiceScanner;
 import com.github.saphyra.skyxplore.web.WebScanner;
 
 @Configuration
@@ -57,6 +58,7 @@ import com.github.saphyra.skyxplore.web.WebScanner;
         ServiceGameScanner.class,
         StarConnectionScanner.class,
         StarScanner.class,
+        StarServiceScanner.class,
         StorageScanner.class,
         SurfaceScanner.class,
         WebScanner.class

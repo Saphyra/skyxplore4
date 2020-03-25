@@ -2,6 +2,9 @@ package com.github.saphyra.skyxplore.test.framework;
 
 import static com.github.saphyra.skyxplore.test.framework.SleepUtil.sleep;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class VerifiedOperation {
     public static <T> T getWithWait(Fetcher<T> fetcher) {
         waitUntil(fetcher);

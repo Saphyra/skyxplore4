@@ -1,4 +1,8 @@
-package com.github.saphyra.skyxplore.test.backend.map;
+package com.github.saphyra.skyxplore.test.backend.map_view;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
+import org.testng.annotations.Test;
 
 import com.github.saphyra.skyxplore.app.rest.request.user.RegistrationRequest;
 import com.github.saphyra.skyxplore.app.rest.view.map.MapView;
@@ -6,30 +10,16 @@ import com.github.saphyra.skyxplore.app.rest.view.map.StarConnectionView;
 import com.github.saphyra.skyxplore.app.rest.view.map.StarMapView;
 import com.github.saphyra.skyxplore.test.common.TestBase;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
-import com.github.saphyra.skyxplore.test.framework.actions.IndexPageActions;
-import com.github.saphyra.skyxplore.test.framework.actions.MainMenuPageActions;
+import com.github.saphyra.skyxplore.test.framework.actions.CommonActions;
 import com.github.saphyra.skyxplore.test.framework.actions.MapPageActions;
 import com.github.saphyra.skyxplore.test.framework.model.AccessCookies;
-import org.testng.annotations.Test;
-
-import java.util.UUID;
-
-import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class GetMapTest extends TestBase {
-    private static final String GAME_NAME = "game-name";
-
     @Test
     public void getMap() {
         RegistrationRequest registrationRequest = RegistrationParameters.validParameters()
             .toRegistrationRequest();
-        IndexPageActions.registerUser(registrationRequest);
-
-        AccessCookies accessCookies = IndexPageActions.login(registrationRequest.getUserName(), registrationRequest.getPassword());
-        UUID gameId = MainMenuPageActions.createGame(accessCookies, GAME_NAME);
-        accessCookies.setGameId(gameId.toString());
-        UUID playerId = MainMenuPageActions.getPlayerId(accessCookies);
-        accessCookies.setPlayerId(playerId.toString());
+        AccessCookies accessCookies = CommonActions.registerAndCreateGame(registrationRequest);
 
         MapView map = MapPageActions.getMap(accessCookies);
 

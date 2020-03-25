@@ -25,8 +25,6 @@ import static com.github.saphyra.skyxplore_deprecated.common.RequestConstants.AP
 @RequiredArgsConstructor
 @Slf4j
 public class StarViewController {
-
-    private static final String GET_STAR_MAPPING = API_PREFIX + "/game/star/{starId}";
     private static final String GET_STAR_SYSTEM_DETAILS_MAPPING = API_PREFIX + "/game/star/{starId}/system/details";
     private static final String GET_SURFACES_OF_STAR_MAPPING = API_PREFIX + "/game/star/{starId}/surface";
 
@@ -35,13 +33,6 @@ public class StarViewController {
     private final StarSystemDetailsQueryService starSystemDetailsQueryService;
     private final SurfaceQueryService surfaceQueryService;
     private final SurfaceViewConverter surfaceViewConverter;
-
-    @GetMapping(GET_STAR_MAPPING)
-    StarMapView getStar(
-        @PathVariable("starId") UUID starId
-    ) {
-        return starMapViewConverter.convertDomain(starQueryService.findByStarIdAndOwnerId(starId));
-    }
 
     @GetMapping(GET_STAR_SYSTEM_DETAILS_MAPPING)
     StarSystemDetailsView getStarSystemDetails(

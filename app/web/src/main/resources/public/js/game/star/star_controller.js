@@ -45,6 +45,7 @@
         function createHeader(starId, controller){
             const header = document.createElement("DIV");
                 header.classList.add("page-header");
+                header.classList.add("star-view-header");
 
                 const starName = document.createElement("h2");
                     const nameSpan = document.createElement("span");
@@ -113,8 +114,9 @@
 
     function refreshFunction(starId){
         return function(){
-            spinner.open(4);
+            spinner.open(1); //TODO set to 4 when domains are migrated
             loadStarName(starId);
+            return; //TODO restore when domains are migrated
             systemDetailsController.showSystemDetails(starId, createLeftBarId(starId));
             surfaceController.showSurfaces(starId, createSurfaceTableId(starId));
             queueController.showQueue(starId, createRightBarId(starId));

@@ -1,5 +1,13 @@
 package com.github.saphyra.skyxplore.test.frontend.main_menu;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.framework.Fetcher;
 import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
@@ -8,13 +16,6 @@ import com.github.saphyra.skyxplore.test.framework.VerifiedOperation;
 import com.github.saphyra.skyxplore.test.framework.WebElementUtils;
 import com.github.saphyra.skyxplore.test.frontend.main_menu.game_crud.GameNameValidationResult;
 import com.github.saphyra.skyxplore.test.frontend.main_menu.game_crud.GameViewResult;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainMenuPageActions {
     public static void logout(WebDriver driver) {
@@ -44,7 +45,7 @@ public class MainMenuPageActions {
         VerifiedOperation.waitUntil(() -> MainMenuPage.createGameButton(driver).isEnabled());
         submitGameCreationForm(driver);
 
-        VerifiedOperation.waitUntil(() -> driver.getCurrentUrl().contains(RequestConstants.GAME_MAPPING_BASE));
+        VerifiedOperation.waitUntil(() -> driver.getCurrentUrl().contains(RequestConstants.GAME_MAPPING_BASE), 60, 1000);
     }
 
     public static void fillGameName(WebDriver driver, String gameName) {
