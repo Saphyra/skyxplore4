@@ -1,10 +1,12 @@
 package com.github.saphyra.skyxplore.test.framework;
 
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+
 import static com.github.saphyra.skyxplore.test.framework.SleepUtil.sleep;
 
-import lombok.experimental.UtilityClass;
-
 @UtilityClass
+@Slf4j
 public class VerifiedOperation {
     public static <T> T getWithWait(Fetcher<T> fetcher) {
         waitUntil(fetcher);
@@ -32,5 +34,15 @@ public class VerifiedOperation {
             sleep(sleep);
         }
         return false;
+    }
+
+    public static void operateRetry(Operation operation, int retryCount, int tryCount, int sleep) {
+        for (int i = 0; i < retryCount; i++) {
+            operation.execute();
+            if (waitUntil(operation, tryCount, sleep)) {
+                return;
+            }
+            log.info("Operation failed for try {}.", i);
+        }
     }
 }

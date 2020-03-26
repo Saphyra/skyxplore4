@@ -12,7 +12,7 @@ import com.github.saphyra.skyxplore.app.domain.common.SurfaceType;
 @Component
 public class TerraformingPossibilitiesService extends ValidationAbstractDataService<SurfaceType, TerraformingPossibilities> {
     public TerraformingPossibilitiesService(ContentLoaderFactory contentLoaderFactory, TerraformingPossibilitiesValidator terraformingPossibilitiesValidator) {
-        super("public/data/gamedata/terraforming_possibilities", contentLoaderFactory, terraformingPossibilitiesValidator);
+        super("gamedata/terraforming_possibilities", contentLoaderFactory, terraformingPossibilitiesValidator);
     }
 
     @Override

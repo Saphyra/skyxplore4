@@ -1,12 +1,5 @@
 package com.github.saphyra.skyxplore.test.frontend.index;
 
-import static com.github.saphyra.skyxplore.test.common.TestBase.PORT;
-import static com.github.saphyra.skyxplore.test.framework.WebElementUtils.clearAndFill;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.github.saphyra.skyxplore.app.common.config.RequestConstants;
 import com.github.saphyra.skyxplore.test.common.parameters.RegistrationParameters;
 import com.github.saphyra.skyxplore.test.framework.NotificationUtil;
@@ -19,13 +12,19 @@ import com.github.saphyra.skyxplore.test.frontend.index.registration.UsernameVal
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import static com.github.saphyra.skyxplore.test.common.TestBase.PORT;
+import static com.github.saphyra.skyxplore.test.framework.WebElementUtils.clearAndFill;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Builder
 @RequiredArgsConstructor
 @Slf4j
 public class IndexPageActions {
-    public static void registerUser(WebDriver driver, RegistrationParameters registrationParameters){
-        VerifiedOperation.operate(
+    public static void registerUser(WebDriver driver, RegistrationParameters registrationParameters) {
+        VerifiedOperation.operateRetry(
             new Operation() {
                 @Override
                 public void execute() {
@@ -37,7 +36,10 @@ public class IndexPageActions {
                 public boolean check() {
                     return driver.getCurrentUrl().endsWith("/main-menu");
                 }
-            }
+            },
+            3,
+            10,
+            1000
         );
 
         assertThat(driver.getCurrentUrl()).isEqualTo(UrlProvider.getMainMenu(PORT));
@@ -90,13 +92,7 @@ public class IndexPageActions {
         assertThat(driver.getCurrentUrl()).endsWith(RequestConstants.INDEX_MAPPING);
         WebElement submitButton = IndexPage.registrationSubmitButton(driver);
 
-        VerifiedOperation.waitUntil(
-            submitButton::isEnabled,
-            3,
-            1000
-        );
-
-        assertThat(submitButton.isEnabled()).isTrue();
+        assertThat(VerifiedOperation.waitUntil(submitButton::isEnabled)).isTrue();
         submitButton.click();
     }
 }

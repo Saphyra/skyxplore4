@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ResearchDataService extends ValidationAbstractDataService<String, ResearchData> {
     public ResearchDataService(ContentLoaderFactory contentLoaderFactory, ResearchDataValidator researchDataValidator) {
-        super("public/data/gamedata/research", contentLoaderFactory, researchDataValidator);
+        super("gamedata/research", contentLoaderFactory, researchDataValidator);
     }
 
     @Override

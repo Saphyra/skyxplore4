@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProductionBuildingService extends ValidationAbstractDataService<String, ProductionBuilding> {
     public ProductionBuildingService(ContentLoaderFactory contentLoaderFactory, ProductionBuildingValidator productionBuildingValidator) {
-        super("public/data/gamedata/building/production", contentLoaderFactory, productionBuildingValidator);
+        super("gamedata/building/production", contentLoaderFactory, productionBuildingValidator);
     }
 
     @Override

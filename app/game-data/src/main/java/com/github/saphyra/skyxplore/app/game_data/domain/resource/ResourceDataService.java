@@ -11,7 +11,7 @@ import com.github.saphyra.skyxplore.app.common.data.loader.ContentLoaderFactory;
 @Component
 public class ResourceDataService extends ValidationAbstractDataService<String, ResourceData> {
     public ResourceDataService(ContentLoaderFactory contentLoaderFactory, ResourceValidator resourceValidator) {
-        super("public/data/gamedata/resource", contentLoaderFactory, resourceValidator);
+        super("gamedata/resource", contentLoaderFactory, resourceValidator);
     }
 
     @Override

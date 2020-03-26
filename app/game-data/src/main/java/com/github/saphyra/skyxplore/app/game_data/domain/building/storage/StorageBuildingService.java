@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 //TODO unit test
 public class StorageBuildingService extends ValidationAbstractDataService<String, StorageBuilding> {
     public StorageBuildingService(ContentLoaderFactory contentLoaderFactory, DataValidator<Map<String, StorageBuilding>> dataValidator) {
-        super("public/data/gamedata/building/storage", contentLoaderFactory, dataValidator);
+        super("gamedata/building/storage", contentLoaderFactory, dataValidator);
     }
 
     @Override
