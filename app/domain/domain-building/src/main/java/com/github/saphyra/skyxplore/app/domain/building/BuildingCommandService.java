@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 public class BuildingCommandService implements CommandService<Building> {
     private final BuildingDao buildingDao;
 

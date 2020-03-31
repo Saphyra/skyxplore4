@@ -6,18 +6,16 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.github.saphyra.converter.Converter;
 import com.github.saphyra.dao.AbstractDao;
 import com.github.saphyra.skyxplore.app.common.utils.UuidConverter;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-//TODO unit test
 class BuildingDao extends AbstractDao<BuildingEntity, Building, String, BuildingRepository> {
     private final UuidConverter uuidConverter;
 
-    BuildingDao(Converter<BuildingEntity, Building> converter, BuildingRepository repository, UuidConverter uuidConverter) {
+    BuildingDao(BuildingConverter converter, BuildingRepository repository, UuidConverter uuidConverter) {
         super(converter, repository);
         this.uuidConverter = uuidConverter;
     }
@@ -54,10 +52,5 @@ class BuildingDao extends AbstractDao<BuildingEntity, Building, String, Building
             uuidConverter.convertDomain(starId),
             uuidConverter.convertDomain(playerId)
         ));
-    }
-
-    @Override
-    public void saveAll(List<Building> buildings) {
-        repository.saveAll(converter.convertDomain(buildings));
     }
 }

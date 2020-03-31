@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-//TODO unit test
 class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
     private final UuidConverter uuidConverter;
 
@@ -23,7 +22,7 @@ class BuildingConverter extends ConverterBase<BuildingEntity, Building> {
             .surfaceId(uuidConverter.convertEntity(entity.getSurfaceId()))
             .level(entity.getLevel())
             .constructionId(uuidConverter.convertEntity(entity.getConstructionId()))
-            .isNew(entity.isNew())
+            .isNew(false)
             .build();
     }
 
