@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Primary
 @Slf4j
 @ConditionalOnProperty(value = "com.github.saphyra.skyxplore.cacheRepository.enabled", havingValue = "true")
-//TODO unit test
 public class CachingBuildingRepository extends CacheRepository<String, BuildingEntity, String, BuildingRepository> implements BuildingRepository {
     private final RequestContextHolder requestContextHolder;
     private final UuidConverter uuidConverter;

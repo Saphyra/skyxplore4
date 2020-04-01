@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-//TODO unit test
 public class BuildingQueryService {
     private final BuildingDao buildingDao;
     private final ProductionBuildingService productionBuildingService;
@@ -48,7 +47,8 @@ public class BuildingQueryService {
     private boolean canProduce(Building building, String dataId) {
         ProductionBuilding productionBuilding = productionBuildingService.get(building.getBuildingDataId());
         Surface surface = surfaceQueryService.findBySurfaceIdAndPlayerId(building.getSurfaceId());
-        return productionBuilding.getGives().getOptional(dataId)
+        return productionBuilding.getGives()
+            .getOptional(dataId)
             .filter(production -> production.getPlaced().contains(surface.getSurfaceType()))
             .isPresent();
     }

@@ -31,7 +31,7 @@ public class CachingPlayerRepositoryTest {
     private static final String PLAYER_ID = "player-id";
 
     @Mock
-    private PlayerRepository playerRepository;
+    private PlayerRepository repository;
 
     @Mock
     private CacheContext cacheContext;
@@ -58,7 +58,7 @@ public class CachingPlayerRepositoryTest {
         given(cacheContext.getCacheComponentWrapper()).willReturn(cacheComponentWrapper);
         given(cacheContext.getOffsetDateTimeProvider()).willReturn(offsetDateTimeProvider);
 
-        underTest = new CachingPlayerRepository(playerRepository, cacheContext);
+        underTest = new CachingPlayerRepository(repository, cacheContext);
 
         given(cacheComponentWrapper.getDeleteByKey()).willReturn(deleteByKeyComponent);
         given(cacheComponentWrapper.getGetMapByKey()).willReturn(getMapByKeyComponent);
@@ -66,7 +66,7 @@ public class CachingPlayerRepositoryTest {
 
     @Test
     public void getByKey() {
-        given(playerRepository.getByGameId(GAME_ID)).willReturn(Arrays.asList(playerEntity));
+        given(repository.getByGameId(GAME_ID)).willReturn(Arrays.asList(playerEntity));
 
         List<PlayerEntity> result = underTest.getByKey(GAME_ID);
 
@@ -77,7 +77,7 @@ public class CachingPlayerRepositoryTest {
     public void deleteByIds() {
         underTest.deleteByIds(Arrays.asList(PLAYER_ID));
 
-        verify(playerRepository).deleteByPlayerIdIn(Arrays.asList(PLAYER_ID));
+        verify(repository).deleteByPlayerIdIn(Arrays.asList(PLAYER_ID));
     }
 
     @Test

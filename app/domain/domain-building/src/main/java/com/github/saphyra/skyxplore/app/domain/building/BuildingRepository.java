@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-//TODO unit test
 interface BuildingRepository extends CrudRepository<BuildingEntity, String> {
     @Transactional
     @Modifying
