@@ -53,6 +53,7 @@ public class RenameStarTest extends SeleniumTest {
         StarViewActions.modifyStarName(driver, starName);
         NotificationUtil.verifyErrorNotification(driver, errorMessage);
 
+        VerifiedOperation.waitUntil(() -> StarViewPage.getStarNameField(driver).getText().equals(originalStarName));
         assertThat(StarViewPage.getStarNameField(driver).getText()).isEqualTo(originalStarName);
 
         StarViewActions.closePage(driver);

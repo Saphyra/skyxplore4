@@ -61,11 +61,23 @@ public class MainMenuPageActions {
     }
 
     public static void submitGameCreationForm(WebDriver driver) {
-        WebElement submitButton = MainMenuPage.createGameButton(driver);
-        VerifiedOperation.waitUntil(submitButton::isEnabled, 10, 500);
-        assertThat(submitButton.isEnabled()).isTrue();
+        VerifiedOperation.operate(
+            new Operation() {
+                @Override
+                public void execute() {
+                    WebElement submitButton = MainMenuPage.createGameButton(driver);
+                    VerifiedOperation.waitUntil(submitButton::isEnabled, 10, 500);
+                    assertThat(submitButton.isEnabled()).isTrue();
 
-        submitButton.click();
+                    submitButton.click();
+                }
+
+                @Override
+                public boolean check() {
+                    return driver.getCurrentUrl().contains(RequestConstants.GAME_MAPPING_BASE);
+                }
+            }
+        );
     }
 
     public static GameViewResult findGameByName(WebDriver driver, String gameName) {
