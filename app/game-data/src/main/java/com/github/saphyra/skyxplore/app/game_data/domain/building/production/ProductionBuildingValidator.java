@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-//TODO unit test
 public class ProductionBuildingValidator implements DataValidator<Map<String, ProductionBuilding>> {
     private final BuildingDataValidator buildingDataValidator;
     private final ProductionValidator productionValidator;
@@ -32,8 +31,6 @@ public class ProductionBuildingValidator implements DataValidator<Map<String, Pr
             if (productionBuilding.getWorkers() < 1) {
                 throw new IllegalStateException("Workers must be higher than 0");
             }
-            requireNonNull(productionBuilding.getPrimarySurfaceType(), "PrimarySurfaceType must not be null.");
-            requireNonNull(productionBuilding.getPlaceableSurfaceTypes(), "PlaceableSurfaceTypes must not be null.");
             productionValidator.validate(productionBuilding.getGives());
         } catch (Exception e) {
             throw new IllegalStateException("Invalid data with key " + key, e);

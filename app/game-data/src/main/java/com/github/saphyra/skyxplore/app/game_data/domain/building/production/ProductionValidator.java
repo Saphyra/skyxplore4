@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-//TODO unit test
 public class ProductionValidator implements DataValidator<Map<String, Production>> {
     private final ConstructionRequirementsValidator constructionRequirementsValidator;
 
@@ -40,6 +39,9 @@ public class ProductionValidator implements DataValidator<Map<String, Production
             }
 
             requireNonNull(production.getAmount(), "Amount must not be null.");
+            if (production.getAmount() < 1) {
+                throw new IllegalStateException("Amount must not be less than 1");
+            }
             requireNonNull(production.getRequiredSkill(), "RequiredSkill must not be null.");
 
             requireNonNull(production.getConstructionRequirements(), "ConstructionRequirements must not be null.");

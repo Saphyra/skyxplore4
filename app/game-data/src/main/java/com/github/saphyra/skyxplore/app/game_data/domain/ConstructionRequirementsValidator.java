@@ -15,6 +15,7 @@ import com.github.saphyra.skyxplore.app.domain.common.ConstructionRequirements;
 public class ConstructionRequirementsValidator implements DataValidator<ConstructionRequirements> {
     @Override
     public void validate(ConstructionRequirements item) {
+        requireNonNull(item, "ConstructionRequirements must not be null.");
         requireNonNull(item.getRequiredWorkPoints(), "requiredWorkPoints must not be null.");
         if (item.getRequiredWorkPoints() < 1) {
             throw new IllegalStateException("requiredWorkPoints must be higher than 0");

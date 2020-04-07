@@ -15,7 +15,6 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-//TODO unit test
 public class ProductionBuilding extends BuildingData {
     private OptionalHashMap<String, Production> gives;
     private Integer workers;

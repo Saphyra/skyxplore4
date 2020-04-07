@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-//TODO unit test
 public class MiscellaneousBuildingValidator implements DataValidator<Map<String, MiscellaneousBuilding>> {
     private final BuildingDataValidator buildingDataValidator;
 
@@ -29,6 +28,9 @@ public class MiscellaneousBuildingValidator implements DataValidator<Map<String,
             log.debug("Validating ProductionBuilding with key {}", key);
             buildingDataValidator.validate(miscellaneousBuilding);
             requireNonNull(miscellaneousBuilding.getPlaceableSurfaceTypes(), "PlaceableSurfaceTypes must not be null");
+            if (miscellaneousBuilding.getPlaceableSurfaceTypes().isEmpty()) {
+                throw new IllegalStateException("Building is not placeable.");
+            }
             if (miscellaneousBuilding.getPlaceableSurfaceTypes().stream().anyMatch(Objects::isNull)) {
                 throw new NullPointerException("PlaceableSurfaceTypes must not contain null.");
             }
